@@ -14,6 +14,28 @@
 # include <signal.h>
 
 # define BUFFER_SIZE 4000
-# define STDIN 0
-# define STDOUT 1
-# define STDERR 2
+
+typedef struct s_shell
+{
+	t_token	*start;
+	t_envp	*envp;
+	t_envp	*secret_envp;
+	int	in;
+	int	out;
+	int	fdin;
+	int	fdout;
+	int	pipein;
+	int	pipeout;
+	int	pid;
+	//int	charge;
+	int	parent;
+	//int	last;
+	int	result;
+	int	exit;
+	int	not_execute;
+}	t_shell
+
+
+typedef	struct	s_token
+{
+}
