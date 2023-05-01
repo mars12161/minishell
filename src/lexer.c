@@ -34,7 +34,7 @@ static t_lexer *new_node_integration(t_lexer *new_node)
 	return (new_node);
 }
 
-
+/*
 static t_lexer	*get_lexer_bottom(t_lexer *lexer)
 {
 	while(lexer && lexer->next != NULL)
@@ -56,7 +56,26 @@ static void	lexer_add_bottom(t_lexer **lexer, t_lexer *new_node)
 	bottom = get_lexer_bottom(*lexer);
 	bottom->next = new_node;
 }
+*/
 
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
+
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
+	tmp = *lst;
+	while (tmp->next)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = new;
+}
 static t_lexer *fill_lexer(int argc, char **argv)
 {
 	t_lexer *lexer;
@@ -76,7 +95,7 @@ static t_lexer *fill_lexer(int argc, char **argv)
 		if (i == 1)
 			lexer = temp;
 		else
-			lexer_add_bottom(&lexer, temp);
+			ft_lstadd_back(&lexer, temp);
 		i++;
 	}
 	return (lexer);
