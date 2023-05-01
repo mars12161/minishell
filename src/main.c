@@ -27,14 +27,7 @@ int	main(int argc, char **argv, char **envp)
 	//something for envp
 	//
 	//
-	char	*input;
-	while (42)
-	{
-		input = readline("=> ");
-		if (!ft_strcmp(input, "exit"))
-			exit(1);
-		printf("%s\n", input);
-	}
+	minishell_loop();
 
 //	while(!shell.exit)
 //	{
