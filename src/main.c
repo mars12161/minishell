@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:16:01 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:49:06 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:09:12 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ int	main(int argc, char **argv, char **envp)
 //	free_env(//);
 //	return (mini.result);
 }
-

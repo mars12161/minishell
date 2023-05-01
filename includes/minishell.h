@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:22:34 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 16:55:56 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:15:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef	struct	s_token
 {
 	char	*word;
 	char	*operator;
-} t_token;
+}	t_token;
 
 typedef struct	s_lexer
 {
@@ -63,7 +63,7 @@ typedef struct	s_lexer
 	t_token			token;
 	struct s_lexer	*next;
 	struct s_lexer	*previous;
-};
+}	t_lexer;
 
 
 /* Functions */
