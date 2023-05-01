@@ -22,3 +22,14 @@ emacs
 echo"something here"
 
 exit
+
+$ wc << EOF
+> one two three
+> four five
+> EOF
+ 2  5 24
+ 
+In this example we tell wc program to wait for EOF string, then type in five words, and then type in EOF to signal that we're done giving input. In effect, it's similar to running wc by itself, typing in words, then pressing CtrlD
+
+
+The dollar sign before the thing in parenthesis usually refers to a variable. This means that this command is either passing an argument to that variable from a bash script or is getting the value of that variable for something.
