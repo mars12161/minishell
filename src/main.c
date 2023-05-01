@@ -1,3 +1,5 @@
+#include "../includes/minishell.h"
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell shell;
@@ -12,10 +14,10 @@ int	main(int argc, char **argv, char **envp)
 	init_fds(&shell);
 	//something for envp
 	//
-	//
+	//maybe have a if check hier
 	while(!shell.exit)
 	{
-		
+		execute(//);	
 	}
 	free_env(mini.envp);
 	free_env(//);

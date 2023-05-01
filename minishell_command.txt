@@ -1,0 +1,24 @@
+/bin/ls -l -a -R
+
+/bin/ls -laF
+
+pwd
+
+uname -r
+
+ls -l
+
+ls -la
+
+env
+
+/usr/bin/env
+
+setenv PATH "/bin:/usr/bin"
+ls -l
+
+emacs
+
+echo"something here"
+
+exit

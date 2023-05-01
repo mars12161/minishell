@@ -31,11 +31,33 @@ typedef struct s_shell
 	int	parent;
 	//int	last;
 	int	result;
-	int	exit;
+	bool	exit;
 	int	not_execute;
 }	t_shell
 
-
-typedef	struct	s_token
+typedef struct	s_lexer
 {
-}
+	char *cmd;
+	t_input	token;
+	struct s_lexer *next;
+}	t_lexer;
+
+typedef enum e_input
+{
+	CMD,
+	NOMAL_VAR,
+	//SPACE,
+	PIPE,
+	D_QUOTE,
+	S_QUOTE,
+	REDIRECT_IN,
+	REDIRECT_OUT
+}	t_input;
+
+/* Functions */
+
+int	ft_strcmp(char *s1, char *s2);
+
+#endif
+
+
