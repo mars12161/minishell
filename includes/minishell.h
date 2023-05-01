@@ -48,26 +48,7 @@ typedef struct s_shell
 	int	result;
 	bool	exit;
 	int	not_execute;
-<<<<<<< HEAD
 }	t_shell;
-
-typedef	struct	s_token
-{
-	char	*word;
-	char	*operator;
-}	t_token;
-
-typedef struct	s_lexer
-{
-	int 			index;
-	char 			*input;
-	t_token			token;
-	struct s_lexer	*next;
-	struct s_lexer	*previous;
-}	t_lexer;
-
-=======
-}	t_shell
 
 typedef struct	s_lexer
 {
@@ -87,15 +68,9 @@ typedef enum e_input
 	REDIRECT_IN,
 	REDIRECT_OUT
 }	t_input;
->>>>>>> YY
 
 /* Functions */
 
 int	ft_strcmp(char *s1, char *s2);
 
 #endif
-<<<<<<< HEAD
-=======
-
-
->>>>>>> YY
