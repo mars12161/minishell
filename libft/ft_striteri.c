@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_loop.c                                   :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 17:23:25 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 17:25:54 by mschaub          ###   ########.fr       */
+/*   Created: 2022/12/06 19:47:21 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/11 15:05:49 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "libft.h"
 
-int	minishell_loop(void)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	char *input;
-	while (42)
+	unsigned int	i;
+
+	i = 0;
+	while (s[i] && f)
 	{
-		input = readline("=> ");
-		if (!ft_strcmp(input, "exit"))
-			return (1);
-		printf("%s\n", input);
+		f(i, s + i);
+		i++;
 	}
 }
