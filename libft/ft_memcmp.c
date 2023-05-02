@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/12/02 16:45:30 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/11 14:48:46 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	while (*s1 && (*s1 == *s2))
+	while (n--)
 	{
+		if (*(unsigned char *)s1 != *(unsigned char *)s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
 		s1++;
 		s2++;
 	}
-	return (*(char *)s1 - *(char *)s2);
+	return (0);
 }
-

@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/11/28 15:10:37 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/09 16:49:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_isascii(int c)
 {
-	while (*s1 && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(char *)s1 - *(char *)s2);
+	return (c >= 0 && c < 128);
 }
 
+/*
+#include <stdio.h>
+int main() {
+	printf("%i\n", ft_isascii(225));
+	printf("%i\n", ft_isascii(64));
+	printf("%i\n", ft_isascii(300));
+	printf("%i\n", ft_isascii('a'));
+}
+*/

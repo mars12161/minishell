@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/12/02 16:28:14 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/11 14:48:36 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (*s1 && (*s1 == *s2))
+	while (n--)
 	{
-		s1++;
-		s2++;
+		if (*(unsigned char *)s == (unsigned char)c)
+			return ((void *)s);
+		s++;
 	}
-	return (*(char *)s1 - *(char *)s2);
+	return (NULL);
 }
-

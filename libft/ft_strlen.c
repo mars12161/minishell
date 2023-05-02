@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/06/28 17:26:23 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/11 14:49:21 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+size_t	ft_strlen(const char *str)
 {
-	while (*s1 && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(char *)s1 - *(char *)s2);
-}
+	size_t	i;
 
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}

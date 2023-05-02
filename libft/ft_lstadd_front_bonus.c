@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/12/07 15:31:05 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/08 16:02:56 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	while (*s1 && (*s1 == *s2))
+	if (lst && new)
 	{
-		s1++;
-		s2++;
+		new->next = *lst;
+		*lst = new;
 	}
-	return (*(char *)s1 - *(char *)s2);
 }
-

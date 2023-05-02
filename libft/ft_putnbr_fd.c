@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/12/05 12:26:14 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/05 14:46:40 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	while (*s1 && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(char *)s1 - *(char *)s2);
-}
+	int		sign;
+	char	c;
 
+	sign = 1;
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		sign = -1;
+	}
+	if (n / 10)
+	{
+		ft_putnbr_fd(n / 10 * sign, fd);
+	}
+	c = n % 10 * sign + '0';
+	ft_putchar_fd(c, fd);
+}

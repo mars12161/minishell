@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/11/30 17:36:41 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/16 15:29:19 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	while (*s1 && (*s1 == *s2))
+	if (!src || !dest)
+		return (0);
+	if (dest < src)
 	{
-		s1++;
-		s2++;
+		ft_memcpy(dest, src, n);
 	}
-	return (*(char *)s1 - *(char *)s2);
+	else
+	{
+		while (n--)
+		{
+			((char *)dest)[n] = ((char *)src)[n];
+		}
+	}
+	return (dest);
 }
-

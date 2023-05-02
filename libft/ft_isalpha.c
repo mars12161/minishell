@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/11/28 12:45:44 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/09 16:35:16 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_isalpha(int c)
 {
-	while (*s1 && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(char *)s1 - *(char *)s2);
+	return ((c <= 'Z' && c >= 'A')
+		|| (c >= 'a' && c <= 'z'));
 }
 
+/*
+#include <stdio.h>
+int main() {
+	printf("%i", ft_isalpha('b'));
+	printf("%i", ft_isalpha('&'));
+	printf("%i", ft_isalpha('7'));
+	printf("%i\n", ft_isalpha('Z'));
+}
+*/

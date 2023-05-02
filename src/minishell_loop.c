@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   minishell_loop.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2023/05/01 17:23:25 by mschaub           #+#    #+#             */
+/*   Updated: 2023/05/01 17:25:54 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	minishell_loop(void)
 {
-	while (*s1 && (*s1 == *s2))
+	char *input;
+	while (42)
 	{
-		s1++;
-		s2++;
+		input = readline("=> ");
+		if (!ft_strcmp(input, "exit"))
+			return (1);
+		printf("%s\n", input);
 	}
-	return (*(char *)s1 - *(char *)s2);
 }
-

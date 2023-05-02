@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 15:45:50 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/01 15:46:29 by mschaub          ###   ########.fr       */
+/*   Created: 2022/12/03 15:25:34 by mschaub           #+#    #+#             */
+/*   Updated: 2022/12/03 16:52:22 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	while (*s1 && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(char *)s1 - *(char *)s2);
-}
+	char	*ret;
+	size_t	i;
+	size_t	j;
 
+	i = 0;
+	j = 0;
+	ret = (char *)malloc(
+			sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ret)
+		return (NULL);
+	while (s1[i])
+	{
+		ret[j++] = s1[i];
+		i++;
+	}	
+	i = 0;
+	while (s2[i])
+	{
+		ret[j++] = s2[i];
+		i++;
+	}
+	ret[j] = 0;
+	return (ret);
+}
