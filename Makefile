@@ -2,6 +2,11 @@ NAME = minishell
 CFLAGS = -g3 -Wall -Wextra -Werror -lreadline
 CC = cc
 RM = rm -rf
+
+SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+OBJ		= $(SRC:.c=.o)
+OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
+
 SCRS = 
 
 LIBFT_PATH = libft/
@@ -18,6 +23,9 @@ $(LIBFT):
 	@echo "Compiling libft..."
 	@make -sC $(LIBFT_PATH)
 	@echo "libft compiled!"
+
+$(OBJ_PATH):
+	mkdir $(OBJ_PATH)
 
 all: $(LIBFT) $(NAME)
 
