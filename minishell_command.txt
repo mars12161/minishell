@@ -33,3 +33,7 @@ In this example we tell wc program to wait for EOF string, then type in five wor
 
 
 The dollar sign before the thing in parenthesis usually refers to a variable. This means that this command is either passing an argument to that variable from a bash script or is getting the value of that variable for something.
+
+If readline encounters an EOF (Ctrl + D) while reading the line, and the line is empty at that point, then (char *)NULL is returned. Otherwise, the line is ended just as if a newline \n had been typed.
+
+echo "hello  $USER " > file | grep h | cat << eof | cat >> file | echo 'done'

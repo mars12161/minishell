@@ -1,7 +1,7 @@
 #include "../includes/minishell.h"
 
-if (!ft_strchr("GEP01S", game->map.full[y][x]))
-                ft_error("wrong parameter", game);
+//if (!ft_strchr("GEP01S", game->map.full[y][x]))
+//                ft_error("wrong parameter", game);
 
 int   ft_builtin(t_lexer *lexer)
 {
