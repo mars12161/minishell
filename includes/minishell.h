@@ -13,6 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -57,6 +58,42 @@ typedef struct s_shell
 	enum e_state state;
 	struct s_shell *next;
 }	t_shell;
+
+typedef enum e_token
+{
+	WORD = -1,
+	ENV = '$',
+	//SPACE = ' ',
+	PIPE = '|',
+	D_QUOTE = '\"',
+	S_QUOTE = '\'',
+	NEW_LINE = '\n',
+	REDIRECT_IN = '<',
+	REDIRECT_OUT = '>',
+	ESC = '\\',
+}
+
+typedef enum e_state
+{
+	D_QUOTE,
+	S_QUOTE,
+	OTHER,
+}
+
+/*
+Struct to store all the commands
+*/
+typedef struct s_cmds
+{
+	char **cmd;
+
+	struct s_cmds *next;
+}	t_cmds;
+
+typedef struct s_tools
+{
+
+}	t_parse;
 
 /* Functions */
 
