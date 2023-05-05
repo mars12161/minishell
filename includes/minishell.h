@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:22:34 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/02 13:59:59 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:13:48 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ typedef enum e_state
 	S_QUOTE,
 	OTHER,
 }
+
+/*
+Struct to store all the commands
+*/
+typedef struct s_cmds
+{
+	char **cmd;
+
+	struct s_cmds *next;
+}	t_cmds;
+
+typedef struct s_tools
+{
+
+}	t_parse;
 
 /* Functions */
 
