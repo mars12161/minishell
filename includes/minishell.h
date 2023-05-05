@@ -59,27 +59,6 @@ typedef struct s_shell
 	struct s_shell *next;
 }	t_shell;
 
-typedef enum e_token
-{
-	WORD = -1,
-	ENV = '$',
-	//SPACE = ' ',
-	PIPE = '|',
-	D_QUOTE = '\"',
-	S_QUOTE = '\'',
-	NEW_LINE = '\n',
-	REDIRECT_IN = '<',
-	REDIRECT_OUT = '>',
-	ESC = '\\',
-}
-
-typedef enum e_state
-{
-	D_QUOTE,
-	S_QUOTE,
-	OTHER,
-}
-
 /*
 Struct to store all the commands
 */
