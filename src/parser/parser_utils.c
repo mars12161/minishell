@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:32:52 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/05 16:57:27 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/05 17:24:25 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ t_shell *get_next_pipe(t_shell *list)
 		tmp = tmp->next;
 	return (tmp);
 }
-
