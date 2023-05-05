@@ -13,7 +13,6 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -30,39 +29,41 @@
 
 /* Structs */
 
+enum e_token
+{
+	WORD,
+	ENV,
+	PIPE,
+	D_QUOTE,
+	S_QUOTE,
+	NEW_LINE,
+	REDIRECT_IN,
+	REDIRECT_OUT,
+	ESCAPE,
+};
+
+enum e_state
+{
+	IN_DQUOTE,
+	IN_SQUOTE,
+	OTHER,
+};
+
 typedef struct s_shell
 {
 	char *input;
 	int	len;
 	enum e_token type;
 	enum e_state state;
-	s_shell *next;
+	struct s_shell *next;
 }	t_shell;
-
-typedef enum e_token
-{
-	WORD = -1,
-	ENV = '$',
-	//SPACE = ' ',
-	PIPE = '|',
-	D_QUOTE = '\"',
-	S_QUOTE = '\'',
-	NEW_LINE = '\n',
-	REDIRECT_IN = '<',
-	REDIRECT_OUT = '>',
-	ESC = '\\',
-}
-
-typedef enum e_state
-{
-	D_QUOTE,
-	S_QUOTE,
-	OTHER,
-}
 
 /* Functions */
 
-int	ft_strcmp(char *s1, char *s2);
-int	minishell_loop(void);
+int	ft_strlen(char *str);
+char *split_line(char *str);
+t_shell *fill_shell(t_shell *shell);
+void	print_stack(t_shell *s);
+int	main();
 
 #endif
