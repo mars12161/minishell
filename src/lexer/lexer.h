@@ -20,10 +20,10 @@
 enum e_token
 {
 	WORD,
+	S_QUOTE,
+	D_QUOTE,
 	ENV,
 	PIPE,
-	D_QUOTE,
-	S_QUOTE,
 	NEW_LINE,
 	REDIRECT_IN,
 	REDIRECT_OUT,
@@ -32,9 +32,9 @@ enum e_token
 
 enum e_state
 {
-	IN_DQUOTE,
-	IN_SQUOTE,
 	OTHER,
+	IN_SQUOTE,
+	IN_DQUOTE,
 };
 
 typedef struct s_shell
@@ -51,7 +51,7 @@ typedef struct s_shell
 int	ft_strlen(char *str);
 char *split_line(char *str);
 t_shell *fill_shell(t_shell *shell);
-void	print_stack(t_shell *s);
+void	print_shell(t_shell *s);
 int	main();
 
 #endif

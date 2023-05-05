@@ -101,15 +101,17 @@ t_shell *fill_shell(t_shell *shell)
 		flag = 1;
 	}
 	out = split_line(str);
+	//printf("out: %s\n", out);
 	str = str + ft_strlen(out) + 1;
 	//if (!str)
 	//	error_free_exit(shell);
 	temp = new_node(out); //or add here token/state
-	free(out);
+	//free(out);
 	if (!shell)
 		shell = temp;
 	else
 			ft_lstadd_back(&shell, temp);
+	//printf("temp: %s\n", temp->input);
 	return (shell);
 }
 
@@ -136,7 +138,7 @@ t_shell *lunch_lexer()
 	return 
 }
 */
-void	print_stack(t_shell *s)
+void	print_shell(t_shell *s)
 {
 	t_shell	*temp;
 
@@ -149,10 +151,7 @@ void	print_stack(t_shell *s)
 	}
 	while (temp)
 	{
-		printf("input: %s ", temp->input);
-		printf("len: %i\n", temp->len);
-		printf("type: %i\n", temp->type);
-		printf("state: %i\n", temp->state);
+		printf("input: %s len: %i type: %i state: %i\n", temp->input, temp->len, temp->type, temp->state);
 		temp = temp->next;
 	}
 	printf("=========\n\n");
@@ -164,5 +163,5 @@ int	main()
 	shell = NULL;
 	shell = fill_shell(shell);
 	shell = fill_shell(shell);
-	print_stack(shell);
+	print_shell(shell);
 }
