@@ -1,23 +1,12 @@
-#include "../includes/minishell.h"
-
-void	free_exit_lexer(t_lexer **lexer)
+int ft_isspace(char c)
 {
-	t_lexer	temp;
-
-	if (!lexer || !*lexer)
-		return ;
-	while(*lexer)
-	{
-		temp = (*lexer)->next;
-		free(*lexer);
-		*lexer = temp;
-	}
-	*lexer = NULL;
+    if (c == ' ' || (c <= 13 && c >= 9))
+        return (1);
+    return (0);
 }
 
-void	error_free_exit(t_lexer *lexer)
+int ft_issignal(char c)
 {
-	free_exit_lexer(&lexer);
-	write(2, "Error\n", 6);
-	exit(1);
+    return (c == '\'' || c == '\"' || c == '<' || c == '>'
+        || c == '|' || c == '$' || ft_isspace(c) || c == '\n' || c == '\0')
 }
