@@ -12,7 +12,7 @@ int	main()
 	while(str[i])
 	{
 		printf("%c",str[i]);
-		printf("signal: %d\n",in_charset(str[i]));
+		printf("signal: %d\n", in_charset(str[i]));
 		i++;
 	}
 }

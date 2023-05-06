@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/05 18:50:37 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/06 15:40:02 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	new_node_type(t_shell *new_node)
 	else if (new_node->input[0] == '>')
 		new_node->type = REDIRECT_OUT;
 	else if (new_node->input[0] == '\\')
-		new_node->type = ESC;
+		new_node->type = ESCAPE;
 	else
 		new_node->type = WORD;
 }
@@ -60,7 +60,8 @@ static void new_node_state(t_shell *new_node)
 		new_node->state = IN_DQUOTE;
 	else if (new_node->type == S_QUOTE)
 		new_node->state = IN_SQUOTE;
-	else new_node->state = OTHER;
+	else
+		new_node->state = OTHER;
 }
 
 static t_shell *new_node(char *str)
@@ -72,9 +73,9 @@ static t_shell *new_node(char *str)
 	if (!new_node)
 		return (NULL);
 	new_node->input = str;
-    	new_node->len = ft_strlen(str);
-    new_node_type(new_node);
-    new_node_state(new_node);
+	new_node->len = ft_strlen(str);
+	new_node_type(new_node);
+	new_node_state(new_node);
 	new_node->next = 0;
 	return (new_node);
 }
@@ -169,6 +170,7 @@ void	print_shell(t_shell *s)
 	}
 	printf("=========\n\n");
 }
+
 int	main()
 {
 	t_shell *shell;

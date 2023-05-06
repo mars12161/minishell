@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/06 14:38:10 by mschaub           #+#    #+#             */
+/*   Updated: 2023/05/06 16:41:08 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -24,7 +36,7 @@ static int	strchar(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == ' ')
 			return (i);
@@ -53,7 +65,7 @@ static char	*ft_strdup(char *str)
 
 static char	*ft_strcpy(char *str, int i, int flag)
 {
-	int	size;
+	int		size;
 	char	*out;
 
 	size = 0;
@@ -62,7 +74,7 @@ static char	*ft_strcpy(char *str, int i, int flag)
 		out = (char *)malloc(sizeof(char *) * i);
 		if (!out)
 			return (0);
-		while(size < i - 1)
+		while (size < i - 1)
 		{
 			out[size] = str[size];
 			size++;
@@ -84,7 +96,7 @@ static char	*ft_strcpy(char *str, int i, int flag)
 	return (out);
 }
 
-char *split_line(char *str)
+char	*split_line(char *str)
 {
 	if (!str)
 		return (0); // donothing return minishell

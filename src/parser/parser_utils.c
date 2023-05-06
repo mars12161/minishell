@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:32:52 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/06 14:26:05 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/06 14:48:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	count_args(t_shell *list)
 	}
 	return (i);
 }
-
 
 /*
  Function to count all the pipes

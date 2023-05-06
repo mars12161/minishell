@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:22:34 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/05 17:48:55 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/06 16:07:11 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,6 @@ typedef struct s_shell
 	enum e_state state;
 	struct s_shell *next;
 }	t_shell;
-
-/*
-Struct to store all the commands
-*/
-typedef struct s_cmds
-{
-	char **cmd;
-	struct s_cmds *next;
-}	t_cmds;
-
-typedef struct s_parse
-{
-
-}	t_parse;
 
 /* Functions */
 
