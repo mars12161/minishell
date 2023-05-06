@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:32:52 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/05 17:24:25 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/06 14:26:05 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	count_pipes(t_shell *list)
  Function to get the next command
  after a pipe
  */
-t_shell *get_next_pipe(t_shell *list)
+t_shell	*get_next_pipe(t_shell *list)
 {
-	t_shell *tmp;
+	t_shell	*tmp;
 
 	tmp = list;
 	while (tmp && tmp->type != PIPE)

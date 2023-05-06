@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
+/*   Updated: 2023/05/05 18:50:37 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
@@ -20,7 +32,7 @@ int	ft_readline(char **line)
 	return (0);
 }
 */
-static void new_node_type(t_shell *new_node)
+static void	new_node_type(t_shell *new_node)
 {
 	if (new_node->input[0] == '$')
 		new_node->type = ENV;
@@ -38,7 +50,8 @@ static void new_node_type(t_shell *new_node)
 		new_node->type = REDIRECT_OUT;
 	else if (new_node->input[0] == '\\')
 		new_node->type = ESC;
-	else new_node->type = WORD;		
+	else
+		new_node->type = WORD;
 }
 
 static void new_node_state(t_shell *new_node)
