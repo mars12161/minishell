@@ -6,12 +6,12 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:32:52 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/06 14:48:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/07 13:28:33 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+#include "parser.h"
 /*
  Function to count all the arguments
  separated by a Pipe

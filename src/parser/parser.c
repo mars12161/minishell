@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:01:39 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/06 16:48:19 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/07 13:32:21 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,5 @@
 
 int	parser(t_shell *list)
 {
-	t_shell	*tmp;
-	t_cmds	*cmds;
-
-	tmp = list;
-	cmds = NULL;
-	while (tmp && tmp->type != PIPE)
-		tmp = tmp->next;
-	cmds->cmd = ft_split(tmp->content, ' ');
+	return (0);
 }
-
