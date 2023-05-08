@@ -74,3 +74,23 @@ t_shell	*get_next_pipe(t_shell *list)
 		tmp = tmp->next;
 	return (tmp);
 }
+
+void	del_node(t_shell **list, t_shell *node)
+{
+	t_shell	*current;
+
+	if (*list == node)
+	{
+		*list = node->next;
+		free(node);
+		return ;
+	}
+	current = *list;
+	while (current->next && current->next != node)
+		current = current->next;
+	if (current->next == node)
+	{
+		current->next = node->next;
+		free(node);
+	}
+}
