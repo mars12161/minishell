@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:11:51 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/07 13:56:14 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/08 11:57:33 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_cmds	*new_cmds(char **str)
 	return (new);
 }
 
-t_cmds	*init_cmd(t_shell *list)
+t_cmds	*init_cmds(t_shell *list)
 {
 	char	**str;
 	int		count_args;
