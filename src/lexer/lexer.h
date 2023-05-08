@@ -60,10 +60,12 @@ typedef struct s_shell
 
 /* Functions */
 
-int	ft_strlen(char *str);
 char *split_line(char *str);
 t_shell *fill_shell(t_shell *shell);
 void	print_shell(t_shell *s);
 int	main();
+int ft_spacetimes(char *str);
+char **ft_split(char *str);
+void    ft_free(char **str);
 
 #endif

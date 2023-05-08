@@ -1,109 +1,92 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lexer_utils.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 14:38:10 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/06 16:41:08 by mschaub          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "lexer.h"
 
-int	ft_strlen(char *str);
-char *split_line(char *str);
-
-int	ft_strlen(char *str)
+static char *creat_str(char *s1, char *s2, int len)
 {
-	int n = 0;
+    int i;
+    int j;
 
-	while (*str)
-	{
-		n++;
-		str++;		
-	}
-	return (n);
-}// use from libft.a
-
-static int	strchar(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			return (i);
-		i++;
-	}
-	if (str[i] == '\0')
-		return (-1);
-	return (-2);
+    i = 0;
+    j = 0;
+    while(s2[j] && j < len)
+    {
+        s1[i] = s2[j];
+        i++;
+        j++;
+    }
+    s1[i] = '\0';
+    return (s1);
 }
 
-static char	*ft_strdup(char *str)
+int ft_spacetimes(char *str)
 {
-	int n = 0;
-	int len = ft_strlen(str);
-	char *dup = (char*)malloc(sizeof(*dup) * len + 1);
-	
-	dup[len] = 0;
-	
-	while (str[n])
-	{
-		dup[n] = str[n];
-		n++;	
-	}
-	return (dup);
-}// use from libft.a
+    int i;
+    int wc;
 
-static char	*ft_strcpy(char *str, int i, int flag)
-{
-	int		size;
-	char	*out;
-
-	size = 0;
-	if (flag == 0)
-	{
-		out = (char *)malloc(sizeof(char *) * i);
-		if (!out)
-			return (0);
-		while (size < i - 1)
-		{
-			out[size] = str[size];
-			size++;
-		}
-	}
-	else
-	{
-		out = (char *)malloc(sizeof(char *) * (ft_strlen(str) - i + 1));
-		if (!out)
-			return (0);
-		while(str[i])
-		{
-			out[size] = str[i];
-			size++;
-			i++;	
-		}
-	}
-	out[size] = 0;
-	return (out);
+    i = 0;
+    wc = 0;
+    while(str[i])
+    {
+        while (str[i] == ' ' || str[i] == '\t')
+            i++;
+        if (str[i] >= 33 && str[i] <= 126 && (str[i + 1] == ' ' || str[i + 1] == '\t' || str[i + 1] == '\0'))
+            wc++;
+        i++;
+    }
+    return (wc);
 }
 
-char	*split_line(char *str)
+char **ft_split(char *str)
 {
-	if (!str)
-		return (0); // donothing return minishell
-	if (strchar(str) > 0)
-		return (ft_strcpy(str, strchar(str) + 1, 0));
-	else if (strchar(str) == -1)
-		return (ft_strdup(str));
-	return (0); //j == -2
+    char **result;
+    int i;
+    int factor;
+    int k;
+
+    factor = ft_spacetimes(str);
+    result = (char **)malloc(sizeof(char *) * (factor + 1));
+    if (!result)
+        return (0);
+    result[factor] = 0;
+    factor = 0;
+    i = 0;
+    k = 0;
+    while (str[i])
+    {
+        while (str[i] == ' ' || str[i] == '\t')
+            i++;
+        factor = i;
+        while (str[i] >= 33 && str[i] <= 126)
+            i++;
+        if (factor < i)
+        {
+            result[k] = malloc(sizeof(char) * (i - factor + 1));
+            if (!result[k])
+                return (0);
+            result[k] = creat_str(result[k], &str[factor], (i - factor));
+            k++;
+        }
+    }
+    return (result);
 }
 
+void    ft_free(char **str)
+{
+    int i;
+    if (!*str)
+        return ;
+    i = 0;
+    while(str[i])
+    {
+        if (str[i] != NULL)
+        {
+            free(str[i]);
+            i++;
+        }
+        *str =NULL;
+    }
+    free(str);
+}
