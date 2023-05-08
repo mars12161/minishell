@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:03:23 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/07 13:33:58 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/08 11:58:39 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_shell	*get_next_pipe(t_shell *list);
 /* parser_utils2.c */
 t_cmds	*new_cmds(char **str);
 t_cmds	*init_cmd(t_shell *list);
+
+/* parser_utils2.c */
 
 /* parser.c */
 int		parser(t_shell *list);
