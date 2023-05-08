@@ -130,6 +130,7 @@ t_shell *fill_shell(t_shell *shell)
 				ft_lstadd_back_shell(&shell, temp);
 		i++;
 	};
+	//ft_free(result); free later;
 	return (shell);
 }
 
