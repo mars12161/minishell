@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:22:34 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/06 16:07:11 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/08 14:43:18 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,9 @@ typedef struct s_shell
 
 /* Functions */
 
+int	ft_strlen(char *str);
 char *split_line(char *str);
 t_shell *fill_shell(t_shell *shell);
 void	print_shell(t_shell *s);
-int	main();
-int ft_spacetimes(char *str);
-char **ft_split(char *str);
-void    ft_free(char **str);
 
 #endif
