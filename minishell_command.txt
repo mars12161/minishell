@@ -37,3 +37,22 @@ The dollar sign before the thing in parenthesis usually refers to a variable. Th
 If readline encounters an EOF (Ctrl + D) while reading the line, and the line is empty at that point, then (char *)NULL is returned. Otherwise, the line is ended just as if a newline \n had been typed.
 
 echo "hello  $USER " > file | grep h | cat << eof | cat >> file | echo 'done'
+
+c4c3c3% FOO=4    
+c4c3c3% echo $FOO
+
+c4c3c3% export EDITOR=nano
+c4c3c3% printenv EDITOR
+nano
+
+
+c4c3c3% export EDITOR=nano
+c4c3c3% $EDITOR
+c4c3c3% unset EDITOR
+c4c3c3% $EDITOR
+
+c4c3c3% export BB=pwd
+c4c3c3% $BB
+/nfs/homes/yli/Desktop/Subject
+
+

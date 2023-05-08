@@ -64,6 +64,16 @@ static void new_node_state(t_shell *new_node)
 		new_node->state = OTHER;
 }
 
+static int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+		i++;
+	return (i);
+} // from libft.a
+
 static t_shell *new_node(char *str)
 {
 	t_shell *new_node;
@@ -80,7 +90,7 @@ static t_shell *new_node(char *str)
 	return (new_node);
 }
 
-void	ft_lstadd_back(t_shell **lst, t_shell *new)
+static void	ft_lstadd_back_shell(t_shell **lst, t_shell *new)
 {
 	t_shell	*tmp;
 
@@ -97,61 +107,51 @@ void	ft_lstadd_back(t_shell **lst, t_shell *new)
 		tmp = tmp->next;
 	}
 	tmp->next = new;
-} //can delete later
+}
 
 t_shell *fill_shell(t_shell *shell)
 {
-	
 	t_shell *temp;
+	char *str;
+	char	**result;
+	char *input;
 	int	i;
-	static char *str;
-	char *out;
-	static int	flag;
 
-	//shell = NULL;
-	if (flag == 0)
+	i = 0;
+	str = readline("minishell: ");
+	result = ft_split(str);
+	while (i < ft_spacetimes(str))
 	{
-		str = readline("minishell: ");
-		flag = 1;
-	}
-	out = split_line(str);
-	//printf("out: %s\n", out);
-	str = str + ft_strlen(out) + 1;
-	//if (!str)
-	//	error_free_exit(shell);
-	temp = new_node(out); //or add here token/state
-	//free(out);
-	if (!shell)
-		shell = temp;
-	else
-			ft_lstadd_back(&shell, temp);
-	//printf("temp: %s\n", temp->input);
+		input = result[i];
+		temp = new_node(input);
+		if (!shell)
+			shell = temp;
+		else
+				ft_lstadd_back_shell(&shell, temp);
+		i++;
+	};
 	return (shell);
 }
 
 /*
-t_shell *lunch_lexer()
+static void	ft_in_quote(t_shell **shell)
 {
-	static char *str;
-	char *out;
-	static int	flag;
+	t_shell *temp;
+	int	flag;
 
-	if (flag == 0)
+	temp = *shell;
+	flag = 0;
+	while(temp)
 	{
-		str = readline("minishell: ");
-		flag = 1;
+		if (temp->type == D_QUOTE)
+		{
+			(temp->next->state = IN_DQUOTE);
+			flag = 1;
+		}
 	}
-	out = split_line(str);
-	fill_shell(out);
-	str = str + ft_strlen(out) + 1;
-	free(out);
-	out = split_line(str);
-	fill_shell(out);
-	str = str + ft_strlen(out) + 1;
-	free(out);
-	return 
 }
 */
+
 void	print_shell(t_shell *s)
 {
 	t_shell	*temp;
@@ -176,7 +176,6 @@ int	main()
 	t_shell *shell;
 
 	shell = NULL;
-	shell = fill_shell(shell);
 	shell = fill_shell(shell);
 	print_shell(shell);
 }
