@@ -22,7 +22,6 @@ enum e_token
 	WORD,
 	S_QUOTE,
 	D_QUOTE,
-	SPACE,
 	ENV,
 	PIPE,
 	NEW_LINE,
@@ -53,7 +52,7 @@ char *split_line(char *str);
 t_shell *fill_shell(t_shell *shell);
 void	print_shell(t_shell *s);
 int	main();
-int ft_splittimes(char *str);
+int ft_spacetimes(char *str);
 char **ft_split(char *str);
 void    ft_free(char **str);
 

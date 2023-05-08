@@ -16,7 +16,8 @@
 #include <readline/history.h>
 #include "lexer.h"
 
-static char	*ft_readline()
+/*
+int	ft_readline(char **line)
 {
 	*line = readline("[minishell:]");
 	if (!*line)
@@ -30,8 +31,8 @@ static char	*ft_readline()
 		add_history(*line);
 	return (0);
 }
-
-void	new_node_type(t_shell *new_node)
+*/
+static void	new_node_type(t_shell *new_node)
 {
 	if (new_node->input[0] == '$')
 		new_node->type = ENV;
@@ -49,12 +50,11 @@ void	new_node_type(t_shell *new_node)
 		new_node->type = REDIRECT_OUT;
 	else if (new_node->input[0] == '\\')
 		new_node->type = ESCAPE;
-	if (new_node->input[0] == ' ')
-		new_node->type = SPACE;
 	else
 		new_node->type = WORD;
 }
-void new_node_state(t_shell *new_node)
+
+static void new_node_state(t_shell *new_node)
 {
 	if (new_node->type == D_QUOTE)
 		new_node->state = IN_DQUOTE;
@@ -108,8 +108,8 @@ char	*ft_strdup(const char *s)
 	ft_strlcpy(ret, s, len + 1);
 	return (ret);
 } //from libft.a
-/*
-static t_shell *new_node(char *str, enum e_token type, enum e_state state)
+
+static t_shell *new_node(char *str)
 {
 	t_shell *new_node;
 
@@ -119,12 +119,12 @@ static t_shell *new_node(char *str, enum e_token type, enum e_state state)
 		return (NULL);
 	new_node->input = ft_strdup((const char *)str);
 	new_node->len = ft_strlen(str);
-	new_node->type = type;
-	new_node->state = state;
+	new_node_type(new_node);
+	new_node_state(new_node);
 	new_node->next = 0;
 	return (new_node);
 }
-*/
+
 static void	ft_lstadd_back_shell(t_shell **lst, t_shell *new)
 {
 	t_shell	*tmp;
@@ -146,47 +146,47 @@ static void	ft_lstadd_back_shell(t_shell **lst, t_shell *new)
 
 t_shell *fill_shell(t_shell *shell)
 {
+	t_shell *temp;
 	char *str;
+	char	**result;
 	char *input;
+	int	i;
 
 	i = 0;
-	str = ft_readline();
-	while (*str == ' ')
-		str++;
-	while (*str)
+	str = readline("minishell: ");
+	result = ft_split(str);
+	while (i < ft_spacetimes(str))
 	{
-		if (*str == ' ')
-			new_node_SPACE(str, shell);
-		else if (*str == '$')
-			new_node(str, shell);
-		else if (*str == '|')
-			new_node_PIPE(str, PIPE, OTHER, shell);
-		else if (*str == '\"')
-			new_node_DQ(str, D_QUOTE, IN_DQUOTE, shell);
-		else if (*str == '\'')
-			new_node_SQ(str, S_QUOTE, IN_SQUOTE, shell);
-		else if (*str == '\n')
-			new_node_NL(str, NEW_LINE, OTHER, shell);
-		else if (*str == '<')
-			new_node_REDI(str, REDIRECT_IN, OTHER, shell);
-		else if (*str == '>')
-			new_node_REDO(str, REDIRECT_OUT, OTHER, shell);
-		else if (*str == '\\')
-			new_node_ESC(str, ESCAPE, OTHER, shell);
-		else 
-			new_node(str, shell);
-		
+		input = result[i];
+		temp = new_node(input);
 		if (!shell)
 			shell = temp;
 		else
 				ft_lstadd_back_shell(&shell, temp);
 		i++;
-	}
+	};
 	ft_free(result);
 	return (shell);
 }
-	else
-		new_node->type = WORD;
+
+/*
+static void	ft_in_quote(t_shell **shell)
+{
+	t_shell *temp;
+	int	flag;
+
+	temp = *shell;
+	flag = 0;
+	while(temp)
+	{
+		if (temp->type == D_QUOTE)
+		{
+			(temp->next->state = IN_DQUOTE);
+			flag = 1;
+		}
+	}
+}
+*/
 
 void	print_shell(t_shell *s)
 {
