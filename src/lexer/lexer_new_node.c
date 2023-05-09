@@ -122,8 +122,48 @@ char *new_node_PIPE(char *str, t_shell **shell, int c)
 char *new_node_RED(char *str, t_shell **shell, int c)
 {
     t_shell *new_node;
+    int i;
+    int flag;
 
     new_node = NULL;
+    i = 0;
+    flag = 0;
+    while(str[i])
+    {
+        if (str[i] == c)
+            flag++;
+        i++;
+    }
+    new_node = (t_shell *)malloc(sizeof(t_shell));
+	if (!new_node)
+		return (NULL);
+    new_node->input = ft_substr((char const *)str, 0, flag);
+    str += flag;
+    new_node->len = ft_strlen(new_node->input);
+    if (c == 60)
+        ft_add_tail(shell, new_node, HEREDOC, OTHER);
+    else if (c == 62)
+        ft_add_tail(shell, new_node, APP_M, OTHER);
+    return (str);
+}
+
+char *new_node_RED_2(char *str, t_shell **shell, int c)
+{
+    t_shell *new_node;
+    int i;
+    int flag;
+
+    new_node = NULL;
+    i = 0;
+    flag = 0;
+    while(str[i])
+    {
+        if (str[i] == c)
+            flag++;
+        i++;
+    }
+    if (flag >= 2)
+        return (new_node_RED_2(str, shell, c));
     new_node = (t_shell *)malloc(sizeof(t_shell));
 	if (!new_node)
 		return (NULL);

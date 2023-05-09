@@ -41,6 +41,8 @@ enum e_token
 	REDIRECT_IN,
 	REDIRECT_OUT,
 	ESCAPE,
+	HEREDOC,
+	APP_M,
 };
 
 enum e_state

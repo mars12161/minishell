@@ -42,7 +42,26 @@ enum e_token
 	REDIRECT_IN,
 	REDIRECT_OUT,
 	ESCAPE,
+	HEREDOC,
+	APP_M,
 };
+
+enum e_state
+{
+	OTHER,
+	IN_SQUOTE,
+	IN_DQUOTE,
+};
+
+typedef struct s_shell
+{
+	char *input;
+	int	len;
+	enum e_token type;
+	enum e_state state;
+	struct s_shell *next;
+}	t_shell;
+
 
 enum e_state
 {
