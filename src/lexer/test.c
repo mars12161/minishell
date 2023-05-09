@@ -4,45 +4,22 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int ft_strlen_1(char *s)
-{
-    int n;
-
-    n = 0;
-    while(*s)
-    {
-        s++;
-        n++;
-    }
-    return (n);
-}
-
-int ft_strlen_2(char *s)
-{
-    int n;
-
-    n = 0;
-    while(s[n])
-        n++;
-    return (n);
-}
-
-char ft_test(char *s)
-{
-    char *out;
-
-    while(*s >= 33 && *s <= 126)
-    {
-        out += *s;
-        s++;
-    }
-    return (out);
-}
-
-
 int main ()
 {
-    char *str = "aaaagd  cc!!";
-    printf("%d\n", ft_strlen_2(str));
-    printf("%s\n", ft_test(str));
+    char *str = "    space!!   ";
+    int i = 0;
+    int space = 0;
+
+    while (str[i])
+    {
+        if (str[i] == ' ')
+            space++;
+        if (str[i] == 32 && str[i + 1] != 32)
+            break ;
+        i++;
+    }
+    str += 4;
+    printf("space: %d\n", space);
+    printf("i: %d\n", i);
+    printf("%s\n", str);
 }

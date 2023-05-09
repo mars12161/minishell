@@ -35,6 +35,7 @@ enum e_token
 	WORD,
 	S_QUOTE,
 	D_QUOTE,
+	SPACE,
 	ENV,
 	PIPE,
 	NEW_LINE,
@@ -42,7 +43,6 @@ enum e_token
 	REDIRECT_OUT,
 	ESCAPE,
 };
-
 enum e_state
 {
 	OTHER,

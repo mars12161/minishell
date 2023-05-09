@@ -34,7 +34,7 @@ enum e_token
 	WORD,
 	S_QUOTE,
 	D_QUOTE,
-	SPACE,
+	SPA,
 	ENV,
 	PIPE,
 	NEW_LINE,
@@ -61,12 +61,27 @@ typedef struct s_shell
 
 /* Functions */
 
-char *split_line(char *str);
 t_shell *fill_shell(t_shell *shell);
 void	print_shell(t_shell *s);
 int	main();
-int ft_splittimes(char *str);
-char **ft_split(char *str);
 void    ft_free(char **str);
+
+char *new_node_SPACE(char *str, t_shell **shell, int c);
+char *new_node_DW(char *str, t_shell **shell, int c);
+char *new_node_PIPE(char *str, t_shell **shell, int c);
+char *new_node_RED(char *str, t_shell **shell, int c);
+char *new_node_NL_ESC(char *str, t_shell **shell, int c);
+char *new_node_DSQ(char *str, t_shell **shell, int c);
+
+int	ft_strlen(char *str);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+char	*ft_strdup(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
+int ft_isspace(char c);
+int ft_issignal(char c);
+
+
+
 
 #endif

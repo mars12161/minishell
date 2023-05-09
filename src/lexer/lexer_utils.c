@@ -1,3 +1,5 @@
+#include "lexer.h"
+
 int ft_isspace(char c)
 {
     if (c == ' ' || (c <= 13 && c >= 9))
@@ -8,5 +10,5 @@ int ft_isspace(char c)
 int ft_issignal(char c)
 {
     return (c == '\'' || c == '\"' || c == '<' || c == '>'
-        || c == '|' || c == '$' || ft_isspace(c) || c == '\n' || c == '\0')
+        || c == '|' || c == '$' || ft_isspace(c) || c == '\n' || c == '\0');
 }
