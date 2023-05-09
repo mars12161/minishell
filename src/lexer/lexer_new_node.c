@@ -119,7 +119,7 @@ char *new_node_PIPE(char *str, t_shell **shell, int c)
     return (str);
 } // can be merged with RED NL ESC
 
-char *new_node_RED(char *str, t_shell **shell, int c)
+char *new_node_RED_2(char *str, t_shell **shell, int c)
 {
     t_shell *new_node;
     int i;
@@ -147,7 +147,7 @@ char *new_node_RED(char *str, t_shell **shell, int c)
     return (str);
 }
 
-char *new_node_RED_2(char *str, t_shell **shell, int c)
+char *new_node_RED(char *str, t_shell **shell, int c)
 {
     t_shell *new_node;
     int i;
