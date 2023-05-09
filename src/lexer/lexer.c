@@ -108,6 +108,24 @@ char	*ft_strdup(const char *s)
 	ft_strlcpy(ret, s, len + 1);
 	return (ret);
 } //from libft.a
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ret;
+
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		len = 0;
+	else if (ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	ret = malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (NULL);
+	ft_strlcpy(ret, s + start, len + 1);
+	return (ret);
+} //from libft.a
+
 /*
 static t_shell *new_node(char *str, enum e_token type, enum e_state state)
 {
@@ -175,12 +193,6 @@ t_shell *fill_shell(t_shell *shell)
 			new_node_ESC(str, ESCAPE, OTHER, shell);
 		else 
 			new_node(str, shell);
-		
-		if (!shell)
-			shell = temp;
-		else
-				ft_lstadd_back_shell(&shell, temp);
-		i++;
 	}
 	ft_free(result);
 	return (shell);

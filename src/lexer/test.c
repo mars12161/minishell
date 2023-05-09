@@ -33,7 +33,7 @@ char ft_test(char *s)
 
     while(*s >= 33 && *s <= 126)
     {
-        out =  *s;
+        out += *s;
         s++;
     }
     return (out);
