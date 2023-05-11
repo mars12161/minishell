@@ -1,25 +1,22 @@
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
+# include <dirent.h>
+# include <sys/wait.h>
+# include <limits.h>
+# include <errno.h>
+# include <signal.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-
-int main ()
+int main(int argc, char **argv, char **envp)
 {
-    char *str = "    space!!   ";
-    int i = 0;
-    int space = 0;
+    int i;
 
-    while (str[i])
+    i = 0;
+    while(envp[i])
     {
-        if (str[i] == ' ')
-            space++;
-        if (str[i] == 32 && str[i + 1] != 32)
-            break ;
+        printf("%s\n", envp[i]);
         i++;
     }
-    str += 4;
-    printf("space: %d\n", space);
-    printf("i: %d\n", i);
-    printf("%s\n", str);
 }

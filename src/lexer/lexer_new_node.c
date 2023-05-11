@@ -162,8 +162,10 @@ char *new_node_RED(char *str, t_shell **shell, int c)
             flag++;
         i++;
     }
-    if (flag >= 2)
+    if (flag == 2)
         return (new_node_RED_2(str, shell, c));
+    else if (flag > 2)
+        return ("error"); //todo later
     new_node = (t_shell *)malloc(sizeof(t_shell));
 	if (!new_node)
 		return (NULL);
