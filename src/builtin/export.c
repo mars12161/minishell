@@ -42,13 +42,6 @@ static int ft_check_signal_export(char *str)
     return (0);
 }
 
-void    ft_error(char *s1, char *s2, char *s3)
-{
-    printf("s1");
-    printf("s2");
-    printf("s3");
-}
-
 int ft_export(t_builtin *node, t_env **env)
 {
     t_env *export;

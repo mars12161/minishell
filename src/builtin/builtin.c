@@ -117,6 +117,18 @@ static int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 } //from libft.a
 
+int	ft_error(char *str)
+{
+	int	i;
+
+	i = 0;
+    while (str[i])
+		i++;
+	write(2, str, i);
+	write(2, "\n", 1);
+    return (-1);
+}
+
 int    exec_builtin(t_builtin *node, t_env **env)
 {
     if (!ft_strncmp(node->command[0], "echo", 4))
@@ -129,13 +141,15 @@ int    exec_builtin(t_builtin *node, t_env **env)
         return (ft_env(env));
     else if (!ft_strncmp(node->command[0], "export", 5))
         return (ft_export(node, env));
+    else if (!ft_strncmp(node->command[0], "unset", 5))
+        return (ft_unset(node, env));
     else
         return (-1);
 }
 
 int main(int argc, char **argv, char **envp)
 {
-    char *str = "cd -";
+    char *str = "unset HOME";
     char **result;
     t_builtin *node;
     t_env *env;

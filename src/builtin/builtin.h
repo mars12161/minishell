@@ -48,4 +48,8 @@ char	*ft_strtrim(char const *s1, char const *set);
 
 int ft_cd(t_builtin *node, t_env **env);
 
+int	ft_error(char *str);
+
+int ft_unset(t_builtin *node, t_env **env);
+
 #endif
