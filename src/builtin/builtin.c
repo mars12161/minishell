@@ -45,7 +45,7 @@ static char **ft_split(char *str)
     factor = ft_spacetimes(str);
     result = (char **)malloc(sizeof(char *) * (factor + 1));
     if (!result)
-        return (0);
+        return (NULL);
     result[factor] = 0;
     factor = 0;
     i = 0;
@@ -117,26 +117,32 @@ static int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 } //from libft.a
 
-static int    exec_builtin(t_builtin *node)
+int    exec_builtin(t_builtin *node, t_env **env)
 {
-    if (ft_strncmp(node->command[0], "echo", 4) == 0)
+    if (!ft_strncmp(node->command[0], "echo", 4))
         return (ft_echo(node));
-    else if (ft_strncmp(node->command[0], "cd", 2) == 0)
-        return (ft_cd(node));
-    else if (ft_strncmp(node->command[0], "pwd", 3) == 0)
+    else if (!ft_strncmp(node->command[0], "cd", 2))
+        return (ft_cd(node, env));
+    else if (!ft_strncmp(node->command[0], "pwd", 3))
         return (ft_pwd());
-    
+    else if (!ft_strncmp(node->command[0], "env", 3))
+        return (ft_env(env));
+    else if (!ft_strncmp(node->command[0], "export", 5))
+        return (ft_export(node, env));
+    else
+        return (-1);
 }
-/*
-int main()
+
+int main(int argc, char **argv, char **envp)
 {
-    char *str = "echo  -n 45";
+    char *str = "cd -";
     char **result;
     t_builtin *node;
+    t_env *env;
 
     result = ft_split(str);
     node = new_node(result);
-    //printf("in main:%s", str);
-    ft_echo(node);
+    env = NULL;
+    env = init_env(envp, env);
+    exec_builtin(node, &env);
 }
-*/ //for echo

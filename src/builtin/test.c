@@ -76,7 +76,7 @@ int main()
         printf("%s ", name);
 }
 */
-
+/*
 int main()
 {
     char pwd[4096];
@@ -89,4 +89,29 @@ int main()
     else
         return (-1);
 }
+*/
+/*
+int main()
+{
+    char *str = "echo  -n 45";
+    char **result;
+    t_builtin *node;
 
+    result = ft_split(str);
+    node = new_node(result);
+    //printf("in main:%s", str);
+    ft_echo(node);
+}
+*/ //for echo
+
+int   main (int argc, char **argv, char **envp)
+{
+    int     i;
+
+    i = 0;
+    while(envp[i])
+    {
+        printf("%s\n", envp[i]);
+        i++;
+    }
+}

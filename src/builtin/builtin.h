@@ -12,7 +12,7 @@
 # include <errno.h>
 # include <signal.h>
 # include <readline/readline.h>
-# include PATH_SIZE 4096
+# define PATH_SIZE 4096
 
 typedef struct s_builtin
 {
@@ -21,10 +21,31 @@ typedef struct s_builtin
     struct s_builtin *next;
 }   t_builtin;
 
+typedef struct s_env
+{
+    char *content;
+    struct s_env *next;
+}   t_env;
 
-void    ft_echo(t_builtin *node);
 
 void    ft_free(char **str);
+int    exec_builtin(t_builtin *node, t_env **env);
 int main();
+
+int ft_pwd(void);
+
+int ft_echo(t_builtin *node);
+
+t_env *new_node_env(char *str);
+void ft_add_tail_env(t_env **env, t_env *new_node);
+t_env *init_env(char **envp, t_env *env);
+int ft_env(t_env **env);
+
+int ft_export(t_builtin *node, t_env **env);
+
+size_t	ft_strlen(const char *str);
+char	*ft_strtrim(char const *s1, char const *set);
+
+int ft_cd(t_builtin *node, t_env **env);
 
 #endif

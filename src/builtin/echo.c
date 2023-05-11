@@ -38,6 +38,8 @@ int    ft_echo(t_builtin *node)
 
     i = 0;
     flag = 0;
+    if (node->size == 1)
+        return (printf("\n"));
     if (ft_check_n(node->command[1]))
     {
         i = 1;
