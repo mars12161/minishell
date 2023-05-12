@@ -36,6 +36,6 @@ int ft_unset(t_builtin *node, t_env **env)
         }
         temp = temp->next;
     }
-    ft_env(env);
+    //ft_env(env);
     return (0);
 }
