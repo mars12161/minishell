@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:01:39 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/07 13:32:21 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/12 16:03:54 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,14 @@
 
 int	parser(t_shell *list)
 {
-	return (0);
+	int	num_pipes;
+	t_cmds	*new;
+
+	num_pipes = count_pipes(list);
+	if (!list)
+		return (0);
+	while (list)
+	{
+
+	}
 }

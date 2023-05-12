@@ -13,20 +13,6 @@
 #include "../../includes/minishell.h"
 #include "parser.h"
 
-t_cmds	*new_cmds(char **str, t_shell *redirections)
-{
-	t_cmds	*new;
-
-	new = malloc(sizeof(t_cmds));
-	if (!new)
-		return (NULL);
-	new->cmd = str;
-	new->redirections = redirections;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
-}
-
 t_cmds	*init_cmds(t_parser *parser)
 {
 	char	**str;
