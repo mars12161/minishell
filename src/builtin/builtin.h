@@ -27,6 +27,32 @@ typedef struct s_env
     struct s_env *next;
 }   t_env;
 
+/*
+typedef struct s_parse
+{
+    char 	**command;
+    int 	size;
+    int	redirection_in;
+    int	redirection_out;
+    char *infilepath;  //if redirection_in == 0, infilepath = NULL
+    char *outfilepath; //if redirection_out == 0, outfilepath = NULL
+    int pipe;
+    int	fd[2];   //if pipe == 0, fd = NULL
+    struct s_parse *next;
+}   t_parse;
+
+no redirection  0
+REDIRECT_IN,	1
+HEREDOC,	2
+
+no redirection  0
+REDIRECT_OUT,	1
+APP_M		2
+
+no pipe 0;
+pipe 1;
+*/
+
 
 void    ft_free(char **str);
 int    exec_builtin(t_builtin *node, t_env **env);
@@ -51,5 +77,7 @@ int ft_cd(t_builtin *node, t_env **env);
 int	ft_error(char *str);
 
 int ft_unset(t_builtin *node, t_env **env);
+
+int ft_exit(void);
 
 #endif

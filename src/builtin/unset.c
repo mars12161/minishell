@@ -29,7 +29,6 @@ int ft_unset(t_builtin *node, t_env **env)
     temp = *env;
     while (temp)
     {
-        printf("in loop\n");
         if (!strncmp(temp->content, node->command[1], ft_strlen(node->command[1])))
         {
             del_node(env,temp);

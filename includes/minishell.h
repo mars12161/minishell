@@ -62,22 +62,38 @@ typedef struct s_shell
 	struct s_shell *next;
 }	t_shell;
 
-
-enum e_state
+typedef struct s_env
 {
-	OTHER,
-	IN_SQUOTE,
-	IN_DQUOTE,
-};
+    char *content;
+    struct s_env *next;
+}   t_env;
 
-typedef struct s_shell
+
+typedef struct s_parse
 {
-	char *input;
-	int	len;
-	enum e_token type;
-	enum e_state state;
-	struct s_shell *next;
-}	t_shell;
+    char 	**command;
+    int 	size;
+    int	redirection_in;
+    int	redirection_out;
+    char *infilepath;  //if redirection_in == 0, infilepath = NULL
+    char *outfilepath; //if redirection_out == 0, outfilepath = NULL
+    int pipe;
+    int	fd[2];   //if pipe == 0, fd = NULL
+    struct s_parse *next;
+}   t_parse;
+/*
+no redirection  0
+REDIRECT_IN,	1
+HEREDOC,	2
+
+no redirection  0
+REDIRECT_OUT,	1
+APP_M		2
+
+no pipe 0;
+pipe 1;
+*/
+
 /* Functions */
 
 int	ft_strlen(char *str);

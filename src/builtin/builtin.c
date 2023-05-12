@@ -143,13 +143,15 @@ int    exec_builtin(t_builtin *node, t_env **env)
         return (ft_export(node, env));
     else if (!ft_strncmp(node->command[0], "unset", 5))
         return (ft_unset(node, env));
+    else if (!ft_strncmp(node->command[0], "exit", 4))
+        return (ft_exit());
     else
-        return (-1);
+        return (1);
 }
 
 int main(int argc, char **argv, char **envp)
 {
-    char *str = "unset HOME";
+    char *str = "exit";
     char **result;
     t_builtin *node;
     t_env *env;
