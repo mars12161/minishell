@@ -62,5 +62,5 @@ c4c3c3% $BB
 ◦ export with no options	done
 ◦ unset with no options		done
 ◦ env with no options or arguments	done
-◦ exit with no options		
+◦ exit with no options		done
 
