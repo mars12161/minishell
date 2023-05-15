@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:03:23 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/15 14:29:42 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/15 14:34:11 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_cmds
 	int				pipe;
 	int				fd[2];
 	struct s_cmds	*next;
+	struct s_cmds	*prev;
 }	t_cmds;
 
 /* Functions */

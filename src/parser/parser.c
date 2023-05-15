@@ -6,17 +6,19 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:01:39 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/15 14:09:09 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/15 14:39:02 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 #include "parser.h"
 
+void	print_cmds(t_cmds **lst)
+
 t_cmds *init(t_shell *list)
 {
 	int		num_args;
-	t_cmds	*new;
+	int 	i;
 	t_shell	*tmp;
 	char	**str;
 	int		redir_in;
@@ -24,6 +26,7 @@ t_cmds *init(t_shell *list)
 
 	num_args = count_args(list);
 	tmp = list;
+	i = 0;
 	str = ft_calloc(num_args + 1, sizeof(char *));
 	if (!str)
 		return (NULL);
