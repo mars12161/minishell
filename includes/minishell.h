@@ -13,7 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -30,7 +30,7 @@
 
 /* Structs */
 
-enum e_token
+/*enum e_token
 {
 	WORD,
 	S_QUOTE,
@@ -81,7 +81,7 @@ typedef struct s_parse
     int	fd[2];   //if pipe == 0, fd = NULL
 	struct s_parse *previous;
     struct s_parse *next;
-}   t_parse;
+}   t_parse;*/
 /*
 no redirection  0
 REDIRECT_IN,	1
@@ -97,9 +97,9 @@ pipe 1;
 
 /* Functions */
 
-int	ft_strlen(char *str);
+/*int	ft_strlen(char *str);
 char *split_line(char *str);
 t_shell *fill_shell(t_shell *shell);
-void	print_shell(t_shell *s);
+void	print_shell(t_shell *s);*/
 
 #endif
