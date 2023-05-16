@@ -15,7 +15,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "lexer.h"
-
+/*
 static char	*ft_readline()
 {
 	char *line;
@@ -32,7 +32,7 @@ static char	*ft_readline()
 		add_history(line);
 	return (0);
 }
-
+*/
 t_shell *fill_shell(t_shell *shell)
 {
 	char *str;

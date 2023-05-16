@@ -64,3 +64,37 @@ c4c3c3% $BB
 ◦ env with no options or arguments	done
 ◦ exit with no options		done
 
+ls -l | wc -l >  aa > bb > cc > dd
+
+cat > out | cat | cat | ls
+
+
+yli@c4c1c2:~$ cat << EOF
+> $USER
+> 12
+> 12
+> 12
+> EOF
+yli
+12
+12
+12
+
+
+yli@c4c1c2:~$ cat | cat | cat | ls
+ Desktop     echo	   Music      Public	  testshow
+ Documents   francinette   Pictures   sgoinfre	  Videos
+ Downloads   goinfre	   Postman    Templates  'VirtualBox VMs'
+ 
+
+
+yli@c4c1c2:~$ 
+
+
+yli@c4c1c2:~$ cat << EOF
+> $?
+> 12
+> EOF
+0
+12
+yli@c4c1c2:~$ 

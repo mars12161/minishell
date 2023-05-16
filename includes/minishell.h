@@ -82,6 +82,7 @@ typedef struct s_parse
     char *outfilepath; //if redirection_out == 0, outfilepath = NULL
     int pipe;
     int	fd[2];   //if pipe == 0, fd = NULL
+	struct s_parse *previous;
     struct s_parse *next;
 }   t_parse;*/
 /*
