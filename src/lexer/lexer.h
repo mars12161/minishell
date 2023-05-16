@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/08 16:53:15 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/15 15:22:02 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>
 # include <signal.h>
 # include <readline/readline.h>
+# include "../../libft/libft.h"
 
 # define BUFFER_SIZE 4000
 
@@ -75,7 +76,7 @@ char *new_node_RED(char *str, t_shell **shell, int c);
 char *new_node_NL_ESC(char *str, t_shell **shell, int c);
 char *new_node_DSQ(char *str, t_shell **shell, int c);
 
-int	ft_strlen(char *str);
+//int	ft_strlen(char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

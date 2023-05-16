@@ -1,6 +1,6 @@
 #include "lexer.h"
 
-int	ft_strlen(char *str)
+/*int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -8,9 +8,9 @@ int	ft_strlen(char *str)
 	while(str[i])
 		i++;
 	return (i);
-} // from libft.a
+} */// from libft.a
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+/*size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
 
@@ -60,4 +60,4 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	ft_strlcpy(ret, s + start, len + 1);
 	return (ret);
-} //from libft.a
+}*/ //from libft.a

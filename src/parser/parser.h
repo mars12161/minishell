@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:03:23 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/15 14:34:11 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/16 12:47:21 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_cmds
 /* parser_utils.c */
 
 int			count_args(t_shell *list);
-int			count_pipes(t_shell *list);
 t_shell		*get_next_pipe(t_shell *list);
 void 		del_node(t_shell **list, t_shell *node);
 
@@ -67,6 +66,7 @@ void 		free_cmds(t_cmds **lst);
 
 
 /* parser.c */
-int		parser(t_shell *list);
+t_cmds		*init_cmds(t_shell *list);
+void 		print_cmds(t_cmds **lst);
 
 #endif

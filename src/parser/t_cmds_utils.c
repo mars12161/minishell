@@ -6,14 +6,14 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:31:26 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/15 14:32:41 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/15 15:11:29 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 t_cmds	*t_cmdsnew(char **str, int redirection_in,
-					 redirection_out)
+					 int redirection_out)
 {
 	t_cmds	*new;
 
@@ -26,6 +26,7 @@ t_cmds	*t_cmdsnew(char **str, int redirection_in,
 	new->infilepath = NULL;
 	new->outfilepath = NULL;
 	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
@@ -42,6 +43,7 @@ void	t_cmds_addback(t_cmds **lst, t_cmds *new)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+	new->prev = tmp->next;
 }
 
 void	t_cmds_rmfirst(t_cmds **lst)
@@ -68,7 +70,7 @@ void	free_cmds(t_cmds **lst)
 		while (*str)
 			free(*str);
 		free(str);
-		free(current)
+		free(current);
 		current = current->next;
 	}
 }

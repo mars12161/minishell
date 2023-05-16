@@ -128,6 +128,5 @@ int	main()
 
 	shell = NULL;
 	shell = fill_shell(shell);
-	//printf("in main0");
 	print_shell(shell);
 }
