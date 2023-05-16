@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:17:01 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/16 17:08:53 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/16 17:20:11 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	minishell_loop(void)
 	while (42)
 	{
 		input = readline("=> ");
-		//signal(SIGINT, ft_sighandler);
+		signal(SIGINT, sigint_handler);
 		//signal(SIGQUIT, ft_sighandler);
 		if (!ft_strcmp(input, "exit"))
 			return (1);
@@ -41,12 +41,5 @@ int	minishell_loop(void)
 
 int	main(void)
 {
-	char	*input;
-
-	input = readline("Enter your name: ");
-	//rl_replace_line("Hello", 0);
-	rl_on_new_line();
-	rl_redisplay();
-	printf("Hello %s\n", input);
-
+	minishell_loop();
 }

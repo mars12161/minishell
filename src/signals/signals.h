@@ -23,6 +23,6 @@ typedef struct	s_sig
 	pid_t 	pid;
 }	t_sig;
 
-void	ft_sighandler(int signal);
+void	sigint_handler(int signal);
 
 #endif
