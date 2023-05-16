@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:32:52 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/16 11:57:07 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:10:47 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,35 @@
 
 
 /*
- Function to count all the arguments
- separated by a Pipe
+ Function to count all the pipes
+ in the input
  */
-int		count_args(t_shell *list)
+int		count_pipes(t_shell *list)
 {
 	t_shell	*tmp;
 	int		i;
+
+	i = 0;
+	tmp = list;
+	while (tmp)
+	{
+		if (tmp->type == PIPE)
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+/*
+ * Function to count all arguments
+ * before a pipe is found in input
+ * Ex.: echo $USER | grep "xzx"
+ * Return value is 2
+ * */
+int		count_args(t_shell *list)
+{
+	t_shell	*tmp;
+	int 	i;
 
 	i = 0;
 	tmp = list;

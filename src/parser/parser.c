@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:01:39 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/15 15:54:17 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:14:33 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ t_cmds **parser(t_shell *list)
 	
 }
 
+/*
+ * Initialize a single node of t_cmds
+ * Contains all the commands before a pipe
+ * */
+
 t_cmds *init_cmds(t_shell *list)
 {
 	int		num_args;
@@ -51,23 +56,11 @@ t_cmds *init_cmds(t_shell *list)
 	{
 		if (tmp->input)
 		{
-			str[i++] = ft_strdup(tmp->input);
+			str[i++] = tmp->input;
+			// delete node
 			tmp = list;
 		}
-		if (tmp->type == REDIRECT_IN)
-			redir_in = 1;
-		else if (tmp->type == HEREDOC)
-			redir_in = 2;
-		else
-			redir_in = 0;
-		if (tmp->type == REDIRECT_OUT)
-			redir_out = 1;
-		else if (tmp->type == APP_M)
-			redir_out = 2;
-		else
-			redir_out = 0;
-		// delete the node
-		num_args--;
+		// TODO add redirections to cmds node
 	}
 	return (t_cmdsnew(str, redir_in, redir_out));
 }
