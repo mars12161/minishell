@@ -125,8 +125,12 @@ void	print_shell(t_shell *s)
 int	main()
 {
 	t_shell *shell;
+	t_parse *parse;
 
 	shell = NULL;
+	parse = NULL;
 	shell = fill_shell(shell);
+	parse = parse_new_node(shell);
 	print_shell(shell);
+	print_parse(parse);
 }

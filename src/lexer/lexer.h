@@ -24,9 +24,9 @@
 # include <errno.h>
 # include <signal.h>
 # include <readline/readline.h>
-# include "../../libft/libft.h"
+//# include "../../libft/libft.h"
 
-# define BUFFER_SIZE 4000
+//# define BUFFER_SIZE 4000
 
 /* Structs */
 
@@ -62,6 +62,32 @@ typedef struct s_shell
 	struct s_shell *next;
 }	t_shell;
 
+typedef struct s_parse
+{
+    char 	**command;
+    int 	size;
+    int	redirection_in;
+    int	redirection_out;
+    char *infilepath;  //if redirection_in == 0, infilepath = NULL
+    char *outfilepath; //if redirection_out == 0, outfilepath = NULL
+    int pipe;
+    int	fd[2];   //if pipe == 0, fd = NULL
+	struct s_parse *previous;
+    struct s_parse *next;
+}   t_parse;
+/*
+no redirection  0
+REDIRECT_IN,	1
+HEREDOC,	2
+
+no redirection  0
+REDIRECT_OUT,	1
+APP_M		2
+
+no pipe 0;
+pipe 1;
+*/
+
 /* Functions */
 
 t_shell *fill_shell(t_shell *shell);
@@ -84,7 +110,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int ft_isspace(char c);
 int ft_issignal(char c);
 
-
-
+void	print_parse(t_parse *s);
+static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node);
+t_parse *parse_new_node(t_shell *shell);
 
 #endif

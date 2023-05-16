@@ -33,7 +33,7 @@
 
 /* Structs */
 
-/*enum e_token
+enum e_token
 {
 	WORD,
 	S_QUOTE,
@@ -70,6 +70,12 @@ typedef struct s_env
     char *content;
     struct s_env *next;
 }   t_env;
+
+typedef struct s_heredoc
+{
+    char *line;
+    struct s_env *next;
+}   t_heredoc;
 
 
 typedef struct s_parse

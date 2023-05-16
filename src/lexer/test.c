@@ -8,7 +8,7 @@
 # include <limits.h>
 # include <errno.h>
 # include <signal.h>
-
+/*
 int main(int argc, char **argv, char **envp)
 {
     int i;
@@ -19,4 +19,14 @@ int main(int argc, char **argv, char **envp)
         printf("%s\n", envp[i]);
         i++;
     }
+}
+*/
+
+int main()
+{
+    int i;
+
+    i = 0;
+    while(i < 5)
+        printf("%d\n", i++);
 }

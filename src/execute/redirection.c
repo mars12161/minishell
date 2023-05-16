@@ -1,31 +1,4 @@
 #include "builtin.h"
-/*
-typedef struct s_parse
-{
-    char 	**command;
-    int 	size;
-    int	redirection_in;
-    int	redirection_out;
-    char *infilepath;  //if redirection_in == 0, infilepath = NULL
-    char *outfilepath; //if redirection_out == 0, outfilepath = NULL
-    int pipe;
-    int	fd[2];   //if pipe == 0, fd = NULL
-	struct s_parse *previous;
-    struct s_parse *next;
-}   t_parse;
-
-no redirection  0
-REDIRECT_IN,	1
-HEREDOC,	2
-
-no redirection  0
-REDIRECT_OUT,	1
-APP_M		2
-
-no pipe 0;
-pipe 1;
-*/
-
 
 int redirection_out(t_parse *parse,int fd)
 {
@@ -71,29 +44,73 @@ int redirection_in(t_parse *parse, int fd)
     //    return (0);
 }
 
-redirection_in_heredoc(t_parse *parse)
+/*
+typedef struct s_parse
 {
-    char *heredoc;
+    char 	**command;
+    int 	size;
+    int	redirection_in;
+    int	redirection_out;
+    char *infilepath;  //if redirection_in == 0, infilepath = NULL
+    char *outfilepath; //if redirection_out == 0, outfilepath = NULL
+    int pipe;
+    int	fd[2];   //if pipe == 0, fd = NULL
+	struct s_parse *previous;
+    struct s_parse *next;
+}   t_parse;
 
-    heredoc = malloc(4048);
-    if (!heredoc)
-        return (NULL);
+no redirection  0
+REDIRECT_IN,	1
+HEREDOC,	2
+
+no redirection  0
+REDIRECT_OUT,	1
+APP_M		2
+
+no pipe 0;
+pipe 1;
+*/
+
+int	ft_strchr_check(char *str, int c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	if ((char)c == 0)
+		return (-1);
+	return (0);
+} //changed to utils later
+
+
+int	redirection_in_heredoc(t_parse *parse, t_env **env, char *str)
+{
+	char *line;
+	int	fd;
+
+	fd = open("/tmp/.minishell_tmp",
+			O_RDWR | O_CREAT | O_APPEND | O_TRUNC, 0666);
+	line = get_next_line(0);
     while(1)
     {
-        write(1, ">", 1);
-    	while (bytes_read > 0)
-	    {
-		    bytes_read = read(fd, buffer, BUFFER_SIZE);
-		    if (bytes_read == -1)
-		    {
-			    free(buffer);
-			    free(wstr);
-			    return (NULL);
-		    }
-		    buffer[bytes_read] = '\0';
-		    wstr = ft_strjoin(wstr, buffer);
-	    }
+        if(!ft_strncmp(line, str, ft_strlen(str)))
+			break ;
+		else
+		{
+			if (ft_strchr((const char *)line, '$') > 0)
+				line = expand_env(line, env); //todo later
+			write(fd, line, ft_strlen(line));
+		}
+		free(line);
+		line = get_next_line(0);
     }
+	free(str); //not sure
+
 
 
 
