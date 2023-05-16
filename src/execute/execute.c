@@ -8,15 +8,34 @@ typedef struct s_parse
     char *outfilepath; //if redirection_out == 0, outfilepath = NULL
     int pipe;
     int	fd[2];   //if pipe == 0, fd = NULL
+	struct s_parse *previous;
     struct s_parse *next;
+	
 }   t_parse;
 
 void excute_interagration(t_parse *parse, t_env **env)
 {
+	int fd_in;
+	int fd_out;
+
+	fd_in = 0;
+	fd_out = 0;
     while (parse)
     {
         if (exec_builtin(parse, env) == 1)
-            ft_execute(parse, env);
+		{
+			if (parse->redirection_in)
+			{
+				redirection_in(t_parse *parse, int fd_in);
+				close(fd_in);
+			}
+			if (parse->redirection_out)
+			{
+				redirection_in(t_parse *parse, int fd_out);
+				close(ft_out);
+			}
+			ft_execute(parse, env);
+		}   
         else if (exec_builtin(parse, env) == -1)
             return (-1);
         parse = parse->next;
