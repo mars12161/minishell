@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:17:36 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/16 15:07:01 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:19:46 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ typedef struct	s_sig
 	pid_t 	pid;
 }	t_sig;
 
-void	ft_sighandler(int signal);
+void	sigint_handler(int signal);
 
 #endif

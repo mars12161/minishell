@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:22:34 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/16 15:04:53 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:58:06 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <errno.h>
 # include <signal.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 # include "../src/signals/signals.h"
 # include "../src/parser/parser.h"
 # include "../src/lexer/lexer.h"
