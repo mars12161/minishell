@@ -32,18 +32,18 @@
 
 enum e_token
 {
-	WORD,
-	S_QUOTE,
-	D_QUOTE,
-	SPA,
-	ENV,
-	PIPE,
-	NEW_LINE,
-	REDIRECT_IN,
-	REDIRECT_OUT,
-	ESCAPE,
-	HEREDOC,
-	APP_M,
+	WORD,		//0
+	S_QUOTE,	//1
+	D_QUOTE,	//2
+	SPA,		//3
+	ENV,		//4
+	PIPE,		//5
+	NEW_LINE,	//6
+	REDIRECT_IN,//7
+	REDIRECT_OUT,//8
+	ESCAPE,		//9
+	HEREDOC,	//10
+	APP_M,		//11
 };
 
 enum e_state
@@ -102,7 +102,7 @@ char *new_node_RED(char *str, t_shell **shell, int c);
 char *new_node_NL_ESC(char *str, t_shell **shell, int c);
 char *new_node_DSQ(char *str, t_shell **shell, int c);
 
-//int	ft_strlen(char *str);
+int	ft_strlen(char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -113,5 +113,6 @@ int ft_issignal(char c);
 void	print_parse(t_parse *s);
 static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node);
 t_parse *parse_new_node(t_shell *shell);
+void parse_integration(t_shell **shell, t_parse **parse);
 
 #endif

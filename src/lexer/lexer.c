@@ -79,12 +79,12 @@ t_shell *fill_shell(t_shell *shell)
 		}
 		else if (*str == '<')
 		{
-			printf("REDI\n");
+			printf("REDI OR HEREDOC\n");
 			str = new_node_RED(str, &shell, 60);
 		}
 		else if (*str == '>')
 		{
-			printf("REDO\n");
+			printf("REDO OR APP_M\n");
 			str = new_node_RED(str, &shell, 62);
 		}
 		else if (*str == '\\')
@@ -131,6 +131,7 @@ int	main()
 	parse = NULL;
 	shell = fill_shell(shell);
 	parse = parse_new_node(shell);
+	//parse_integration(&shell, &parse);
 	print_shell(shell);
 	print_parse(parse);
 }
