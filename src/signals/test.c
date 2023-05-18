@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:17:01 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/17 11:55:16 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/18 12:54:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@ int	ft_strcmp(char *s1, char *s2)
 
 int	minishell_loop(void)
 {
-	char	*input;
+	struct termios	termios_p;
+	char			*input;
 
+	tcgetattr(STDIN_FILENO, &termios_p);
+	change_attr();
+	setting_signal();
 	while (42)
 	{
 		input = readline("=> ");
@@ -37,7 +41,7 @@ int	minishell_loop(void)
 		{
 			if (isatty(STDERR_FILENO))
 				write(STDERR_FILENO, "exit\n", 5);
-			change_attr(false);
+			change_attr();
 			break;
 		}
 		printf("%s\n", input);

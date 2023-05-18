@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/17 11:51:41 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/18 12:53:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ void	sigint_heredoc(int sig)
 	}
 }
 
-int	change_attr(bool ctrl_chr)
+void	setting_signal(void)
+{
+	signal(SIGINT, sigint_handler);
+}
+
+int	change_attr()
 {
 	struct termios	termios_p;
 	int				attr;
@@ -40,10 +45,7 @@ int	change_attr(bool ctrl_chr)
 	attr = tcgetattr(STDOUT_FILENO, &termios_p);
 	if (attr == -1)
 		return (-1);
-	if (ctrl_chr)
-		termios_p.c_lflag |= ECHOCTL;
-	else
-		termios_p.c_cflag &= ~(ECHOCTL);
+	termios_p.c_lflag &= ~(ECHOCTL);
 	attr = tcsetattr(STDOUT_FILENO, TCSANOW, &termios_p);
 	if (attr == -1)
 		return (-1);
