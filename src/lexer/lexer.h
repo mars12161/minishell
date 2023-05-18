@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/15 15:22:02 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/18 13:17:58 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ pipe 1;
 
 t_shell *fill_shell(t_shell *shell);
 void	print_shell(t_shell *s);
-int	main();
+//int	main();
 void    ft_free(char **str);
 
 char *new_node_SPACE(char *str, t_shell **shell, int c);
