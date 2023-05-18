@@ -134,6 +134,7 @@ char *new_node_RED_2(char *str, t_shell **shell, int c)
             flag++;
         i++;
     }
+    //printf ("c ======%d\n", c);
     new_node = (t_shell *)malloc(sizeof(t_shell));
 	if (!new_node)
 		return (NULL);
@@ -160,8 +161,11 @@ char *new_node_RED(char *str, t_shell **shell, int c)
     {
         if (str[i] == c)
             flag++;
+        if (str[i] != c)
+            break ;
         i++;
     }
+    printf("flag : %d", flag);
     if (flag == 2)
         return (new_node_RED_2(str, shell, c));
     else if (flag > 2)
