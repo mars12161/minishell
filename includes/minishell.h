@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:22:34 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/16 16:58:06 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:29:15 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@
 # include "../src/signals/signals.h"
 # include "../src/parser/parser.h"
 # include "../src/lexer/lexer.h"
+# include "../src/builtin/builtin.h"
 
 # define BUFFER_SIZE 4000
 
 /* Structs */
 
-enum e_token
+/*enum e_token
 {
 	WORD,
 	S_QUOTE,

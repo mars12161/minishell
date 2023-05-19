@@ -16,7 +16,7 @@ CC = cc
 
 NAME = 		libft.a
 
-HEADER = 	../includes/libft.h
+HEADER = 	libft.h
 
 RM =		rm -f
 
@@ -71,20 +71,24 @@ OBJSBONUS =	$(BONUS:.c=.o)
 
 all: 		$(NAME)
 
-.c.o:		
-	$(CC) $(CFLAGS) $< -o $(<:.c=.o)
+%.o:	%.c
+	@$(CC) $(CFLAGS) $?
 
 $(NAME): 	$(OBJS)
-	ar -rcs $(NAME) $^
+	@ar -rcs $(NAME) $(OBJS)
+	@echo "Libft ready"
 
-bonus:		$(OBJS) $(OBJSBONUS)
-	ar -rcs	$(NAME) $^
+bonus:		$(NAME) $(OBJS) $(OBJSBONUS)
+	@ar -rcs	$(NAME) $(OBJS) $(OBJSBONUS)
+	@echo "Libft with bonus files ready"
 
 clean:
-	$(RM) $(OBJS) $(OBJSBONUS)
+	@$(RM) $(OBJS) $(OBJSBONUS)
+	@echo "Delete object files"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "Deleting libft.a"
 
 re: fclean all
 

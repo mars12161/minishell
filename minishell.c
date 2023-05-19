@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+//#include "includes/minishell.h"
+#include "src/signals/signals.h"
 
 int	minishell_loop(void)
 {
@@ -21,23 +22,28 @@ int	minishell_loop(void)
 	{
 		signal(SIGINT, sigint_handler);
 		change_attr(false);
-		input = readline("=> ");
+		input = readline("$ ");
 		if (!input)
 		{
 			write(STDERR_FILENO, "exit\n", 5);
 			change_attr(true);
 			break ;
 		}
-		// process input
-		printf("%s\n", input);
+		else
+		{
+			add_history(input);
+			printf("%s\n", input);
+			//process input
+		}
 	}
 	return (0);
 }
 
-int	main(int argc, char **argv, chr **env)
+int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
+	(void)env;
 
 	if (argc > 1)
 	{
