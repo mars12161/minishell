@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/18 13:17:58 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:56:12 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ pipe 1;
 
 t_shell *fill_shell(t_shell *shell);
 void	print_shell(t_shell *s);
-//int	main();
 void    ft_free(char **str);
 
 char *new_node_SPACE(char *str, t_shell **shell, int c);
@@ -111,7 +110,7 @@ int ft_isspace(char c);
 int ft_issignal(char c);
 
 void	print_parse(t_parse *s);
-static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node);
+//static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node);
 t_parse *parse_new_node(t_shell *shell);
 void parse_integration(t_shell **shell, t_parse **parse);
 
