@@ -6,11 +6,12 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:41:17 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/18 14:51:21 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/19 10:53:44 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+//#include "includes/minishell.h"
+#include "src/signals/signals.h"
 
 int	minishell_loop(void)
 {
@@ -34,7 +35,7 @@ int	minishell_loop(void)
 	return (0);
 }
 
-int	main(int argc, char **argv, chr **env)
+int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
