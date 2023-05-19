@@ -165,7 +165,6 @@ char *new_node_RED(char *str, t_shell **shell, int c)
             break ;
         i++;
     }
-    printf("flag : %d", flag);
     if (flag == 2)
         return (new_node_RED_2(str, shell, c));
     else if (flag > 2)

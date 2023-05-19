@@ -111,8 +111,7 @@ int ft_isspace(char c);
 int ft_issignal(char c);
 
 void	print_parse(t_parse *s);
-static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node);
-t_parse *parse_new_node(t_shell *shell);
 void parse_integration(t_shell **shell, t_parse **parse);
+void delete_lexerlist(t_shell **shell);
 
 #endif

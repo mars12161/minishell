@@ -130,8 +130,10 @@ int	main()
 	shell = NULL;
 	parse = NULL;
 	shell = fill_shell(shell);
-	parse = parse_new_node(shell);
-	//parse_integration(&shell, &parse);
 	print_shell(shell);
+	
+	//parse = parse_new_node(shell);
+	parse_integration(&shell, &parse);
+	printf("main0\n");
 	print_parse(parse);
 }
