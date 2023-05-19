@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:17:01 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/18 14:11:42 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/19 11:17:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int	minishell_loop(void)
 	}
 	return (0);
 }
+/*
 
 int	main(void)
 {
 	minishell_loop();
-}
+}*/

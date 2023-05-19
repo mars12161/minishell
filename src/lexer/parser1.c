@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/19 13:56:11 by mschaub           #+#    #+#             */
+/*   Updated: 2023/05/19 13:56:11 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lexer.h"
 /*
 int		count_pipes(t_shell *list)
@@ -153,7 +165,7 @@ t_parse *parse_new_node(t_shell *shell)
 }
 
 
-static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node)
+/*static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node)
 {
     t_parse *bottom;
 
@@ -168,7 +180,7 @@ static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node)
 	bottom = get_parse_bottom(*shell);
     bottom->next = parse_node;
     parse_node->previous = bottom;
-}
+}*/
 
 void	print_parse(t_parse *s)
 {
