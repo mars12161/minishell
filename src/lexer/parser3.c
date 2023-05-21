@@ -7,6 +7,22 @@ static t_parse *get_parse_bottom(t_parse *node)
     return (node);
 }
 
+static int		count_word1(t_shell *list)
+{
+	t_shell	*tmp;
+	int 	i;
+
+	i = 0;
+	tmp = list;
+	while (tmp && tmp->type != PIPE)
+	{
+		if (tmp->type == WORD)
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
+} // before pipe how many words *shell
+
 static int		count_word(t_shell **shell)
 {
 	t_shell	*tmp;
@@ -23,46 +39,6 @@ static int		count_word(t_shell **shell)
 	return (i);
 } // before pipe how many words **shell
 
-static char **creat_command(t_shell **shell)
-{
-	char **str;
-	int	i;
-	t_shell *temp;
-	int	j;
-
-	i = count_word(shell);
-	str = (char **)malloc(sizeof(char *) * (i + 1));
-	str[i] = 0;
-	if (!str)
-		return (NULL);
-	j = -1;
-	while (temp && j++ < i)
-	{
-		if (temp->type == WORD)
-			str[j] = ft_strdup(temp->input);
-		temp = temp->next;
-	}
-	return (str);
-}
-
-void delete_lexerlist(t_shell **shell, enum e_token type)
-{
-	t_shell *temp;
-
-	if (*shell == 0 || shell == 0)
-		return ;
-	temp = *shell;
-	while (temp && temp->type != type)
-	{
-		temp = *shell;
-		if (temp->next == NULL)
-			return ;
-		free (temp); //not enough free
-		//not finish
-	}
-	//not finish
-}
-
 static t_shell	*count_word_node(t_shell **list)
 {
 	t_shell	*temp;
@@ -77,7 +53,7 @@ static t_shell	*count_word_node(t_shell **list)
 		temp = temp->next;
 	}
 	return (temp);
-} // before pipe how many words return *shell
+}// before pipe how many words return *shell
 
 static t_shell		*count_args2(t_shell *shell)
 {
@@ -86,14 +62,79 @@ static t_shell		*count_args2(t_shell *shell)
 	return (shell);
 } // better than count_args1
 
-static t_parse *init_parse_node(int i)
+static char **creat_command(t_shell **shell)
+{
+	char **str;
+	int	i;
+	t_shell *temp;
+	int	j;
+
+	i = count_word(shell);
+	printf("in creat_command: %d\n", i);
+	str = (char **)malloc(sizeof(char *) * (i + 1));
+	str[i] = 0;
+	if (!str)
+		return (NULL);
+	j = 0;
+	temp = *shell;
+	while (temp && j < i)
+	{
+		printf("in creat_comman loop\n");
+		if (temp->type == WORD)
+		{
+			printf("HELLO\n\n");
+			str[j] = ft_strdup(temp->input);
+			printf("str[%d]: %s\n",j, str[j]);
+		}
+		j++;
+		temp = temp->next;
+	}
+	printf("after loop in creat_command\n");
+	return (str);
+}
+
+static int count_args_numbers(t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	while (shell && shell->type != PIPE)
+	{
+		shell = shell->next;
+		i++;
+	}
+	return (i);
+}
+
+static int delete_lexerlist(t_shell **shell, enum e_token type)
+{
+	t_shell *temp;
+
+	if (*shell == 0 || shell == 0)
+		return (-1);
+	temp = *shell;
+	while (temp != NULL && temp->type != type)
+	{
+		//temp = *shell->next;
+		*shell = temp->next;
+		if (temp == NULL)
+			return (-1);
+		free (temp); //not enough free, free **str in the node
+		temp = *shell;
+	}
+	if (temp->type == type)
+		return (1);
+	else return (0);
+}
+
+static t_parse *init_parse_node(char **str)
 {
 	t_parse *parse_node;
 
 	parse_node = (t_parse *)malloc(sizeof(t_parse));
 	if (!parse_node)
 		return (NULL);
-	
+	parse_node->command = str;
 	parse_node->redirection_in = 0;
 	parse_node->redirection_out = 0;
 	parse_node->infilepath = NULL;
@@ -145,14 +186,14 @@ static t_shell *parse_new_node_redirection(t_parse *parse_node, t_shell **shell)
 	//printf("in parse_new_node_redirection\n");
 	return (temp);
 }
-
+/*
 static t_shell	*parse_new_node_word(t_shell *shell, t_parse *parse_node, int i)
 {
 	parse_node->command[i] = shell->input;
 	shell = shell->next;
 	return (shell);
 }
-
+*/
 static t_shell *parse_new_node(t_shell **shell, t_parse *parse_node)
 {
 	int	i;
@@ -162,11 +203,13 @@ static t_shell *parse_new_node(t_shell **shell, t_parse *parse_node)
 	temp = *shell;
 	while (temp)
 	{
-		if (temp->type == WORD)
+		/*if (temp->type == WORD)
 		{
 			temp = parse_new_node_word(temp, parse_node, i);
 			i++;
-		}
+		}*/
+		if (temp->type == WORD)
+			temp = temp->next;
 		if (temp->type == REDIRECT_IN || temp->type == REDIRECT_OUT || temp->type == HEREDOC || temp->type == APP_M)
 			temp = parse_new_node_redirection(parse_node, &temp);
 		if (temp->type == PIPE)
@@ -197,41 +240,27 @@ static void ft_add_tail_parse(t_parse **parse, t_parse *parse_node)
     parse_node->previous = bottom;
 }
 
-static int		count_word1(t_shell *list)
-{
-	t_shell	*tmp;
-	int 	i;
-
-	i = 0;
-	tmp = list;
-	while (tmp && tmp->type != PIPE)
-	{
-		if (tmp->type == WORD)
-			i++;
-		tmp = tmp->next;
-	}
-	return (i);
-} // before pipe how many words *shell
-
 void parse_integration(t_shell **shell, t_parse **parse)
 {
 	t_shell *temp;
 	t_parse *parse_node;
-	int i;
+	char **str;
 
 	temp = *shell;
 	printf("first in parse_integration\n");
 	while(temp)
 	{
-		i = count_word1(temp);
-		printf("1 i: %d\n", i);
-		parse_node = init_parse_node(i);
+		//parse_node = init_parse_node(i);
+		
+		str = creat_command(shell);
+		//str[0] = "abc";
+		printf("hello in loop\n");
+		parse_node = init_parse_node(str);
 		temp = parse_new_node(&temp, parse_node);
-		parse_node->size = i;
-		printf("2\n");
 		ft_add_tail_parse(parse, parse_node);
 		temp = temp->next;
-		printf("3\n");
+		if (delete_lexerlist(shell, PIPE) == -1)
+			break ;
 	}
 }
 

@@ -111,6 +111,7 @@ int ft_issignal(char c);
 
 void	print_parse(t_parse *s);
 void parse_integration(t_shell **shell, t_parse **parse);
-void delete_lexerlist(t_shell **shell);
+
+void    ft_expand(t_shell **shell, t_env **env);
 
 #endif
