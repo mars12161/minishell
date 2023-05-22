@@ -47,12 +47,9 @@ t_shell *fill_shell(t_shell *shell)
 	{
 		//printf("in loop: i: %d\n", i);
 		//printf("*str: %c\n", *str);
-		if (*str == ' ')
-		{
-			str = new_node_SPACE(str, &shell, 32);
-			printf("SPACE\n");
-		}
-		else if (*str == '$')
+		while (*str == ' ')
+			str++;
+		if (*str == '$')
 		{
 			str = new_node_DW(str, &shell, 36);
 			printf("DOLLAR\n");
@@ -72,11 +69,6 @@ t_shell *fill_shell(t_shell *shell)
 			printf("SQ\n");
 			str = new_node_DSQ(str, &shell, 39);
 		}
-		else if (*str == '\n')
-		{
-			printf("NL\n");
-			str = new_node_NL_ESC(str, &shell, 10);
-		}
 		else if (*str == '<')
 		{
 			printf("REDI OR HEREDOC\n");
@@ -95,7 +87,7 @@ t_shell *fill_shell(t_shell *shell)
 		else
 		{
 			printf("WORD\n");
-			str = new_node_DW(str, &shell, 500);
+			str = new_node_W(str, &shell);
 		}
 		//printf("helloend\n");
 	}
@@ -131,8 +123,5 @@ int	main()
 	parse = NULL;
 	shell = fill_shell(shell);
 	print_shell(shell);
-	//parse = parse_new_node(shell);
-	parse_integration(&shell, &parse);
 	printf("main0\n");
-	print_parse(parse);
 }

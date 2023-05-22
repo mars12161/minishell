@@ -1,16 +1,4 @@
 #include "lexer.h"
-/*
-static void	ft_lstadd_back_shell(t_shell **lst, t_shell *new)
-{
-	t_shell	*tmp;
-
-	if (!lst || !new)
-		return ;
-	tmp = *lst;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-}*/
 
 static t_shell *get_shell_bottom(t_shell *shell)
 {
@@ -19,18 +7,13 @@ static t_shell *get_shell_bottom(t_shell *shell)
     return (shell);
 }
 
-static void ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type, enum e_state state)
+static void ft_add_tail(t_shell **shell, t_shell *new_node)
 {
     t_shell *bottom;
-    //printf("hello in ft_add_tail\n");
-    //printf("new_node->input: %s\n", new_node->input);
+
     if (!new_node)
         return ;
-    new_node->type = type;
-    //printf("new_node->type: %d\n", new_node->type);
-    new_node->state = state;
     new_node->next = 0;
-    //printf("new_node->state : %d\n", new_node->state);
     if (!*shell)
     {
 		*shell = new_node;
@@ -38,37 +21,11 @@ static void ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type, e
     }
 	bottom = get_shell_bottom(*shell);
     bottom->next = new_node;
+    new_node->previous = bottom;
+    new_node->previous->next = new_node;
 }
 
-char *new_node_SPACE(char *str, t_shell **shell, int c)
-{
-    t_shell *new_node;
-    int i;
-    int space;
-
-    new_node = NULL;
-    new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
-    i = 0;
-    space = 0;
-    while (str[i])
-    {
-        if (str[i] == c)
-            space++;
-        if (str[i] == c && str[i + 1] != c)
-            break ;
-        i++;
-    }
-    new_node->input = ft_substr((char const *)str, 0, space);
-    str += space;
-    new_node->len = ft_strlen(new_node->input);
-    //new_node->next = 0;
-    ft_add_tail(shell, new_node, SPA, OTHER);
-    return (str);
-}
-
-char *new_node_DW(char *str, t_shell **shell, int c) // for $ and WORD
+char *new_node_D(char *str, t_shell **shell) // for $ and WORD
 {
     t_shell *new_node;
     int i;
@@ -81,6 +38,36 @@ char *new_node_DW(char *str, t_shell **shell, int c) // for $ and WORD
     new_node = (t_shell *)malloc(sizeof(t_shell));
 	if (!new_node)
 		return (NULL);
+    i = 0;
+    j = 0;
+    while (str[i])
+    {
+        if (str[i] >= 33 && str[i] <= 126)
+            j++;
+        if (str[i] >= 33 && str[i] <= 126 && (str[i + 1] == ' ' || str[i + 1] == '\t'))
+            break ;
+        i++;
+    }
+    new_node->input = ft_substr((char const *)str, 0, j);
+    //printf("new_node->input: %s\n", new_node->input);
+    str += j;
+    //printf("str: %s\n", str);
+    new_node->len = ft_strlen(new_node->input);
+    if (c == 36)
+        ft_add_tail(shell, new_node, ENV, OTHER);
+    return (str);
+}
+
+char *new_node_W(char *str, t_shell **shell) // for $ and WORD
+{
+    t_shell *new_node;
+    int i;
+    int j;
+
+    new_node = NULL;
+    new_node = (t_shell *)malloc(sizeof(t_shell));
+    if (!new_node)
+        return (NULL);
     i = 0;
     j = 0;
     while (str[i])
@@ -117,7 +104,7 @@ char *new_node_PIPE(char *str, t_shell **shell, int c)
     if (c == 124)
         ft_add_tail(shell, new_node, PIPE, OTHER);
     return (str);
-} // can be merged with RED NL ESC
+}
 
 char *new_node_RED_2(char *str, t_shell **shell, int c)
 {

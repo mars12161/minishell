@@ -30,38 +30,20 @@
 
 /* Structs */
 
-enum e_token
-{
-	WORD,		//0
-	S_QUOTE,	//1
-	D_QUOTE,	//2
-	SPA,		//3
-	ENV,		//4
-	PIPE,		//5
-	NEW_LINE,	//6
-	REDIRECT_IN,//7
-	REDIRECT_OUT,//8
-	ESCAPE,		//9
-	HEREDOC,	//10
-	APP_M,		//11
-};
-
-enum e_state
-{
-	OTHER,
-	IN_SQUOTE,
-	IN_DQUOTE,
-};
-
 typedef struct s_shell
 {
-	char *input;
-	int	len;
+	char **command;
 	enum e_token type;
 	enum e_state state;
+	int	redirection_in;
+    int	redirection_out;
+    int pipe;
+    char *infilepath;  //if redirection_in == 0, infilepath = NULL
+    char *outfilepath; 
+    struct s_shell *previous;
 	struct s_shell *next;
 }	t_shell;
-
+/*
 typedef struct s_parse
 {
     char 	**command;
@@ -75,6 +57,7 @@ typedef struct s_parse
 	struct s_parse *previous;
     struct s_parse *next;
 }   t_parse;
+*/
 /*
 no redirection  0
 REDIRECT_IN,	1

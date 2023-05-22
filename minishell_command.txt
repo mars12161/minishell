@@ -98,3 +98,13 @@ yli@c4c1c2:~$ cat << EOF
 0
 12
 yli@c4c1c2:~$ 
+
+c4c3c3% echo "test"
+test
+c4c3c3% $?
+zsh: command not found: 0
+c4c3c3% dkflskd
+zsh: command not found: dkflskd
+c4c3c3% $?     
+zsh: command not found: 127
+

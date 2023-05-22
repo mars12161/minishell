@@ -1,37 +1,39 @@
 #include "lexer.h"
 
-static char    *ft_find_path(char *str, t_env **env)
+char    *ft_expand(char *str, t_env **env)
 {
-    t_env *temp;
-    char *path;
+    t_env   *temp;
+    char    *path;
+    char    *result;
 
     temp = *env;
     while(temp)
     {
-        if (!strncmp(temp->content, str, ft_strlen(str)))
+        if (!strncmp(temp->content, str + 1, ft_strlen(str)))
         {
             path = ft_strtrim(temp->content, str);
-            path = ft_strtrim(str, "=");
-            return (path);
+            result = ft_strtrim(path, "=");
+            ft_free_str(&path);
+            return (result);
         }
         temp = temp->next;
     }
     return (NULL);
 }
 
-void    ft_expand(t_shell **shell, t_env **env)
+void    ft_free_str(char **str)
 {
-    t_shell *temp;
+    int i;
 
-    temp = *shell;
-    while(temp)
+    i = 0;
+    while (str[i])
     {
-        if (temp->type == D_QUOTE)
+        if (*str != NULL)
         {
-            temp->input = ft_find_path(temp->input, env);
-            temp->type = WORD;
-            temp->state = OTHER;
+            free(str[i]);
+            i++;
         }
-        temp = temp->next;
+        *str = NULL;
     }
+    free (str);
 }
