@@ -6,21 +6,11 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:17:01 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/18 14:11:42 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/19 16:47:25 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "signals.h"
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	while (*s1 && (*s1 == *s2))
-	{
-		s1++;
-		s2++;
-	}
-	return (*(char *)s1 - *(char *)s2);
-}
 
 int	minishell_loop(void)
 {
@@ -41,9 +31,4 @@ int	minishell_loop(void)
 		printf("%s\n", input);
 	}
 	return (0);
-}
-
-int	main(void)
-{
-	minishell_loop();
 }

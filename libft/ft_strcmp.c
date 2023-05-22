@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 13:17:36 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/19 16:47:03 by mschaub          ###   ########.fr       */
+/*   Created: 2023/05/22 13:28:46 by mschaub           #+#    #+#             */
+/*   Updated: 2023/05/22 13:31:43 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
+#include "libft.h"
 
-//#include "../../includes/minishell.h"
-# include <signal.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <termios.h>
-# include <stdbool.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-/* Functions */
-
-void	sigint_handler(int signal);
-void	sigint_heredoc(int signal);
-int		change_attr(bool ctrl_chr);
-
-#endif
+int	ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(char *)s1 - *(char *)s2);
+}

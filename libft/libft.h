@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 19:54:54 by mschaub           #+#    #+#             */
-/*   Updated: 2022/12/16 17:49:08 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/22 13:29:49 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ size_t	ft_strlen(const char *str);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 int		ft_strncmp(char *s1, char *s2, unsigned int n);
+int 	ft_strcmp(char *s1, char *s2);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(const char *s1, const char *set);

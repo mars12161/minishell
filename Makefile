@@ -25,7 +25,7 @@ all: $(LIBFT) $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT)
 	@echo "Compiling Minishell..."
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) libft/libft.a -o $(NAME)
 	@echo "Minishell compiled!"
 
 $(LIBFT):

@@ -6,12 +6,12 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:41:17 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/18 14:51:21 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/22 13:46:52 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "includes/minishell.h"
-#include "src/signals/signals.h"
+#include "includes/minishell.h"
+//#include "src/signals/signals.h"
 
 int	minishell_loop(void)
 {
@@ -29,6 +29,8 @@ int	minishell_loop(void)
 			change_attr(true);
 			break ;
 		}
+		else if (input[0] == '\0')
+			printf("");
 		else
 		{
 			add_history(input);
