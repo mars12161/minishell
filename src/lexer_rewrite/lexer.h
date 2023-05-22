@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/22 13:33:29 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:56:12 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,10 @@ char *new_node_RED(char *str, t_shell **shell, int c);
 char *new_node_NL_ESC(char *str, t_shell **shell, int c);
 char *new_node_DSQ(char *str, t_shell **shell, int c);
 
-// already in libft
-/*int	ft_strlen(char *str);
+int	ft_strlen(char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);*/
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 int ft_isspace(char c);
 int ft_issignal(char c);
