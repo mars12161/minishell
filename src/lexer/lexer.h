@@ -30,6 +30,8 @@
 
 /* Structs */
 
+int	g_exit;
+
 enum e_token
 {
 	WORD,		//0
@@ -64,7 +66,7 @@ typedef struct s_shell
 
 typedef struct s_parse
 {
-    char 	**command;
+    char 	*command;
     int 	size;
     int	redirection_in;
     int	redirection_out;
@@ -72,9 +74,14 @@ typedef struct s_parse
     char *outfilepath; //if redirection_out == 0, outfilepath = NULL
     int pipe;
     int	fd[2];   //if pipe == 0, fd = NULL
-	struct s_parse *previous;
-    struct s_parse *next;
 }   t_parse;
+
+typedef struct s_parse_arr
+{
+	t_parse **cmm;
+	int	check;
+	int	size;
+}	t_parse_arr;
 /*
 no redirection  0
 REDIRECT_IN,	1
