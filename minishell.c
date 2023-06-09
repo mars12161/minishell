@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:41:17 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/22 13:46:52 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/09 15:19:29 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int	minishell_loop(void)
 			write(STDERR_FILENO, "exit\n", 5);
 			change_attr(true);
 			break ;
+
 		}
 		else if (input[0] == '\0')
-			printf("");
+		{}
 		else
 		{
 			add_history(input);
