@@ -88,7 +88,7 @@ static	t_parse **create_cmm(t_shell *head, int *size)
 	{
 		if (i < *size)
 		{
-			cmm[i] = parse_shell(temp);//todo
+			cmm[i] = parse_shell(temp);
 			if (!cmm[i])
 				return (NULL);
 		}
@@ -99,6 +99,13 @@ static	t_parse **create_cmm(t_shell *head, int *size)
 		i++;
 	}
 	return (cmm);
+}
+
+void	parse_cmm(t_parse *cmm, t_shell *temp, t_env *env)
+{
+	if (exec_builtin(cmm, &env) == 1)
+		excute_interagration(//wrong struct t_parse *parse, t_env **env);
+	
 }
 
 static	t_parse	*parse_shell(t_shell *head)
@@ -117,31 +124,130 @@ static	t_parse	*parse_shell(t_shell *head)
 			parse_cmm(cmm, temp); //todo
 			i = 1;
 		}
-		if (temp->type == 5)
+		if (temp->type == PIPE)
 			break ;
-		else if (temp->type == 10)
-			parse_delim(somethinghere); //todo
 		else
-			parse_other(temp, cmd); //todo
+			parse_other(temp, cmd);
 		temp = temp->next;
 	}
 	return (cmm);
 }
 
-static void	parse_delim(t_shell *temp, t_parse *cmm)
+char    *ft_expand(char *str, t_env **env)
 {
-	something todo
+    t_env   *temp;
+    char    *path;
+    char    *result;
+
+    temp = *env;
+    while(temp)
+    {
+        if (!strncmp(temp->content, str + 1, ft_strlen(str)))
+        {
+            path = ft_strtrim(temp->content, str);
+            result = ft_strtrim(path, "=");
+            ft_free_str(&path);
+            return (result);
+        }
+        temp = temp->next;
+    }
+    return (NULL);
 }
 
-void	parse_other(t_parse *cmm, t_shell *temp)
+static void	parse_redir_out(t_parse *cmm, t_shell *temp)
 {
 	int	fd;
 
-	if (temp->type == 7)
-		parse_redir_in(temp, cmm); //todo
-	else if (temp->type == 8)
-		parse_redir_out(temp, cmm);
-	else if (temp->type == 11) //append
-		todosomething
+	if (temp->type == REDIRECT_OUT)
+	{
+		if (temp->next->input)
+		{
+			fd = open(temp->next->input, O_CREAT | O_RDWR, 0644);
+			if (fd == -1)
+				perror("File could not be created");
+			close(fd);
+			if (cmm->redirection_out == 0)
+				cmm->outfilepath = ft_strcat(cmm->outfilepath, temp->next->input);
+			else
+			{
+				free(cmm->outfilepath);
+				cmm->outfilepath = ft_strdup(temp->next->input);
+			}
+		}
+		cmm->redirection_out = 1;
+	}
 }
 
+static void	parse_delim(t_parse *cmm, t_env *env)
+{
+	char *str;
+	char *path;
+	char	*whole_str;
+	
+	whole_str = strdup("");
+	while (1)
+	{
+		str = readline("heredoc>");
+		if (!strcmp(str, "EOF"))
+			break;
+		if (*str == '$')
+		{
+			path = ft_expand(str, env);
+			whole_str = ft_strjoin(whole_str, path);
+			free(path);
+		}
+		else
+			whole_str = ft_strjoin(whole_str, str);
+		whole_str = ft_strjoin(whole_str, "\n");
+		free(str);
+	}
+	write(cmm->redirection_out, whole_str, ft_strlen(whole_str));
+	free(whole_str);
+}
+
+void	parse_other(t_parse *cmm, t_shell *temp, t_env *env)
+{
+	int	fd;
+
+	if (temp->type == REDIRECT_IN)
+		parse_redir_in(cmm, temp);
+	else if (temp->type == REDIRECT_OUT)
+		parse_redir_out(cmm, temp);
+	else if (temp->type == APP_M)
+	{
+		fd = open(temp->next->content, O_CREAT | O_RDWR | O_APPEND, 0644);
+		if (fd == -1)
+			perror("File could not be created");
+		close (fd);
+	}
+	else if (temp->type == HEREDOC)
+		parse_delim(cmm, env);
+}
+
+static void	parse_redir_in(t_parse *cmm, t_shell *temp)
+{
+	if (temp->content)
+	{
+		if (cmm->redirection_in == 0)
+		{
+			check_infile(temp->next->input);
+			cmm->infile = ft_strcat(cmm->infilepath, temp->next->input);
+		}
+		else
+		{
+			free(cmm->infilepath);
+			cmm->infilepath = ft_strdup(temp->next->input);
+		}
+	}
+	cmm->redirection_in = 1;
+}
+
+void	check_infile(char *infilepath)
+{
+	int	fd;
+
+	fd = open(infilepath, O_RDONLY);
+	if (fd == -1)
+		return ;
+	close(fd);
+}

@@ -13,7 +13,7 @@ typedef struct s_parse
 	
 }   t_parse;
 
-void excute_interagration(t_parse *parse, t_env **env)
+void excute_interagration(//wrong struct t_parse *parse, t_env **env)
 {
 	int fd_in;
 	int fd_out;
