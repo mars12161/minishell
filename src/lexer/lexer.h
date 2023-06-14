@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/05/22 13:33:29 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/05/26 14:37:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,6 @@ int ft_issignal(char c);
 void	print_parse(t_parse *s);
 void parse_integration(t_shell **shell, t_parse **parse);
 
-void    ft_expand(t_shell **shell, t_env **env);
+//void    ft_expand(t_shell **shell, t_env **env);
 
 #endif
