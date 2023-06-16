@@ -30,7 +30,7 @@
 
 /* Structs */
 
-int	g_exit;
+//int	g_exit;
 
 enum e_token
 {
@@ -67,7 +67,8 @@ typedef struct s_shell
 typedef struct s_parse
 {
     char 	*command;
-    int 	size;
+	char	**whole_line;
+	int		wline;
     int	redirection_in;
     int	redirection_out;
     char *infilepath;  //if redirection_in == 0, infilepath = NULL
@@ -82,6 +83,12 @@ typedef struct s_parse_arr
 	int	check;
 	int	size;
 }	t_parse_arr;
+
+typedef struct s_env
+{
+    char *content;
+    struct s_env *next;
+}   t_env;
 /*
 no redirection  0
 REDIRECT_IN,	1
@@ -97,8 +104,15 @@ pipe 1;
 
 /* Functions */
 
-t_shell *fill_shell(t_shell *shell);
+
+
+//debug
+void	print_parse(t_parse	*head);
 void	print_shell(t_shell *s);
+void	print_parse_arr(t_parse_arr	*head);
+
+//lexer
+t_shell *fill_shell(t_shell *shell);
 void    ft_free(char **str);
 
 char *new_node_SPACE(char *str, t_shell **shell, int c);
@@ -108,18 +122,21 @@ char *new_node_RED(char *str, t_shell **shell, int c);
 char *new_node_NL_ESC(char *str, t_shell **shell, int c);
 char *new_node_DSQ(char *str, t_shell **shell, int c);
 
-// already in libft
-/*int	ft_strlen(char *str);
+//libft
+int	ft_strlen(char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);*/
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+int	ft_setcheck(char c, char const *set);
+char	*ft_strtrim(char const *s1, char const *set);
 
-int ft_isspace(char c);
-int ft_issignal(char c);
+char    *ft_expand(char *str, t_env **env);
 
-void	print_parse(t_parse *s);
-void parse_integration(t_shell **shell, t_parse **parse);
+t_parse	*parse_shell(t_shell *head, t_env *env);
 
-//void    ft_expand(t_shell **shell, t_env **env);
+t_env *init_env(char **envp, t_env *env);
+
+t_parse_arr *parse_array_create(t_shell *head,t_env *env);
 
 #endif

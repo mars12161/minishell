@@ -1,4 +1,6 @@
-#include "builtin.h"
+//#include "builtin.h"
+#include "lexer.h"
+
 
 t_env *new_node_env(char *str)
 {

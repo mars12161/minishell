@@ -15,24 +15,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "lexer.h"
-/*
-static char	*ft_readline()
-{
-	char *line;
 
-	line = readline("[minishell:]");
-	if (!*line)
-	{
-		printf("exit\n");
-		exit(1); //add something later, maybe free
-	}
-	if (ft_isspace(*line))
-		return ("error");
-	if (ft_strlen(line) > 0)
-		add_history(line);
-	return (0);
-}
-*/
 t_shell *fill_shell(t_shell *shell)
 {
 	char *str;
@@ -103,36 +86,25 @@ t_shell *fill_shell(t_shell *shell)
 	return (shell);
 }
 
-void	print_shell(t_shell *s)
-{
-	t_shell	*temp;
-
-	temp = s;
-	printf("\n==SHELL==\n");
-	if (s == NULL)
-	{
-		printf("SHELL empty!\n");
-		return ;
-	}
-	while (temp)
-	{
-		printf("input: %s len: %i type: %i state: %i\n", temp->input, temp->len, temp->type, temp->state);
-		temp = temp->next;
-	}
-	printf("=========\n\n");
-}
-
-int	main()
+int	main(int argc, char **argv, char **envp)
 {
 	t_shell *shell;
 	t_parse *parse;
+	t_env	*env;
+	t_parse_arr *cmmarr;
 
+	(void)argc;
+	(void)argv;
 	shell = NULL;
 	parse = NULL;
+	env = NULL;
+    env = init_env(envp, env);
 	shell = fill_shell(shell);
 	print_shell(shell);
-	//parse = parse_new_node(shell);
-	parse_integration(&shell, &parse);
-	printf("main0\n");
+	parse = parse_shell(shell, env);
+
+	cmmarr = parse_array_create(shell, env);
+	//printf("main0\n");
 	print_parse(parse);
+	print_parse_arr(cmmarr);
 }
