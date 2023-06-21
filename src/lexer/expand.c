@@ -1,37 +1,35 @@
-#include "lexer.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
+/*   Updated: 2023/06/20 17:51:08 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static char    *ft_find_path(char *str, t_env **env)
+#include "minishell.h"
+
+char    *ft_expand(char *str, t_env **env)
 {
-    t_env *temp;
-    char *path;
+    t_env   *temp;
+    char    *path;
+    char    *result;
 
     temp = *env;
     while(temp)
     {
-        if (!strncmp(temp->content, str, ft_strlen(str)))
+        if (!strncmp(temp->content, str + 1, ft_strlen(str)))
         {
             path = ft_strtrim(temp->content, str);
-            path = ft_strtrim(str, "=");
-            return (path);
+            result = ft_strtrim(path, "=");
+            ft_free_str(&path);
+            return (result);
         }
         temp = temp->next;
     }
     return (NULL);
 }
 
-void    ft_expand(t_shell **shell, t_env **env)
-{
-    t_shell *temp;
-
-    temp = *shell;
-    while(temp)
-    {
-        if (temp->type == D_QUOTE)
-        {
-            temp->input = ft_find_path(temp->input, env);
-            temp->type = WORD;
-            temp->state = OTHER;
-        }
-        temp = temp->next;
-    }
-}

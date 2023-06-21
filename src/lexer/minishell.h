@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -68,13 +68,13 @@ typedef struct s_parse
 {
     char 	*command;
 	char	**whole_line;
-	int		wline;
+	int		wline_count;
     int	redirection_in;
     int	redirection_out;
     char *infilepath;  //if redirection_in == 0, infilepath = NULL
     char *outfilepath; //if redirection_out == 0, outfilepath = NULL
     int pipe;
-    int	fd[2];   //if pipe == 0, fd = NULL
+    //int	fd[2];   //if pipe == 0, fd = NULL
 }   t_parse;
 
 typedef struct s_parse_arr
@@ -110,17 +110,18 @@ pipe 1;
 void	print_parse(t_parse	*head);
 void	print_shell(t_shell *s);
 void	print_parse_arr(t_parse_arr	*head);
+int ft_env(t_env **env);
 
-//lexer
-t_shell *fill_shell(t_shell *shell);
-void    ft_free(char **str);
+//lexer_1
+t_shell *fill_shell(char *str, t_shell *shell, t_env **env);
 
+//lexer_2
 char *new_node_SPACE(char *str, t_shell **shell, int c);
-char *new_node_DW(char *str, t_shell **shell, int c);
+char *new_node_DW(char *str, t_shell **shell, t_env **env);
 char *new_node_PIPE(char *str, t_shell **shell, int c);
 char *new_node_RED(char *str, t_shell **shell, int c);
-char *new_node_NL_ESC(char *str, t_shell **shell, int c);
-char *new_node_DSQ(char *str, t_shell **shell, int c);
+//char *new_node_NL_ESC(char *str, t_shell **shell, int c);
+char *new_node_DSQ(char *str, t_shell **shell, int c,t_env **env);
 
 //libft
 int	ft_strlen(char *str);
@@ -130,13 +131,35 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 int	ft_setcheck(char c, char const *set);
 char	*ft_strtrim(char const *s1, char const *set);
+void	ft_putstr_fd(char *s, int fd);
 
+//parser_1
+t_parse	*parse_shell(t_shell *head, t_env *env);
+t_parse_arr *parse_array_create(t_shell *head,t_env *env);
+
+//parser_2
+void	parse_redir_out(t_parse *cmm, t_shell *temp);
+void	parse_redir_out_APP(t_parse *cmm, t_shell *temp);
+void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
+void	parse_redir_in(t_parse *cmm, t_shell *temp);
+
+//parser_3
+void	check_infile(char *infilepath);
+int	args_count(t_shell *head);
+void    ft_free_str(char **str);
+int	get_size_cmmarr(t_shell *head);
+
+//expand
 char    *ft_expand(char *str, t_env **env);
 
-t_parse	*parse_shell(t_shell *head, t_env *env);
-
+//env
 t_env *init_env(char **envp, t_env *env);
 
-t_parse_arr *parse_array_create(t_shell *head,t_env *env);
+//free
+void    free_all(t_shell **shell, t_parse **node, t_env **env);
+void    free_shell(t_shell **shell);
+
+//buildin_2_echo
+int    ft_echo(t_parse *node);
 
 #endif

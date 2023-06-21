@@ -22,11 +22,11 @@ int main(int argc, char **argv, char **envp)
 }
 */
 
-int main()
-{
-    int i;
+// int main()
+// {
+//     int i;
 
-    i = -1;
-    while(i++ < 5)
-        printf("%d\n", i); //012345
-}
+//     i = -1;
+//     while(i++ < 5)
+//         printf("%d\n", i); //012345
+// }

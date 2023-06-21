@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "minishell.h"
 
 void	print_shell(t_shell *s)
 {
@@ -43,9 +43,9 @@ void	print_parse(t_parse	*head)
 	{
 		printf("command: %s\n", head->command);
 		printf("whole_line[0]: %s\n", head->whole_line[0]);
-		printf("whole_line[1]: %s\n", head->whole_line[1]);
-		printf("whole_line[2]: %s\n", head->whole_line[2]);
-		//printf("whole_line[4]: %s\n", head->whole_line[4]);
+		// printf("whole_line[1]: %s\n", head->whole_line[1]);
+		// printf("whole_line[2]: %s\n", head->whole_line[2]);
+		// printf("whole_line[3]: %s\n", head->whole_line[3]);
 		printf("wline: %d\n", head->wline);
 		printf("redirection_in: %d\n", head->redirection_in);
 		printf("redirection_out: %d\n", head->redirection_out);
@@ -72,3 +72,17 @@ void	print_parse_arr(t_parse_arr	*head)
 	}
 	printf("=========\n\n");
 }
+
+int ft_env(t_env **env)
+{
+    t_env *temp;
+
+    temp = *env;
+    while (temp)
+    {
+        printf("%s\n", temp->content);
+        temp = temp->next;
+    }
+    return (0);
+}
+

@@ -1,6 +1,16 @@
-//#include "builtin.h"
-#include "lexer.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
+/*   Updated: 2023/06/20 17:50:59 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "minishell.h"
 
 t_env *new_node_env(char *str)
 {
@@ -45,17 +55,4 @@ t_env *init_env(char **envp, t_env *env)
         i++;
     }
     return (env);
-}
-
-int ft_env(t_env **env)
-{
-    t_env *temp;
-
-    temp = *env;
-    while (temp)
-    {
-        printf("%s\n", temp->content);
-        temp = temp->next;
-    }
-    return (0);
 }

@@ -1,4 +1,16 @@
-#include "lexer.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   from_libft.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/20 17:51:13 by yli               #+#    #+#             */
+/*   Updated: 2023/06/20 17:51:15 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 
 int	ft_strlen(char *str)
 {
@@ -127,4 +139,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	str[i] = '\0';
 	return (str);
+}
+
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
 }
