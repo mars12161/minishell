@@ -22,12 +22,12 @@ static t_shell *get_shell_bottom(t_shell *shell)
     return (shell);
 }
 
-// static t_shell *get_shell_second_from_bottom(t_shell *head)
-// {
-//     while (head && head->next && head->next->next != NULL)
-//         head = head->next;
-//     return (head);
-// }
+static t_shell *get_shell_second_from_bottom(t_shell *head)
+{
+    while (head && head->next && head->next->next != NULL)
+        head = head->next;
+    return (head);
+}
 
 static int	get_shell_size(t_shell *shell)
 {
@@ -46,31 +46,31 @@ static int	get_shell_size(t_shell *shell)
 
 int check_word_or_path(t_shell *shell)
 {
-    // t_shell *bottom;
-    // t_shell *second_bottom;
+    t_shell *bottom;
+    t_shell *second_bottom;
     int i;
 
-    // bottom = get_shell_bottom(shell);
-    // second_bottom = get_shell_second_from_bottom(shell);
+    bottom = get_shell_bottom(shell);
+    second_bottom = get_shell_second_from_bottom(shell);
     i = get_shell_size(shell);
     if (i == 0)
         return (0);
     if (i == 1)
     {
-        if (shell->type == REDIRECT_IN || shell->type == HEREDOC)
+        if (bottom->type == REDIRECT_IN || bottom->type == HEREDOC)
             return (1);
-        else if (shell->type == REDIRECT_OUT || shell->type == APP_M)
+        else if (bottom->type == REDIRECT_OUT || bottom->type == APP_M)
             return (2);
     }
     else
     {
-        if (shell->type == REDIRECT_IN || shell->type == HEREDOC)
+        if (bottom->type == REDIRECT_IN || bottom->type == HEREDOC)
             return (1);
-        else if (shell->type == REDIRECT_OUT || shell->type == APP_M)
+        else if (bottom->type == REDIRECT_OUT || bottom->type == APP_M)
             return (2);
-        else if (shell->type == SPA && (shell->pre->type == REDIRECT_IN || shell->pre->type == HEREDOC))
+        else if (bottom->type == SPA && (second_bottom->type == REDIRECT_IN || second_bottom->type == HEREDOC))
             return (1);
-        else if (shell->type == SPA && (shell->pre->type == REDIRECT_OUT || shell->pre->type == APP_M))
+        else if (bottom->type == SPA && (second_bottom->type == REDIRECT_OUT || second_bottom->type == APP_M))
             return (2);
     }
     return (0);
@@ -91,5 +91,4 @@ void ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type)
     }
 	bottom = get_shell_bottom(*shell);
     bottom->next = new_node;
-    new_node->pre = bottom;
 }

@@ -56,13 +56,13 @@ c4c3c3% $BB
 /nfs/homes/yli/Desktop/Subject
 
 
-◦ echo with option -n		done
-◦ cd with only a relative or absolute path	done
-◦ pwd with no options		done
-◦ export with no options	done
-◦ unset with no options		done
-◦ env with no options or arguments	done
-◦ exit with no options		done
+◦ echo with option -n		done good
+◦ cd with only a relative or absolute path	done notgood
+◦ pwd with no options		done good
+◦ export with no options	done good
+◦ unset with no options		done notgood
+◦ env with no options or arguments	done good
+◦ exit with no options		done notsure
 
 ls -l | wc -l >  aa > bb > cc > dd
 

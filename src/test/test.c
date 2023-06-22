@@ -30,3 +30,29 @@ int main(int argc, char **argv, char **envp)
 //     while(i++ < 5)
 //         printf("%d\n", i); //012345
 // }
+
+static int ft_count_size(char *str)
+{
+    int i;
+
+    i = 1;
+    while(str[i])
+    {
+        if (str[i] == 36)
+            return (i);
+        i++;
+    }
+    return (0);
+}
+
+// int main()
+// {
+//     char *str = "$USER $USER";
+//     int i = ft_count_size(str);
+
+//     printf("%d\n", i);
+// }
+
+// $USER$USER 5
+// $USER $USER 6
+

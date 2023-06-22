@@ -62,7 +62,6 @@ typedef struct s_shell
 	char *input;
 	int	len;
 	enum e_token type;
-	struct s_shell *pre;
 	struct s_shell *next;
 }	t_shell;
 

@@ -41,8 +41,6 @@ int ft_unset(t_parse *node, t_env **env)
     temp = *env;
     while (temp)
     {
-		if (ft_count_size(node->whole_line[1], '='))
-			ft_error("invalid parameter name"); //free something later  g_exit == 1
         if (!strncmp(temp->content, node->whole_line[1], ft_strlen(node->whole_line[1])))
         {
             del_node(env,temp);
