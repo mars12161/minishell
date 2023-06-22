@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+int ft_export(t_parse *node, t_env **env);
+
 static int ft_check_n_export(char *str)
 {
     int i;
@@ -43,12 +45,10 @@ static int ft_check_signal_export(char *str)
     }
     while(j < i)
     {
-        if (str[j] == '!' ||str[j] == '@' || str[j] == '#' || str[j] == '%' || str[j] == '+'|| str[j] == '-'|| str[j] == '/')
+        if (str[j] == '!' || str[j] == '@' || str[j] == '#' || str[j] == '%' || str[j] == '+'|| str[j] == '-'|| str[j] == '/')
             return (-1);
-        else if (str[j] == '(' ||str[j] == ')')
+        else if (str[j] == '(' || str[j] == ')')
             return (-2);
-        else if (str[j] == ')')
-            return (-3);
         j++;
     }
     return (0);
@@ -60,7 +60,7 @@ int ft_export(t_parse *node, t_env **env)
 
     export = NULL;
     if (node->wline_count == 1)
-        return (ft_env(env));
+        return (ft_env(node, env));
     if (ft_check_n_export(node->whole_line[1]))
         return (0);
     else
@@ -69,21 +69,18 @@ int ft_export(t_parse *node, t_env **env)
         {
             export = new_node_env(node->whole_line[1]);
             ft_add_tail_env(env, export);
-            ft_env(env);
+            ft_env(node, env);
         }
         else if (ft_check_signal_export(node->whole_line[1]) == -1)
         {
-            printf("%s: '%s': not a valid identifier", node->whole_line[0], node->whole_line[1]);
+            printf("%s: '%s': not a valid identifier", node->whole_line[0], node->whole_line[1]); //todo free_all
             return (1);
         } 
         else if (ft_check_signal_export(node->whole_line[1]) == -2)
         {
-            printf("syntax error near unexpected token `('");
+            printf("syntax error near unexpected token"); //todo free_all
             return (2);
         }
-            
-        else if (ft_check_signal_export(node->whole_line[1]) == -3)
-            printf("syntax error near unexpected token `)'");
     }
     return (0);
 }

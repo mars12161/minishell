@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   buildin_6.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/06/20 17:51:08 by yli              ###   ########.fr       */
+/*   Created: 2023/06/21 18:16:55 by yli               #+#    #+#             */
+/*   Updated: 2023/06/21 18:16:57 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char    *ft_expand(char *str, t_env **env)
-{
-    t_env   *temp;
-    char    *path;
-    char    *result;
+int ft_pwd(t_parse *node);
 
-    temp = *env;
-    while(temp)
+int ft_pwd(t_parse *node)
+{
+    static char pwd[PATH_SIZE];
+    int fd;
+
+    fd = ft_redirection_out(node);
+    if (getcwd(pwd, PATH_SIZE))
     {
-        if (!strncmp(temp->content, str + 1, ft_strlen(str)))
-        {
-            path = ft_strtrim(temp->content, str);
-            result = ft_strtrim(path, "=");
-            ft_free_str(&path);
-            return (result);
-        }
-        temp = temp->next;
+        ft_putstr_fd(pwd, fd);
+        return (0);
     }
-    return (NULL);
+    else
+        return (-1);
 }

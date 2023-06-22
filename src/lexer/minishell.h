@@ -24,13 +24,15 @@
 # include <errno.h>
 # include <signal.h>
 # include <readline/readline.h>
+#include <readline/history.h>
+# define PATH_SIZE 4096
 //# include "../../libft/libft.h"
 
 //# define BUFFER_SIZE 4000
 
 /* Structs */
 
-//int	g_exit;
+extern g_exit;
 
 enum e_token
 {
@@ -40,27 +42,26 @@ enum e_token
 	SPA,		//3
 	ENV,		//4
 	PIPE,		//5
-	NEW_LINE,	//6
-	REDIRECT_IN,//7
-	REDIRECT_OUT,//8
-	ESCAPE,		//9
-	HEREDOC,	//10
-	APP_M,		//11
+	REDIRECT_IN,//6
+	REDIRECT_OUT,//7
+	HEREDOC,	//8
+	APP_M,		//9
+	INFILEPATH,
+	OUTFILEPATH,
 };
 
-enum e_state
-{
-	OTHER,
-	IN_SQUOTE,
-	IN_DQUOTE,
-};
+// enum e_state
+// {
+// 	OTHER,
+// 	IN_SQUOTE,
+// 	IN_DQUOTE,
+// };
 
 typedef struct s_shell
 {
 	char *input;
 	int	len;
 	enum e_token type;
-	enum e_state state;
 	struct s_shell *next;
 }	t_shell;
 
@@ -110,18 +111,22 @@ pipe 1;
 void	print_parse(t_parse	*head);
 void	print_shell(t_shell *s);
 void	print_parse_arr(t_parse_arr	*head);
-int ft_env(t_env **env);
 
 //lexer_1
 t_shell *fill_shell(char *str, t_shell *shell, t_env **env);
+//char *new_node_WORD(char *str, t_shell **shell);
+//char *new_node_SPACE(char *str, t_shell **shell);
 
 //lexer_2
-char *new_node_SPACE(char *str, t_shell **shell, int c);
-char *new_node_DW(char *str, t_shell **shell, t_env **env);
-char *new_node_PIPE(char *str, t_shell **shell, int c);
+char *new_node_ENV(char *str, t_shell **shell, t_env **env);
+char *new_node_PIPE(char *str, t_shell **shell);
 char *new_node_RED(char *str, t_shell **shell, int c);
-//char *new_node_NL_ESC(char *str, t_shell **shell, int c);
 char *new_node_DSQ(char *str, t_shell **shell, int c,t_env **env);
+char *new_node_SQ(char *str, t_shell **shell);
+
+//lexer_3
+int check_word_or_path(t_shell *shell);
+void ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
 
 //libft
 int	ft_strlen(char *str);
@@ -132,6 +137,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int	ft_setcheck(char c, char const *set);
 char	*ft_strtrim(char const *s1, char const *set);
 void	ft_putstr_fd(char *s, int fd);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //parser_1
 t_parse	*parse_shell(t_shell *head, t_env *env);
@@ -146,20 +152,35 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp);
 //parser_3
 void	check_infile(char *infilepath);
 int	args_count(t_shell *head);
-void    ft_free_str(char **str);
 int	get_size_cmmarr(t_shell *head);
 
 //expand
 char    *ft_expand(char *str, t_env **env);
 
 //env
+t_env *new_node_env(char *str);
+void ft_add_tail_env(t_env **env, t_env *new_node);
 t_env *init_env(char **envp, t_env *env);
 
 //free
-void    free_all(t_shell **shell, t_parse **node, t_env **env);
+void    free_all(t_shell **shell, t_parse *node, t_env **env);
 void    free_shell(t_shell **shell);
+void    ft_free_str(char **str);
 
-//buildin_2_echo
-int    ft_echo(t_parse *node);
+//buildin_1
+int check_buildin(char *str);
+int   ft_redirection_out(t_parse *node);
+int    buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env);
 
+//buildin 2 3 4 5 6 7 8
+int	ft_echo(t_parse *node);
+int ft_export(t_parse *node, t_env **env);
+int ft_cd(t_parse *node, t_env **env);
+int ft_exit(void);
+int ft_pwd(t_parse *node);
+int ft_unset(t_parse *node, t_env **env);
+int ft_env(t_parse *node, t_env **env);
+
+//error
+void    ft_error(char *str);
 #endif

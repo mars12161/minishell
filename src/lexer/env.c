@@ -12,6 +12,10 @@
 
 #include "minishell.h"
 
+t_env *new_node_env(char *str);
+void ft_add_tail_env(t_env **env, t_env *new_node);
+t_env *init_env(char **envp, t_env *env);
+
 t_env *new_node_env(char *str)
 {
     t_env *new_node;

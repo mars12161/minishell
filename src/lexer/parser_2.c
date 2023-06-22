@@ -19,9 +19,9 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
 static	char *check_input(t_shell *temp)
 {
-	if (temp->next->type == SPA && temp->next->next->type == WORD)
+	if (temp->next->type == SPA && (temp->next->next->type == INFILEPATH || temp->next->next->type == OUTFILEPATH))
 		return (temp->next->next->input);
-	if (temp->next->type == WORD)
+	if (temp->next->type == INFILEPATH || temp->next->type == OUTFILEPATH)
 		return (temp->next->input);
 	else
 	{

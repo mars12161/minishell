@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   buildin_5.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/20 21:49:10 by yli               #+#    #+#             */
-/*   Updated: 2023/06/20 21:49:11 by yli              ###   ########.fr       */
+/*   Created: 2023/06/21 18:16:49 by yli               #+#    #+#             */
+/*   Updated: 2023/06/21 18:16:51 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    ft_error(char *str);
+int ft_exit(void);
 
-void    ft_error(char *str)
+int ft_exit(void)
 {
-	int	i;
-
-	i = 0;
-    while (str[i])
-		i++;
-	write(2, str, i);
-	write(2, "\n", 1);
-    exit(1);
+    printf("exit\n");
+    //free everything
+    exit(0);
 }
+//todo didnot return anything

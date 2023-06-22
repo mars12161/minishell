@@ -40,23 +40,6 @@ int	args_count(t_shell *head)
 	return (i);
 }
 
-void    ft_free_str(char **str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if (*str != NULL)
-        {
-            free(str[i]);
-            i++;
-        }
-        *str = NULL;
-    }
-    free (str);
-}
-
 int	get_size_cmmarr(t_shell *head)
 {
 	t_shell *temp;

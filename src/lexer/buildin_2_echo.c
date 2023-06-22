@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int    ft_echo(t_parse *node);
+int ft_echo(t_parse *node);
 
 static int ft_check_each_n(char *str)
 {
@@ -45,7 +45,7 @@ static int ft_check_n(char *str)
         return (0);
 }
 
-int    ft_echo(t_parse *node)
+int ft_echo(t_parse *node)
 {
     int i;
     int flag;
@@ -59,14 +59,14 @@ int    ft_echo(t_parse *node)
         ft_putstr_fd("\n", fd);
         return (0);
     }
-    if (ft_check_n(node->command[1]))
+    if (ft_check_n(node->whole_line[1]))
     {
         i = 1;
         flag = 1;
     }
     while (i++ < node->wline_count - 1)
     {
-        ft_putstr_fd(node->command[i], fd);
+        ft_putstr_fd(node->whole_line[i], fd);
         if (i == node->wline_count - 1)
             break ;
         ft_putstr_fd(" ", fd);

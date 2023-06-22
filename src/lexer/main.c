@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-static  void input_loop(t_env *env)
+static  int input_loop(t_env *env)
 {
     t_shell *shell;
     t_parse_arr *cmmarr;
@@ -31,13 +31,11 @@ static  void input_loop(t_env *env)
     {
         free(str);
         free_shell(&shell);
-        return ;
+        return (-1);
     }
     if (cmmarr->size == 1 && !(check_buildin(cmmarr->cmm[0]->command)))
-        return (buildin_easy_mode(cmmarr, env)); //todo
-    
-
-
+        return (buildin_easy_mode(&shell, cmmarr, env)); //todo
+    return (0);
 }
 
 int	main(int argc, char **argv, char **envp)

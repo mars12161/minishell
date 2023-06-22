@@ -46,7 +46,7 @@ void	print_parse(t_parse	*head)
 		// printf("whole_line[1]: %s\n", head->whole_line[1]);
 		// printf("whole_line[2]: %s\n", head->whole_line[2]);
 		// printf("whole_line[3]: %s\n", head->whole_line[3]);
-		printf("wline: %d\n", head->wline);
+		printf("wline: %d\n", head->wline_count);
 		printf("redirection_in: %d\n", head->redirection_in);
 		printf("redirection_out: %d\n", head->redirection_out);
 		printf("infilepath: %s\n", head->infilepath);
@@ -73,16 +73,5 @@ void	print_parse_arr(t_parse_arr	*head)
 	printf("=========\n\n");
 }
 
-int ft_env(t_env **env)
-{
-    t_env *temp;
 
-    temp = *env;
-    while (temp)
-    {
-        printf("%s\n", temp->content);
-        temp = temp->next;
-    }
-    return (0);
-}
 
