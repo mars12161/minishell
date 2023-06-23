@@ -41,11 +41,14 @@ static  int input_loop(t_env *env)
 int	main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
+    int check;
 
+    check = 0;
 	(void)argc;
 	(void)argv;
 	env = NULL;
 	env = init_env(envp, env);
-	while (42)
-		input_loop(env);
+	while (!check)
+		check = input_loop(env);
+    //free everything  
 }

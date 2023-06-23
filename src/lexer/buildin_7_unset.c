@@ -20,7 +20,7 @@ static void	del_node(t_env **env,t_env *node)
 
 	if (*env == node)
 	{
-		*env = node->next;
+		*env = (*env)->next;
 		free(node);
 		return ;
 	}

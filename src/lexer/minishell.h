@@ -197,5 +197,6 @@ char *ft_parse_dollar_frame(char *str, t_env *env);
 int check_dollar(char *str, int c);
 int ft_count_size(char *str, int c);
 char *ft_check_strjoin(char *s1, char *s2);
+int  check_path_char(int c);
 
 #endif

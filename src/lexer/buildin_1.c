@@ -70,7 +70,7 @@ int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env)
 	if (cmmarr->cmm[0]->redirection_out)
 		ft_redirection_out(cmmarr->cmm[0]);
 	g_exit = exec_builtin(cmmarr->cmm[0], &env);
-	if (g_exit)
-		free_all(shell, cmmarr->cmm[0], &env);
+	// if (g_exit)
+	// 	free_all(shell, cmmarr->cmm[0], &env);
 	return (g_exit);
 }

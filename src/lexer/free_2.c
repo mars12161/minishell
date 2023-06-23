@@ -17,7 +17,7 @@ void ft_free_3str(char *str1, char *str2, char *str3);
 void ft_free_3str(char *str1, char *str2, char *str3)
 {
     
-    ft_free_str(&str1);
-    ft_free_str(&str2);
-    ft_free_str(&str3);
+    free(str1);
+    free(str2);
+    free(str3);
 }
