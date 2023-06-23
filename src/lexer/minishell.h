@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/23 13:20:46 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/23 15:56:33 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # include <limits.h>
 # include <errno.h>
 # include <signal.h>
+# include <stdbool.h>
 # include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/history.h>
+# include <termios.h>
 # define PATH_SIZE 4096
 //# include "../../libft/libft.h"
 
@@ -198,5 +200,9 @@ int check_dollar(char *str, int c);
 int ft_count_size(char *str, int c);
 char *ft_check_strjoin(char *s1, char *s2);
 int  check_path_char(int c);
+
+//signals
+void	sigint_handler(int signal);
+int		change_attr(bool ctrl_chr);
 
 #endif
