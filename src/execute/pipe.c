@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/12 11:22:06 by mschaub           #+#    #+#             */
+/*   Updated: 2023/06/12 11:22:32 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //#include "minishell.h"
 
 /*
@@ -74,7 +86,7 @@ int ft_pipe(t_parse *parse, t_env **env)
     }
     pid2 = fork();
     if (pid2 == -1)
-        ft_error("pipe created failed")
+        ft_error("pipe created failed");
     else if (pid1 == 0)
     {
         if (!parse->next->pipe)

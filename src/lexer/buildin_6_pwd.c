@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:55 by yli               #+#    #+#             */
-/*   Updated: 2023/06/21 18:16:57 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/23 09:03:44 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int ft_pwd(t_parse *node)
     if (getcwd(pwd, PATH_SIZE))
     {
         ft_putstr_fd(pwd, fd);
+		write(fd, "\n", 1);
         return (0);
     }
     else

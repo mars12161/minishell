@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/06/20 21:01:15 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/23 09:02:45 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static  int input_loop(t_env *env)
         return (0);
     shell = NULL;
     shell = fill_shell(str, shell, &env);
-	print_shell(shell);
+	//print_shell(shell);
     cmmarr = parse_array_create(shell, env);
     //print_parse_arr(cmmarr);
     if (!cmmarr)
@@ -46,5 +46,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	env = NULL;
     env = init_env(envp, env);
-    input_loop(env);
+    while (42)
+		input_loop(env);
 }
