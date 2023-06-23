@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/06/23 09:02:45 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/23 10:19:40 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	env = NULL;
-    env = init_env(envp, env);
-    while (42)
+	env = init_env(envp, env);
+	while (42)
 		input_loop(env);
 }

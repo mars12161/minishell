@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/06/23 09:01:45 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/23 10:23:13 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int ft_cd_env(char *str, t_env **env)
         if (!strncmp(temp->content, str, ft_strlen(str)))
         {
             result = ft_strtrim((char const *)temp->content, (char const *)str);
-            printf("%s\n", result);
+			printf("%s\n", result);
+			chdir(result);
         }
         temp = temp->next;
     }
@@ -49,12 +50,12 @@ static int ft_cd_env(char *str, t_env **env)
 
 int ft_cd(t_parse *node, t_env **env)
 {
-	int i;
-
 	if (node->wline_count == 1)
-		return (-1);
-	if (node->whole_line[1][0] == '-')
+		return (ft_cd_env("HOME=", env));
+	else if (node->whole_line[1][0] == '-')
 		return (ft_cd_env("OLDPWD=", env));
+	else if (node->whole_line[1][0] == '~')
+		return ft_cd_env("HOME=", env);
 	//return (ft_lastpwd(node));
 	if (chdir(node->whole_line[1]) == -1)
 		return (-1); //free & error
