@@ -108,3 +108,13 @@ zsh: command not found: dkflskd
 c4c3c3% $?     
 zsh: command not found: 127
 
+
+echo "abc"
+echo "abc $USER"
+echo "$USER"
+echo "$USER$USER"
+echo "abc $USER$USER"
+echo "abc $USER23$USER"
+echo "abc $USER$USER   "
+echo "abc $USER23$USER sadsa"
+
