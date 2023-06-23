@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:54 by yli               #+#    #+#             */
-/*   Updated: 2023/06/20 17:51:56 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/23 12:35:58 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char *new_node_ENV(char *str, t_shell **shell, t_env **env) //$
     new_node->input = result;
     free(path);
     str += j;
+	printf("%s\n", new_node->input);
     new_node->len = ft_strlen(new_node->input);
     ft_add_tail(shell, new_node, WORD);
     return (str);

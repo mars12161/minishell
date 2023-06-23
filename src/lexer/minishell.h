@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/23 11:33:30 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/23 13:20:46 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ t_parse_arr *parse_array_create(t_shell *head,t_env *env);
 
 //parser_2
 void	parse_redir_out(t_parse *cmm, t_shell *temp);
-void	parse_redir_out_APP(t_parse *cmm, t_shell *temp);
+void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 void	parse_redir_in(t_parse *cmm, t_shell *temp);
 

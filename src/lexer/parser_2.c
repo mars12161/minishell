@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/06/20 17:50:38 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/23 13:24:58 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,23 @@ void	parse_redir_out_APP(t_parse *cmm, t_shell *temp);
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
-static	char *check_input(t_shell *temp)
+static char	*check_input(t_shell *temp)
 {
-	if (temp->next->type == SPA && (temp->next->next->type == INFILEPATH || temp->next->next->type == OUTFILEPATH))
+	if (temp->next->type == SPA && (temp->next->next->type == INFILEPATH
+			|| temp->next->next->type == OUTFILEPATH))
 		return (temp->next->next->input);
-	if (temp->next->type == INFILEPATH || temp->next->type == OUTFILEPATH)
+	if (temp->next->type == INFILEPATH
+		||temp->next->type == OUTFILEPATH)
 		return (temp->next->input);
 	else
 	{
-		printf("syntax error near unexpected token `newline'"); // free everything todo
+		printf("syntax error near unexpected token `newline'");
+		// free everything todo
 		//g_exit = 2; todo
 		return (NULL);
 	}
 }
+
 void	parse_redir_out(t_parse *cmm, t_shell *temp)
 {
 	int	fd;
@@ -54,7 +58,7 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 	}
 }
 
-void	parse_redir_out_APP(t_parse *cmm, t_shell *temp)
+void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 {
 	int	fd;
 
@@ -66,7 +70,8 @@ void	parse_redir_out_APP(t_parse *cmm, t_shell *temp)
 			perror("File could not be created");
 		close(fd);
 		if (cmm->redirection_out == 0)
-			cmm->outfilepath = ft_strdup(check_input(temp)); //no ft_strcat
+			cmm->outfilepath = ft_strdup(check_input(temp));
+		//no ft_strcat
 		else
 		{
 			free(cmm->outfilepath);
@@ -78,10 +83,10 @@ void	parse_redir_out_APP(t_parse *cmm, t_shell *temp)
 
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 {
-	char *str;
-	char *path;
+	char	*str;
+	char	*path;
 	char	*whole_str;
-	
+
 	whole_str = strdup("");
 	while (1)
 	{
@@ -91,7 +96,6 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			printf("hello here\n");
 			break ;
 		}
-			
 		if (*str == '$')
 		{
 			path = ft_expand(str, &env);
@@ -103,7 +107,8 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		whole_str = ft_strjoin(whole_str, "\n");
 		free(str);
 	}
-	write(cmm->redirection_out, whole_str, ft_strlen(whole_str)); //or do it in the execute
+	write(cmm->redirection_out, whole_str, ft_strlen(whole_str));
+	//or do it in the execute
 	free(whole_str);
 }
 
@@ -115,7 +120,8 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp)
 		if (cmm->redirection_in == 0)
 		{
 			check_infile(temp->next->input);
-			cmm->infilepath = strcat(cmm->infilepath, check_input(temp)); //do not have ft_strcat
+			cmm->infilepath = strcat(cmm->infilepath, check_input(temp));
+			//do not have ft_strcat
 		}
 		else
 		{
