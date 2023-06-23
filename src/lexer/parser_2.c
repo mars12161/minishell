@@ -6,24 +6,27 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/06/23 13:24:58 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/23 14:50:42 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void	parse_redir_out(t_parse *cmm, t_shell *temp);
-void	parse_redir_out_APP(t_parse *cmm, t_shell *temp);
+void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
 static char	*check_input(t_shell *temp)
 {
-	if (temp->next->type == SPA && (temp->next->next->type == INFILEPATH
-			|| temp->next->next->type == OUTFILEPATH))
+	if (temp->next->type == 3 && temp->next->next->type == 0)
 		return (temp->next->next->input);
-	if (temp->next->type == INFILEPATH
-		||temp->next->type == OUTFILEPATH)
+	if (temp->next->type == 3 && (temp->next->next->type == 10
+			|| temp->next->next->type == 11)) {
+		return (temp->next->next->input);
+	}
+	if (temp->next->type == 10
+		||temp->next->type == 11)
 		return (temp->next->input);
 	else
 	{
@@ -91,9 +94,10 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 	while (1)
 	{
 		str = readline("heredoc>");
+		//if (!strcmp (str, "hello"))
 		if (!strcmp(str, check_input(temp)))
 		{
-			printf("hello here\n");
+			//printf("hello here\n");
 			break ;
 		}
 		if (*str == '$')
@@ -105,7 +109,7 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		else
 			whole_str = ft_strjoin(whole_str, str);
 		whole_str = ft_strjoin(whole_str, "\n");
-		free(str);
+		//free(str);
 	}
 	write(cmm->redirection_out, whole_str, ft_strlen(whole_str));
 	//or do it in the execute

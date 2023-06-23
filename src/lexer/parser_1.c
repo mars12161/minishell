@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/05 19:43:02 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/23 13:55:48 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -127,14 +127,12 @@ t_parse_arr *parse_array_create(t_shell *head,t_env *env)
 
 static void	parse_other(t_shell *temp, t_parse *cmm, t_env *env)
 {
-	int	fd;
-
 	if (temp->type == REDIRECT_IN)
 		parse_redir_in(cmm, temp);
 	else if (temp->type == REDIRECT_OUT)
 		parse_redir_out(cmm, temp);
 	else if (temp->type == APP_M)
-		parse_redir_out_APP(cmm, temp);
+		parse_redir_out_app(cmm, temp);
 	else if (temp->type == HEREDOC)
 		parse_delim(cmm, env, temp);
 }
