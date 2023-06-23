@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
-/*   Updated: 2023/06/20 22:03:09 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/23 11:03:34 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@ static int ft_check_each_n(char *str)
 
 static int ft_check_n(char *str)
 {
-    int i;
-
-    i = 0;
     if (str[0] == '-')
     {
         str += 1;
