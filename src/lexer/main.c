@@ -52,16 +52,11 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	env = NULL;
 	env = init_env(envp, env);
-<<<<<<< HEAD
-	while (!check)
-		check = input_loop(env);
-    //free everything  
-=======
 	signal(SIGQUIT, SIG_IGN);
-	while (42)
+	while (!check)
 	{
 		signal(SIGINT, sigint_handler);
-		input_loop(env);
+		check = input_loop(env);
 	}
->>>>>>> refs/remotes/origin/main
+	// free everything
 }
