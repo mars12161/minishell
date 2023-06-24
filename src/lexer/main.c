@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/06/24 14:24:09 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/24 14:44:05 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ static  int input_loop(t_env *env)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		change_attr(true);
+		return (1);
 	}
+	else if (str[0] == '\0')
+	{}
 	else
 		add_history(str);
     shell = NULL;
@@ -45,6 +48,11 @@ static  int input_loop(t_env *env)
 
 int	main(int argc, char **argv, char **envp)
 {
+	if (argc > 1)
+	{
+		printf("Program does not take any arguments\n");
+		return (1);
+	}
 	t_env	*env;
     int check;
 
@@ -55,10 +63,12 @@ int	main(int argc, char **argv, char **envp)
 	env = init_env(envp, env);
 	signal(SIGQUIT, SIG_IGN);
 	change_attr(false);
-	while (!check)
+	while (42)
 	{
 		signal(SIGINT, sigint_handler);
 		check = input_loop(env);
+		if (check == 1)
+			break;
 	}
 	change_attr(true);
 	// free everything
