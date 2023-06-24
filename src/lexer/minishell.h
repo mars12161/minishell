@@ -202,7 +202,8 @@ char *ft_check_strjoin(char *s1, char *s2);
 int  check_path_char(int c);
 
 //signals
-void	sigint_handler(int signal);
-int		change_attr(bool ctrl_chr);
+void	sigint_handler(int sig);
+void	setting_signal(void);
+int	change_attr(bool ctrl_chr);
 
 #endif
