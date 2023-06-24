@@ -12,6 +12,10 @@
 
 #include "minishell.h"
 
+void	sigint_handler(int sig);
+void	setting_signal(void);
+int	change_attr(bool ctrl_chr);
+
 void	sigint_handler(int sig)
 {
 	if (sig == SIGINT)
