@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/06/23 16:31:15 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/24 14:24:09 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ static  int input_loop(t_env *env)
     char *str;
 
 	str = readline("[minishell:]");
-    add_history(str);
-	change_attr(false);
+	//change_attr(false);
     if (!str)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		change_attr(true);
 	}
+	else
+		add_history(str);
     shell = NULL;
     shell = fill_shell(str, shell, &env);
 	//print_shell(shell);
@@ -53,10 +54,12 @@ int	main(int argc, char **argv, char **envp)
 	env = NULL;
 	env = init_env(envp, env);
 	signal(SIGQUIT, SIG_IGN);
+	change_attr(false);
 	while (!check)
 	{
 		signal(SIGINT, sigint_handler);
 		check = input_loop(env);
 	}
+	change_attr(true);
 	// free everything
 }
