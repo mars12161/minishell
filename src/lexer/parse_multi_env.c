@@ -37,7 +37,7 @@ static char *check_path_valid(char *str, t_env *env, int c)
     i = 0;
     while (str[i])
     {
-        if (check_path_char(str[i]))
+        if (check_path_char(str[i + 1]))
             return (ft_parse_dollar_core_utils(str, env, str[i]));   
         i++;
     }
