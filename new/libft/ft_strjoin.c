@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:25:34 by mschaub           #+#    #+#             */
-/*   Updated: 2022/12/03 16:52:22 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/26 13:44:48 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	{
 		ret[j++] = s1[i];
 		i++;
-	}	
+	}
 	i = 0;
 	while (s2[i])
 	{

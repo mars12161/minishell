@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 14:09:27 by mschaub           #+#    #+#             */
-/*   Updated: 2022/12/16 15:22:44 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/26 13:44:22 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static size_t	ft_count_word(const char *s, char c)
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
-		{	
+		{
 			words++;
 			while (s[i] && s[i] == c)
 				i++;
 			continue ;
-		}	
+		}
 		i++;
 	}
 	if (s[i - 1] != c)

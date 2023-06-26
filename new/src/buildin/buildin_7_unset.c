@@ -6,15 +6,15 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/21 18:17:03 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/26 13:58:59 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int ft_unset(t_parse *node, t_env **env);
+int			ft_unset(t_parse *node, t_env **env);
 
-static void	del_node(t_env **env,t_env *node)
+static void	del_node(t_env **env, t_env *node)
 {
 	t_env	*temp;
 
@@ -34,21 +34,23 @@ static void	del_node(t_env **env,t_env *node)
 	}
 }
 
-int ft_unset(t_parse *node, t_env **env)
+int	ft_unset(t_parse *node, t_env **env)
 {
-    t_env *temp;
+	t_env	*temp;
 
-    temp = *env;
-    while (temp)
-    {
+	temp = *env;
+	while (temp)
+	{
 		if (ft_count_size(node->whole_line[1], '='))
-			ft_error("invalid parameter name"); //free something later  g_exit == 1
-        if (!strncmp(temp->content, node->whole_line[1], ft_strlen(node->whole_line[1])))
-        {
-            del_node(env,temp);
-            return (0);
-        }
-        temp = temp->next;
-    }
-    return (0);
+			ft_error("invalid parameter name");
+				//free something later  g_exit == 1
+		if (!strncmp(temp->content, node->whole_line[1],
+				ft_strlen(node->whole_line[1])))
+		{
+			del_node(env, temp);
+			return (0);
+		}
+		temp = temp->next;
+	}
+	return (0);
 }

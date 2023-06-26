@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:31:49 by mschaub           #+#    #+#             */
-/*   Updated: 2022/12/09 14:46:36 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/26 13:44:36 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		{
 			tmp = ft_lstlast(*lst);
 			tmp->next = new;
-		}	
+		}
 	}
 }

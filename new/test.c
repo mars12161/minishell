@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buildin_5.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 18:16:49 by yli               #+#    #+#             */
-/*   Updated: 2023/06/21 18:16:51 by yli              ###   ########.fr       */
+/*   Created: 2023/06/26 13:15:24 by mschaub           #+#    #+#             */
+/*   Updated: 2023/06/26 13:15:24 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include <stdio.h>
 
-int	ft_exit(void);
-
-int	ft_exit(void)
-{
-	printf("exit\n");
-	//free everything
-	exit(0);
+int	main(void) {
+	printf("test\n");
 }
-//todo didnot return anything
