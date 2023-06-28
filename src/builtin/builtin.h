@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/16 16:19:46 by mschaub           #+#    #+#             */
+/*   Updated: 2023/05/22 14:39:06 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
@@ -56,7 +68,6 @@ pipe 1;
 
 void    ft_free(char **str);
 int    exec_builtin(t_builtin *node, t_env **env);
-int main();
 
 int ft_pwd(void);
 
