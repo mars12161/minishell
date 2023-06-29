@@ -39,10 +39,12 @@ int ft_unset(t_parse *node, t_env **env)
     t_env *temp;
 
     temp = *env;
+	if (!node->whole_line[1])
+		return (1); //in terminal echo $? will get 1 , (but should not exit, wait fix)
     while (temp)
     {
-		if (ft_count_size(node->whole_line[1], '='))
-			ft_error("invalid parameter name"); //free something later  g_exit == 1
+		// if (ft_count_size(node->whole_line[1], '=')) 
+		// 	ft_error("invalid parameter name"); //free something later  g_exit == 1 it is not an error echo $? will get 0
         if (!strncmp(temp->content, node->whole_line[1], ft_strlen(node->whole_line[1])))
         {
             del_node(env,temp);

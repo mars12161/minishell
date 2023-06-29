@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/06/24 14:44:05 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/29 16:16:27 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ static  int input_loop(t_env *env)
     }
     if (cmmarr->size == 1 && !(check_buildin(cmmarr->cmm[0]->command)))
         return (buildin_easy_mode(&shell, cmmarr, env)); //todo
+	init_pipex(cmmarr, env);
+	unlink("heredoc.txt");
+	free_all(&shell, cmmarr, &env);
+	free(str);
     return (0);
 }
 

@@ -42,6 +42,9 @@ int	ft_cd(t_parse *node, t_env **env)
 	else if (node->whole_line[1][0] == '~')
 		return (ft_cd_env("HOME=", env));
 	if (chdir(node->whole_line[1]) == -1)
-		printf("cd: no such file or directory: %s\n", node->whole_line[1]); //print to STDERR instead
+	{
+		ft_error("cd: no such file or directory");
+		return (1); // echo $? get 1
+	}
 	return (0);
 }

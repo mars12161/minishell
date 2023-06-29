@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/23 15:56:33 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/29 17:16:32 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@
 # define PATH_SIZE 4096
 //# include "../../libft/libft.h"
 
-//# define BUFFER_SIZE 4000
-
 /* Structs */
 
 extern int g_exit;
@@ -52,13 +50,6 @@ enum e_token
 	OUTFILEPATH,
 };
 
-// enum e_state
-// {
-// 	OTHER,
-// 	IN_SQUOTE,
-// 	IN_DQUOTE,
-// };
-
 typedef struct s_shell
 {
 	char *input;
@@ -75,10 +66,9 @@ typedef struct s_parse
 	int		wline_count;
     int	redirection_in;
     int	redirection_out;
-    char *infilepath;  //if redirection_in == 0, infilepath = NULL
-    char *outfilepath; //if redirection_out == 0, outfilepath = NULL
+    char *infilepath;
+    char *outfilepath;
     int pipe;
-    //int	fd[2];   //if pipe == 0, fd = NULL
 }   t_parse;
 
 typedef struct s_parse_arr
@@ -93,22 +83,6 @@ typedef struct s_env
     char *content;
     struct s_env *next;
 }   t_env;
-/*
-no redirection  0
-REDIRECT_IN,	1
-HEREDOC,	2
-
-no redirection  0
-REDIRECT_OUT,	1
-APP_M		2
-
-no pipe 0;
-pipe 1;
-*/
-
-/* Functions */
-
-
 
 //debug
 void	print_parse(t_parse	*head);
@@ -116,7 +90,7 @@ void	print_shell(t_shell *s);
 void	print_parse_arr(t_parse_arr	*head);
 
 //lexer_1
-char *new_node_WORD(char *str, t_shell **shell);
+char *new_node_WORD(char *str, t_shell **shell, t_env **env);
 t_shell *fill_shell(char *str, t_shell *shell, t_env **env);
 
 //lexer_2
@@ -127,7 +101,7 @@ char *new_node_RED(char *str, t_shell **shell, int c);
 
 //lexer_3
 char *new_node_DQ(char *str, t_shell **shell, t_env **env);
-char *new_node_SQ(char *str, t_shell **shell);
+char *new_node_SQ(char *str, t_shell **shell, t_env **env);
 
 //lexer_4
 int check_word_or_path(t_shell *shell);
@@ -151,6 +125,7 @@ t_parse_arr *parse_array_create(t_shell *head,t_env *env);
 //parser_2
 void	parse_redir_out(t_parse *cmm, t_shell *temp);
 void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
+char	*read_heredoc(t_env *env, char *delimiter);
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
@@ -159,6 +134,15 @@ void	check_infile(char *infilepath);
 int	args_count(t_shell *head);
 int	get_size_cmmarr(t_shell *head);
 
+//parse_multi_env_1
+char *ft_parse_dollar_frame(char *str, t_env *env);
+
+//parse_multi_env_2
+int check_dollar(char *str, int c);
+int ft_count_size(char *str, int c);
+char *ft_check_strjoin(char *s1, char *s2);
+int  check_path_char(int c);
+
 //expand
 char    *ft_expand(char *str, t_env **env);
 
@@ -166,6 +150,8 @@ char    *ft_expand(char *str, t_env **env);
 t_env *new_node_env(char *str);
 void ft_add_tail_env(t_env **env, t_env *new_node);
 t_env *init_env(char **envp, t_env *env);
+int get_env_size(t_env **env);
+char **ft_env_str(t_env **env);
 
 //free_1
 void    free_all(t_shell **shell, t_parse *node, t_env **env);
@@ -192,18 +178,27 @@ int ft_env(t_parse *node, t_env **env);
 //error
 void    ft_error(char *str);
 
-//parse_multi_env_1
-char *ft_parse_dollar_frame(char *str, t_env *env);
-
-//parse_multi_env_2
-int check_dollar(char *str, int c);
-int ft_count_size(char *str, int c);
-char *ft_check_strjoin(char *s1, char *s2);
-int  check_path_char(int c);
-
 //signals
 void	sigint_handler(int sig);
 void	setting_signal(void);
 int	change_attr(bool ctrl_chr);
+
+// //execute_1
+// int ft_multi_pipe_exec(t_parse *node, t_env **env);
+
+// //execute_2
+// //int check_infile(t_parse *node);
+// int check_outfile(t_parse *node);
+// char    *str_ncpy(char *str, int n);
+// char	*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
+// char **ft_nsplit(char *str, int c);
+
+//execute_pipe_1
+int    init_pipex(t_parse_arr *cmmarr, t_env *env);
+
+//execute_pipe_2
+static char    *get_path(char *cmd, char **envp);
+void    builtin_exit(t_parse *node, t_env *env);
+void	ft_executer(char **whole_line, char **env);
 
 #endif

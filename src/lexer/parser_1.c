@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/23 13:55:48 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/28 22:19:22 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 static t_parse *parse_init(void)
@@ -17,7 +18,7 @@ static t_parse *parse_init(void)
 
 	node = malloc(sizeof(t_parse) * 1);
 	node->command = malloc(sizeof(char) * 100);
-	node->infilepath = malloc(sizeof(char) * 100);
+	node->infilepath = malloc(sizeof(char) * 1000);
 	node->outfilepath = malloc(sizeof(char) * 100);
 	if (!node || !node->command || !node->infilepath || !node->outfilepath)
 		return (NULL);

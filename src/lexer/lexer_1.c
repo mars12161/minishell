@@ -12,10 +12,10 @@
 
 #include "minishell.h"
 
-char *new_node_WORD(char *str, t_shell **shell);
+char *new_node_WORD(char *str, t_shell **shell, t_env **env);
 t_shell *fill_shell(char *str, t_shell *shell, t_env **env);
 
-char *new_node_WORD(char *str, t_shell **shell) // for WORD
+char *new_node_WORD(char *str, t_shell **shell, t_env **env) // for WORD
 {
     t_shell *new_node;
     int check;
@@ -36,7 +36,7 @@ char *new_node_WORD(char *str, t_shell **shell) // for WORD
             break ;
         i++;
     }
-    new_node->input = ft_substr((char const *)str, 0, j);
+    new_node->input = ft_parse_dollar_frame(ft_substr((char const *)str, 0, j), *env);
     str += j;
     new_node->len = ft_strlen(new_node->input);
     check = check_word_or_path(*shell);
@@ -89,7 +89,7 @@ t_shell *fill_shell(char *str, t_shell *shell, t_env **env)
 		else if (*str == '\"')
 			str = new_node_DQ(str, &shell, env);
 		else if (*str == '\'')
-			str = new_node_SQ(str, &shell);
+			str = new_node_SQ(str, &shell, env);
 		else if (*str == '<')
 			str = new_node_RED(str, &shell, 60);
 		else if (*str == '>')
@@ -97,7 +97,7 @@ t_shell *fill_shell(char *str, t_shell *shell, t_env **env)
 		else if (*str == '$')
 			str = new_node_ENV(str, &shell, env);
 		else
-			str = new_node_WORD(str, &shell);
+			str = new_node_WORD(str, &shell, env);
 	}
 	return (shell);
 }

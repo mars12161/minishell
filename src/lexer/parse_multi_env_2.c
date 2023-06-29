@@ -86,6 +86,8 @@ char *ft_check_strjoin(char *s1, char *s2)
         str = ft_strdup(s1);
         return (str);
     }
+    if (s1 == NULL && s2 == NULL)
+        return (NULL);
     if (s1 != NULL && s2 != NULL)
         str = ft_strjoin_parse(s1, s2);
     return (str);
@@ -93,7 +95,7 @@ char *ft_check_strjoin(char *s1, char *s2)
 
 int  check_path_char(int c)
 {
-    if (c >= 65 && c <= 90 || c >= 97 && c <= 122 || c == '$')
+    if (c >= 65 && c <= 90)
         return (0);
     return (1);
 }

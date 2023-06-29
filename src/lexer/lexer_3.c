@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 char *new_node_DQ(char *str, t_shell **shell, t_env **env);
-char *new_node_SQ(char *str, t_shell **shell);
+char *new_node_SQ(char *str, t_shell **shell, t_env **env);
 
 char *new_node_DQ(char *str, t_shell **shell, t_env **env)
 {
@@ -36,7 +36,7 @@ char *new_node_DQ(char *str, t_shell **shell, t_env **env)
     if (str[i] == 0)
     {
         free(new_node);
-        return (new_node_WORD(str, shell));
+        return (new_node_WORD(str, shell, env));
     }
     i += 1;
     path = ft_substr((char const *)str, 1, i - 2);
@@ -48,7 +48,7 @@ char *new_node_DQ(char *str, t_shell **shell, t_env **env)
     return (str);
 }
 
-char *new_node_SQ(char *str, t_shell **shell)
+char *new_node_SQ(char *str, t_shell **shell, t_env **env)
 {
     t_shell *new_node;
     int i;
@@ -67,7 +67,7 @@ char *new_node_SQ(char *str, t_shell **shell)
     if (str[i] == 0)
     {
         free(new_node);
-        return (new_node_WORD(str, shell));
+        return (new_node_WORD(str, shell, env));
     }
     i += 1;
     new_node->input = ft_substr((char const *)str, 1, i - 2);

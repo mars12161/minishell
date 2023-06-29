@@ -19,9 +19,14 @@ char    *ft_expand(char *str, t_env **env)
     char    *result;
 
     temp = *env;
+    printf("str in expand: %s\n", str);
     while(temp)
     {
-        
+        if (str[0] == '?')
+        {
+            result = "500"; //g_exit
+            return (result);
+        }
         if (!strncmp(temp->content, str, ft_strlen(str)))
         {
             path = ft_strtrim(temp->content, str);

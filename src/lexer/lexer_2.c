@@ -39,12 +39,11 @@ char *new_node_ENV(char *str, t_shell **shell, t_env **env) //$
             break ;
         i++;
     }
-    path = ft_substr((char const *)str, 1, j);
-    result = ft_expand(str, env);
+    path = ft_substr((char const *)str, 0, j);
+    result = ft_parse_dollar_frame(str, *env);
     new_node->input = result;
     free(path);
     str += j;
-	printf("%s\n", new_node->input);
     new_node->len = ft_strlen(new_node->input);
     ft_add_tail(shell, new_node, WORD);
     return (str);

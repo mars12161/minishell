@@ -117,4 +117,49 @@ echo "abc $USER$USER"
 echo "abc $USER23$USER"
 echo "abc $USER$USER   "
 echo "abc $USER23$USER sadsa"
+echo sfsd $?
+
+[minishell:]echo "sfs$USER65"
+sfs
+
+[minishell:]echo dsfd$?dfsd
+munmap_chunk(): invalid pointer
+zsh: IOT instruction (core dumped)  ./a.out
+
+
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USER
+abcyli
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USERsfd
+abc
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USER45
+abc
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo abc$USER45$USER
+abcyli
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo "abc$USER45$USER"
+abcyli
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo "abc$USER45$PATH"
+abc/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $USER45$PATH
+/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $USER$PATH
+yli/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?$PATH
+0/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?\n$PATH
+0n/nfs/homes/yli/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?\n
+0n
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo \n45
+n45
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?45
+045
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo $?fsdf
+0fsdf
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo 545$?fsdf
+5450fsdf
+yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo 422$?4
+42204
+
+
+
 

@@ -22,13 +22,6 @@ static t_shell *get_shell_bottom(t_shell *shell)
     return (shell);
 }
 
-// static t_shell *get_shell_second_from_bottom(t_shell *head)
-// {
-//     while (head && head->next && head->next->next != NULL)
-//         head = head->next;
-//     return (head);
-// }
-
 static int	get_shell_size(t_shell *shell)
 {
 	int	i;
@@ -46,12 +39,8 @@ static int	get_shell_size(t_shell *shell)
 
 int check_word_or_path(t_shell *shell)
 {
-    // t_shell *bottom;
-    // t_shell *second_bottom;
     int i;
 
-    // bottom = get_shell_bottom(shell);
-    // second_bottom = get_shell_second_from_bottom(shell);
     i = get_shell_size(shell);
     if (i == 0)
         return (0);

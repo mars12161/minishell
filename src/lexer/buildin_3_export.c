@@ -73,13 +73,13 @@ int ft_export(t_parse *node, t_env **env)
         }
         else if (ft_check_signal_export(node->whole_line[1]) == -1)
         {
-            printf("%s: '%s': not a valid identifier", node->whole_line[0], node->whole_line[1]); //todo free_all
-            return (1);
+            ft_error("not a valid identifier");
+            return (1); //echo $? = 1
         } 
         else if (ft_check_signal_export(node->whole_line[1]) == -2)
         {
-            printf("syntax error near unexpected token"); //todo free_all
-            return (2);
+            ft_error("syntax error near unexpected token");
+            return (1);
         }
     }
     return (0);

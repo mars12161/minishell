@@ -23,5 +23,5 @@ void    ft_error(char *str)
 		i++;
 	write(2, str, i);
 	write(2, "\n", 1);
-    exit(1);
+    //exit(1);
 }
