@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 11:25:19 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 17:50:35 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_expand(char *str, t_env **env)
 	{
 		if (str[0] == '?')
 		{
-			result = "500"; //g_exit
+			result = ft_itoa(globe.g_exit);
 			return (result);
 		}
 		if (!ft_strncmp(temp->content, str, ft_strlen(str)))

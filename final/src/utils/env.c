@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 16:04:05 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 16:48:06 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int get_env_size(t_env **env)
         temp = temp->next;
     }
     return (i);
-} //to env.c
+}
 
 char **ft_env_str(t_env **env)
 {
@@ -100,4 +100,4 @@ char **ft_env_str(t_env **env)
         temp = temp->next;
     }
     return (envp);
-} //to env.c
+}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buildin_2.c                                        :+:      :+:    :+:   */
+/*   buildin_2_echo.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 10:17:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 18:13:29 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	ft_echo(t_parse *node)
 	if (node->wline_count == 1)
 	{
 		ft_putstr_fd("\n", fd);
+		close(fd);
 		return (0);
 	}
 	if (ft_check_n(node->whole_line[1]))
@@ -70,5 +71,6 @@ int	ft_echo(t_parse *node)
 	}
 	if (flag == 0)
 		ft_putstr_fd("\n", fd);
+	close(fd);
 	return (0);
 }

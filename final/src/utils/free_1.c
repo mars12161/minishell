@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:42:56 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:57 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 17:40:43 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../../inc/minishell.h"
 
 void    free_shell(t_shell **shell);
-
-void    ft_free_str(char **str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if (*str != NULL)
-        {
-            free(str[i]);
-            i++;
-        }
-        *str = NULL;
-    }
-    free (str);
-}
+void    free_env(t_env **env);
+void    free_all(t_shell **shell, t_parse_arr *cmmarr, t_env **env);
 
 void    free_shell(t_shell **shell)
 {
@@ -50,13 +36,31 @@ static void    free_parse(t_parse *node)
     if (node == NULL)
         return ;
     ft_free_str(node->whole_line);
-    ft_free_str(&node->infilepath);
-    ft_free_str(&node->outfilepath);
+    if (node->redirection_in)
+        free(node->infilepath);
+    if (node->redirection_out)
+        free(node->outfilepath);
     free(node); 
 }
 
+static void free_cmmarr(t_parse_arr *cmmarr)
+{
+    int i;
 
-static void    free_env(t_env **env)
+    i = 0;
+    if (!cmmarr)
+        return ;
+    while (i < cmmarr->size)
+    {
+        if (cmmarr->cmm[i])
+            free_parse(cmmarr->cmm[i]);
+        i++;
+    }
+    free(cmmarr->cmm);
+    free(cmmarr);  
+}
+
+void    free_env(t_env **env)
 {
     t_env *temp;
 
@@ -71,10 +75,10 @@ static void    free_env(t_env **env)
     *env = NULL;
 }
 
-void    free_all(t_shell **shell, t_parse_arr *node, t_env **env)
+void    free_all(t_shell **shell, t_parse_arr *cmmarr, t_env **env)
 {
     free_shell(shell);
-    //free_parse(node);
+    free_cmmarr(cmmarr);
     free_env(env);
 }
 

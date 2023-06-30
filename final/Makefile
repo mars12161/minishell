@@ -15,6 +15,7 @@ SRCS =		src/main.c \
 			src/builtin/buildin_6_pwd.c \
 			src/builtin/buildin_7_unset.c \
 			src/builtin/buildin_8_env.c \
+			src/execute/execute_easy_mode.c \
 			src/execute/execute_pipe_1.c \
 			src/execute/execute_pipe_2.c \
 			src/execute/execute_redir.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:33:26 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:44 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 17:40:59 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	print_parse_arr(t_parse_arr	*head)
 	else
 	{
 		//printf("command: %s\n", head->command[0]);
-		printf("check: %d\n", head->check);
+		//printf("check: %d\n", head->check);
 		printf("size: %d\n", head->size);
 	}
 	printf("=========\n\n");

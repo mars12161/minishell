@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   buildin_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:25:14 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 10:08:16 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 18:12:53 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	g_exit = 0;
+//int	g_exit = 0;
 
 int	check_buildin(char *str);
 int	ft_redirection_out(t_parse *node);
@@ -42,8 +42,6 @@ int	ft_redirection_out(t_parse *node)
 				O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (outfile_fd == -1)
 		ft_error("open outfile failed");
-	if (dup2(outfile_fd, STDOUT_FILENO) == -1)
-		ft_error("redirection_out failed");
 	return (outfile_fd);
 }
 
@@ -75,6 +73,6 @@ int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env)
 {
 	if (cmmarr->cmm[0]->redirection_out)
 		ft_redirection_out(cmmarr->cmm[0]);
-	g_exit = exec_builtin(cmmarr->cmm[0], &env);
-	return (g_exit);
+	globe.g_exit = exec_builtin(cmmarr->cmm[0], &env);
+	return (globe.g_exit);
 }

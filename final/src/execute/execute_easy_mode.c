@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_2.c                                           :+:      :+:    :+:   */
+/*   execute_easy_mode.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 16:17:30 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 17:01:55 by yli              ###   ########.fr       */
+/*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
+/*   Updated: 2023/06/30 17:40:00 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void ft_free_3str(char *str1, char *str2, char *str3);
-void    ft_free_str(char **str);
+int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
 
-void ft_free_3str(char *str1, char *str2, char *str3)
+int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env)
 {
-    
-    free(str1);
-    free(str2);
-    free(str3);
+    char **envp;
+
+    redir_child(cmmarr->cmm[0]);
+    envp = ft_env_str(&env);
+    printf("envp: %s\n", envp[0]);
+    printf("envp: %s\n", envp[1]);
+    ft_executer(cmmarr->cmm[0]->whole_line, envp);
+    return (0);
 }
 
-void    ft_free_str(char **str)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if (*str != NULL)
-        {
-            free(str[i]);
-            i++;
-        }
-        *str = NULL;
-    }
-    free (str);
-}

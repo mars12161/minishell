@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/30 16:02:45 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 17:37:34 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 /* Structs */
 
-extern int	g_exit;
+//extern int	g_exit;
 
 typedef struct	s_global
 {
@@ -83,7 +83,7 @@ typedef struct s_parse
 typedef struct s_parse_arr
 {
 	t_parse	**cmm;
-	int		check;
+	//int		check;
 	int		size;
 }	t_parse_arr;
 
@@ -152,12 +152,13 @@ int			get_env_size(t_env **env);
 char		**ft_env_str(t_env **env);
 
 /* Free 1 */
-void		free_all(t_shell **shell, t_parse_arr *node, t_env **env);
-void		free_shell(t_shell **shell);
-void		ft_free_str(char **str);
+void    free_shell(t_shell **shell);
+void    free_env(t_env **env);
+void    free_all(t_shell **shell, t_parse_arr *cmmarr, t_env **env);
 
 /* Free 2 */
-void		ft_free_3str(char *str1, char *str2, char *str3);
+void ft_free_3str(char *str1, char *str2, char *str3);
+void    ft_free_str(char **str);
 
 /* Builtins */
 int			check_buildin(char *str);
@@ -179,6 +180,9 @@ void		ft_error(char *str);
 void		sigint_handler(int sig);
 void		setting_signal(void);
 int			change_attr(bool ctrl_chr);
+
+/*	Execute Easy Mode*/
+int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 1 */
 int			init_pipex(t_parse_arr *cmmarr, t_env *env);

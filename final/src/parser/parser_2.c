@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_2_delimiter_new.c                           :+:      :+:    :+:   */
+/*   parser_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 14:31:28 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 17:46:10 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*check_input(t_shell *temp)
 	{
 		printf("syntax error near unexpected token `newline'");
 		// free everything todo
-		//g_exit = 2; todo
+		globe.g_exit = 2;
 		return (NULL);
 	}
 }
