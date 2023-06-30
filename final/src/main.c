@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 17:57:00 by yli              ###   ########.fr       */
+/*   Updated: 2023/06/30 19:28:12 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ static  int input_loop(t_env *env)
 		add_history(str);
     shell = NULL;
     shell = fill_shell(str, shell, &env);
+	print_shell(shell);
     cmmarr = parse_array_create(shell, env);
     if (!cmmarr)
     {
         free(str);
         free_shell(&shell);
-        return (-1);
+        return (1);
     }
-    if (cmmarr->size == 1 && !(check_buildin(cmmarr->cmm[0]->command)))
-        return (buildin_easy_mode(&shell, cmmarr, env));
-	if (cmmarr->size == 1)
+    if (cmmarr->size == 1)
+	{
+		if (!(check_buildin(cmmarr->cmm[0]->command)))
+			return (buildin_easy_mode(&shell, cmmarr, env));
 		return (execute_easy_mode(cmmarr, env));
+	}	
 	init_pipex(cmmarr, env);
 	unlink("heredoc.txt");
 	free_all(&shell, cmmarr, &env);
@@ -73,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signal(SIGINT, sigint_handler);
 		check = input_loop(env);
-		if (check == 1)
+		if (check)
 			break;
 	}
 	free_env(&env);

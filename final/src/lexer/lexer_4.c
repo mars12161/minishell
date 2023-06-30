@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_4.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:16:35 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 15:42:58 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 19:55:51 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,17 @@ static int	get_shell_size(t_shell *shell)
 	return (i);
 }
 
+static t_shell *get_parse_bottom(t_shell *node)
+{
+    while(node && node->next != NULL)
+        node = node->next;
+    return (node);
+}
+
 int	check_word_or_path(t_shell *shell)
 {
 	int	i;
+	t_shell *bottom;
 
 	i = get_shell_size(shell);
 	if (i == 0)
@@ -53,15 +61,16 @@ int	check_word_or_path(t_shell *shell)
 	}
 	else
 	{
-		if (shell->type == REDIRECT_IN || shell->type == HEREDOC)
+		bottom = get_parse_bottom(shell);
+		if (bottom->type == REDIRECT_IN || bottom->type == HEREDOC)
 			return (1);
-		else if (shell->type == REDIRECT_OUT || shell->type == APP_M)
+		else if (bottom->type == REDIRECT_OUT || bottom->type == APP_M)
 			return (2);
-		else if (shell->type == SPA && (shell->pre->type == REDIRECT_IN
-				|| shell->pre->type == HEREDOC))
+		else if (bottom->type == SPA && (bottom->pre->type == REDIRECT_IN
+				|| bottom->pre->type == HEREDOC))
 			return (1);
-		else if (shell->type == SPA && (shell->pre->type == REDIRECT_OUT
-				|| shell->pre->type == APP_M))
+		else if (bottom->type == SPA && (bottom->pre->type == REDIRECT_OUT
+				|| bottom->pre->type == APP_M))
 			return (2);
 	}
 	return (0);

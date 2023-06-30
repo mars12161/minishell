@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 11:50:16 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 19:30:23 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ static void	parse_cmm(t_parse *cmm, t_shell *head)
 	cmm->whole_line = wline;
 	cmm->command = wline[0];
 	cmm->wline_count = ft_count_args(wline);
+	printf("cmm->wline_count: %d\n", cmm->wline_count);
 }
 
 static	t_parse **create_cmm(t_shell *head, int *size, t_env *env)
