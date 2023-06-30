@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/30 15:35:10 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 16:03:39 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,17 @@ t_shell	*fill_shell(char *str, t_shell *shell, t_env **env)
 		if (*str == ' ')
 			str = new_node_space(str, &shell);
 		else if (*str == '|')
-			str = new_node_PIPE(str, &shell);
+			str = new_node_pipe(str, &shell);
 		else if (*str == '\"')
-			str = new_node_DQ(str, &shell, env);
+			str = new_node_dq(str, &shell, env);
 		else if (*str == '\'')
-			str = new_node_SQ(str, &shell, env);
+			str = new_node_sq(str, &shell, env);
 		else if (*str == '<')
-			str = new_node_RED(str, &shell, 60);
+			str = new_node_red(str, &shell, 60);
 		else if (*str == '>')
-			str = new_node_RED(str, &shell, 62);
+			str = new_node_red(str, &shell, 62);
 		else if (*str == '$')
-			str = new_node_ENV(str, &shell, env);
+			str = new_node_env(str, &shell, env);
 		else
 			str = new_node_word(str, &shell, env);
 	}

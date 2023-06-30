@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/30 15:36:41 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 16:02:45 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int			check_path_char(int c);
 char		*ft_expand(char *str, t_env **env);
 
 /* Env */
-t_env		*new_node_env(char *str);
+t_env		*new_node_ENV(char *str);
 void		ft_add_tail_env(t_env **env, t_env *new_node);
 t_env		*init_env(char **envp, t_env *env);
 int			get_env_size(t_env **env);

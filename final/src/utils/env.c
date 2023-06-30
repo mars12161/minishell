@@ -6,19 +6,19 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:47 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 16:04:05 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_env *new_node_env(char *str);
+t_env *new_node_ENV(char *str);
 void ft_add_tail_env(t_env **env, t_env *new_node);
 t_env *init_env(char **envp, t_env *env);
 int get_env_size(t_env **env);
 char **ft_env_str(t_env **env);
 
-t_env *new_node_env(char *str)
+t_env *new_node_ENV(char *str)
 {
     t_env *new_node;
     int i;
@@ -57,7 +57,7 @@ t_env *init_env(char **envp, t_env *env)
     i = 0;
     while(envp[i])
     {
-        ft_add_tail_env(&env,new_node_env(envp[i]));
+        ft_add_tail_env(&env,new_node_ENV(envp[i]));
         i++;
     }
     return (env);
