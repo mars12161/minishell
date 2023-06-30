@@ -1,0 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   buildin_7.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 18:17:01 by yli               #+#    #+#             */
+/*   Updated: 2023/06/30 08:40:29 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../inc/minishell.h"
+
+int ft_unset(t_parse *node, t_env **env);
+
+static void	del_node(t_env **env,t_env *node)
+{
+	t_env	*temp;
+
+	if (*env == node)
+	{
+		*env = (*env)->next;
+		free(node);
+		return ;
+	}
+	temp = *env;
+	while (temp->next && temp->next != node)
+		temp = temp->next;
+	if (temp->next == node)
+	{
+		temp->next = node->next;
+		free(node);
+	}
+}
+
+int ft_unset(t_parse *node, t_env **env)
+{
+    t_env *temp;
+
+    temp = *env;
+	if (!node->whole_line[1])
+		return (1); //in terminal echo $? will get 1 , (but should not exit, wait fix)
+    while (temp)
+    {
+		// if (ft_count_size(node->whole_line[1], '=')) 
+		// 	ft_error("invalid parameter name"); //free something later  g_exit == 1 it is not an error echo $? will get 0
+        if (!strncmp(temp->content, node->whole_line[1], ft_strlen(node->whole_line[1])))
+        {
+            del_node(env,temp);
+            return (0);
+        }
+        temp = temp->next;
+    }
+    return (0);
+}
