@@ -6,26 +6,26 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:08 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:40:34 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 10:56:02 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int ft_env(t_parse *node, t_env **env);
+int	ft_env(t_parse *node, t_env **env);
 
-int ft_env(t_parse *node, t_env **env)
+int	ft_env(t_parse *node, t_env **env)
 {
-    t_env *temp;
-    int fd;
+	int		fd;
+	t_env	*temp;
 
-    fd = ft_redirection_out(node);
-    temp = *env;
-    while (temp)
-    {
-        ft_putstr_fd(temp->content, fd);
-        ft_putstr_fd("\n", fd);
-        temp = temp->next;
-    }
-    return (0);
+	fd = ft_redirection_out(node);
+	temp = *env;
+	while (temp)
+	{
+		ft_putstr_fd(temp->content, fd);
+		ft_putstr_fd("\n", fd);
+		temp = temp->next;
+	}
+	return (0);
 }

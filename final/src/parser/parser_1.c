@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:24 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:50:16 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static t_parse *parse_init(void)
 
 char	**ft_shell_whole_line(t_shell *head)
 {
-	int	i;
-	int	n;
+	int		i;
+	int		n;
 	char	**wline;
 
 	if (head == NULL)

@@ -6,22 +6,22 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:50:26 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:05:55 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char	*str_ncpy(char *str, int n);
-char	*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
-static char    *get_path(char *cmd, char **envp);
-void    builtin_exit(t_parse *node, t_env *env);
-void	ft_executer(char **whole_line, char **env);
+char		*str_ncpy(char *str, int n);
+char		*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
+static char	*get_path(char *cmd, char **envp);
+void		builtin_exit(t_parse *node, t_env *env);
+void		ft_executer(char **whole_line, char **env);
 
-char    *str_ncpy(char *str, int n)
+char	*str_ncpy(char *str, int n)
 {
-	char    *result;
-	int i;
+	char	*result;
+	int		i;
 
 	i = 0;
 	result = malloc(sizeof(char) * (n + 1));
@@ -56,15 +56,15 @@ char	*ft_strjoin_path_cmd(char const *s1, char c, char const *s2)
 	return (str);
 }
 
-static char    *get_path(char *cmd, char **envp)
+static char	*get_path(char *cmd, char **envp)
 {
-    int i;
-    char *path;
-    char *dir;
-    char *result;
+	int		i;
+	char	*path;
+	char	*dir;
+	char	*result;
 
-    i = 0;
-    while(envp[i] && !strncmp(envp[i], "PATH=", 5))
+	i = 0;
+	while (envp[i] && !ft_strncmp(envp[i], "PATH=", 5))
         i++;
     if (!envp[i])
         return (cmd);

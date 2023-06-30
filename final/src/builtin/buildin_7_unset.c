@@ -6,15 +6,15 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:40:29 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 10:54:57 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int ft_unset(t_parse *node, t_env **env);
+int	ft_unset(t_parse *node, t_env **env);
 
-static void	del_node(t_env **env,t_env *node)
+static void	del_node(t_env **env, t_env *node)
 {
 	t_env	*temp;
 
@@ -34,23 +34,23 @@ static void	del_node(t_env **env,t_env *node)
 	}
 }
 
-int ft_unset(t_parse *node, t_env **env)
+int	ft_unset(t_parse *node, t_env **env)
 {
-    t_env *temp;
+	t_env	*temp;
 
-    temp = *env;
+	temp = *env;
 	if (!node->whole_line[1])
 		return (1); //in terminal echo $? will get 1 , (but should not exit, wait fix)
-    while (temp)
-    {
+	while (temp)
+	{
 		// if (ft_count_size(node->whole_line[1], '=')) 
 		// 	ft_error("invalid parameter name"); //free something later  g_exit == 1 it is not an error echo $? will get 0
-        if (!strncmp(temp->content, node->whole_line[1], ft_strlen(node->whole_line[1])))
-        {
-            del_node(env,temp);
-            return (0);
-        }
-        temp = temp->next;
-    }
-    return (0);
+		if (!strncmp(temp->content, node->whole_line[1], ft_strlen(node->whole_line[1])))
+		{
+			del_node(env, temp);
+			return (0);
+		}
+		temp = temp->next;
+	}
+	return (0);
 }

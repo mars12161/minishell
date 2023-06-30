@@ -6,20 +6,20 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:16:35 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:09 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 15:42:58 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int check_word_or_path(t_shell *shell);
-void ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
+int		check_word_or_path(t_shell *shell);
+void	ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
 
-static t_shell *get_shell_bottom(t_shell *shell)
+static t_shell	*get_shell_bottom(t_shell *shell)
 {
-    while(shell && shell->next != NULL)
-        shell = shell->next;
-    return (shell);
+	while (shell && shell->next != NULL)
+		shell = shell->next;
+	return (shell);
 }
 
 static int	get_shell_size(t_shell *shell)
@@ -37,48 +37,50 @@ static int	get_shell_size(t_shell *shell)
 	return (i);
 }
 
-int check_word_or_path(t_shell *shell)
+int	check_word_or_path(t_shell *shell)
 {
-    int i;
+	int	i;
 
-    i = get_shell_size(shell);
-    if (i == 0)
-        return (0);
-    if (i == 1)
-    {
-        if (shell->type == REDIRECT_IN || shell->type == HEREDOC)
-            return (1);
-        else if (shell->type == REDIRECT_OUT || shell->type == APP_M)
-            return (2);
-    }
-    else
-    {
-        if (shell->type == REDIRECT_IN || shell->type == HEREDOC)
-            return (1);
-        else if (shell->type == REDIRECT_OUT || shell->type == APP_M)
-            return (2);
-        else if (shell->type == SPA && (shell->pre->type == REDIRECT_IN || shell->pre->type == HEREDOC))
-            return (1);
-        else if (shell->type == SPA && (shell->pre->type == REDIRECT_OUT || shell->pre->type == APP_M))
-            return (2);
-    }
-    return (0);
+	i = get_shell_size(shell);
+	if (i == 0)
+		return (0);
+	if (i == 1)
+	{
+		if (shell->type == REDIRECT_IN || shell->type == HEREDOC)
+			return (1);
+		else if (shell->type == REDIRECT_OUT || shell->type == APP_M)
+			return (2);
+	}
+	else
+	{
+		if (shell->type == REDIRECT_IN || shell->type == HEREDOC)
+			return (1);
+		else if (shell->type == REDIRECT_OUT || shell->type == APP_M)
+			return (2);
+		else if (shell->type == SPA && (shell->pre->type == REDIRECT_IN
+				|| shell->pre->type == HEREDOC))
+			return (1);
+		else if (shell->type == SPA && (shell->pre->type == REDIRECT_OUT
+				|| shell->pre->type == APP_M))
+			return (2);
+	}
+	return (0);
 }
 
-void ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type)
+void	ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type)
 {
-    t_shell *bottom;
+	t_shell	*bottom;
 
-    if (!new_node)
-        return ;
-    new_node->type = type;
-    new_node->next = 0;
-    if (!*shell)
-    {
+	if (!new_node)
+		return ;
+	new_node->type = type;
+	new_node->next = 0;
+	if (!*shell)
+	{
 		*shell = new_node;
-        return ;
-    }
+		return ;
+	}
 	bottom = get_shell_bottom(*shell);
-    bottom->next = new_node;
-    new_node->pre = bottom;
+	bottom->next = new_node;
+	new_node->pre = bottom;
 }

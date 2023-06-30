@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:25:14 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:00:00 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 10:08:16 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	check_buildin(char *str)
 	return (1);
 }
 
-int	ft_redirection_out(t_parse *node)//check later
+/* Check later */
+int	ft_redirection_out(t_parse *node)
 {
 	int	outfile_fd;
 
@@ -65,12 +66,15 @@ int	exec_builtin(t_parse *node, t_env **env)
 	return (0);
 }
 
+/* TODO
+ * if (g_exit)
+ * 	free_all(shell, cmarr->cmm[0], &env)
+ *
+ */
 int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env)
 {
 	if (cmmarr->cmm[0]->redirection_out)
 		ft_redirection_out(cmmarr->cmm[0]);
 	g_exit = exec_builtin(cmmarr->cmm[0], &env);
-	// if (g_exit)
-	// 	free_all(shell, cmmarr->cmm[0], &env);
 	return (g_exit);
 }

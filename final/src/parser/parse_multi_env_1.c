@@ -6,40 +6,40 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:15 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 15:46:22 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char *ft_parse_dollar_frame(char *str, t_env *env);
+char	*ft_parse_dollar_frame(char *str, t_env *env);
 
-static char *ft_parse_dollar_core_utils(char *str, t_env *env, int c)
+static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c)
 {
-    char *str2;
-    char *str3;
-    char *path;
-    char *result;
+	char	*str2;
+	char	*str3;
+	char	*path;
+	char	*result;
 
-    if (str[1] == '?')
-    {
-        str2 = ft_strdup("?");
-        str3 = ft_substr((char const *)str, 2, ft_strlen((char *)str) - 2);
-    }
-    else
-    {
-        str2 = ft_substr((char const *)str, 1, ft_count_size(str, c) - 1);
-        str3 = ft_substr((char const *)str, ft_count_size(str, c), ft_strlen((char *)str) - ft_count_size(str, c));
-    }
-    path = ft_expand(str2, &env);
-    result = ft_check_strjoin(path, str3);
+	if (str[1] == '?')
+	{
+		str2 = ft_strdup("?");
+		str3 = ft_substr((char const *)str, 2, ft_strlen((char *)str) - 2);
+	}
+	else
+	{
+		str2 = ft_substr((char const *)str, 1, ft_count_size(str, c) - 1);
+		str3 = ft_substr((char const *)str,ft_count_size(str, c),ft_strlen((char *)str) - ft_count_size(str, c));
+	}
+	path = ft_expand(str2, &env);
+	result = ft_check_strjoin(path, str3);
     //ft_free_3str(str3, str2, path);
-    return (result);
+	return (result);
 }
 
-static char *check_path_valid(char *str, t_env *env, int c)
+static char	*check_path_valid(char *str, t_env *env, int c)
 {
-    int i;
+	int	i;
     char *result;
 
     printf("c: %c\n", (char)c);

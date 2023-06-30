@@ -6,11 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:41:28 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:31:28 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+t_global global;
 
 void	parse_redir_out(t_parse *cmm, t_shell *temp);
 void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
@@ -89,6 +91,7 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	char	*whole_str;
 
 	whole_str = strdup("");
+	globe.in_heredoc = 1;
 	while (1)
 	{
 		str = readline("heredoc>");
@@ -99,6 +102,7 @@ char	*read_heredoc(t_env *env, char *delimiter)
 		whole_str = ft_strjoin(whole_str, "\n");
 		//free(str);
 	}
+	global.in_heredoc = 0;
 	return (whole_str);
 }
 

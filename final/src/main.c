@@ -6,11 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 08:42:18 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:22:20 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+t_global globe;
 
 static  int input_loop(t_env *env)
 {
@@ -19,7 +21,7 @@ static  int input_loop(t_env *env)
     char *str;
 
 	str = readline("[minishell:]");
-	//change_attr(false);
+	change_attr(false);
     if (!str)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
@@ -32,9 +34,7 @@ static  int input_loop(t_env *env)
 		add_history(str);
     shell = NULL;
     shell = fill_shell(str, shell, &env);
-	//print_shell(shell);
     cmmarr = parse_array_create(shell, env);
-    //print_parse_arr(cmmarr);
     if (!cmmarr)
     {
         free(str);
@@ -74,6 +74,5 @@ int	main(int argc, char **argv, char **envp)
 		if (check == 1)
 			break;
 	}
-	change_attr(true);
 	// free everything
 }
