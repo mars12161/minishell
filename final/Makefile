@@ -33,7 +33,6 @@ SRCS =		src/main.c \
 			src/utils/error.c \
 			src/utils/free_1.c \
 			src/utils/free_2.c \
-			src/utils/new.c \
 
 OBJS	= 	$(SRC:.c=.o)
 
