@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/07/01 12:31:23 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/01 14:26:45 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,27 @@
 
 int	ft_cd(t_parse *node, t_env **env);
 
+static int	ft_replace_oldpwd(char *str, t_env *env)
+{
+	char	*new_oldpwd;
+
+	while (env)
+	{
+		if (!ft_strncmp(env->content, "OLDPWD=", 7))
+		{
+			new_oldpwd = ft_strjoin("OLDPWD=", str);
+			env->content = new_oldpwd;
+		}
+		env = env->next;
+	}
+	return (0);
+}
+
 static int	ft_cd_env(char *str, t_env **env)
 {
 	t_env	*temp;
 	char	*result;
+	char	pwd[PATH_SIZE];
 	int		homefound;
 
 	homefound = 0;
@@ -26,9 +43,10 @@ static int	ft_cd_env(char *str, t_env **env)
 	{
 		if (!strncmp(temp->content, str, ft_strlen(str)))
 		{
+			getcwd(pwd, PATH_SIZE);
 			result = ft_strtrim((char const *)temp->content, (char const *)str);
-			printf("%s\n", result);
 			chdir(result);
+			ft_replace_oldpwd(pwd, *env);
 			if (!strncmp(str, "HOME=", ft_strlen(str)))
 				homefound = 1;
 			else
@@ -36,16 +54,18 @@ static int	ft_cd_env(char *str, t_env **env)
 		}
 		temp = temp->next;
 	}
-	if (!homefound)
+	if (!homefound && !strncmp(str, "HOME=", ft_strlen(str)))
 		ft_error("HOME not set");
 	return (0);
 }
 
-static int	ft_split_homepath(char *str, t_parse *node, t_env **env)
+/* Function used when the input is ~ with a following path: (cd ~/Desktop) */
+static int	ft_split_homepath(t_parse *node, t_env **env)
 {
 	char	*result;
 	char	*homepath;
 	char	*finalpath;
+	char	pwd[PATH_SIZE];
 	t_env	*temp;
 
 	temp = *env;
@@ -54,6 +74,8 @@ static int	ft_split_homepath(char *str, t_parse *node, t_env **env)
 	{
 		if (!strncmp(temp->content, "HOME=", 5))
 		{
+			getcwd(pwd, PATH_SIZE);
+			ft_replace_oldpwd(pwd, *env);
 			homepath = ft_strtrim((char const *)temp->content, "HOME=");
 			finalpath = ft_strjoin(homepath, result);
 			if (chdir(finalpath) == -1)
@@ -61,6 +83,17 @@ static int	ft_split_homepath(char *str, t_parse *node, t_env **env)
 		}
 		temp = temp->next;
 	}
+	return (0);
+}
+
+static int	ft_change_dir(t_parse *node, t_env **env)
+{
+	char	pwd[PATH_SIZE];
+
+	getcwd(pwd, PATH_SIZE);
+	ft_replace_oldpwd(pwd, *env);
+	if (chdir(node->whole_line[1]) == -1)
+		ft_error("cd: no such file or directory");
 	return (0);
 }
 
@@ -73,10 +106,10 @@ int	ft_cd(t_parse *node, t_env **env)
 	else if (node->whole_line[1][0] == '~' && node->whole_line[1][1] == '\0')
 		return (ft_cd_env("HOME=", env));
 	else if (node->whole_line[1][0] == '~' && node->whole_line[1][1] != '\0')
-		ft_split_homepath("~", node, env);
-	else if (chdir(node->whole_line[1]) == -1)
-		ft_error("cd: no such file or directory");
+		ft_split_homepath(node, env);
 	else if (node->whole_line[2])
 		ft_error("cd: too many arguments");
+	else
+		ft_change_dir(node, env);
 	return (0);
 }

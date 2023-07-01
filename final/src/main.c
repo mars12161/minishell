@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/07/01 09:52:25 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/01 13:10:13 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ static  int input_loop(t_env *env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	// if (argc > 1)
-	// {
-	// 	printf("Program does not take any arguments\n");
-	// 	return (1);
-	// }
+	 if (argc > 1)
+	 {
+	 	ft_error("Program does not take any arguments\n");
+	 	return (1);
+	 }
 	t_env	*env;
     int check;
 
