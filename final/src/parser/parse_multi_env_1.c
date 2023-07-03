@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DQ_parse.c                                         :+:      :+:    :+:   */
+/*   parse_multi_env_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 15:46:22 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 15:45:18 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,29 @@ static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c)
 	return (result);
 }
 
-static char	*check_path_valid(char *str, t_env *env, int c)
+static char	*check_path_valid(char *str, t_env *env, int c) //get $USERsdfsd return $USER and s
 {
 	int	i;
     char *result;
 
-    printf("c: %c\n", (char)c);
     i = 1;
-    // if (c == -1)
-    // {
-    //     str += 1;
-    //     result = ft_expand(str, &env);
-    //     return (result);
-    // }
+    if (c == -1)
+    {
+        str += 1;
+        return (ft_expand(str, &env));
+    }
     while (str[i])
     {
-        printf("c: %c\n", str[i]);
+        // printf("2: c: %c\n", str[i]);
         if (check_path_char(str[i]) > 0)
             return (ft_parse_dollar_core_utils(str, env, str[i])); 
         i++;
     }
-    printf("in check_path_valid\n");
+    // printf("in check_path_valid\n");
     if (i == ft_strlen(str) && c != -1)
         return (ft_parse_dollar_core_utils(str, env, c));
+    // printf("hello in final0\n");
+    // printf("hello in final1\n");
     return (NULL);
 }
 
@@ -75,13 +75,20 @@ static char *check_expand_path_space(char *str, t_env *env)
     if (str[1] == '?')
         result = ft_parse_dollar_core_utils(str, env, '?');
     if (!space && !dollar)
+    {
+        // printf("6\n");
         result = check_path_valid(str, env, -1);
+        // printf("2\n");
+    }
+        
     else if (!dollar && space)
         result = check_path_valid(str, env, 32);
     else if (space < dollar)
         result = check_path_valid(str, env, 32);
     else
         result = check_path_valid(str, env, 36);
+    //printf("final result in check_expand_path_space: %i", result[0]);
+    // printf("final result in check_expand_path_space: %i", result[1]);
     return (result);   
 }
 
@@ -102,6 +109,8 @@ static char *ft_parse_dollar_core(char *str, t_env *env)
         result = ft_check_strjoin(str1, path);
         ft_free_3str(str1, str2, path);
     }
+    // printf("final result ft_parse_dollar_core: %i", result[0]);
+    // printf("final result ft_parse_dollar_core: %i", result[1]);
     return (result);
 }
 
@@ -112,7 +121,14 @@ char *ft_parse_dollar_frame(char *str, t_env *env)
     if (!check_dollar(str, 36))
         return (str);
     else if (check_dollar(str, 36))
+    {
+        // printf("hello in parse dollar frame\n");
         result = ft_parse_dollar_core(str, env);
+        // printf("1\n");
+        //printf("result in parse dollar frame: %i", result[0]);
+        if (!result)
+            return (NULL);        
+    }
     if (check_dollar(result, 36))
         result = ft_parse_dollar_frame(result, env);
     return(result);

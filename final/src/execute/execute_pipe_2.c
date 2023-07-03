@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 11:05:55 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 12:44:51 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void    builtin_exit(t_parse *node, t_env *env)
     int check;
 
     check = exec_builtin(node, &env);
+	printf("check: %d\n", check);
     if (!check)
         exit(0);
     else

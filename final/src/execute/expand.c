@@ -6,27 +6,26 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 17:50:35 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 15:44:41 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char	*ft_expand(char *str, t_env **env)
+char	*ft_expand(char *str, t_env **env);
+
+char	*ft_expand(char *str, t_env **env) //get str without $
 {
 	t_env	*temp;
 	char	*path;
 	char	*result;
 
 	temp = *env;
-	printf("str in expand: %s\n", str);
+	//printf("str in expand: %s\n", str);
 	while (temp)
 	{
 		if (str[0] == '?')
-		{
-			result = ft_itoa(globe.g_exit);
-			return (result);
-		}
+			return (ft_itoa(globe.g_exit));
 		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
 		{
 			path = ft_strtrim(temp->content, str);

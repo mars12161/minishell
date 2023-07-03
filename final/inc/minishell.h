@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/30 17:37:34 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 16:12:27 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ enum e_token
 	APP_M,
 	INFILEPATH,
 	OUTFILEPATH,
+	EMPTY,
 };
 
 typedef struct s_shell
@@ -142,7 +143,8 @@ char		*ft_check_strjoin(char *s1, char *s2);
 int			check_path_char(int c);
 
 /* Expand */
-char		*ft_expand(char *str, t_env **env);
+char	*ft_expand(char *str, t_env **env);
+//char *ft_expand_valid_check(char *str, t_env **env);
 
 /* Env */
 t_env		*new_node_ENV(char *str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/30 16:03:39 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:33:18 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 		ft_add_tail(shell, new_node, INFILEPATH);
 	else if (check == 2)
 		ft_add_tail(shell, new_node, OUTFILEPATH);
-	else
+	else if(new_node->input)
 		ft_add_tail(shell, new_node, WORD);
+	else
+		ft_add_tail(shell, new_node, EMPTY);
 	return (str);
 }
 

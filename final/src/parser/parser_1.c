@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/01 10:28:20 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:35:31 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static void	parse_cmm(t_parse *cmm, t_shell *head)
 	cmm->whole_line = wline;
 	cmm->command = wline[0];
 	cmm->wline_count = ft_count_args(wline);
-	//printf("cmm->wline_count: %d\n", cmm->wline_count);
 }
 
 static	t_parse **create_cmm(t_shell *head, int *size, t_env *env)
@@ -86,9 +85,7 @@ static	t_parse **create_cmm(t_shell *head, int *size, t_env *env)
 	int	i;
 
 	i = 0;
-	cmm = malloc(sizeof(t_parse) * *size);
-	if (!cmm)
-		return (NULL);
+	cmm = ft_calloc(*size, sizeof(t_parse));
 	temp = head;
 	while (temp)
 	{
@@ -118,7 +115,6 @@ t_parse_arr *parse_array_create(t_shell *head,t_env *env)
 	if (!cmm_arr)
 		return (NULL);
 	cmm_arr->size = get_size_cmmarr(head);
-	//printf("cmm_arr->size: %d\n", cmm_arr->size);
 	cmm = create_cmm(head, &cmm_arr->size, env);
 	if (!cmm)
 		return (NULL);

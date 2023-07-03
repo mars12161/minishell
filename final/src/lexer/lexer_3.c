@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:52:20 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 15:39:23 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:14:28 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 	new_node->input = result;
 	str += i;
 	new_node->len = ft_strlen(new_node->input);
-	ft_add_tail(shell, new_node, WORD);
+	if (new_node->input)
+		ft_add_tail(shell, new_node, WORD);
+	else
+		ft_add_tail(shell, new_node, EMPTY);
 	return (str);
 }
 
