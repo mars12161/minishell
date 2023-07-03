@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:33 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 16:03:08 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:19:09 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	ft_export(t_parse *node, t_env **env)
 		{
 			export = new_node_ENV(node->whole_line[1]);
 			ft_add_tail_env(env, export);
-			ft_env(node, env);
 		}
 		else if (ft_check_signal_export(node->whole_line[1]) == -1)
 		{

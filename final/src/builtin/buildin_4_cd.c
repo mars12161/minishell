@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/07/01 14:26:45 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:30:14 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_cd_env(char *str, t_env **env)
 	temp = *env;
 	while (temp)
 	{
-		if (!strncmp(temp->content, str, ft_strlen(str)))
+		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
 		{
 			getcwd(pwd, PATH_SIZE);
 			result = ft_strtrim((char const *)temp->content, (char const *)str);
@@ -79,7 +79,11 @@ static int	ft_split_homepath(t_parse *node, t_env **env)
 			homepath = ft_strtrim((char const *)temp->content, "HOME=");
 			finalpath = ft_strjoin(homepath, result);
 			if (chdir(finalpath) == -1)
-				ft_error("cd: no such file or directory");
+			{
+				printf("cd: no such file or directory: %s\n", finalpath);
+				//ft_error("cd: no such file or directory"); check again
+				globe.g_exit = 127;
+			}
 		}
 		temp = temp->next;
 	}
@@ -93,7 +97,11 @@ static int	ft_change_dir(t_parse *node, t_env **env)
 	getcwd(pwd, PATH_SIZE);
 	ft_replace_oldpwd(pwd, *env);
 	if (chdir(node->whole_line[1]) == -1)
-		ft_error("cd: no such file or directory");
+	{
+		printf("cd: no such file or directory: %s\n", node->whole_line[1]);
+		//ft_error("cd: no such file or directory");
+		globe.g_exit = 127;
+	}
 	return (0);
 }
 
