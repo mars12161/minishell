@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/30 17:37:34 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 09:58:12 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_global
 {
 	int	in_heredoc;
 	int g_exit;
+	int stop_heredoc;
 }	t_global;
 
 extern t_global globe;
@@ -178,11 +179,10 @@ void		ft_error(char *str);
 
 /* Signals */
 void		sigint_handler(int sig);
-void		setting_signal(void);
 int			change_attr(bool ctrl_chr);
 
 /*	Execute Easy Mode*/
-int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
+int			execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 1 */
 int			init_pipex(t_parse_arr *cmmarr, t_env *env);

@@ -6,13 +6,11 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 18:26:24 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 11:28:46 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-t_global global;
 
 void	parse_redir_out(t_parse *cmm, t_shell *temp);
 void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
@@ -94,15 +92,18 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	globe.in_heredoc = 1;
 	while (1)
 	{
+		if (globe.stop_heredoc)
+			break;
 		str = readline("heredoc>");
 		if (!strcmp(str, delimiter))
 			break ;
 		str_expand_check = ft_parse_dollar_frame(str, env);
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
-		//free(str);
 	}
-	global.in_heredoc = 0;
+	if (globe.stop_heredoc)
+		return (NULL);
+	globe.in_heredoc = 0;
 	return (whole_str);
 }
 
@@ -119,7 +120,7 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
 				return ;
-			cmm->infilepath = strcat(cmm->infilepath, heredoc);
+			cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
 		}
 		else
 		{
@@ -127,7 +128,7 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
 				return ;
-			cmm->infilepath = strcat(cmm->infilepath, heredoc);
+			cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
 		}
 		free(heredoc);
 		cmm->redirection_in = 2;
@@ -139,11 +140,10 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp)
 {
 	if (temp->input)
 	{
-		//printf("in: %s\n", temp->next->next->input);
 		if (cmm->redirection_in == 0)
 		{
 			check_infile(temp->next->input);
-			cmm->infilepath = strcat(cmm->infilepath, check_input(temp));
+			cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
 			//do not have ft_strcat
 		}
 		else
