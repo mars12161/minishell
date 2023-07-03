@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 15:23:38 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:30:14 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ static int	ft_split_homepath(t_parse *node, t_env **env)
 			finalpath = ft_strjoin(homepath, result);
 			if (chdir(finalpath) == -1)
 			{
-				ft_error("cd: no such file or directory");
+				printf("cd: no such file or directory: %s\n", finalpath);
+				//ft_error("cd: no such file or directory"); check again
 				globe.g_exit = 127;
 			}
 		}
@@ -97,7 +98,8 @@ static int	ft_change_dir(t_parse *node, t_env **env)
 	ft_replace_oldpwd(pwd, *env);
 	if (chdir(node->whole_line[1]) == -1)
 	{
-		ft_error("cd: no such file or directory");
+		printf("cd: no such file or directory: %s\n", node->whole_line[1]);
+		//ft_error("cd: no such file or directory");
 		globe.g_exit = 127;
 	}
 	return (0);

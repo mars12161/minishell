@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 15:14:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:31:49 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_env(t_parse *node, t_env **env)
 	temp = *env;
 	if (node->wline_count > 1)
 	{
-		ft_error("env: No such file or directory");
+		printf("env: No such file or directory: %s\n", node->whole_line[1]);
+		//ft_error("env: No such file or directory");
 		return (0);
 	}
 	while (temp)
