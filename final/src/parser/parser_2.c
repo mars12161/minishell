@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 11:28:46 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/03 14:04:47 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		cmm->redirection_in = 2;
 	}
 }
-
 
 void	parse_redir_in(t_parse *cmm, t_shell *temp)
 {
