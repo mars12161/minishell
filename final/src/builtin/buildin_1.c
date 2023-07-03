@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:25:14 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 13:05:41 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:54:36 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_redirection_out(t_parse *node)
 int	exec_builtin(t_parse *node, t_env **env)
 {
 	if (!ft_strncmp(node->command, "echo", 4))
-		return (ft_echo(node));
+		return (ft_echo(node, env));
 	else if (!ft_strncmp(node->command, "cd", 2))
 		return (ft_cd(node, env));
 	else if (!ft_strncmp(node->command, "pwd", 3))

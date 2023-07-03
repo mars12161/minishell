@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 16:38:47 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 18:03:37 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static  int input_loop(t_env *env)
     shell = fill_shell(str, shell, &env);
 	// print_shell(shell);
     cmmarr = parse_array_create(shell, env);
-    if (!cmmarr)
+    if (!cmmarr) // TODO when only \n in input
     {
         free(str);
         free_shell(&shell);

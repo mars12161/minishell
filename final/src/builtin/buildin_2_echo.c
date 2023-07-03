@@ -6,13 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 16:31:53 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 17:59:56 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_echo(t_parse *node);
+int	ft_echo(t_parse *node, t_env **env);
 
 static int	ft_check_each_n(char *str) //return 1 all n, return 0 nnnann
 {
@@ -42,7 +42,18 @@ static int	ft_check_n(char *str) //return 1 -nnnnn return 0 nnnn or -nnnann
 		return (0);
 }
 
-int	ft_echo(t_parse *node)
+/*static char	*find_env(t_env **env, char *str)
+{
+	t_env	*temp;
+
+	temp = *env;
+	while (temp)
+	{
+
+	}
+}*/
+
+int	ft_echo(t_parse *node, t_env **env)
 {
 	int	i;
 	int	flag;
@@ -65,6 +76,8 @@ int	ft_echo(t_parse *node)
 	}
 	while (i++ < node->wline_count - 1)
 	{
+		if (!ft_strcmp(node->whole_line[i], "~"))
+			ft_expand("HOME", env); // TODO
 		ft_putstr_fd(node->whole_line[i], fd);
 		if (i == node->wline_count - 1)
 			break ;
