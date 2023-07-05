@@ -6,7 +6,11 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/05 20:52:03 by yli              ###   ########.fr       */
+=======
+/*   Updated: 2023/07/03 17:54:30 by mschaub          ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +172,7 @@ int			check_buildin(char *str);
 int			exec_builtin(t_parse *node, t_env **env);
 int			ft_redirection_out(t_parse *node);
 int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env);
-int			ft_echo(t_parse *node);
+int			ft_echo(t_parse *node, t_env **env);
 int			ft_export(t_parse *node, t_env **env);
 int			ft_cd(t_parse *node, t_env **env);
 int			ft_exit(void);

@@ -6,15 +6,19 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/05 19:53:01 by yli              ###   ########.fr       */
+=======
+/*   Updated: 2023/07/04 17:56:48 by mschaub          ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_echo(t_parse *node);
+int	ft_echo(t_parse *node, t_env **env);
 
-static int	ft_check_each_n(char *str) //return 1 all n, return 0 nnnann
+static int	ft_check_each_n(char *str)
 {
 	int	i;
 
@@ -28,7 +32,7 @@ static int	ft_check_each_n(char *str) //return 1 all n, return 0 nnnann
 	return (1);
 }
 
-static int	ft_check_n(char *str) //return 1 -nnnnn return 0 nnnn or -nnnann
+static int	ft_check_n(char *str)
 {
 	if (str[0] == '-')
 	{
@@ -42,7 +46,45 @@ static int	ft_check_n(char *str) //return 1 -nnnnn return 0 nnnn or -nnnann
 		return (0);
 }
 
-int	ft_echo(t_parse *node)
+static void	ft_echo_home(t_env **env)
+{
+	char	*home;
+	t_env	*tmp;
+
+	tmp = *env;
+	while (tmp)
+	{
+		if (!ft_strncmp(tmp->content, "HOME=", 5))
+		{
+			home = ft_strtrim((char const *)tmp->content, "HOME=");
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	if (home)
+		ft_putstr_fd(home, 1);
+	else
+		ft_putstr_fd("~", 1);
+	free(home);
+}
+
+static void	echo_output(t_parse *node, int i, int fd, t_env **env)
+{
+	while (i++ < node->wline_count - 1)
+	{
+		if (!ft_strcmp(node->whole_line[i], "~"))
+			ft_echo_home(env);
+		else
+		{
+			ft_putstr_fd(node->whole_line[i], fd);
+			if (i == node->wline_count - 1)
+				break ;
+			ft_putstr_fd(" ", fd);
+		}
+	}
+}
+
+int	ft_echo(t_parse *node, t_env **env)
 {
 	int	i;
 	int	flag;
@@ -63,13 +105,7 @@ int	ft_echo(t_parse *node)
 		i = 1;
 		flag = 1;
 	}
-	while (i++ < node->wline_count - 1)
-	{
-		ft_putstr_fd(node->whole_line[i], fd);
-		if (i == node->wline_count - 1)
-			break ;
-		ft_putstr_fd(" ", fd);
-	}
+	echo_output(node, i, fd, env);
 	if (flag == 0)
 		ft_putstr_fd("\n", fd);
 	if (fd != 1)

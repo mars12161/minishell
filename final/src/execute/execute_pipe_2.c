@@ -6,7 +6,11 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/05 20:54:57 by yli              ###   ########.fr       */
+=======
+/*   Updated: 2023/07/03 17:34:24 by mschaub          ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +112,10 @@ void	ft_executer(char **whole_line, char **envp)
 		path = get_path(whole_line[0], envp);
     execve(path, whole_line, envp);
     free(path); //not sure
+<<<<<<< HEAD
     ft_error("command not found");
 }
+=======
+    ft_error("child survived");
+}
+>>>>>>> refs/remotes/origin/main
