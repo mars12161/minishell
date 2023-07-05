@@ -23,7 +23,7 @@ static  int input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
-	print_shell(shell);
+	//print_shell(shell);
     cmmarr = parse_array_create(shell, env);
     if (!cmmarr)
     {
@@ -65,10 +65,11 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	if (argc > 1)
 	{
-		ft_error("Program does not take any arguments\n");
-	 	return (1);
+		ft_error_optimal("Program does not take any arguments\n", 126);
+		//globe.g_exit = 126;
+	 	return (globe.g_exit);
 	}
-    	check = 0;
+    check = 0;
 	env = NULL;
 	env = init_env(envp, env);
 	signal(SIGQUIT, SIG_IGN);
@@ -77,7 +78,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		signal(SIGINT, sigint_handler);
 		check = input_loop(env);
-		if (check)
+		if (check < 0)
 			break ;
 	}
 	free_env(&env);

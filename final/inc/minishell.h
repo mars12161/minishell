@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/05 21:41:58 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/05 23:15:39 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,8 @@ int			ft_unset(t_parse *node, t_env **env);
 int			ft_env(t_parse *node, t_env **env);
 
 /* Error */
-void		ft_error(char *str);
+void    ft_error(char *str);
+void    ft_error_optimal(char *str, int exit);
 
 /* Signals */
 void		sigint_handler(int sig);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buildin_8.c                                        :+:      :+:    :+:   */
+/*   buildin_8_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 16:31:49 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/05 23:18:11 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	ft_env(t_parse *node, t_env **env)
 	temp = *env;
 	if (node->wline_count > 1)
 	{
-		printf("env: No such file or directory: %s\n", node->whole_line[1]);
-		//ft_error("env: No such file or directory");
-		return (0);
+		ft_error_optimal("env: No such file or directory", 127);
+		//printf("globe.g_exit: %d\n", globe.g_exit);
+		return (globe.g_exit);
 	}
 	while (temp)
 	{
