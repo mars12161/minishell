@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buildin_7.c                                        :+:      :+:    :+:   */
+/*   buildin_7_unset.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 10:54:57 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/05 22:16:24 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,37 @@ static void	del_node(t_env **env, t_env *node)
 	}
 }
 
-int	ft_unset(t_parse *node, t_env **env)
+static void	ft_unset_core(char *str, t_env **env)
 {
 	t_env	*temp;
+	t_env	*head;
 
 	temp = *env;
-	if (!node->whole_line[1])
-		return (1); //in terminal echo $? will get 1 , (but should not exit, wait fix)
+	head = *env;
 	while (temp)
 	{
-		// if (ft_count_size(node->whole_line[1], '=')) 
-		// 	ft_error("invalid parameter name"); //free something later  g_exit == 1 it is not an error echo $? will get 0
-		if (!strncmp(temp->content, node->whole_line[1], ft_strlen(node->whole_line[1])))
+		if (!strncmp(temp->content, str, ft_strlen(str)))
 		{
 			del_node(env, temp);
-			return (0);
+			return ;
 		}
 		temp = temp->next;
 	}
+	temp = head;
+}
+
+int	ft_unset(t_parse *node, t_env **env)
+{
+	int	i;
+
+	i = 1;
+	if (!node->whole_line[1])
+		return (0);
+	while (i < node->wline_count)
+	{
+		ft_unset_core(node->whole_line[i], env);
+		i++;
+	}
 	return (0);
 }
+

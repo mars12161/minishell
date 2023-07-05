@@ -23,7 +23,7 @@ static  int input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
-	// print_shell(shell);
+	print_shell(shell);
     cmmarr = parse_array_create(shell, env);
     if (!cmmarr)
     {

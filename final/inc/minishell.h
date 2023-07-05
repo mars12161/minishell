@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/05 21:10:27 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/05 21:41:58 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct s_parse
 typedef struct s_parse_arr
 {
 	t_parse	**cmm;
-	//int		check;
 	int		size;
 }	t_parse_arr;
 
