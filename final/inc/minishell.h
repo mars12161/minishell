@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/03 16:39:27 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/05 20:52:03 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,16 +184,18 @@ void		sigint_handler(int sig);
 int			change_attr(bool ctrl_chr);
 
 /*	Execute Easy Mode*/
-int			execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
+int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
+void    builtin_exit(t_parse *node, t_env *env);
+int   execute_exit(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 1 */
 int			init_pipex(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 2 */
-void		builtin_exit(t_parse *node, t_env *env);
-void		ft_executer(char **whole_line, char **env);
 char		*str_ncpy(char *str, int n);
 char		*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
+static char	*get_path(char *cmd, char **envp);
+void		ft_executer(char **whole_line, char **env);
 
 /* Execute Redir */
 void		redir_child(t_parse *node);

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 11:01:29 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/05 20:49:59 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,17 @@ int	init_pipex(t_parse_arr *cmmarr, t_env *env);
 
 static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 {
-	char	**envp;
+	char **envp;
 
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		ft_error("dup2 failed");
-	redir_child(node);
+	redir_child(node); //check
 	close(fd[0]);
 	if (!check_buildin(node->command))
 		builtin_exit(node, env);
 	envp = ft_env_str(&env);
+	printf("%s\n", envp[3]);
+	printf("%s\n", envp[10]);
 	ft_executer(node->whole_line, envp);
 	ft_free_str(envp);
 }
@@ -37,7 +39,7 @@ static void	child_pipe_frame(int *fd, t_parse *node, t_env *env)
 	if (pid == -1)
 		ft_error("fork failed");
 	if (pid == 0)
-		child_pipe_core(fd, node, env);
+		child_pipe_core(fd, node, env);	
 	else
 	{
 		if (dup2(fd[0], STDIN_FILENO) == -1)
@@ -89,6 +91,5 @@ int	init_pipex(t_parse_arr *cmmarr, t_env *env)
 		check = waitpid(pid, NULL, 0);
 	if (!check)
 		return (-1); //failed
-	else
-		return (0);
+	return (0);
 }

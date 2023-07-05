@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 12:44:51 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/05 20:54:57 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char		*str_ncpy(char *str, int n);
 char		*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
 static char	*get_path(char *cmd, char **envp);
-void		builtin_exit(t_parse *node, t_env *env);
 void		ft_executer(char **whole_line, char **env);
 
 char	*str_ncpy(char *str, int n)
@@ -56,53 +55,58 @@ char	*ft_strjoin_path_cmd(char const *s1, char c, char const *s2)
 	return (str);
 }
 
+static char	**split_path(char **envp)
+{
+	char	**path;
+	int		i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (!strncmp(envp[i], "PATH=", 5))
+		{
+			path = ft_split(envp[i] + 5, ':');
+			return (path);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 static char	*get_path(char *cmd, char **envp)
 {
 	int		i;
-	char	*path;
-	char	*dir;
+	char	**path;
 	char	*result;
 
 	i = 0;
-	while (envp[i] && !ft_strncmp(envp[i], "PATH=", 5))
-        i++;
-    if (!envp[i])
-        return (cmd);
-    path = envp[i] + 5;
-    while (path && ft_count_size(path, ':'))
+	path = split_path(envp);
+    if (!path[0])
+        return (NULL);
+    while (path[i])
     {
-        dir = str_ncpy(path, ft_count_size(path, ':'));
-        result = ft_strjoin_path_cmd(dir, '/', cmd);
-        free(dir);
-        if (!access(result, F_OK))
-            return (result);
-        free(result);
-        path += ft_count_size(path, ':') + 1;
+        result = ft_strjoin_path_cmd(path[i], '/', cmd);
+        if (access(result, F_OK) != -1)
+		{
+			ft_free_str(path);
+			return (result);
+		}
+		free(result);
+		i++;
     }
+	ft_free_str(path);
     return (cmd);
 }
 
-void    builtin_exit(t_parse *node, t_env *env)
-{
-    int check;
-
-    check = exec_builtin(node, &env);
-	printf("check: %d\n", check);
-    if (!check)
-        exit(0);
-    else
-        exit(1);
-}
-
-void	ft_executer(char **whole_line, char **env)
+void	ft_executer(char **whole_line, char **envp)
 {
     char *path;
 
     if (!access(whole_line[0], F_OK))
-        path = whole_line[0];
+		path = whole_line[0];
     else
-        path = get_path(whole_line[0], env);
-    execve(path, whole_line, env);
+		path = get_path(whole_line[0], envp);
+    execve(path, whole_line, envp);
     free(path); //not sure
-    ft_error("child survived");
+    ft_error("command not found");
 }

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 16:48:06 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/03 18:06:06 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int get_env_size(t_env **env)
         i++;
         temp = temp->next;
     }
+    //printf("env size: %d\n ", i);
     return (i);
 }
 
@@ -95,9 +96,11 @@ char **ft_env_str(t_env **env)
     i = 0;
     while(temp)
     {
-        envp[i] = temp->content;
+        envp[i] = ft_strdup(temp->content);
+        //printf("envp[i]: %s\n", envp[i]);
         i++;
         temp = temp->next;
     }
+    //printf("env size: %d\n ", i);
     return (envp);
 }

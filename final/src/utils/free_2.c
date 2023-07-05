@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:17:30 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 17:01:55 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/05 19:25:17 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void    ft_free_str(char **str)
     i = 0;
     while (str[i])
     {
-        if (*str != NULL)
+        if (str[i] != NULL)
         {
             free(str[i]);
             i++;
         }
-        *str = NULL;
+        // str[i] = NULL;
     }
     free (str);
 }

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:01:13 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 16:38:47 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/05 20:50:52 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static  int input_loop(t_env *env)
     {
         free(str);
         free_shell(&shell);
-        return (1);
-    }
+        return (0);
+    } 
     if (cmmarr->size == 1)
 	{
 		if (!(check_buildin(cmmarr->cmm[0]->command)))
 			return (buildin_easy_mode(&shell, cmmarr, env));
-		return (execute_easy_mode(cmmarr, env));
+		return (execute_exit(cmmarr, env));
 	}	
 	init_pipex(cmmarr, env);
 	unlink("heredoc.txt");
@@ -57,17 +57,16 @@ static  int input_loop(t_env *env)
 
 int	main(int argc, char **argv, char **envp)
 {
-	 if (argc > 1)
-	 {
-	 	ft_error("Program does not take any arguments\n");
-	 	return (1);
-	 }
 	t_env	*env;
     int check;
 
-    check = 0;
-	(void)argc;
 	(void)argv;
+	if (argc > 1)
+	{
+		ft_error("Program does not take any arguments\n");
+	 	return (1);
+	}
+    check = 0;
 	env = NULL;
 	env = init_env(envp, env);
 	signal(SIGQUIT, SIG_IGN);
