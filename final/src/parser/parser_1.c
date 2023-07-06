@@ -6,67 +6,14 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/05 22:02:44 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 22:05:57 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static t_parse *parse_init(void)
-{
-	t_parse *node;
-
-	node = malloc(sizeof(t_parse) * 1);
-	node->command = malloc(sizeof(char) * 100);
-	node->infilepath = malloc(sizeof(char) * 1000);
-	node->outfilepath = malloc(sizeof(char) * 100);
-	if (!node || !node->command || !node->infilepath || !node->outfilepath)
-		return (NULL);
-	node->redirection_in = 0;
-	node->redirection_out = 0;
-	node->pipe = 0;
-	return (node);
-}
-
-char	**ft_shell_whole_line(t_shell *head)
-{
-	int		i;
-	int		n;
-	char	**wline;
-
-	if (head == NULL)
-		return (NULL);
-	i = args_count(head);
-	n = 0;
-	wline = malloc(sizeof(*wline) * (i + 1));
-	if (!wline)
-		return (NULL);
-	wline[i] = NULL;
-	while (head && head->type != PIPE)
-	{
-		if (head->type == WORD)
-		{
-			wline[n] = ft_strdup(head->input);
-			n++;
-		}
-		head = head->next;
-	}
-	if (head && head->type == PIPE)
-		head = head->next;
-	return (wline);
-}
-
-static int ft_count_args(char **str)
-{
-    int count = 0;
-
-    while (*str != NULL)
-	{
-        count++;
-        str++;
-    }
-    return (count);
-}
+t_parse_arr *parse_array_create(t_shell *head,t_env *env);
+t_parse	*parse_shell(t_shell *head, t_env *env);
 
 static void	parse_cmm(t_parse *cmm, t_shell *head)
 {

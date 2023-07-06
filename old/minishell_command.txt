@@ -14,9 +14,6 @@ env
 
 /usr/bin/env
 
-setenv PATH "/bin:/usr/bin"
-ls -l
-
 emacs
 
 echo"something here"

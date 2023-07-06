@@ -29,6 +29,7 @@ SRCS =		src/main.c \
 			src/parser/parser_1.c \
 			src/parser/parser_2.c \
 			src/parser/parser_3.c \
+			src/parser/parser_4.c \
 			src/utils/debug.c \
 			src/utils/env.c \
 			src/utils/error.c \

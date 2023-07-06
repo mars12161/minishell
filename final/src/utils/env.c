@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 18:06:06 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 21:23:01 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 t_env *new_node_ENV(char *str);
 void ft_add_tail_env(t_env **env, t_env *new_node);
 t_env *init_env(char **envp, t_env *env);
-int get_env_size(t_env **env);
-char **ft_env_str(t_env **env);
+char **ft_env_str(t_env *env);
 
 t_env *new_node_ENV(char *str)
 {
@@ -50,20 +49,7 @@ void ft_add_tail_env(t_env **env, t_env *new_node)
     temp->next = new_node;
 }
 
-t_env *init_env(char **envp, t_env *env)
-{
-    int     i;
-
-    i = 0;
-    while(envp[i])
-    {
-        ft_add_tail_env(&env,new_node_ENV(envp[i]));
-        i++;
-    }
-    return (env);
-}
-
-int get_env_size(t_env **env)
+static int get_env_size(t_env **env)
 {
     t_env *temp;
     int i;
@@ -77,30 +63,38 @@ int get_env_size(t_env **env)
         i++;
         temp = temp->next;
     }
-    //printf("env size: %d\n ", i);
     return (i);
 }
 
-char **ft_env_str(t_env **env)
+t_env *init_env(char **envp, t_env *env)
 {
-    t_env *temp;
+    int     i;
+
+    i = 0;
+    while(envp[i])
+    {
+        ft_add_tail_env(&env,new_node_ENV(envp[i]));
+        i++;
+    }
+    env->size = get_env_size(&env);
+    return (env);
+}
+
+char **ft_env_str(t_env *env)
+{
     char **envp;
     int i;
 
-    i = get_env_size(env);
-    envp = malloc(sizeof(char *) * (i + 1));
-    envp[i] = NULL;
+    envp = malloc(sizeof(char *) * (env->size + 1));
+    envp[env->size] = NULL;
     if (!envp)
         return (NULL);
-    temp = *env;
     i = 0;
-    while(temp)
+    while(env)
     {
-        envp[i] = ft_strdup(temp->content);
-        //printf("envp[i]: %s\n", envp[i]);
+        envp[i] = ft_strdup(env->content);
         i++;
-        temp = temp->next;
+        env = env->next;
     }
-    //printf("env size: %d\n ", i);
     return (envp);
 }

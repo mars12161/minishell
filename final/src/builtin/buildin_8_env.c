@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 16:31:39 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 20:03:55 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_env(t_parse *node, t_env **env)
 	if (node->wline_count > 1)
 	{
 		ft_error_optimal("env: No such file or directory", 127);
-		//printf("globe.g_exit: %d\n", globe.g_exit);
 		if (fd != 1)
 			close(fd);
 		return (globe.g_exit);

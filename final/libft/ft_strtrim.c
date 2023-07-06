@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:03:49 by mschaub           #+#    #+#             */
-/*   Updated: 2022/12/06 15:13:33 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/06 21:45:47 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,10 @@ int	main()
 	printf("%s\n", test);
 }
 */
+
+// #include <stdio.h>
+// int	main()
+// {
+// 	char *str = "aa=1";
+// 	printf("%s\n", ft_strtrim(str, "="));
+// }

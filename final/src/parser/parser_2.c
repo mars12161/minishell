@@ -6,19 +6,19 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 14:04:47 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/06 22:09:35 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+char	*check_input(t_shell *temp);
 void	parse_redir_out(t_parse *cmm, t_shell *temp);
 void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
 char	*read_heredoc(t_env *env, char *delimiter);
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
-void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
-static char	*check_input(t_shell *temp)
+char	*check_input(t_shell *temp)
 {
 	if (temp->next->type == 3 && temp->next->next->type == 0)
 		return (temp->next->next->input);
@@ -133,23 +133,4 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		free(heredoc);
 		cmm->redirection_in = 2;
 	}
-}
-
-void	parse_redir_in(t_parse *cmm, t_shell *temp)
-{
-	if (temp->input)
-	{
-		if (cmm->redirection_in == 0)
-		{
-			check_infile(temp->next->input);
-			cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
-			//do not have ft_strcat
-		}
-		else
-		{
-			free(cmm->infilepath);
-			cmm->infilepath = ft_strdup(check_input(temp));
-		}
-	}
-	cmm->redirection_in = 1;
 }

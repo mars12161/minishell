@@ -39,7 +39,7 @@ static  int input_loop(t_env *env)
 	}
 	init_pipex(cmmarr, env);
 	unlink("heredoc.txt");
-	free_all(&shell, cmmarr, &env);
+	free_all(&shell, cmmarr);
 	free(str);
 	return (1);
 }
@@ -69,5 +69,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free_env(&env);
 	rl_clear_history();
-	return (0);
+	return (globe.g_exit);
 }

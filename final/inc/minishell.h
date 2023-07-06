@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/06 17:59:53 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 22:20:42 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_parse_arr
 typedef struct s_env
 {
 	char			*content;
+	int	size;
 	struct s_env	*next;
 }	t_env;
 
@@ -116,20 +117,26 @@ int			check_word_or_path(t_shell *shell);
 void		ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
 
 /* Parser 1 */
-t_parse		*parse_shell(t_shell *head, t_env *env);
-t_parse_arr	*parse_array_create(t_shell *head, t_env *env);
+t_parse_arr *parse_array_create(t_shell *head,t_env *env);
+t_parse	*parse_shell(t_shell *head, t_env *env);
 
 /* Parser 2 */
-void		parse_redir_out(t_parse *cmm, t_shell *temp);
-void		parse_redir_out_app(t_parse *cmm, t_shell *temp);
-char		*read_heredoc(t_env *env, char *delimiter);
-void		parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
-void		parse_redir_in(t_parse *cmm, t_shell *temp);
+char	*check_input(t_shell *temp);
+void	parse_redir_out(t_parse *cmm, t_shell *temp);
+void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
+char	*read_heredoc(t_env *env, char *delimiter);
+void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 
 /* Parser 3 */
 void		check_infile(char *infilepath);
 int			args_count(t_shell *head);
 int			get_size_cmmarr(t_shell *head);
+
+/* Parser 4 */
+t_parse *parse_init(void);
+char	**ft_shell_whole_line(t_shell *head);
+int ft_count_args(char **str);
+void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
 /* Parse Multi Env 1 */
 char		*ft_parse_dollar_frame(char *str, t_env *env);
@@ -148,13 +155,12 @@ char	*ft_expand(char *str, t_env **env);
 t_env		*new_node_ENV(char *str);
 void		ft_add_tail_env(t_env **env, t_env *new_node);
 t_env		*init_env(char **envp, t_env *env);
-int			get_env_size(t_env **env);
-char		**ft_env_str(t_env **env);
+char		**ft_env_str(t_env *env);
 
 /* Free 1 */
 void    free_shell(t_shell **shell);
 void    free_env(t_env **env);
-void    free_all(t_shell **shell, t_parse_arr *cmmarr, t_env **env);
+void    free_all(t_shell **shell, t_parse_arr *cmmarr);
 
 /* Free 2 */
 void ft_free_3str(char *str1, char *str2, char *str3);
@@ -165,11 +171,13 @@ int			check_buildin(char *str);
 int			exec_builtin(t_parse *node, t_env **env);
 int			ft_redirection_out(t_parse *node);
 int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env);
+int	ft_strcmpn(char *str1, char *str2, int size);
 int			ft_echo(t_parse *node, t_env **env);
 int			ft_export(t_parse *node, t_env **env);
 int			ft_cd(t_parse *node, t_env **env);
-int			ft_exit(void);
+int			ft_exit(t_parse *node);
 int			ft_pwd(t_parse *node);
+void	ft_unset_core(char *str, t_env **env);
 int			ft_unset(t_parse *node, t_env **env);
 int			ft_env(t_parse *node, t_env **env);
 
@@ -184,10 +192,10 @@ int			change_attr(bool ctrl_chr);
 /*	Execute Easy Mode*/
 int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
 void    builtin_exit(t_parse *node, t_env *env);
-int   execute_exit(t_parse_arr *cmmarr, t_env *env);
+int  execute_exit(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 1 */
-int			init_pipex(t_parse_arr *cmmarr, t_env *env);
+void	init_pipex(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 2 */
 char		*str_ncpy(char *str, int n);

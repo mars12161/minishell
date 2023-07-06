@@ -4,13 +4,14 @@
 int	check_buildin(char *str);
 int	ft_redirection_out(t_parse *node);
 int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env);
+int	ft_strcmpn(char *str1, char *str2, int size);
 
 int	check_buildin(char *str)
 {
-	if (!ft_strncmp(str, "echo", 4) || !ft_strncmp(str, "cd", 2)
-		|| !ft_strncmp(str, "pwd", 3) || !ft_strncmp(str, "export", 6)
-		|| !ft_strncmp(str, "unset", 5) || !ft_strncmp(str, "env", 3)
-		|| !ft_strncmp(str, "exit", 4))
+	if (!ft_strcmpn(str, "echo", 4) || !ft_strcmpn(str, "cd", 2)
+		|| !ft_strcmpn(str, "pwd", 3) || !ft_strcmpn(str, "export", 6)
+		|| !ft_strcmpn(str, "unset", 5) || !ft_strcmpn(str, "env", 3)
+		|| !ft_strcmpn(str, "exit", 4))
 		return (0);
 	return (1);
 }
@@ -32,22 +33,39 @@ int	ft_redirection_out(t_parse *node)
 	return (outfile_fd);
 }
 
+int	ft_strcmpn(char *str1, char *str2, int size)
+{
+	int	i;
+
+	i = ft_strlen(str1);
+	if (i != size)
+		return (1);
+	i = 0;
+	while(str1[i] && str2[i])
+	{
+		if (str1[i] != str2[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	exec_builtin(t_parse *node, t_env **env)
 {
-	if (!ft_strncmp(node->command, "echo", 4))
+	if (!ft_strcmpn(node->command, "echo", 4)) //strcmp
 		return (ft_echo(node, env));
-	else if (!ft_strncmp(node->command, "cd", 2))
+	else if (!ft_strcmpn(node->command, "cd", 2))
 		return (ft_cd(node, env));
-	else if (!ft_strncmp(node->command, "pwd", 3))
+	else if (!ft_strcmpn(node->command, "pwd", 3))
 		return (ft_pwd(node));
-	else if (!ft_strncmp(node->command, "env", 3))
+	else if (!ft_strcmpn(node->command, "env", 3))
 		return (ft_env(node, env));
-	else if (!ft_strncmp(node->command, "export", 6))
+	else if (!ft_strcmpn(node->command, "export", 6))
 		return (ft_export(node, env));
-	else if (!ft_strncmp(node->command, "unset", 5))
+	else if (!ft_strcmpn(node->command, "unset", 5))
 		return (ft_unset(node, env));
-	else if (!ft_strncmp(node->command, "exit", 4))
-		return (ft_exit());
+	else if (!ft_strcmpn(node->command, "exit", 4))
+		return (ft_exit(node));
 	return (0);
 }
 

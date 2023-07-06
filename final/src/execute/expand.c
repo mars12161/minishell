@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 16:58:23 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/06 22:17:32 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 char	*ft_expand(char *str, t_env **env);
 
-char	*ft_expand(char *str, t_env **env) //get str without $
+char	*ft_expand(char *str, t_env **env)
 {
 	t_env	*temp;
 	char	*path;
 	char	*result;
 
 	temp = *env;
-	//printf("str in expand: %s\n", str);
 	while (temp)
 	{
 		if (str[0] == '?')
 			return (ft_itoa(globe.g_exit));
-			if (!ft_strncmp(temp->content, str, ft_strlen(str)))
+		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
 		{
 			path = ft_strtrim(temp->content, str);
 			if (*path != '=')

@@ -6,13 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 16:26:54 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 21:24:03 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	init_pipex(t_parse_arr *cmmarr, t_env *env);
+void	init_pipex(t_parse_arr *cmmarr, t_env *env);
 
 static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 {
@@ -24,7 +24,7 @@ static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 	close(fd[0]);
 	if (!check_buildin(node->command))
 		builtin_exit(node, env);
-	envp = ft_env_str(&env);
+	envp = ft_env_str(env);
 	ft_executer(node->whole_line, envp);
 	ft_free_str(envp);
 }
@@ -53,7 +53,7 @@ static void	parent_pipe(t_parse_arr *cmmarr, t_env *env)
 	redir_parent(cmmarr);
 	if (!check_buildin(cmmarr->cmm[cmmarr->size - 1]->command))
 		builtin_exit(cmmarr->cmm[cmmarr->size - 1], env);
-	envp = ft_env_str(&env);
+	envp = ft_env_str(env);
 	ft_executer(cmmarr->cmm[cmmarr->size -1]->whole_line, envp);
 	ft_free_str(envp);
 }
@@ -62,8 +62,10 @@ static void	pipex(t_parse_arr *cmmarr, t_env *env)
 {
 	int	fd[2];
 	int	i;
+	t_env *head;
 
 	i = 0;
+	head = env;
 	while (i < cmmarr->size - 1)
 	{
 		if (pipe(fd) == -1)
@@ -74,20 +76,19 @@ static void	pipex(t_parse_arr *cmmarr, t_env *env)
 	parent_pipe(cmmarr, env);
 }
 
-int	init_pipex(t_parse_arr *cmmarr, t_env *env)
+void	init_pipex(t_parse_arr *cmmarr, t_env *env)
 {
 	int	pid;
-	int	check;
+	int	status;
 
 	pid = fork();
-	check = 0;
+	status = 0;
 	if (pid == -1)
 		ft_error("fork failed");
 	if (!pid)
 		pipex(cmmarr, env);
 	else
-		check = waitpid(pid, NULL, 0);
-	if (!check)
-		return (-1); //failed
-	return (0);
+		waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		globe.g_exit = WEXITSTATUS(status);
 }

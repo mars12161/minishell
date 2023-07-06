@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:42:56 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 17:40:43 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 23:18:51 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    free_shell(t_shell **shell);
 void    free_env(t_env **env);
-void    free_all(t_shell **shell, t_parse_arr *cmmarr, t_env **env);
+void    free_all(t_shell **shell, t_parse_arr *cmmarr);
 
 void    free_shell(t_shell **shell)
 {
@@ -50,7 +50,7 @@ static void free_cmmarr(t_parse_arr *cmmarr)
     i = 0;
     if (!cmmarr)
         return ;
-    while (i < cmmarr->size)
+    while (i <= cmmarr->size)
     {
         if (cmmarr->cmm[i])
             free_parse(cmmarr->cmm[i]);
@@ -75,10 +75,8 @@ void    free_env(t_env **env)
     *env = NULL;
 }
 
-void    free_all(t_shell **shell, t_parse_arr *cmmarr, t_env **env)
+void    free_all(t_shell **shell, t_parse_arr *cmmarr)
 {
     free_shell(shell);
     free_cmmarr(cmmarr);
-    free_env(env);
 }
-

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 18:00:43 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 22:21:18 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_cd_env(char *str, t_env **env)
 	temp = *env;
 	while (temp)
 	{
-		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
+		if (!ft_strcmpn(temp->content, str, ft_strlen(str)))
 		{
 			getcwd(pwd, PATH_SIZE);
 			result = ft_strtrim((char const *)temp->content, (char const *)str);

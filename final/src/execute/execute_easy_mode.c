@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 16:22:58 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/06 22:50:15 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
 void    builtin_exit(t_parse *node, t_env *env);
-int   execute_exit(t_parse_arr *cmmarr, t_env *env);
+int  execute_exit(t_parse_arr *cmmarr, t_env *env);
 
 int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env)
 {
     char **envp;
 
     redir_child(cmmarr->cmm[0]);
-    envp = ft_env_str(&env);
+    envp = ft_env_str(env);
     ft_executer(cmmarr->cmm[0]->whole_line, envp);
     return (0);
 }
@@ -37,19 +37,19 @@ void    builtin_exit(t_parse *node, t_env *env)
         exit(1);
 }
 
-int   execute_exit(t_parse_arr *cmmarr, t_env *env)
+int  execute_exit(t_parse_arr *cmmarr, t_env *env)
 {
     int pid;
-    int check;
+    int status;
 
-	pid = fork();	
+	pid = fork();
+    status = 0;
 	if (pid == 0)
-		return (execute_easy_mode(cmmarr, env));
-	else
-	{
-		check = waitpid(pid, NULL, 0);
-        if (!check)
-            return (-1);
-		return (0);
-	}
+		execute_easy_mode(cmmarr, env);
+    else
+	    waitpid(pid, &status, 0);
+    if (WIFEXITED(status))
+		globe.g_exit = WEXITSTATUS(status);
+    return (globe.g_exit);
+    //exit(globe.g_exit);
 }
