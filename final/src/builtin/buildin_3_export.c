@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:33 by yli               #+#    #+#             */
-/*   Updated: 2023/07/05 23:01:09 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 17:53:37 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,10 @@ int	ft_export(t_parse *node, t_env **env)
 			ft_add_tail_env(env, export);
 		}
 		else if (ft_check_signal_export(node->whole_line[1]) == -1)
-		{
 			ft_error_optimal("not a valid identifier", 1);
-			return (globe.g_exit);
-		}
 		else if (ft_check_signal_export(node->whole_line[1]) == -2)
-		{
 			ft_error_optimal("syntax error near unexpected token", 1);
-			return (globe.g_exit);
-		}
 	}
+	globe.g_exit = 0;
 	return (0);
 }

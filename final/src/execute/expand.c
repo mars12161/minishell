@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 17:44:49 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/06 16:58:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_expand(char *str, t_env **env) //get str without $
 	{
 		if (str[0] == '?')
 			return (ft_itoa(globe.g_exit));
-		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
+			if (!ft_strncmp(temp->content, str, ft_strlen(str)))
 		{
 			path = ft_strtrim(temp->content, str);
 			if (*path != '=')

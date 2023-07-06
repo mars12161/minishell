@@ -6,7 +6,7 @@
 /*   By: yli <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:55 by yli               #+#    #+#             */
-/*   Updated: 2023/06/30 10:52:11 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/06 17:50:36 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,20 @@ int	ft_pwd(t_parse *node)
 	int			fd;
 
 	fd = ft_redirection_out(node);
-	if (getcwd(pwd, PATH_SIZE))
+	if (node->wline_count > 1)
+	{
+		ft_error_optimal("pwd: too many args", 1);
+		return (1);
+	}
+	else if (getcwd(pwd, PATH_SIZE))
 	{
 		ft_putstr_fd(pwd, fd);
 		write(fd, "\n", 1);
 		return (0);
 	}
 	else
+	{
+		globe.g_exit = 0;
 		return (-1);
+	}
 }

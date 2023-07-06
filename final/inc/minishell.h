@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/05 23:15:39 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 17:20:06 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 /* Structs */
 
 //extern int	g_exit;
+
+extern int exitg;
 
 typedef struct	s_global
 {

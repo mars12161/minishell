@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 16:27:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/06 16:28:00 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/06 17:36:37 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc > 1)
 	{
 		ft_error_optimal("Program does not take any arguments\n", 126);
-		//globe.g_exit = 126;
-	 	return (globe.g_exit);
+	 	return (1);
 	}
     check = 0;
 	env = NULL;
@@ -95,5 +94,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free_env(&env);
 	rl_clear_history();
-	return (globe.g_exit);
+	return (0);
 }

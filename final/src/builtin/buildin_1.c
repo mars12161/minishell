@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:25:14 by yli               #+#    #+#             */
-/*   Updated: 2023/07/05 21:11:11 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 17:33:42 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env)
 {
 	if (cmmarr->cmm[0]->redirection_out)
 		ft_redirection_out(cmmarr->cmm[0]);
-	globe.g_exit = exec_builtin(cmmarr->cmm[0], &env);
+	exec_builtin(cmmarr->cmm[0], &env);
 	return (globe.g_exit);
 }
