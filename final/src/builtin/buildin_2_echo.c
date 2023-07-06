@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/05 21:10:59 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 17:52:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ int	ft_echo(t_parse *node, t_env **env)
 		ft_putstr_fd("\n", fd);
 	if (fd != 1)
 		close(fd);
+	globe.g_exit = 0;
 	return (0);
 }

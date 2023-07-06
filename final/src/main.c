@@ -14,7 +14,7 @@ static  int input_loop(t_env *env)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		change_attr(true);
-		return (1);
+		return (-1);
 	}
 	else if (str[0] == '\0')
 	{
@@ -53,8 +53,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc > 1)
 	{
 		ft_error_optimal("Program does not take any arguments\n", 126);
-		//globe.g_exit = 126;
-	 	return (globe.g_exit);
+	 	return (1);
 	}
     check = 0;
 	env = NULL;
@@ -70,5 +69,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free_env(&env);
 	rl_clear_history();
-	return (globe.g_exit);
+	return (0);
 }

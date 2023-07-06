@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/05 23:15:39 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 17:59:53 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 # define PATH_SIZE 4096
 
 /* Structs */
-
-//extern int	g_exit;
 
 typedef struct	s_global
 {
