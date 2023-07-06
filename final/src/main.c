@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 16:27:04 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/06 16:28:00 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 
 t_global globe;
@@ -14,7 +26,7 @@ static  int input_loop(t_env *env)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		change_attr(true);
-		return (1);
+		return (-1);
 	}
 	else if (str[0] == '\0')
 	{
