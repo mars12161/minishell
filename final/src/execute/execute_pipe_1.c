@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/05 22:53:19 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 16:26:54 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 	if (!check_buildin(node->command))
 		builtin_exit(node, env);
 	envp = ft_env_str(&env);
-	printf("%s\n", envp[3]);
-	printf("%s\n", envp[10]);
 	ft_executer(node->whole_line, envp);
 	ft_free_str(envp);
 }

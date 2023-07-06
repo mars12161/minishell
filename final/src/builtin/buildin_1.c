@@ -6,13 +6,11 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 21:25:14 by yli               #+#    #+#             */
-/*   Updated: 2023/07/05 21:11:11 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/06 16:17:56 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-//int	g_exit = 0;
 
 int	check_buildin(char *str);
 int	ft_redirection_out(t_parse *node);

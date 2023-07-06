@@ -36,19 +36,6 @@ static  int input_loop(t_env *env)
 		if (!(check_buildin(cmmarr->cmm[0]->command)))
 			return (buildin_easy_mode(&shell, cmmarr, env));
 		return (execute_exit(cmmarr, env));
-	}	
-	cmmarr = parse_array_create(shell, env);
-	if (!cmmarr) // TODO when only \n in input
-	{
-		free(str);
-		free_shell(&shell);
-		return (1);
-	}
-	if (cmmarr->size == 1)
-	{
-		if (!(check_buildin(cmmarr->cmm[0]->command)))
-			return (buildin_easy_mode(&shell, cmmarr, env));
-		return (execute_easy_mode(cmmarr, env));
 	}
 	init_pipex(cmmarr, env);
 	unlink("heredoc.txt");
