@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 11:46:11 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 13:34:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int	main(int argc, char **argv, char **envp)
 	env = init_env(envp, env);
 	change_attr(false);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sigint_handler);
 	while (42)
 	{
-		signal(SIGINT, sigint_handler);
 		check = input_loop(env);
 		if (check < 0)
 			break ;

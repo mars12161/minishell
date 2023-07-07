@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 11:45:10 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 14:08:46 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	sigint_handler(int sig)
 	{
 		if (!globe.cmd)
 		{
+			if (globe.in_heredoc)
+				globe.stop_heredoc = 1;
 			ft_putstr_fd("\n", STDERR_FILENO);
 			rl_on_new_line();
 			rl_replace_line("", 0);
