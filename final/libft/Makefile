@@ -55,7 +55,8 @@ SRC =		ft_atoi.c \
 			ft_tolower.c \
 			ft_toupper.c \
 			ft_striteri.c \
-			ft_strmapi.c
+			ft_strmapi.c \
+			get_next_line.c
 
 BONUS =		ft_lstnew_bonus.c \
 			ft_lstadd_front_bonus.c \

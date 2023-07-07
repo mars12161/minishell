@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 09:30:42 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 11:47:09 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,22 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	char	*str_expand_check;
 	char	*whole_str;
 
-	whole_str = strdup("");
+	whole_str = ft_strdup("");
 	globe.in_heredoc = 1;
 	while (1)
 	{
-		str = readline("heredoc>");
+		write(1, "heredoc>", 8);
+		str = get_next_line(2);
+		//str = readline("heredoc>");
 		if (!str)
-			continue;
-		if (globe.in_heredoc)
 			break;
 		if (!strcmp(str, delimiter))
 			break;
 		str_expand_check = ft_parse_dollar_frame(str, env);
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
-		free(str);
 	}
+	globe.in_heredoc = 0;
 	return (whole_str);
 }
 

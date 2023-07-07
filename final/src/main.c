@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 09:23:17 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 11:46:11 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static  int input_loop(t_env *env)
 	char		*str;
 
 	str = readline("[minishell:]");
-	change_attr(false);
 	if (!str)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
@@ -69,8 +68,8 @@ int	main(int argc, char **argv, char **envp)
     check = 0;
 	env = NULL;
 	env = init_env(envp, env);
-	signal(SIGQUIT, SIG_IGN);
 	change_attr(false);
+	signal(SIGQUIT, SIG_IGN);
 	while (42)
 	{
 		signal(SIGINT, sigint_handler);

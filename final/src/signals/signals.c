@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 09:07:35 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 11:45:10 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sigint_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		if (!globe.in_heredoc && !globe.cmd)
+		if (!globe.cmd)
 		{
 			ft_putstr_fd("\n", STDERR_FILENO);
 			rl_on_new_line();
@@ -28,17 +28,8 @@ void	sigint_handler(int sig)
 		}
 		else if (!globe.in_heredoc && globe.cmd)
 			return ;
-		else if (globe.in_heredoc && !globe.cmd)
-		{
-			globe.stop_heredoc = 1;
-			ft_putstr_fd("\n", STDERR_FILENO);
-			return ;
-		}
 	}
-	globe.in_heredoc = 0;
-	globe.stop_heredoc = 0;
 }
-
 
 int	change_attr(bool ctrl_chr)
 {
