@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 08:37:52 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 09:23:17 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static  int input_loop(t_env *env)
 
 	str = readline("[minishell:]");
 	change_attr(false);
-	if (!str && !globe.in_heredoc)
+	if (!str)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		change_attr(true);
