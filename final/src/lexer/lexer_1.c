@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 20:11:37 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 20:38:34 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 	int		i;
 	int		j;
 
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
+	new_node = init_shell_node();
 	i = 0;
 	j = 0;
 	while (str[i])
@@ -59,10 +56,7 @@ static char	*new_node_space(char *str, t_shell **shell)
 	int		i;
 	int		space;
 
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
+	new_node = init_shell_node();
 	i = 0;
 	space = 0;
 	while (str[i])

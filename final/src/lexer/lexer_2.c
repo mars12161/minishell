@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:54 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 17:56:55 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 20:39:25 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ char	*new_node_env(char *str, t_shell **shell, t_env **env)
 	int		i;
 	int		j;
 
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
+	new_node = init_shell_node();
 	i = 0;
 	j = 0;
 	while (str[i])
@@ -60,10 +57,7 @@ char	*new_node_pipe(char *str, t_shell **shell)
 {
 	t_shell	*new_node;
 
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
+	new_node = init_shell_node();
 	new_node->input = ft_substr((char const *)str, 0, 1);
 	str += 1;
 	new_node->len = ft_strlen(new_node->input);
@@ -77,7 +71,7 @@ char	*new_node_red_2(char *str, t_shell **shell, int c)
 	int		i;
 	int		flag;
 
-	new_node = NULL;
+	new_node = init_shell_node();
 	i = 0;
 	flag = 0;
 	while (str[i])
@@ -86,9 +80,6 @@ char	*new_node_red_2(char *str, t_shell **shell, int c)
 			flag++;
 		i++;
 	}
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
 	new_node->input = ft_substr((char const *)str, 0, flag);
 	str += flag;
 	new_node->len = ft_strlen(new_node->input);
@@ -105,7 +96,7 @@ char	*new_node_red(char *str, t_shell **shell, int c)
 	int		i;
 	int		flag;
 
-	new_node = NULL;
+	new_node = init_shell_node();
 	i = 0;
 	flag = 0;
 	while (str[i])
@@ -120,9 +111,6 @@ char	*new_node_red(char *str, t_shell **shell, int c)
 		return (new_node_red_2(str, shell, c));
 	else if (flag > 2)
 		return ("error");
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
 	new_node->input = ft_substr((char const *)str, 0, 1);
 	str += 1;
 	new_node->len = ft_strlen(new_node->input);

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:52:20 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 19:53:00 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 20:39:55 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 	char	*result;
 	int		i;
 
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
+	new_node = init_shell_node();
 	i = 1;
 	while (str[i])
 	{
@@ -58,10 +55,7 @@ char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 // 	char	*result;
 // 	int		i;
 
-// 	new_node = NULL;
-// 	new_node = (t_shell *)malloc(sizeof(t_shell));
-// 	if (!new_node)
-// 		return (NULL);
+	// new_node = init_shell_node();
 // 	i = 1;
 // 	while (str[i])
 // 	{
@@ -92,10 +86,7 @@ char	*new_node_sq(char *str, t_shell **shell, t_env **env)
 	t_shell	*new_node;
 	int		i;
 
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
+	new_node = init_shell_node();
 	i = 1;
 	while (str[i])
 	{
