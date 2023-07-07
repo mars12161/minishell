@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/07 08:37:52 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/minishell.h"
 
 t_global globe;
@@ -10,7 +22,7 @@ static  int input_loop(t_env *env)
 
 	str = readline("[minishell:]");
 	change_attr(false);
-	if (!str)
+	if (!str && !globe.in_heredoc)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		change_attr(true);
@@ -23,7 +35,6 @@ static  int input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
-	//print_shell(shell);
     cmmarr = parse_array_create(shell, env);
     if (!cmmarr)
     {

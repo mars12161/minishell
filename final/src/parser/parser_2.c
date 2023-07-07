@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 22:09:35 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 08:46:20 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,17 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	globe.in_heredoc = 1;
 	while (1)
 	{
+		str = readline("heredoc>");
 		if (globe.stop_heredoc)
 			break;
-		str = readline("heredoc>");
 		if (!strcmp(str, delimiter))
-			break ;
+			break;
 		str_expand_check = ft_parse_dollar_frame(str, env);
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
+		free(str);
 	}
-	if (globe.stop_heredoc)
-		return (NULL);
+	globe.stop_heredoc = 0;
 	globe.in_heredoc = 0;
 	return (whole_str);
 }
@@ -133,4 +133,22 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		free(heredoc);
 		cmm->redirection_in = 2;
 	}
+}
+
+void	parse_redir_in(t_parse *cmm, t_shell *temp)
+{
+	if (temp->input)
+	{
+		if (cmm->redirection_in == 0)
+		{
+			check_infile(temp->next->input);
+			cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
+		}
+		else
+		{
+			free(cmm->infilepath);
+			cmm->infilepath = ft_strdup(check_input(temp));
+		}
+	}
+	cmm->redirection_in = 1;
 }

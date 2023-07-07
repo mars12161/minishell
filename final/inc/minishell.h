@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/06 22:20:42 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 08:33:10 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_global
 	int	in_heredoc;
 	int g_exit;
 	int stop_heredoc;
+	int	cmd;
 }	t_global;
 
 extern t_global globe;
@@ -171,13 +172,13 @@ int			check_buildin(char *str);
 int			exec_builtin(t_parse *node, t_env **env);
 int			ft_redirection_out(t_parse *node);
 int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env);
-int	ft_strcmpn(char *str1, char *str2, int size);
+int			ft_strcmpn(char *str1, char *str2, int size);
 int			ft_echo(t_parse *node, t_env **env);
 int			ft_export(t_parse *node, t_env **env);
 int			ft_cd(t_parse *node, t_env **env);
 int			ft_exit(t_parse *node);
 int			ft_pwd(t_parse *node);
-void	ft_unset_core(char *str, t_env **env);
+void		ft_unset_core(char *str, t_env **env);
 int			ft_unset(t_parse *node, t_env **env);
 int			ft_env(t_parse *node, t_env **env);
 
@@ -187,12 +188,13 @@ void    ft_error_optimal(char *str, int exit);
 
 /* Signals */
 void		sigint_handler(int sig);
+void		sigint_heredoc(int sig);
 int			change_attr(bool ctrl_chr);
 
 /*	Execute Easy Mode*/
-int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
-void    builtin_exit(t_parse *node, t_env *env);
-int  execute_exit(t_parse_arr *cmmarr, t_env *env);
+int			execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
+void		builtin_exit(t_parse *node, t_env *env);
+int			execute_exit(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 1 */
 void	init_pipex(t_parse_arr *cmmarr, t_env *env);

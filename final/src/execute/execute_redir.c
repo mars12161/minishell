@@ -54,8 +54,6 @@ static void	execute_outfile_dup2(t_parse *node)
 
 void	redir_child(t_parse *node)
 {
-	int	fd_in;
-
 	if (node->redirection_in)
 		execute_infile_dup2(node);
 	if (node->redirection_out)

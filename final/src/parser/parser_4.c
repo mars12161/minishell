@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 22:02:41 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 22:08:45 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 08:11:47 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int ft_count_args(char **str)
     return (count);
 }
 
+/*
 void	parse_redir_in(t_parse *cmm, t_shell *temp)
 {
 	if (temp->input)
@@ -90,4 +91,4 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp)
 		}
 	}
 	cmm->redirection_in = 1;
-}
+}*/
