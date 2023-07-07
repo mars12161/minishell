@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 09:48:33 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 16:14:16 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_env
 void		print_parse(t_parse	*head);
 void		print_shell(t_shell *s);
 void		print_parse_arr(t_parse_arr	*head);
+void	print_env(t_env **env);
 
 /* Lexer 1 */
 char		*new_node_word(char *str, t_shell **shell, t_env **env);
@@ -161,7 +162,7 @@ char		**ft_env_str(t_env *env);
 /* Free 1 */
 void    free_shell(t_shell **shell);
 void    free_env(t_env **env);
-void    free_all(t_shell **shell, t_parse_arr *cmmarr);
+void    free_all_in_loop(t_shell **shell, t_parse_arr *cmmarr, char *str);
 
 /* Free 2 */
 void ft_free_3str(char *str1, char *str2, char *str3);
@@ -171,7 +172,7 @@ void    ft_free_str(char **str);
 int			check_buildin(char *str);
 int			exec_builtin(t_parse *node, t_env **env);
 int			ft_redirection_out(t_parse *node);
-int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env);
+int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env, char *str);
 int			ft_strcmpn(char *str1, char *str2, int size);
 int			ft_echo(t_parse *node, t_env **env);
 int			ft_export(t_parse *node, t_env **env);
@@ -194,7 +195,7 @@ int			change_attr(bool ctrl_chr);
 /*	Execute Easy Mode*/
 int			execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
 void		builtin_exit(t_parse *node, t_env *env);
-int			execute_exit(t_parse_arr *cmmarr, t_env *env);
+int  execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str);
 
 /* Execute Pipe 1 */
 void	init_pipex(t_parse_arr *cmmarr, t_env *env);

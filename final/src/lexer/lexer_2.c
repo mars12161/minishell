@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:54 by yli               #+#    #+#             */
-/*   Updated: 2023/07/03 16:36:25 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 17:56:55 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*new_node_env(char *str, t_shell **shell, t_env **env)
 		i++;
 	}
 	path = ft_substr((char const *)str, 0, j);
-	result = ft_parse_dollar_frame(str, *env);
+	result = ft_parse_dollar_frame(path, *env);
 	new_node->input = result;
 	free(path);
 	str += j;

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 17:52:23 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 17:33:48 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void	echo_output(t_parse *node, int i, int fd, t_env **env)
 			ft_echo_home(env);
 		else
 		{
+			//printf("i in echo output: %d\n", i);
 			ft_putstr_fd(node->whole_line[i], fd);
 			if (i == node->wline_count - 1)
 				break ;

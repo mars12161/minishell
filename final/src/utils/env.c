@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 21:23:01 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 17:11:46 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_env *new_node_ENV(char *str)
     new_node = (t_env *)malloc(sizeof(t_env));
     if (!new_node)
         return (NULL);
-    new_node->content = str;
+    new_node->content = ft_strdup(str);
     new_node->next = 0;
     return (new_node);
 }

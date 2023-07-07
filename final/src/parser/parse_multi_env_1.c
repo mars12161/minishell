@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 23:08:15 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 20:04:46 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c)
 	}
 	path = ft_expand(str2, &env);
 	result = ft_check_strjoin(path, str3);
+    //printf("result in parse dollar core utils: %s\n", result);
     ft_free_3str(str3, str2, path);
 	return (result);
 }
@@ -69,7 +70,10 @@ static char *check_expand_path_space(char *str, t_env *env)
     dollar = ft_count_size(str, 36);
     result = NULL;
     if (str[1] == '?')
+    {
         result = ft_parse_dollar_core_utils(str, env, '?');
+        return (result);
+    }
     if (!space && !dollar)
         result = check_path_valid(str, env, -1);
     else if (!dollar && space)
@@ -78,6 +82,7 @@ static char *check_expand_path_space(char *str, t_env *env)
         result = check_path_valid(str, env, 32);
     else
         result = check_path_valid(str, env, 36);
+    //printf("result in check expand path space: %s\n", result);
     return (result);   
 }
 
@@ -95,6 +100,7 @@ static char *ft_parse_dollar_core(char *str, t_env *env)
         str1 = ft_substr((char const *)str, 0, ft_count_size(str, 36));
         str2 = ft_substr((char const *)str, ft_count_size(str, 36), ft_strlen((char *)(str)) - ft_count_size(str, 36));
         path = check_expand_path_space(str2, env);
+        //printf("path in parse dollar core: %s\n", path);
         result = ft_check_strjoin(str1, path);
         ft_free_3str(str1, str2, path);
     }
@@ -111,9 +117,13 @@ char *ft_parse_dollar_frame(char *str, t_env *env)
     {
         result = ft_parse_dollar_core(str, env);
         if (!result)
-            return (NULL);        
+        {
+            free(str);
+            return (NULL);
+        }
     }
     if (check_dollar(result, 36))
         result = ft_parse_dollar_frame(result, env);
+    free(str);
     return(result);
 }

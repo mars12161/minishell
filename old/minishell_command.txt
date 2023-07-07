@@ -158,5 +158,23 @@ yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo 422$?4
 42204
 
 
+[minishell:]echo "123""456"
+123 456
+[minishell:]echo '123'"456"
+123 456
+[minishell:]echo '123''456'
+123 456
+[minishell:]echo ""123""456
+ 123""456
+should be: 123456
+
+yli@c4b4c3:~$ echo "123""456"
+123456
+yli@c4b4c3:~$ echo ""123""456
+123456
+
+[minishell:]echo  -nnan"$USER  c $?$HOME" ab
+-nnan"yli c 0 ab
+
 
 

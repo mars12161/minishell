@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 13:34:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/07 17:55:58 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ static  int input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
+	//print_shell(shell);
     cmmarr = parse_array_create(shell, env);
+	//print_parse_arr(cmmarr);
     if (!cmmarr)
     {
         free(str);
@@ -44,13 +46,12 @@ static  int input_loop(t_env *env)
     if (cmmarr->size == 1)
 	{
 		if (!(check_buildin(cmmarr->cmm[0]->command)))
-			return (buildin_easy_mode(&shell, cmmarr, env));
-		return (execute_exit(cmmarr, env));
+			return (buildin_easy_mode(&shell, cmmarr, env, str));
+		return (execute_exit(shell, cmmarr, env, str));
 	}
 	init_pipex(cmmarr, env);
 	unlink("heredoc.txt");
-	free_all(&shell, cmmarr);
-	free(str);
+	free_all_in_loop(&shell, cmmarr, str);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:03:49 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/06 21:45:47 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 17:12:13 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ char	*ft_strtrim(const char *s1, const char *set)
 	if (!ret)
 		return (NULL);
 	i = 0;
-	while (start < end)
+	while (start <= end)
 		ret[i++] = s1[start++];
 	ret[i] = '\0';
 	return (ret);
 }
-
 /*
 #include <stdio.h>
 
@@ -58,6 +57,6 @@ int	main()
 // #include <stdio.h>
 // int	main()
 // {
-// 	char *str = "aa=1";
+// 	char *str = "=ls";
 // 	printf("%s\n", ft_strtrim(str, "="));
 // }

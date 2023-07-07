@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:33 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 21:56:20 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/07 16:16:02 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,13 @@ int	ft_export(t_parse *node, t_env **env)
 	{
 		while (i < node->wline_count)
 		{
+			//printf("in export: %s\n", node->whole_line[i]);
 			ft_export_name_check(node->whole_line[i], *env);
 			if (!ft_check_signal_export(node->whole_line[i]))
 			{
 				export = new_node_ENV(node->whole_line[i]);
 				ft_add_tail_env(env, export);
+				//printf ("in ft_export: %s\n", export->content);
 			}
 			else if (ft_check_signal_export(node->whole_line[i]) == -1)
 				ft_error_optimal("not a valid identifier", 1);
@@ -115,5 +117,5 @@ int	ft_export(t_parse *node, t_env **env)
 		}
 	}
 	globe.g_exit = 0;
-	return (0);
+	return (globe.g_exit);
 }
