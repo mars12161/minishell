@@ -6,14 +6,14 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 21:37:24 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/08 14:31:18 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 void	ft_unset_core(char *str, t_env **env);
-int	ft_unset(t_parse *node, t_env **env);
+int		ft_unset(t_parse *node, t_env **env);
 
 static void	del_node(t_env **env, t_env *node)
 {
@@ -68,4 +68,3 @@ int	ft_unset(t_parse *node, t_env **env)
 	}
 	return (0);
 }
-

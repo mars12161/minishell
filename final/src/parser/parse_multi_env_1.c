@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 20:04:46 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/08 14:19:56 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c)
 
 static char	*check_path_valid(char *str, t_env *env, int c) //get $USERsdfsd return $USER and s
 {
-	int	i;
-    char *result;
+	size_t	i;
 
     i = 1;
     if (c == -1)
@@ -100,7 +99,6 @@ static char *ft_parse_dollar_core(char *str, t_env *env)
         str1 = ft_substr((char const *)str, 0, ft_count_size(str, 36));
         str2 = ft_substr((char const *)str, ft_count_size(str, 36), ft_strlen((char *)(str)) - ft_count_size(str, 36));
         path = check_expand_path_space(str2, env);
-        //printf("path in parse dollar core: %s\n", path);
         result = ft_check_strjoin(str1, path);
         ft_free_3str(str1, str2, path);
     }
@@ -113,8 +111,8 @@ char *ft_parse_dollar_frame(char *str, t_env *env)
 
     if (!check_dollar(str, 36))
         return (str);
-    else if (check_dollar(str, 36))
-    {
+    else
+	{
         result = ft_parse_dollar_core(str, env);
         if (!result)
         {

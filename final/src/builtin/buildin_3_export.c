@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:33 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 16:16:02 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/08 14:23:11 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ static int	ft_check_signal_export(char *str)
 	return (0);
 }
 
-static char *ft_str_trim_vor(char *wstr, int i)
+static char	*ft_str_trim_vor(char *wstr, int i)
 {
-	char *str;
-	int	n;
+	char	*str;
+	int		n;
 
 	str = malloc(sizeof(char) * (i + 1));
-	str[i] = 0;
 	if (!str)
 		return (NULL);
+	str[i] = 0;
 	n = 0;
-	while(n < i)
+	while (n < i)
 	{
 		str[n] = wstr[n];
 		n++;
@@ -75,8 +75,8 @@ static char *ft_str_trim_vor(char *wstr, int i)
 
 static void	ft_export_name_check(char *str, t_env *env)
 {
-	int	i;
-	char *name;
+	int		i;
+	char	*name;
 
 	i = ft_count_size(str, '=');
 	if (i == 0)
@@ -89,7 +89,7 @@ static void	ft_export_name_check(char *str, t_env *env)
 int	ft_export(t_parse *node, t_env **env)
 {
 	t_env	*export;
-	int	i;
+	int		i;
 
 	export = NULL;
 	i = 1;
@@ -101,13 +101,11 @@ int	ft_export(t_parse *node, t_env **env)
 	{
 		while (i < node->wline_count)
 		{
-			//printf("in export: %s\n", node->whole_line[i]);
 			ft_export_name_check(node->whole_line[i], *env);
 			if (!ft_check_signal_export(node->whole_line[i]))
 			{
 				export = new_node_ENV(node->whole_line[i]);
 				ft_add_tail_env(env, export);
-				//printf ("in ft_export: %s\n", export->content);
 			}
 			else if (ft_check_signal_export(node->whole_line[i]) == -1)
 				ft_error_optimal("not a valid identifier", 1);
@@ -116,6 +114,6 @@ int	ft_export(t_parse *node, t_env **env)
 			i++;
 		}
 	}
-	globe.g_exit = 0;
-	return (globe.g_exit);
+	g_globe.g_exit = 0;
+	return (g_globe.g_exit);
 }

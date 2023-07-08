@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:50:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 13:51:13 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/08 14:05:01 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	execute_outfile_dup2(t_parse *node)
 {
 	int	fd_out;
 
+	fd_out = 0;
 	if (node->redirection_out == 1)
 		fd_out = open(node->outfilepath, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	else if (node->redirection_out == 2)

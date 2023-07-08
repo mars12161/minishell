@@ -24,7 +24,7 @@ char	*ft_expand(char *str, t_env **env)
 	while (temp)
 	{
 		if (str[0] == '?')
-			return (ft_itoa(globe.g_exit));
+			return (ft_itoa(g_globe.g_exit));
 		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
 		{
 			path = ft_strtrim(temp->content, str);

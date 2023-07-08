@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:33:26 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 17:34:21 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/08 14:36:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_shell(t_shell *s)
 	}
 	while (temp)
 	{
-		printf("input: %s len: %i type: %i\n", temp->input, temp->len, temp->type);
+		printf("input:%s len:%i type:%i\n", temp->input, temp->len, temp->type);
 		temp = temp->next;
 	}
 	printf("=========\n\n");
@@ -44,8 +44,6 @@ void	print_parse(t_parse	*head)
 		printf("command: %s\n", head->command);
 		printf("whole_line[0]: %s\n", head->whole_line[0]);
 		printf("whole_line[1]: %s\n", head->whole_line[1]);
-		// printf("whole_line[2]: %s\n", head->whole_line[2]);
-		// printf("whole_line[3]: %s\n", head->whole_line[3]);
 		printf("wline: %d\n", head->wline_count);
 		printf("redirection_in: %d\n", head->redirection_in);
 		printf("redirection_out: %d\n", head->redirection_out);
@@ -95,5 +93,3 @@ void	print_env(t_env **env)
 	}
 	printf("=========\n\n");
 }
-
-

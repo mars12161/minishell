@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 15:06:25 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 11:48:01 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/08 13:13:50 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static char	*ft_makeremainder(int fd, char *remainder)
 	while (!ft_strchr(remainder, '\n') && bytes)
 	{
 		bytes = read(fd, buff, BUFFER_SIZE);
+		if (!bytes)
+			return (NULL);
 		if (bytes == -1)
 		{
 			free(remainder);

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 07:57:26 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/08 15:12:47 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_cd_env(char *str, t_env **env)
 	temp = *env;
 	while (temp)
 	{
-		if (!ft_strcmpn(temp->content, str, ft_strlen(str)))
+		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
 		{
 			getcwd(pwd, PATH_SIZE);
 			result = ft_strtrim((char const *)temp->content, (char const *)str);
@@ -54,10 +54,10 @@ static int	ft_cd_env(char *str, t_env **env)
 		}
 		temp = temp->next;
 	}
-	if (!homefound && !strncmp(str, "HOME=", ft_strlen(str)))
+	if (!homefound && !ft_strncmp(str, "HOME=", ft_strlen(str)))
 		ft_error_optimal("HOME not set", 1);
 	else
-		globe.g_exit = 0;
+		g_globe.g_exit = 0;
 	return (0);
 }
 
@@ -74,7 +74,8 @@ static int	ft_split_homepath(t_parse *node, t_env **env)
 	result = ft_strtrim(node->whole_line[1], "~");
 	while (temp)
 	{
-		if (!strncmp(temp->content, "HOME=", 5)) {
+		if (!ft_strncmp(temp->content, "HOME=", 5))
+		{
 			getcwd(pwd, PATH_SIZE);
 			ft_replace_oldpwd(pwd, *env);
 			homepath = ft_strtrim((char const *) temp->content, "HOME=");
@@ -96,7 +97,7 @@ static int	ft_change_dir(t_parse *node, t_env **env)
 	if (chdir(node->whole_line[1]) == -1)
 		ft_error_optimal("cd: no such file or directory", 1);
 	else
-		globe.g_exit = 0;
+		g_globe.g_exit = 0;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 13:42:42 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/08 13:41:36 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*check_input(t_shell *temp)
 	{
 		printf("syntax error near unexpected token `newline'");
 		// free everything todo
-		globe.g_exit = 2;
+		g_globe.g_exit = 2;
 		return (NULL);
 	}
 }
@@ -89,12 +89,12 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	char	*whole_str;
 
 	whole_str = ft_strdup("");
-	globe.in_heredoc = 1;
-	while (!globe.stop_heredoc)
+	g_globe.in_heredoc = 1;
+	while (!g_globe.stop_heredoc)
+	//while (1)
 	{
 		write(1, "heredoc>", 8);
 		str = get_next_line(0);
-		//str = readline("heredoc>");
 		if (!str)
 		{
 			ft_putstr_fd("\n", STDERR_FILENO);
@@ -106,8 +106,8 @@ char	*read_heredoc(t_env *env, char *delimiter)
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
 	}
-	globe.stop_heredoc = 0;
-	globe.in_heredoc = 0;
+	g_globe.stop_heredoc = 0;
+	g_globe.in_heredoc = 0;
 	return (whole_str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 20:37:27 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/08 14:02:08 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_global
 	int	cmd;
 }	t_global;
 
-extern t_global globe;
+extern t_global g_globe;
 
 
 enum e_token
@@ -204,7 +204,6 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env);
 /* Execute Pipe 2 */
 char		*str_ncpy(char *str, int n);
 char		*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
-static char	*get_path(char *cmd, char **envp);
 void		ft_executer(char **whole_line, char **env);
 
 /* Execute Redir */

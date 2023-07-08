@@ -6,13 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 17:55:58 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/08 10:53:47 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-t_global globe;
+t_global g_globe;
 
 static  int input_loop(t_env *env)
 {
@@ -24,7 +24,7 @@ static  int input_loop(t_env *env)
 	if (!str)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
-		change_attr(true);
+		//change_attr(true);
 		return (-1);
 	}
 	else if (str[0] == '\0')
@@ -69,7 +69,7 @@ int	main(int argc, char **argv, char **envp)
     check = 0;
 	env = NULL;
 	env = init_env(envp, env);
-	change_attr(false);
+	//change_attr(false);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sigint_handler);
 	while (42)
@@ -80,5 +80,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free_env(&env);
 	rl_clear_history();
-	return (globe.g_exit);
+	return (g_globe.g_exit);
 }

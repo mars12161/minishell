@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 17:33:48 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/08 14:03:15 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	ft_echo_home(t_env **env)
 	char	*home;
 	t_env	*tmp;
 
+	home = NULL;
 	tmp = *env;
 	while (tmp)
 	{
@@ -107,6 +108,6 @@ int	ft_echo(t_parse *node, t_env **env)
 		ft_putstr_fd("\n", fd);
 	if (fd != 1)
 		close(fd);
-	globe.g_exit = 0;
+	g_globe.g_exit = 0;
 	return (0);
 }

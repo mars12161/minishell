@@ -90,5 +90,5 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env)
 	else
 		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		globe.g_exit = WEXITSTATUS(status);
+		g_globe.g_exit = WEXITSTATUS(status);
 }

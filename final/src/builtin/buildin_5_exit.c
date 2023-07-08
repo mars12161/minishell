@@ -47,14 +47,14 @@ int	ft_exit(t_parse *node)
 {
 	if (node->wline_count == 2)
 	{
-		globe.g_exit = ft_atoi_exit(node->whole_line[1]);
+		g_globe.g_exit = ft_atoi_exit(node->whole_line[1]);
 		printf("exit\n");
-		exit (globe.g_exit);
+		exit (g_globe.g_exit);
 	}
 	else if (node->wline_count >= 3)
 	{
 		ft_error_optimal("too many arguments", 1);
-		return (globe.g_exit);
+		return (g_globe.g_exit);
 	}
 	printf("exit\n");
 	exit(0);

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   buildin_1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/08 13:48:44 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/08 14:30:29 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 int	check_buildin(char *str);
 int	ft_redirection_out(t_parse *node);
-int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env, char *str);
+int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, 
+		t_env *env, char *str);
 int	ft_strcmpn(char *str1, char *str2, int size);
 
 int	check_buildin(char *str)
@@ -41,7 +53,7 @@ int	ft_strcmpn(char *str1, char *str2, int size)
 	if (i != size)
 		return (1);
 	i = 0;
-	while(str1[i] && str2[i])
+	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i])
 			return (1);
@@ -52,7 +64,7 @@ int	ft_strcmpn(char *str1, char *str2, int size)
 
 int	exec_builtin(t_parse *node, t_env **env)
 {
-	if (!ft_strcmpn(node->command, "echo", 4)) //strcmp
+	if (!ft_strcmpn(node->command, "echo", 4))
 		return (ft_echo(node, env));
 	else if (!ft_strcmpn(node->command, "cd", 2))
 		return (ft_cd(node, env));
@@ -74,15 +86,12 @@ int	exec_builtin(t_parse *node, t_env **env)
  * 	free_all(shell, cmarr->cmm[0], &env)
  *
  */
-int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env, char *str)
+int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, 
+		t_env *env, char *str)
 {
 	if (cmmarr->cmm[0]->redirection_out)
 		ft_redirection_out(cmmarr->cmm[0]);
-	// printf("start in buildin_easy_mode\n");
-	// 		print_env(&env);
 	exec_builtin(cmmarr->cmm[0], &env);
-	// printf("end in buildin_easy_mode\n");
-	// print_env(&env);
 	free_all_in_loop(shell, cmmarr, str);
-	return (globe.g_exit);
+	return (g_globe.g_exit);
 }

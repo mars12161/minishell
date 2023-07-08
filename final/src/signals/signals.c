@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 14:08:46 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/08 13:40:38 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ void	sigint_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		if (!globe.cmd)
+		if (!g_globe.cmd)
 		{
-			if (globe.in_heredoc)
-				globe.stop_heredoc = 1;
+			if (g_globe.in_heredoc)
+				g_globe.stop_heredoc = 1;
 			ft_putstr_fd("\n", STDERR_FILENO);
 			rl_on_new_line();
 			rl_replace_line("", 0);
 			rl_redisplay();
 		}
-		else if (!globe.in_heredoc && globe.cmd)
+		else if (!g_globe.in_heredoc && g_globe.cmd)
 			return ;
 	}
 }
 
-int	change_attr(bool ctrl_chr)
+/*int	change_attr(bool ctrl_chr)
 {
 	struct termios	termios_p;
 	int				attr;
@@ -49,4 +49,4 @@ int	change_attr(bool ctrl_chr)
 	if (attr == -1)
 		return (-1);
 	return (0);
-}
+}*/
