@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/08 14:02:08 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/08 15:23:06 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,15 @@
 
 /* Structs */
 
-typedef struct	s_global
+typedef struct s_global
 {
 	int	in_heredoc;
-	int g_exit;
-	int stop_heredoc;
+	int	g_exit;
+	int	stop_heredoc;
 	int	cmd;
-}	t_global;
+}				t_global;
 
-extern t_global g_globe;
-
+extern t_global	g_globe;
 
 enum e_token
 {
@@ -90,7 +89,7 @@ typedef struct s_parse_arr
 typedef struct s_env
 {
 	char			*content;
-	int	size;
+	int				size;
 	struct s_env	*next;
 }	t_env;
 
@@ -98,7 +97,7 @@ typedef struct s_env
 void		print_parse(t_parse	*head);
 void		print_shell(t_shell *s);
 void		print_parse_arr(t_parse_arr	*head);
-void	print_env(t_env **env);
+void		print_env(t_env **env);
 
 /* Lexer 1 */
 char		*new_node_word(char *str, t_shell **shell, t_env **env);
@@ -117,18 +116,18 @@ char		*new_node_sq(char *str, t_shell **shell, t_env **env);
 /* Lexer 4 */
 int			check_word_or_path(t_shell *shell);
 void		ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
-t_shell *init_shell_node(void);
+t_shell		*init_shell_node(void);
 
 /* Parser 1 */
-t_parse_arr *parse_array_create(t_shell *head,t_env *env);
-t_parse	*parse_shell(t_shell *head, t_env *env);
+t_parse_arr	*parse_array_create(t_shell *head, t_env *env);
+t_parse		*parse_shell(t_shell *head, t_env *env);
 
 /* Parser 2 */
-char	*check_input(t_shell *temp);
-void	parse_redir_out(t_parse *cmm, t_shell *temp);
-void	parse_redir_out_app(t_parse *cmm, t_shell *temp);
-char	*read_heredoc(t_env *env, char *delimiter);
-void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
+char		*check_input(t_shell *temp);
+void		parse_redir_out(t_parse *cmm, t_shell *temp);
+void		parse_redir_out_app(t_parse *cmm, t_shell *temp);
+char		*read_heredoc(t_env *env, char *delimiter);
+void		parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 
 /* Parser 3 */
 void		check_infile(char *infilepath);
@@ -136,10 +135,10 @@ int			args_count(t_shell *head);
 int			get_size_cmmarr(t_shell *head);
 
 /* Parser 4 */
-t_parse *parse_init(void);
-char	**ft_shell_whole_line(t_shell *head);
-int ft_count_args(char **str);
-void	parse_redir_in(t_parse *cmm, t_shell *temp);
+t_parse		*parse_init(void);
+char		**ft_shell_whole_line(t_shell *head);
+int			ft_count_args(char **str);
+void		parse_redir_in(t_parse *cmm, t_shell *temp);
 
 /* Parse Multi Env 1 */
 char		*ft_parse_dollar_frame(char *str, t_env *env);
@@ -151,7 +150,7 @@ char		*ft_check_strjoin(char *s1, char *s2);
 int			check_path_char(int c);
 
 /* Expand */
-char	*ft_expand(char *str, t_env **env);
+char		*ft_expand(char *str, t_env **env);
 //char *ft_expand_valid_check(char *str, t_env **env);
 
 /* Env */
@@ -161,19 +160,20 @@ t_env		*init_env(char **envp, t_env *env);
 char		**ft_env_str(t_env *env);
 
 /* Free 1 */
-void    free_shell(t_shell **shell);
-void    free_env(t_env **env);
-void    free_all_in_loop(t_shell **shell, t_parse_arr *cmmarr, char *str);
+void		free_shell(t_shell **shell);
+void		free_env(t_env **env);
+void		free_all_in_loop(t_shell **shell, t_parse_arr *cmmarr, char *str);
 
 /* Free 2 */
-void ft_free_3str(char *str1, char *str2, char *str3);
-void    ft_free_str(char **str);
+void		ft_free_3str(char *str1, char *str2, char *str3);
+void		ft_free_str(char **str);
 
 /* Builtins */
 int			check_buildin(char *str);
 int			exec_builtin(t_parse *node, t_env **env);
 int			ft_redirection_out(t_parse *node);
-int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, t_env *env, char *str);
+int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr,
+				t_env *env, char *str);
 int			ft_strcmpn(char *str1, char *str2, int size);
 int			ft_echo(t_parse *node, t_env **env);
 int			ft_export(t_parse *node, t_env **env);
@@ -185,21 +185,21 @@ int			ft_unset(t_parse *node, t_env **env);
 int			ft_env(t_parse *node, t_env **env);
 
 /* Error */
-void    ft_error(char *str);
-void    ft_error_optimal(char *str, int exit);
+void		ft_error(char *str);
+void		ft_error_optimal(char *str, int exit);
 
 /* Signals */
 void		sigint_handler(int sig);
-void		sigint_heredoc(int sig);
 int			change_attr(bool ctrl_chr);
 
 /*	Execute Easy Mode*/
 int			execute_easy_mode(t_parse_arr *cmmarr, t_env *env);
 void		builtin_exit(t_parse *node, t_env *env);
-int  execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str);
+int			execute_exit(t_shell *shell, t_parse_arr *cmmarr,
+				t_env *env, char *str);
 
 /* Execute Pipe 1 */
-void	init_pipex(t_parse_arr *cmmarr, t_env *env);
+void		init_pipex(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 2 */
 char		*str_ncpy(char *str, int n);
