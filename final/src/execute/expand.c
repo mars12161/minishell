@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 17:12:29 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/09 11:51:52 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*ft_expand(char *str, t_env **env)
 	}
 	return (NULL);
 }
-
 
 // char	*ft_expand(char *str, t_env **env)
 // {

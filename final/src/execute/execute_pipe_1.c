@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 21:24:03 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/09 11:51:32 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env);
 
 static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 {
-	char **envp;
+	char	**envp;
 
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		ft_error("dup2 failed");
-	redir_child(node); //check
+	redir_child(node);
 	close(fd[0]);
 	if (!check_buildin(node->command))
 		builtin_exit(node, env);
@@ -37,7 +37,7 @@ static void	child_pipe_frame(int *fd, t_parse *node, t_env *env)
 	if (pid == -1)
 		ft_error("fork failed");
 	if (pid == 0)
-		child_pipe_core(fd, node, env);	
+		child_pipe_core(fd, node, env);
 	else
 	{
 		if (dup2(fd[0], STDIN_FILENO) == -1)
@@ -62,10 +62,9 @@ static void	pipex(t_parse_arr *cmmarr, t_env *env)
 {
 	int	fd[2];
 	int	i;
-	t_env *head;
 
+	(void)env;
 	i = 0;
-	head = env;
 	while (i < cmmarr->size - 1)
 	{
 		if (pipe(fd) == -1)

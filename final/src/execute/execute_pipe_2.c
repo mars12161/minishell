@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 12:11:50 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 11:57:12 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,36 +81,35 @@ static char	*get_path(char *cmd, char **envp)
 
 	i = 0;
 	path = split_path(envp);
-    if (!path[0])
-        return (NULL);
-    while (path[i])
-    {
-        result = ft_strjoin_path_cmd(path[i], '/', cmd);
-        if (access(result, F_OK) != -1)
+	if (!path[0])
+		return (NULL);
+	while (path[i])
+	{
+		result = ft_strjoin_path_cmd(path[i], '/', cmd);
+		if (access(result, F_OK) != -1)
 		{
 			ft_free_str(path);
 			return (result);
 		}
 		free(result);
 		i++;
-    }
+	}
 	ft_free_str(path);
-    return (cmd);
+	return (cmd);
 }
 
 void	ft_executer(char **whole_line, char **envp)
 {
-    char *path;
+	char	*path;
 
-	//printf("%s\n", whole_line[0]);
-    if (!access(whole_line[0], F_OK))
+	if (!access(whole_line[0], F_OK))
 		path = whole_line[0];
-    else
+	else
 		path = get_path(whole_line[0], envp);
 	g_globe.cmd = 1;
-    execve(path, whole_line, envp);
+	execve(path, whole_line, envp);
 	g_globe.cmd = 0;
 	free(path);
-    ft_error_optimal("command not found", 127);
+	ft_error_optimal("command not found", 127);
 	exit(g_globe.g_exit);
 }

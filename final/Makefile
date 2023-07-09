@@ -1,6 +1,5 @@
 NAME = minishell
 CFLAGS = -g3 -Wall -Wextra -Werror -lreadline
-#CFLAGS = -g3 -lreadline
 CC = cc
 RM = rm -rf
 
