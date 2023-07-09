@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/07/09 11:57:12 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 14:00:20 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,7 @@ void	ft_executer(char **whole_line, char **envp)
 		path = whole_line[0];
 	else
 		path = get_path(whole_line[0], envp);
-	g_globe.cmd = 1;
 	execve(path, whole_line, envp);
-	g_globe.cmd = 0;
 	free(path);
 	ft_error_optimal("command not found", 127);
 	exit(g_globe.g_exit);

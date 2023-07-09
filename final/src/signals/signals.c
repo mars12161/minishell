@@ -6,14 +6,14 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/08 13:40:38 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 13:59:01 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 void	sigint_handler(int sig);
-int		change_attr(bool ctrl_chr);
+void	sigquit_handler(int sig);
 
 void	sigint_handler(int sig)
 {
@@ -29,24 +29,15 @@ void	sigint_handler(int sig)
 			rl_redisplay();
 		}
 		else if (!g_globe.in_heredoc && g_globe.cmd)
+		{
+			ft_putstr_fd("\n", STDERR_FILENO);
 			return ;
+		}
 	}
 }
 
-/*int	change_attr(bool ctrl_chr)
+void	sigquit_handler(int sig)
 {
-	struct termios	termios_p;
-	int				attr;
-
-	attr = tcgetattr(STDOUT_FILENO, &termios_p);
-	if (attr == -1)
-		return (-1);
-	if (ctrl_chr)
-		termios_p.c_lflag |= ECHOCTL;
-	else
-		termios_p.c_lflag &= ~(ECHOCTL);
-	attr = tcsetattr(STDOUT_FILENO, TCSANOW, &termios_p);
-	if (attr == -1)
-		return (-1);
-	return (0);
-}*/
+	(void)sig;
+	ft_putstr_fd("Quit (core dumped)\n", STDERR_FILENO);
+}

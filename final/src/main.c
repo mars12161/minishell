@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/08 10:53:47 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 14:03:36 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static  int input_loop(t_env *env)
 	{
 		if (!(check_buildin(cmmarr->cmm[0]->command)))
 			return (buildin_easy_mode(&shell, cmmarr, env, str));
+		signal(SIGQUIT, sigquit_handler);
 		return (execute_exit(shell, cmmarr, env, str));
 	}
 	init_pipex(cmmarr, env);
@@ -77,6 +78,7 @@ int	main(int argc, char **argv, char **envp)
 		check = input_loop(env);
 		if (check < 0)
 			break ;
+		signal(SIGQUIT, SIG_IGN);
 	}
 	free_env(&env);
 	rl_clear_history();
