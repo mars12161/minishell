@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 14:19:56 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 14:33:25 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static char *check_expand_path_space(char *str, t_env *env)
         result = check_path_valid(str, env, 32);
     else
         result = check_path_valid(str, env, 36);
-    //printf("result in check expand path space: %s\n", result);
     return (result);   
 }
 

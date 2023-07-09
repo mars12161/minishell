@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:42:56 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 14:40:57 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 14:31:18 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	free_shell(t_shell **shell)
 		free(*shell);
 		*shell = temp;
 	}
+	//free(*shell);
 	*shell = NULL;
 }
 

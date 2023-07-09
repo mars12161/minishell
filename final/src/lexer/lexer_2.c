@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:54 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 15:09:20 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 14:35:28 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*new_node_env(char *str, t_shell **shell, t_env **env)
 	path = ft_substr((char const *)str, 0, j);
 	result = ft_parse_dollar_frame(path, *env);
 	new_node->input = result;
-	//free(path);
+	//free path
 	str += j;
 	if (new_node->input)
 		new_node->len = ft_strlen(new_node->input);

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 16:03:49 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 17:12:13 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/09 14:25:25 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,19 @@ char	*ft_strtrim(const char *s1, const char *set)
 	if (!ret)
 		return (NULL);
 	i = 0;
-	while (start <= end)
+	while (start < end)
 		ret[i++] = s1[start++];
 	ret[i] = '\0';
 	return (ret);
 }
-/*
-#include <stdio.h>
+/*#include <stdio.h>
 
 int	main()
 {
-	const char *test = ft_strtrim("temporary string", "teng");
+	char *test = ft_strtrim("temporary string", "teng");
 	printf("%s\n", test);
-}
-*/
+	free(test);
+}*/
 
 // #include <stdio.h>
 // int	main()

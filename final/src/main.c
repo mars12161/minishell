@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:34:04 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/09 14:03:36 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 14:16:04 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static  int input_loop(t_env *env)
 	if (!str)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
-		//change_attr(true);
 		return (-1);
 	}
 	else if (str[0] == '\0')
@@ -34,9 +33,7 @@ static  int input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
-	//print_shell(shell);
     cmmarr = parse_array_create(shell, env);
-	//print_parse_arr(cmmarr);
     if (!cmmarr)
     {
         free(str);
