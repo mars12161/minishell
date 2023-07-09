@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 14:39:47 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/09 15:16:52 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ char		**ft_env_str(t_env *env);
 t_env	*new_node_ENV(char *str)
 {
 	t_env	*new_node;
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	new_node = NULL;
 	new_node = (t_env *)malloc(sizeof(t_env));
 	if (!new_node)
