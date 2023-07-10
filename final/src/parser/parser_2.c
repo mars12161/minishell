@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/10 15:26:57 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:50:54 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 				perror("File could not be created");
 			close(fd);
 			if (cmm->redirection_out == 0)
-				cmm->outfilepath = ft_strdup(check_input(temp)); //no ft_strcat
+				cmm->outfilepath = ft_strdup(check_input(temp));
 			else
 			{
 				free(cmm->outfilepath);
@@ -89,26 +89,23 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	char	*whole_str;
 
 	whole_str = ft_strdup("");
-	g_globe.in_heredoc = 1;
-	while (!g_globe.stop_heredoc)
+	str = "";
+	g_globe.g_exit = 130;
+	while (ft_strcmp(str, delimiter) && g_globe.g_exit == 130)
 	{
-		write(2, "heredoc>", 8);
-		str = get_next_line(0);
-		//str = readline("heredoc>");
+		write(STDOUT_FILENO, "heredoc>", 8);
+		str = get_next_line(STDIN_FILENO);
 		if (!str)
 		{
-			ft_putstr_fd("\n", STDERR_FILENO);
-			unlink("heredoc.txt");
+			ft_putstr_fd("hello\n", STDERR_FILENO);
 			break;
 		}
-		if (!strcmp(str, delimiter))
+		if (!ft_strcmp(str, delimiter))
 			break;
 		str_expand_check = ft_parse_dollar_frame(str, env);
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
 	}
-	g_globe.stop_heredoc = 0;
-	g_globe.in_heredoc = 0;
 	return (whole_str);
 }
 

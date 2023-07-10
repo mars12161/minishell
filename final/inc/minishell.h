@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/10 13:06:25 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:09:29 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@
 
 typedef struct s_global
 {
-	int	in_heredoc;
 	int	g_exit;
-	int	stop_heredoc;
 	int	cmd;
 }				t_global;
 
