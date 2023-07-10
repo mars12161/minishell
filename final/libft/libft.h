@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 19:54:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/09 15:03:09 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/10 13:49:30 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <signal.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

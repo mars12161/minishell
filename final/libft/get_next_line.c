@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 15:06:25 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/09 15:03:14 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/10 14:00:42 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static char	*ft_read_line(char *str)
 	i = 0;
 	if (!str[i])
 		return (NULL);
+	signal(SIGQUIT, SIG_IGN);
 	while (str[i] && str[i] != '\n')
 		i++;
 	line = ft_calloc(sizeof(char), (i + 2));

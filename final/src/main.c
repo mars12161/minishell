@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 12:45:15 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/10 14:43:27 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -56,9 +68,7 @@ int	main(int argc, char **argv, char **envp)
     check = 0;
 	env = NULL;
 	env = init_env(envp, env);
-	//change_attr(false);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sigint_handler);
+	init_signals();
 	while (42)
 	{
 		check = input_loop(env);

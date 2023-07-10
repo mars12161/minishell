@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/06 22:05:57 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/10 13:59:40 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ t_parse	*parse_shell(t_shell *head, t_env *env)
 			parse_other(temp, cmm, env);
 		temp = temp->next;
 	}
-	//print_parse(cmm);
 	return (cmm);
 }
