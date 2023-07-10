@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/10 17:11:13 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:56:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 		g_globe.cmd = 1;
 		waitpid(pid, &status, 0);
 	}
-	g_globe.g_exit = 0;
+	g_globe.cmd = 0;
 	if (WIFEXITED(status))
 		g_globe.g_exit = WEXITSTATUS(status);
 	free_all_in_loop(&shell, cmmarr, str);
