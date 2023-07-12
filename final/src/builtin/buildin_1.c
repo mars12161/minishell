@@ -93,5 +93,5 @@ int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr,
 		ft_redirection_out(cmmarr->cmm[0]);
 	exec_builtin(cmmarr->cmm[0], &env);
 	free_all_in_loop(shell, cmmarr, str);
-	return (g_globe.g_exit);
+	return (g_exit);
 }

@@ -36,5 +36,5 @@ void	ft_error_optimal(char *str, int exit)
 		i++;
 	write(2, str, i);
 	write(2, "\n", 1);
-	g_globe.g_exit = exit;
+	g_exit = exit;
 }

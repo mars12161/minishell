@@ -26,7 +26,7 @@ int	ft_env(t_parse *node, t_env **env)
 		ft_error_optimal("env: No such file or directory", 127);
 		if (fd != 1)
 			close(fd);
-		return (g_globe.g_exit);
+		return (g_exit);
 	}
 	while (temp)
 	{

@@ -58,7 +58,7 @@ static int	ft_cd_env(char *str, t_env **env)
 	if (!homefound && !ft_strncmp(str, "HOME=", ft_strlen(str)))
 		ft_error_optimal("HOME not set", 1);
 	else
-		g_globe.g_exit = 0;
+		g_exit = 0;
 	return (0);
 }
 
@@ -98,7 +98,7 @@ static int	ft_change_dir(t_parse *node, t_env **env)
 	if (chdir(node->whole_line[1]) == -1)
 		ft_error_optimal("cd: no such file or directory", 1);
 	else
-		g_globe.g_exit = 0;
+		g_exit = 0;
 	return (0);
 }
 

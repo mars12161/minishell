@@ -37,7 +37,7 @@ int	ft_pwd(t_parse *node)
 	{
 		if (fd != 1)
 			close (fd);
-		g_globe.g_exit = 0;
+		g_exit = 0;
 		return (-1);
 	}
 }

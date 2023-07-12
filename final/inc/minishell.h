@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/12 11:05:54 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 13:18:14 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,7 @@
 
 /* Structs */
 
-typedef struct s_global
-{
-	int	g_exit;
-	int	cmd;
-}				t_global;
-
-extern t_global	g_globe;
+extern int	g_exit;
 
 enum e_token
 {

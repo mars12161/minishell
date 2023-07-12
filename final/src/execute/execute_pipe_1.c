@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/09 11:51:32 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:16:55 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 	char	**envp;
 
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
-		ft_error("dup2 failed");
+		ft_putstr_fd("dup2 failed", STDERR_FILENO);
 	redir_child(node);
 	close(fd[0]);
 	if (!check_buildin(node->command))
@@ -89,5 +89,5 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env)
 	else
 		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
-		g_globe.g_exit = WEXITSTATUS(status);
+		g_exit = WEXITSTATUS(status);
 }

@@ -114,6 +114,6 @@ int	ft_export(t_parse *node, t_env **env)
 			i++;
 		}
 	}
-	g_globe.g_exit = 0;
-	return (g_globe.g_exit);
+	g_exit = 0;
+	return (g_exit);
 }

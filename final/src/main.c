@@ -6,14 +6,14 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:45:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/10 14:43:27 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 14:47:57 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/minishell.h"
 
-t_global g_globe;
+int	g_exit = 0;
 
 static  int input_loop(t_env *env)
 {
@@ -27,10 +27,7 @@ static  int input_loop(t_env *env)
 		write(STDERR_FILENO, "exit\n", 5);
 		return (-1);
 	}
-	else if (str[0] == '\0')
-	{
-	}
-	else
+	else if (str[0] != '\0')
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
@@ -78,5 +75,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free_env(&env);
 	rl_clear_history();
-	return (g_globe.g_exit);
+	return (g_exit);
 }
