@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/12 11:06:08 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 11:55:57 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*read_heredoc(t_env *env, char *delimiter)
 		str = readline("heredoc>");
 		if (!str)
 		{
-			//ft_putstr_fd("hello\n", STDERR_FILENO);
+			ft_putstr_fd("\n", STDERR_FILENO);
 			break;
 		}
 		if (!ft_strcmp(str, delimiter) || g_globe.g_exit != 130)

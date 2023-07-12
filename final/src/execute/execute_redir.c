@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:50:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 14:05:01 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 11:59:31 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	execute_infile_dup2(t_parse *node)
 	if (dup2(fd_in, STDIN_FILENO) == -1)
 		ft_error("dup2 failed");
 	close(fd_in);
+	unlink("heredoc.txt"); // not sure
 }
 
 static void	execute_outfile_dup2(t_parse *node)
