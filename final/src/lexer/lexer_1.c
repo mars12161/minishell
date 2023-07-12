@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/07 20:38:34 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/12 16:38:32 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,16 @@ t_shell		*fill_shell(char *str, t_shell *shell, t_env **env);
 char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 {
 	t_shell	*new_node;
+	char *original;
 	int		check;
 	int		i;
-	int		j;
-
+	
 	new_node = init_shell_node();
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] >= 33 && str[i] <= 126)
-			j++;
-		if (str[i] >= 33 && str[i] <= 126 && (str[i + 1] == ' '
-				|| str[i + 1] == '\t'))
-			break ;
-		i++;
-	}
-	new_node->input = ft_parse_dollar_frame(ft_substr((char const *)str, 0, j),
-			*env);
-	str += j;
+	i = ft_check_size_str_for_node(str);
+	original = ft_substr((char const *)str, 0, i);
+	new_node->input = ft_parse_word_rules(original, env);
+	str += i;
+	printf("str in new node after trim0: %s\n", str);
 	new_node->len = ft_strlen(new_node->input);
 	check = check_word_or_path(*shell);
 	if (check == 1)
@@ -73,6 +64,7 @@ static char	*new_node_space(char *str, t_shell **shell)
 	ft_add_tail(shell, new_node, SPA);
 	return (str);
 }
+char *ft_parse_quote_rules(char *str, t_env **env);
 
 t_shell	*fill_shell(char *str, t_shell *shell, t_env **env)
 {
@@ -84,10 +76,8 @@ t_shell	*fill_shell(char *str, t_shell *shell, t_env **env)
 			str = new_node_space(str, &shell);
 		else if (*str == '|')
 			str = new_node_pipe(str, &shell);
-		else if (*str == '\"')
-			str = new_node_dq(str, &shell, env);
-		else if (*str == '\'')
-			str = new_node_sq(str, &shell, env);
+		else if (*str == '\'' || *str == '\"')
+			str = new_node_quote(str, &shell, env);
 		else if (*str == '<')
 			str = new_node_red(str, &shell, 60);
 		else if (*str == '>')

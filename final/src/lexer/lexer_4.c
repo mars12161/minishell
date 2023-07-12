@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:16:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 20:37:15 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/12 16:30:55 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,15 +93,4 @@ void	ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type)
 	bottom = get_shell_bottom(*shell);
 	bottom->next = new_node;
 	new_node->pre = bottom;
-}
-
-t_shell *init_shell_node(void)
-{
-	t_shell *new_node;
-
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
-	return (new_node);
 }

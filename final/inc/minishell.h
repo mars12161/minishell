@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/12 13:18:14 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:11:30 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,22 @@ char		*new_node_red_2(char *str, t_shell **shell, int c);
 char		*new_node_red(char *str, t_shell **shell, int c);
 
 /* Lexer 3 */
-char		*new_node_dq(char *str, t_shell **shell, t_env **env);
-char		*new_node_sq(char *str, t_shell **shell, t_env **env);
+char *ft_parse_quote_rules(char *str, t_env **env);
+char	*new_node_quote(char *str, t_shell **shell, t_env **env);
 
 /* Lexer 4 */
 int			check_word_or_path(t_shell *shell);
 void		ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
 t_shell		*init_shell_node(void);
+
+/* Lexer 5 */
+t_shell *init_shell_node(void);
+int ft_check_size_str_for_node(char *str);
+
+/* Lexer 6 */
+int ft_count_size_lexer(char *str, int c, int start);
+char *ft_parse_word_rules_strjoin(char *sub1, char *sub2, t_env **env);
+char *ft_parse_word_rules(char *str, t_env **env);
 
 /* Parser 1 */
 t_parse_arr	*parse_array_create(t_shell *head, t_env *env);

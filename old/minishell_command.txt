@@ -176,5 +176,11 @@ yli@c4b4c3:~$ echo ""123""456
 [minishell:]echo  -nnan"$USER  c $?$HOME" ab
 -nnan"yli c 0 ab
 
+[minishell:]echo 45"aa$USER'dd'"bb
+str in new node after trim:  45"aa$USER'dd'"bb
+str in new node after trim: 
+45aabb
+
+
 
 
