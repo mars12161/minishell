@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/12 11:55:57 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 12:38:38 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,25 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 
 char	*check_input(t_shell *temp)
 {
-	if (temp->next->type == 3 && temp->next->next->type == 0)
-		return (temp->next->next->input);
-	if (temp->next->type == 3 && (temp->next->next->type == 10
-			|| temp->next->next->type == 11))
-		return (temp->next->next->input);
-	if (temp->next->type == 10
-		||temp->next->type == 11)
-		return (temp->next->input);
+	if (temp->next)
+	{
+		if (temp->next->type == 3 && temp->next->next->type == 0)
+			return (temp->next->next->input);
+		if (temp->next->type == 3 && (temp->next->next->type == 10
+									  || temp->next->next->type == 11))
+			return (temp->next->next->input);
+		if (temp->next->type == 10
+			|| temp->next->type == 11)
+			return (temp->next->input);
+	}
 	else
 	{
-		printf("syntax error near unexpected token `newline'");
+		ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
 		// free everything todo
 		g_globe.g_exit = 2;
 		return (NULL);
 	}
+	return (NULL);
 }
 
 void	parse_redir_out(t_parse *cmm, t_shell *temp)
@@ -115,6 +119,8 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 	char *heredoc;
 
 	delimiter = check_input(temp);
+	if (!delimiter)
+		return ;
 	if (temp->input)
 	{
 		if (!cmm->redirection_in)
@@ -143,8 +149,16 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp)
 	{
 		if (cmm->redirection_in == 0)
 		{
-			check_infile(temp->next->input);
-			cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
+			if (!temp->next)
+			{
+				ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
+				return ;
+			}
+			else
+			{
+				check_infile(temp->next->input);
+				cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
+			}
 		}
 		else
 		{
