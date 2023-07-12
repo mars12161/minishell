@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/10 17:50:54 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 11:06:08 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,18 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	char	*whole_str;
 
 	whole_str = ft_strdup("");
+	signal(SIGINT, sigint_heredoc);
 	str = "";
 	g_globe.g_exit = 130;
 	while (ft_strcmp(str, delimiter) && g_globe.g_exit == 130)
 	{
-		write(STDOUT_FILENO, "heredoc>", 8);
-		str = get_next_line(STDIN_FILENO);
+		str = readline("heredoc>");
 		if (!str)
 		{
-			ft_putstr_fd("hello\n", STDERR_FILENO);
+			//ft_putstr_fd("hello\n", STDERR_FILENO);
 			break;
 		}
-		if (!ft_strcmp(str, delimiter))
+		if (!ft_strcmp(str, delimiter) || g_globe.g_exit != 130)
 			break;
 		str_expand_check = ft_parse_dollar_frame(str, env);
 		whole_str = ft_strjoin(whole_str, str_expand_check);

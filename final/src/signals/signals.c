@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/10 17:13:39 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 11:07:29 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 void	sigint_handler(int sig);
 void	sigquit_handler(int sig);
 
-void	sigint_handler(int sig)
+void	sigint_heredoc(int sig)
 {
 	if (sig == SIGINT)
 	{
 		g_globe.g_exit = 150;
+		rl_on_new_line();
+	}
+}
+
+void	sigint_handler(int sig)
+{
+	if (sig == SIGINT)
+	{
 		if (!g_globe.cmd)
 		{
 			ft_putstr_fd("\n", STDERR_FILENO);

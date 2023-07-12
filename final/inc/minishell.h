@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:53:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/10 17:09:29 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 11:05:54 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ void		ft_error_optimal(char *str, int exit);
 /* Signals */
 void		sigint_handler(int sig);
 void		sigquit_handler(int sig);
+void		sigint_heredoc(int sig);
 void		init_signals(void);
 
 /*	Execute Easy Mode*/
