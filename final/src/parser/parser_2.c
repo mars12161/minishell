@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/12 15:50:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:57:52 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 		if (!temp->next)
 		{
 			ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
+			g_exit = 2;
 			return ;
 		}
 		if (temp->input)
@@ -79,6 +80,7 @@ void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 		if (!temp->next)
 		{
 			ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
+			g_exit = 2;
 			return ;
 		}
 		fd = open(temp->next->input, O_CREAT | O_RDWR | O_APPEND, 0644);
@@ -159,6 +161,7 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp)
 			if (!temp->next)
 			{
 				ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
+				g_exit = 2;
 				return ;
 			}
 			else
