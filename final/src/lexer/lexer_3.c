@@ -103,7 +103,7 @@ char *ft_parse_quote_rules(char *str, t_env **env)
 		return (ft_parse_dollar_frame(result, *env));
 	}
     result = ft_parse_quote_rules_substr(str, ft_count_size_lexer(str, signal, 0), env);
-    if (ft_count_size_lexer(str, 34, 0) == ft_count_size_lexer(str, 39, 0) == ft_strlen(str))
+    if ((ft_count_size_lexer(str, 34, 0)) == (ft_count_size_lexer(str, 39, 0)) && (ft_count_size_lexer(str, 34, 0)) == (int)ft_strlen(str))
         return (result);
     else
         return (ft_parse_word_rules(result, env));

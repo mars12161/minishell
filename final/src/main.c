@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:45:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/12 15:15:19 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/13 14:43:31 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	main(int argc, char **argv, char **envp)
     check = 0;
 	env = NULL;
 	env = init_env(envp, env);
-	init_signals();
 	while (42)
 	{
+		init_signals();
 		check = input_loop(env);
 		if (check < 0)
 			break ;
