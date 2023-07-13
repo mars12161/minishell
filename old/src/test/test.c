@@ -56,3 +56,10 @@ static int ft_count_size(char *str)
 // $USER$USER 5
 // $USER $USER 6
 
+// int main()
+// {
+//     char *str="abc abc";
+//     str += 2;
+//     printf("str: %s\n", str);
+//     printf("len: %lu\n", strlen(str));
+// }

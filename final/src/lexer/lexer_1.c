@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/12 16:38:32 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/13 21:10:14 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char		*new_node_word(char *str, t_shell **shell, t_env **env);
 t_shell		*fill_shell(char *str, t_shell *shell, t_env **env);
+t_shell *init_shell_node(void);
 
 char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 {
@@ -23,11 +24,10 @@ char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 	int		i;
 	
 	new_node = init_shell_node();
-	i = ft_check_size_str_for_node(str);
+	i = ft_i_start_from_word(str, 0);
 	original = ft_substr((char const *)str, 0, i);
-	new_node->input = ft_parse_word_rules(original, env);
+	new_node->input = ft_parse_original_from_word(original, env);
 	str += i;
-	printf("str in new node after trim0: %s\n", str);
 	new_node->len = ft_strlen(new_node->input);
 	check = check_word_or_path(*shell);
 	if (check == 1)
@@ -64,7 +64,6 @@ static char	*new_node_space(char *str, t_shell **shell)
 	ft_add_tail(shell, new_node, SPA);
 	return (str);
 }
-char *ft_parse_quote_rules(char *str, t_env **env);
 
 t_shell	*fill_shell(char *str, t_shell *shell, t_env **env)
 {
@@ -76,8 +75,10 @@ t_shell	*fill_shell(char *str, t_shell *shell, t_env **env)
 			str = new_node_space(str, &shell);
 		else if (*str == '|')
 			str = new_node_pipe(str, &shell);
-		else if (*str == '\'' || *str == '\"')
-			str = new_node_quote(str, &shell, env);
+		else if (*str == '\'')
+			str = new_node_sq(str, &shell, env);
+		else if (*str == '\"')
+			str = new_node_dq(str, &shell, env);
 		else if (*str == '<')
 			str = new_node_red(str, &shell, 60);
 		else if (*str == '>')
@@ -88,4 +89,15 @@ t_shell	*fill_shell(char *str, t_shell *shell, t_env **env)
 			str = new_node_word(str, &shell, env);
 	}
 	return (shell);
+}
+
+t_shell *init_shell_node(void)
+{
+	t_shell *new_node;
+
+	new_node = NULL;
+	new_node = (t_shell *)malloc(sizeof(t_shell));
+	if (!new_node)
+		return (NULL);
+	return (new_node);
 }

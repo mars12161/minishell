@@ -83,6 +83,7 @@ void		print_env(t_env **env);
 /* Lexer 1 */
 char		*new_node_word(char *str, t_shell **shell, t_env **env);
 t_shell		*fill_shell(char *str, t_shell *shell, t_env **env);
+t_shell *init_shell_node(void);
 
 /* Lexer 2 */
 char		*new_node_env(char *str, t_shell **shell, t_env **env);
@@ -91,8 +92,8 @@ char		*new_node_red_2(char *str, t_shell **shell, int c);
 char		*new_node_red(char *str, t_shell **shell, int c);
 
 /* Lexer 3 */
-char *ft_parse_quote_rules(char *str, t_env **env);
-char	*new_node_quote(char *str, t_shell **shell, t_env **env);
+char	*new_node_dq(char *str, t_shell **shell, t_env **env);
+char	*new_node_sq(char *str, t_shell **shell, t_env **env);
 
 /* Lexer 4 */
 int			check_word_or_path(t_shell *shell);
@@ -100,13 +101,18 @@ void		ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
 t_shell		*init_shell_node(void);
 
 /* Lexer 5 */
-t_shell *init_shell_node(void);
-int ft_check_size_str_for_node(char *str);
+int ft_check_quote_in_word(char *str);
+int ft_i_start_from_sq(char *str, int pre);
+int ft_i_start_from_word(char *str, int pre);
+int ft_i_start_from_dq(char *str, int pre);
 
 /* Lexer 6 */
+char *ft_parse_original_from_word(char *str, t_env **env);
+
+/* Lexer 7 */
 int ft_count_size_lexer(char *str, int c, int start);
-char *ft_parse_word_rules_strjoin(char *sub1, char *sub2, t_env **env);
-char *ft_parse_word_rules(char *str, t_env **env);
+char *ft_parse_original_from_dq(char *str, t_env **env);
+char *ft_parse_original_from_sq(char *str, t_env **env);
 
 /* Parser 1 */
 t_parse_arr	*parse_array_create(t_shell *head, t_env *env);

@@ -6,104 +6,143 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:23:48 by yli               #+#    #+#             */
-/*   Updated: 2023/07/11 17:53:47 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/13 21:12:26 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_shell *init_shell_node(void);
-int ft_check_size_str_for_node(char *str);
-static int ft_count_size_in_str_normal(char *str, int i, int pre, int times);
-static int ft_count_size_in_str_quote(char *str, int i, int pre, int times);
+int ft_check_quote_in_word(char *str);
+int ft_i_start_from_sq(char *str, int pre);
+int ft_i_start_from_word(char *str, int pre);
+int ft_i_start_from_dq(char *str, int pre);
 
-t_shell *init_shell_node(void)
+int ft_check_quote_in_word(char *str)
 {
-	t_shell *new_node;
+    int i;
+    int j;
+    int k;
 
-	new_node = NULL;
-	new_node = (t_shell *)malloc(sizeof(t_shell));
-	if (!new_node)
-		return (NULL);
-	return (new_node);
+    i = ft_count_size_lexer(str, 34, 0);
+    j = ft_count_size_lexer(str, 39, 0);
+    k = (int)ft_strlen(str);
+    // printf("%d\n", ft_count_size_lexer(str, 34, 0));
+    // printf("%d\n", ft_count_size_lexer(str, 39, 0));
+    // printf("%d\n", (int)ft_strlen(str));
+    if (i == j && i == k && j == k)
+        return (0); //not find
+    else
+        return (1);
 }
 
-static int ft_count_size_in_str_quote_utils(char *str, int i)
+int ft_check_quote_before_space(char *str)
 {
-	int flag1;
-    int flag2;
+    int i;
+    int j;
 
-    flag1 = 0;
-    flag2 = 0;
-    while(str[i])
+    i = 0;
+    j = 0;
+    while (str[i])
     {
-        if (str[i] == 34)
-            flag2 += 1;
-        if (str[i] == 39)
-            flag1 += 1;
-        if (flag1 == 2 || flag2 == 2)
+        if (str[i] == 34 || str[i] == 39)
+            return (-1);
+        if (str[i] >= 33 && str[i] <= 126)
+            j++;
+        if (str[i] >= 33 && str[i] <= 126 && str[i + 1] == 32)
             break ;
         i++;
     }
-	return (i);
+    return (j);
 }
 
-static int ft_count_size_in_str_quote(char *str, int i, int pre, int times)
-{
-    i = ft_count_size_in_str_quote_utils(str, i) + 1;
-    if (times != 0)
-        pre += i;
-    if (str[i] == ' ' || str[i] == '\t'|| str[i] == 0)
-    {
-        if (times != 0)
-            return (pre);  
-        else
-            return (i);
-    }
-    else
-      return (ft_count_size_in_str_normal(str, i, pre, times));
-}
-
-static int ft_count_size_in_str_normal(char *str, int i, int pre, int times)
-{
-    int flag;
-
-    flag = 0;
-    str += i;
-    i = 0;
-    while(str[i])
-    {
-        if (str[i] == 34 || str[i] == 39)
-            flag += 1;
-		if (str[i] >= 33 && str[i] <= 126 && (str[i + 1] == ' '
-				|| str[i + 1] == '\t') && flag == 0)
-            return (i + pre + 1);        
-        if (str[i] >= 33 && str[i] <= 126 && (str[i + 1] == ' '
-				|| str[i + 1] == '\t') && flag)
-            return (ft_count_size_in_str_quote(str, 0, pre, times));               
-		i++;
-    }
-    return (i + pre);
-}
-
-int ft_check_size_str_for_node(char *str)
+int ft_i_start_from_word(char *str, int pre)
 {
     int i;
-    char *substr;
-    int times1;
-    int times2;
+    int j;
 
-    i = ft_count_size(str, '|');
-    if (i)
-        substr = ft_substr(str, 0, i);
+    if (ft_check_quote_before_space(str) != -1)
+        return (ft_check_quote_before_space(str) + pre);
+    if (!ft_check_quote_in_word(str))
+    {
+        i = ft_count_size_lexer(str, 32, 0);
+        return (i + pre);
+    }
+    else if (str[0] == 34)
+        return (ft_i_start_from_dq(str, pre));
+    else if (str[0] == 39)
+        return (ft_i_start_from_sq(str, pre));
     else
-        substr = ft_strdup(str);
-    times1 = check_dollar(substr, 39);
-    times2 = check_dollar(substr, 34);
-    if (times1 >= 2 ||  times2 >= 2)
-        i = ft_count_size_in_str_normal(substr, 0, 0, 1);
+    {
+        i = ft_count_size_lexer(str, 34, 0);
+        j = ft_count_size_lexer(str, 39, 0);
+        if (i < j)
+        {
+            pre += i;
+            str += i;
+            return (ft_i_start_from_dq(str, pre));
+        }
+        else
+        {
+            pre += j;
+            str += j;
+            return (ft_i_start_from_sq(str, pre));
+        }
+    }
+    return (0);
+
+}
+
+int ft_i_start_from_sq(char *str, int pre)
+{
+    int i;
+    int j;
+
+    i = ft_count_size_lexer(str, 39, 1);
+    // printf("sq i : %d ", i);
+    // printf("pre : %d ", pre);
+    // printf("strlen : %s %d\n", str, (int)ft_strlen(str));
+    j = (int)ft_strlen(str);
+    if (i == j - 1 || i == j - 2 || (i == j && str[pre] == 39))
+        return (j + pre);
+    if (str[i + 1] == 39)
+    {
+        pre += i + 1;
+        str += i + 1;
+        return (ft_i_start_from_dq(str, pre));
+    }
     else
-        i = ft_count_size_in_str_normal(substr, 0, 0, 0);
-    free(substr);
-    return (i);
+    {
+        pre += i + 1;
+        str += i + 1;
+        return ft_i_start_from_word(str, pre);
+    }
+    return (-1);
+}
+
+
+int ft_i_start_from_dq(char *str, int pre)
+{
+    int i;
+    int j;
+
+    i = ft_count_size_lexer(str, 34, 1);
+    // printf("dq i : %d ", i);
+    // printf("pre : %d ", pre);
+    // printf("strlen : %s %d\n", str, (int)ft_strlen(str));
+    j = (int)ft_strlen(str);
+    if (i == j - 1 || i == j - 2 || (i == j && str[pre] == 34))
+        return (j + pre);
+    if (str[i + 1] == 34)
+    {
+        pre += i + 1;
+        str += i + 1;
+        return (ft_i_start_from_dq(str, pre));
+    }
+    else
+    {
+        pre += i + 1;
+        str += i + 1;
+        return ft_i_start_from_word(str, pre);
+    }  
+    return (-1);
 }

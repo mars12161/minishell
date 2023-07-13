@@ -181,6 +181,11 @@ str in new node after trim:  45"aa$USER'dd'"bb
 str in new node after trim: 
 45aabb
 
+yli@c4c6c3:~/Desktop/Project/minishell/final$ echo 'ab   "$USER"dd'12 12
+ab   "$USER"dd12 12
+yli@c4c6c3:~/Desktop/Project/minishell/final$ echo "abc '$USER'cc"  123
+abc 'yli'cc 123
+
 
 
 

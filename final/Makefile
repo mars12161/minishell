@@ -25,6 +25,7 @@ SRCS =		src/main.c \
 			src/lexer/lexer_4.c \
 			src/lexer/lexer_5.c \
 			src/lexer/lexer_6.c \
+			src/lexer/lexer_7.c \
 			src/parser/parse_multi_env_1.c \
 			src/parser/parse_multi_env_2.c \
 			src/parser/parser_1.c \
