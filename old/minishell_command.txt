@@ -186,6 +186,8 @@ ab   "$USER"dd12 12
 yli@c4c6c3:~/Desktop/Project/minishell/final$ echo "abc '$USER'cc"  123
 abc 'yli'cc 123
 
+[test:]-nnna"$USER   c  $?$HOME" ab
+
 
 
 

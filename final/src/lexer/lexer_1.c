@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/13 21:10:14 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/13 21:25:00 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 	new_node = init_shell_node();
 	i = ft_i_start_from_word(str, 0);
 	original = ft_substr((char const *)str, 0, i);
+	printf("original: %s\n", original);
 	new_node->input = ft_parse_original_from_word(original, env);
 	str += i;
 	new_node->len = ft_strlen(new_node->input);

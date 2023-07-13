@@ -207,17 +207,24 @@ int ft_i_start_from_dq(char *str, int pre)
     printf("strlen : %s %d\n", str, (int)ft_strlen(str));
     
     if (i == ft_strlen(str) - 1 || i == ft_strlen(str) - 2 || i == ft_strlen(str) && str[pre] == 34)
+    {
+        printf("out from here0\n");
         return (ft_strlen(str) + pre);
+    }
+    if (str[i + 1] == 32)
+        return (pre + i + 1);
     if (str[i + 1] == 34)
     {
         pre += i + 1;
         str += i + 1;
+        printf("out from here1\n");
         return (ft_i_start_from_dq(str, pre));
     }
     else
     {
         pre += i + 1;
         str += i + 1;
+        printf("out from here2 %s %d\n", str, pre);
         return ft_i_start_from_word(str, pre);
     }  
     return (-1);

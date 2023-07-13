@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:23:48 by yli               #+#    #+#             */
-/*   Updated: 2023/07/13 21:12:26 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/13 21:42:12 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int ft_i_start_from_sq(char *str, int pre)
     j = (int)ft_strlen(str);
     if (i == j - 1 || i == j - 2 || (i == j && str[pre] == 39))
         return (j + pre);
+    if (str[i + 1] == 32)
+        return (pre + i + 1);
     if (str[i + 1] == 39)
     {
         pre += i + 1;
@@ -132,6 +134,8 @@ int ft_i_start_from_dq(char *str, int pre)
     j = (int)ft_strlen(str);
     if (i == j - 1 || i == j - 2 || (i == j && str[pre] == 34))
         return (j + pre);
+    if (str[i + 1] == 32)
+        return (pre + i + 1);
     if (str[i + 1] == 34)
     {
         pre += i + 1;
