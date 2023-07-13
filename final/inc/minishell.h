@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/13 21:17:26 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -113,6 +125,7 @@ char *ft_parse_original_from_word(char *str, t_env **env);
 int ft_count_size_lexer(char *str, int c, int start);
 char *ft_parse_original_from_dq(char *str, t_env **env);
 char *ft_parse_original_from_sq(char *str, t_env **env);
+
 
 /* Parser 1 */
 t_parse_arr	*parse_array_create(t_shell *head, t_env *env);

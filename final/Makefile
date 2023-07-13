@@ -1,5 +1,5 @@
 NAME = minishell
-CFLAGS = -g3 -Wall -Wextra -Werror -lreadline
+CFLAGS = -g3 -Wall -Wextra -Werror
 CC = cc
 RM = rm -rf
 
@@ -55,7 +55,7 @@ all: $(LIBFT) $(NAME)
 
 $(NAME): $(SRCS) $(LIBFT)
 	@echo "Compiling Minishell..."
-	@$(CC) $(CFLAGS) $(SRCS) libft/libft.a -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) libft/libft.a -lreadline -o $(NAME)
 	@echo "Minishell compiled!"
 
 $(LIBFT):
