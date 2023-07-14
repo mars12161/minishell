@@ -37,9 +37,9 @@ char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 
 char	*new_node_sq(char *str, t_shell **shell, t_env **env)
 {
-	t_shell	*new_node;
+	t_shell *new_node;
 	char *path;
-	int		i;
+	int i;
 
 	new_node = init_shell_node();
 	i = ft_i_start_from_sq(str, 0);

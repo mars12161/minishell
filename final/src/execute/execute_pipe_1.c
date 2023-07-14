@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/12 15:33:15 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 11:35:58 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	parent_pipe(t_parse_arr *cmmarr, t_env *env)
 	if (!check_buildin(cmmarr->cmm[cmmarr->size - 1]->command))
 		builtin_exit(cmmarr->cmm[cmmarr->size - 1], env);
 	envp = ft_env_str(env);
-	ft_executer(cmmarr->cmm[cmmarr->size -1]->whole_line, envp);
+	ft_executer(cmmarr->cmm[cmmarr->size - 1]->whole_line, envp);
 	ft_free_str(envp);
 }
 

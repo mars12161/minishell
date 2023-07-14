@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/07/09 14:36:31 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 12:46:50 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_expand(char *str, t_env **env)
 			return (ft_itoa(g_exit));
 		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
 		{
-			path = ft_strtrim(temp->content, str); // can cause leaks
+			path = ft_strtrim(temp->content, str);
 			if (*path != '=')
 				return (NULL);
 			result = ft_strtrim(path, "=");

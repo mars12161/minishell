@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/07/09 14:37:54 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 12:37:48 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static int	ft_cd_env(char *str, t_env **env)
 			ft_replace_oldpwd(pwd, *env);
 			if (!strncmp(str, "HOME=", ft_strlen(str)))
 				homefound = 1;
-			else
-				homefound = 0;
 		}
 		temp = temp->next;
 	}

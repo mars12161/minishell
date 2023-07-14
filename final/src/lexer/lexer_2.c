@@ -32,8 +32,8 @@ char	*new_node_env(char *str, t_shell **shell, t_env **env)
 	{
 		if (str[i] >= 33 && str[i] <= 126)
 			j++;
-		if (str[i] >= 33 && str[i] <= 126 && (str[i + 1] == ' '
-				|| str[i + 1] == '\t'))
+		if (str[i] >= 33 && str[i] <= 126 && (str[i + 1] == ' ' || str[i
+				+ 1] == '\t'))
 			break ;
 		i++;
 	}

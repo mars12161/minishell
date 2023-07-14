@@ -6,20 +6,20 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 22:02:41 by yli               #+#    #+#             */
-/*   Updated: 2023/07/07 20:02:22 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/14 13:03:08 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_parse *parse_init(void);
+t_parse	*parse_init(void);
 char	**ft_shell_whole_line(t_shell *head);
-int ft_count_args(char **str);
+int		ft_count_args(char **str);
 void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
-t_parse *parse_init(void)
+t_parse	*parse_init(void)
 {
-	t_parse *node;
+	t_parse	*node;
 
 	node = malloc(sizeof(t_parse) * 1);
 	//node->command = malloc(sizeof(char) * 100);
@@ -61,16 +61,17 @@ char	**ft_shell_whole_line(t_shell *head)
 	return (wline);
 }
 
-int ft_count_args(char **str)
+int	ft_count_args(char **str)
 {
-    int count = 0;
+	int	count;
 
-    while (*str != NULL)
+	count = 0;
+	while (*str != NULL)
 	{
-        count++;
-        str++;
-    }
-    return (count);
+		count++;
+		str++;
+	}
+	return (count);
 }
 
 /*

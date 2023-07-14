@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 10:17:33 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 11:17:30 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*check_input(t_shell *temp)
 		if (temp->next->type == 3 && temp->next->next->type == 0)
 			return (temp->next->next->input);
 		if (temp->next->type == 3 && (temp->next->next->type == 10
-									  || temp->next->next->type == 11))
+				|| temp->next->next->type == 11))
 			return (temp->next->next->input);
 		if (temp->next->type == 10
 			|| temp->next->type == 11)
@@ -33,7 +33,8 @@ char	*check_input(t_shell *temp)
 	}
 	else
 	{
-		ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
+		ft_putstr_fd("syntax error near unexpected token `newline'\n",
+			STDERR_FILENO);
 		// free everything todo
 		g_exit = 2;
 		return (NULL);
@@ -49,7 +50,8 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 	{
 		if (!temp->next)
 		{
-			ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
+			ft_putstr_fd("syntax error near unexpected token `newline'\n",
+				STDERR_FILENO);
 			g_exit = 2;
 			return ;
 		}

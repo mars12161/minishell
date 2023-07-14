@@ -14,15 +14,15 @@
 
 char		*new_node_word(char *str, t_shell **shell, t_env **env);
 t_shell		*fill_shell(char *str, t_shell *shell, t_env **env);
-t_shell *init_shell_node(void);
+t_shell		*init_shell_node(void);
 
 char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 {
-	t_shell	*new_node;
+	t_shell *new_node;
 	char *original;
-	int		check;
-	int		i;
-	
+	int check;
+	int i;
+
 	new_node = init_shell_node();
 	i = ft_i_start_from_word(str, 0);
 	original = ft_substr((char const *)str, 0, i);
@@ -35,7 +35,7 @@ char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 		ft_add_tail(shell, new_node, INFILEPATH);
 	else if (check == 2)
 		ft_add_tail(shell, new_node, OUTFILEPATH);
-	else if(new_node->input)
+	else if (new_node->input)
 		ft_add_tail(shell, new_node, WORD);
 	else
 		ft_add_tail(shell, new_node, EMPTY);
@@ -92,7 +92,7 @@ t_shell	*fill_shell(char *str, t_shell *shell, t_env **env)
 	return (shell);
 }
 
-t_shell *init_shell_node(void)
+t_shell	*init_shell_node(void)
 {
 	t_shell *new_node;
 

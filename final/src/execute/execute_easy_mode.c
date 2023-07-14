@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 10:57:52 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 12:45:39 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		execute_exit(t_shell *shell, t_parse_arr *cmmarr,
 int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env)
 {
 	char	**envp;
+
 	redir_child(cmmarr->cmm[0]);
 	envp = ft_env_str(env);
 	ft_executer(cmmarr->cmm[0]->whole_line, envp);
@@ -77,7 +78,6 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 	free_all_in_loop(&shell, cmmarr, str);
 	return (g_exit);
 }
-
 
 // int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env)
 // {

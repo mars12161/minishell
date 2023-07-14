@@ -73,7 +73,6 @@ static void	echo_output(t_parse *node, int i, int fd, t_env **env)
 			ft_echo_home(env);
 		else
 		{
-			//printf("i in echo output: %d\n", i);
 			ft_putstr_fd(node->whole_line[i], fd);
 			if (i == node->wline_count - 1)
 				break ;
