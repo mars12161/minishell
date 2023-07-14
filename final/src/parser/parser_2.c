@@ -43,7 +43,7 @@ char	*check_input(t_shell *temp)
 
 void	parse_redir_out(t_parse *cmm, t_shell *temp)
 {
-	int	fd;
+	// int	fd;
 
 	if (temp->type == REDIRECT_OUT)
 	{
@@ -56,10 +56,10 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 		}
 		if (temp->input)
 		{
-			fd = open(temp->next->input, O_CREAT | O_RDWR, 0644);
-			if (fd == -1)
-				perror("File could not be created");
-			close(fd);
+			// fd = open(temp->next->input, O_CREAT | O_RDWR, 0644);
+			// if (fd == -1)
+			// 	perror("File could not be created");
+			// close(fd);
 			if (cmm->redirection_out == 0)
 				cmm->outfilepath = ft_strdup(check_input(temp));
 			else
@@ -74,7 +74,7 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 
 void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 {
-	int	fd;
+	// int	fd;
 
 	if (temp->input)
 	{
@@ -85,10 +85,10 @@ void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 			g_exit = 2;
 			return ;
 		}
-		fd = open(temp->next->input, O_CREAT | O_RDWR | O_APPEND, 0644);
-		if (fd == -1)
-			perror("File could not be created");
-		close(fd);
+		// fd = open(temp->next->input, O_CREAT | O_RDWR | O_APPEND, 0644);
+		// if (fd == -1)
+		// 	perror("File could not be created");
+		// close(fd);
 		if (cmm->redirection_out == 0)
 			cmm->outfilepath = ft_strdup(check_input(temp));
 		else

@@ -188,6 +188,11 @@ abc 'yli'cc 123
 
 [test:]-nnna"$USER   c  $?$HOME" ab
 
+[minishell:]echo     ""      $HOME""
+
+
+
+
 
 
 

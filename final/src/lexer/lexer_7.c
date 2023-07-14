@@ -15,6 +15,7 @@
 int		ft_count_size_lexer(char *str, int c, int start);
 char	*ft_parse_original_from_dq(char *str, t_env **env);
 char	*ft_parse_original_from_sq(char *str, t_env **env);
+int	ft_character_after_dollar(char *str);
    
 int	ft_count_size_lexer(char *str, int c, int start) //where
 {
@@ -112,4 +113,16 @@ char	*ft_parse_original_from_sq(char *str, t_env **env)
 	result = ft_parse_original_quote_core(sub1, sub2, env, 39);
     //ft_free_3str(sub1, sub2, NULL);
     return (result);
+}
+
+int ft_character_after_dollar(char *str)
+{
+	int c;
+
+	if (ft_strlen(str) == 1)
+		return (1);
+	c = str[1];
+	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 133))
+		return (1);
+	return (0);
 }

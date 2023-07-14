@@ -26,7 +26,6 @@ char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 	new_node = init_shell_node();
 	i = ft_i_start_from_word(str, 0);
 	original = ft_substr((char const *)str, 0, i);
-	//printf("original: %s\n", original);
 	new_node->input = ft_parse_original_from_word(original, env);
 	str += i;
 	new_node->len = ft_strlen(new_node->input);

@@ -86,6 +86,32 @@ static char	*check_expand_path_space(char *str, t_env *env)
 	return (result);
 }
 
+// static char	*ft_parse_dollar_core(char *str, t_env *env)
+// {
+// 	char	*str1;
+// 	char	*str2;
+// 	char	*path;
+// 	char	*result;
+
+// 	if (*str == '$')
+// 	{
+// 		if (ft_character_after_dollar(str))
+// 			return (ft_strdup(str));
+// 		else
+// 			result = check_expand_path_space(str, env);
+// 	}
+// 	else
+// 	{
+// 		str1 = ft_substr((char const *)str, 0, ft_count_size(str, 36));
+// 		str2 = ft_substr((char const *)str, ft_count_size(str, 36),
+// 				ft_strlen((char *)(str)) - ft_count_size(str, 36));
+// 		path = check_expand_path_space(str2, env);
+// 		result = ft_check_strjoin(str1, path);
+// 		ft_free_3str(str1, str2, path);
+// 	}
+// 	return (result);
+// }
+
 static char	*ft_parse_dollar_core(char *str, t_env *env)
 {
 	char	*str1;
@@ -111,11 +137,15 @@ char	*ft_parse_dollar_frame(char *str, t_env *env)
 {
 	char	*result;
 
+	if (str[0] == '$')
+		if (ft_character_after_dollar(str))
+			return (str);
 	if (!check_dollar(str, 36))
 		return (str);
 	else
 	{
 		result = ft_parse_dollar_core(str, env);
+		// printf("hello here: %s\n", result); //test echo $USER later!!!! return null at home
 		if (!result)
 		{
 			free(str);
