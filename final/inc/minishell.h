@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/14 12:31:00 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 14:18:14 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ char		*ft_expand(char *str, t_env **env);
 //char *ft_expand_valid_check(char *str, t_env **env);
 
 /* Env */
-t_env		*new_node_ENV(char *str);
+t_env		*new_node_environ(char *str);
 void		ft_add_tail_env(t_env **env, t_env *new_node);
 t_env		*init_env(char **envp, t_env *env);
 char		**ft_env_str(t_env *env);

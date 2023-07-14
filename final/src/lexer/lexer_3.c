@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:52:20 by yli               #+#    #+#             */
-/*   Updated: 2023/07/13 21:18:20 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/14 14:28:56 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 
 char	*new_node_sq(char *str, t_shell **shell, t_env **env)
 {
-	t_shell *new_node;
-	char *path;
-	int i;
+	t_shell	*new_node;
+	char	*path;
+	int		i;
 
 	new_node = init_shell_node();
 	i = ft_i_start_from_sq(str, 0);

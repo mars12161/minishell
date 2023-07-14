@@ -6,16 +6,15 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:45:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/14 10:58:45 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 14:14:15 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/minishell.h"
 
 int	g_exit = 0;
 
-static  int input_loop(t_env *env)
+static int	input_loop(t_env *env)
 {
 	t_shell		*shell;
 	t_parse_arr	*cmmarr;
@@ -31,15 +30,14 @@ static  int input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
-	//print_shell(shell);
-    cmmarr = parse_array_create(shell, env);
-    if (!cmmarr)
-    {
-        free(str);
-        free_shell(&shell);
-        return (0);
-    } 
-    if (cmmarr->size == 1)
+	cmmarr = parse_array_create(shell, env);
+	if (!cmmarr)
+	{
+		free(str);
+		free_shell(&shell);
+		return (0);
+	}
+	if (cmmarr->size == 1)
 	{
 		if (g_exit != 130)
 		{
@@ -66,9 +64,9 @@ int	main(int argc, char **argv, char **envp)
 	if (argc > 1)
 	{
 		ft_error_optimal("Program does not take any arguments\n", 126);
-	 	return (1);
+		return (1);
 	}
-    check = 0;
+	check = 0;
 	env = NULL;
 	env = init_env(envp, env);
 	while (42)

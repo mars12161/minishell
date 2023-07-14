@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:23:48 by yli               #+#    #+#             */
-/*   Updated: 2023/07/13 21:42:12 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/14 14:29:44 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ int	ft_i_start_from_sq(char *str, int pre)
 
 int	ft_i_start_from_dq(char *str, int pre)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = ft_count_size_lexer(str, 34, 1);
 	// printf("dq i : %d ", i);

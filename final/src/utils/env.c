@@ -6,23 +6,21 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/07/09 15:16:52 by user             ###   ########.fr       */
+/*   Updated: 2023/07/14 14:16:14 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_env		*new_node_ENV(char *str);
+t_env		*new_node_environ(char *str);
 void		ft_add_tail_env(t_env **env, t_env *new_node);
 t_env		*init_env(char **envp, t_env *env);
 char		**ft_env_str(t_env *env);
 
-t_env	*new_node_ENV(char *str)
+t_env	*new_node_environ(char *str)
 {
 	t_env	*new_node;
-	// int		i;
 
-	// i = 0;
 	new_node = NULL;
 	new_node = (t_env *)malloc(sizeof(t_env));
 	if (!new_node)
@@ -73,7 +71,7 @@ t_env	*init_env(char **envp, t_env *env)
 	i = 0;
 	while (envp[i])
 	{
-		ft_add_tail_env(&env, new_node_ENV(envp[i]));
+		ft_add_tail_env(&env, new_node_environ(envp[i]));
 		i++;
 	}
 	env->size = get_env_size(&env);

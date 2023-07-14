@@ -6,47 +6,47 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:20:30 by yli               #+#    #+#             */
-/*   Updated: 2023/07/13 21:09:59 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/14 14:44:49 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int ft_count_size_lexer(char *str, int c, int start);
-char *ft_parse_original_from_dq(char *str, t_env **env);
-char *ft_parse_original_from_sq(char *str, t_env **env);
+int		ft_count_size_lexer(char *str, int c, int start);
+char	*ft_parse_original_from_dq(char *str, t_env **env);
+char	*ft_parse_original_from_sq(char *str, t_env **env);
    
-int ft_count_size_lexer(char *str, int c, int start) //where
+int	ft_count_size_lexer(char *str, int c, int start) //where
 {
-    while(str[start])
-    {
-        if (str[start] == c)
-            return (start);
-        start++;
-    }
-    return (start);
+	while(str[start])
+	{
+		if (str[start] == c)
+			return (start);
+		start++;
+	}
+	return (start);
 }
 
-static char *ft_parse_original_quote_core(char *sub1, char *sub2, t_env **env, int signal)
+static char	*ft_parse_original_quote_core(char *sub1, char *sub2, t_env **env, int signal)
 {
-    char *subresult1;
-    char *subresult2;
-    char *result;
+    char	*subresult1;
+    char	*subresult2;
+    char	*result;
 
     if (signal == 34)
-        subresult1 = ft_parse_dollar_frame(sub1, *env);
-    else
-        subresult1 = ft_strdup(sub1);
-    subresult2 = ft_parse_original_from_word(sub2, env);
-    if (!subresult1 && subresult2)
-        return (subresult2);
-    if (!subresult2 && subresult1)
-        return (subresult1);
-    if (!subresult1 && !subresult2)
-        return (NULL);
-    result = ft_strjoin(subresult1, subresult2);
-    ft_free_3str(subresult1, subresult2, NULL);
-    return (result);
+		subresult1 = ft_parse_dollar_frame(sub1, *env);
+	else
+		subresult1 = ft_strdup(sub1);
+	subresult2 = ft_parse_original_from_word(sub2, env);
+	if (!subresult1 && subresult2)
+		return (subresult2);
+	if (!subresult2 && subresult1)
+		return (subresult1);
+	if (!subresult1 && !subresult2)
+		return (NULL);
+	result = ft_strjoin(subresult1, subresult2);
+	ft_free_3str(subresult1, subresult2, NULL);
+	return (result);
 }
 
 // static char *ft_parse_original_from_word_core(char *str, t_env **env, int signal, int size)
@@ -72,44 +72,44 @@ static char *ft_parse_original_quote_core(char *sub1, char *sub2, t_env **env, i
 //     }
 //     else
 //         return (result);
-    
 // }
 
 char *ft_parse_original_from_dq(char *str, t_env **env)
 {
-    int k;
-    char *sub1;
-    char *sub2;
-    char *result;
+    int		k;
+    char	*sub1;
+    char	*sub2;
+    char	*result;
 
     k = ft_count_size_lexer(str, 34, 1); //"dd$USER"abc
     sub1 = ft_substr(str, 1, k - 1);
     // printf("in dq: sub1: %s\n", sub1); //should be dd$USER
     // printf("k %d strlen %d\n", k, (int)ft_strlen(str));
     if (k == (int)ft_strlen(str) - 1) //"xyz"
-        return(ft_parse_dollar_frame(sub1, *env));
-    sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
+		return(ft_parse_dollar_frame(sub1, *env));
+
+	sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
     // printf("in dq: sub2: %s\n", sub2); //should be abc
-    result = ft_parse_original_quote_core(sub1, sub2, env, 34);
+	result = ft_parse_original_quote_core(sub1, sub2, env, 34);
     //ft_free_3str(sub1, sub2, NULL);
-    return (result);
+	return (result);
 }
 
-char *ft_parse_original_from_sq(char *str, t_env **env)
+char	*ft_parse_original_from_sq(char *str, t_env **env)
 {
-    int k;
-    char *sub1;
-    char *sub2;
-    char *result;
-    
-    k = ft_count_size_lexer(str, 39, 1); //'dd$USER'abc
-    sub1 = ft_substr(str, 1, k - 1);
+    int		k;
+    char	*sub1;
+    char	*sub2;
+    char	*result;
+
+	k = ft_count_size_lexer(str, 39, 1); //'dd$USER'abc
+	sub1 = ft_substr(str, 1, k - 1);
     // printf("in sq: sub1: %s\n", sub1); //should be dd$USER
     if (k == (int)ft_strlen(str) - 1) //'xyz'
-        return(sub1);
-    sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
+		return(sub1);
+	sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
     // printf("in sq: sub2: %s\n", sub2); //should be abc
-    result = ft_parse_original_quote_core(sub1, sub2, env, 39);
+	result = ft_parse_original_quote_core(sub1, sub2, env, 39);
     //ft_free_3str(sub1, sub2, NULL);
     return (result);
 }

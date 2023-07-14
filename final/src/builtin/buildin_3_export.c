@@ -104,7 +104,7 @@ int	ft_export(t_parse *node, t_env **env)
 			ft_export_name_check(node->whole_line[i], *env);
 			if (!ft_check_signal_export(node->whole_line[i]))
 			{
-				export = new_node_ENV(node->whole_line[i]);
+				export = new_node_environ(node->whole_line[i]);
 				ft_add_tail_env(env, export);
 			}
 			else if (ft_check_signal_export(node->whole_line[i]) == -1)
