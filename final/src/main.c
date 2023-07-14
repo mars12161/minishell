@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:45:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/13 21:23:23 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/14 10:58:45 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static  int input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
-	print_shell(shell);
+	//print_shell(shell);
     cmmarr = parse_array_create(shell, env);
     if (!cmmarr)
     {
@@ -41,12 +41,17 @@ static  int input_loop(t_env *env)
     } 
     if (cmmarr->size == 1)
 	{
-		if (!(check_buildin(cmmarr->cmm[0]->command)))
-			return (buildin_easy_mode(&shell, cmmarr, env, str));
-		signal(SIGQUIT, sigquit_handler);
-		return (execute_exit(shell, cmmarr, env, str));
+		if (g_exit != 130)
+		{
+			if (!(check_buildin(cmmarr->cmm[0]->command)))
+				return (buildin_easy_mode(&shell, cmmarr, env, str));
+			signal(SIGQUIT, sigquit_handler);
+			return (execute_exit(shell, cmmarr, env, str));
+		}
 	}
-	init_pipex(cmmarr, env);
+	if (g_exit != 130)
+		init_pipex(cmmarr, env);
+	g_exit = 0;
 	unlink("heredoc.txt");
 	free_all_in_loop(&shell, cmmarr, str);
 	return (1);

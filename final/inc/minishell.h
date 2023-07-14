@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/13 21:17:26 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/14 09:04:07 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,18 +113,18 @@ void		ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
 t_shell		*init_shell_node(void);
 
 /* Lexer 5 */
-int ft_check_quote_in_word(char *str);
-int ft_i_start_from_sq(char *str, int pre);
-int ft_i_start_from_word(char *str, int pre);
-int ft_i_start_from_dq(char *str, int pre);
+int 		ft_check_quote_in_word(char *str);
+int 		ft_i_start_from_sq(char *str, int pre);
+int 		ft_i_start_from_word(char *str, int pre);
+int 		ft_i_start_from_dq(char *str, int pre);
 
 /* Lexer 6 */
-char *ft_parse_original_from_word(char *str, t_env **env);
+char 		*ft_parse_original_from_word(char *str, t_env **env);
 
 /* Lexer 7 */
-int ft_count_size_lexer(char *str, int c, int start);
-char *ft_parse_original_from_dq(char *str, t_env **env);
-char *ft_parse_original_from_sq(char *str, t_env **env);
+int			ft_count_size_lexer(char *str, int c, int start);
+char		*ft_parse_original_from_dq(char *str, t_env **env);
+char		*ft_parse_original_from_sq(char *str, t_env **env);
 
 
 /* Parser 1 */

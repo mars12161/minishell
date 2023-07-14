@@ -3,7 +3,6 @@ CFLAGS = -g3 -Wall -Wextra -Werror
 CC = cc
 RM = rm -rf
 
-
 SRCS =		src/main.c \
 			src/signals/signals.c \
 			src/builtin/buildin_1.c \

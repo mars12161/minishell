@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/13 14:44:04 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 10:17:33 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,10 @@ char	*read_heredoc(t_env *env, char *delimiter)
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
 	}
-	return (whole_str);
+	if (g_exit == 130)
+		return (NULL);
+	else
+		return (whole_str);
 }
 
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
