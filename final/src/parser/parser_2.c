@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 11:17:30 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 17:08:26 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@ char	*check_input(t_shell *temp)
 		if (temp->next->type == 3 && (temp->next->next->type == 10
 				|| temp->next->next->type == 11))
 			return (temp->next->next->input);
-		if (temp->next->type == 10
-			|| temp->next->type == 11)
+		if (temp->next->type == 10 || temp->next->type == 11)
 			return (temp->next->input);
 	}
 	else
 	{
 		ft_putstr_fd("syntax error near unexpected token `newline'\n",
-			STDERR_FILENO);
+			STDERR_FILENO); 
 		// free everything todo
 		g_exit = 2;
 		return (NULL);
@@ -81,7 +80,8 @@ void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 	{
 		if (!temp->next)
 		{
-			ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
+			ft_putstr_fd("syntax error near unexpected token `newline'\n",
+				STDERR_FILENO);
 			g_exit = 2;
 			return ;
 		}
@@ -114,9 +114,9 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	{
 		str = readline("heredoc>");
 		if (!str)
-			break;
+			break ;
 		if (!ft_strcmp(str, delimiter) || g_exit == 130)
-			break;
+			break ;
 		str_expand_check = ft_parse_dollar_frame(str, env);
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
@@ -129,8 +129,8 @@ char	*read_heredoc(t_env *env, char *delimiter)
 
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 {
-	char *delimiter;
-	char *heredoc;
+	char	*delimiter;
+	char	*heredoc;
 
 	delimiter = check_input(temp);
 	if (!delimiter)
@@ -155,31 +155,4 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		free(heredoc);
 		cmm->redirection_in = 2;
 	}
-}
-
-void	parse_redir_in(t_parse *cmm, t_shell *temp)
-{
-	if (temp->input)
-	{
-		if (cmm->redirection_in == 0)
-		{
-			if (!temp->next)
-			{
-				ft_putstr_fd("syntax error near unexpected token `newline'\n", STDERR_FILENO);
-				g_exit = 2;
-				return ;
-			}
-			else
-			{
-				check_infile(temp->next->input);
-				cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
-			}
-		}
-		else
-		{
-			free(cmm->infilepath);
-			cmm->infilepath = ft_strdup(check_input(temp));
-		}
-	}
-	cmm->redirection_in = 1;
 }

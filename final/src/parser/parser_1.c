@@ -6,18 +6,18 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 19:43:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/10 13:59:40 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/14 16:47:59 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-t_parse_arr *parse_array_create(t_shell *head,t_env *env);
-t_parse	*parse_shell(t_shell *head, t_env *env);
+t_parse_arr		*parse_array_create(t_shell *head, t_env *env);
+t_parse			*parse_shell(t_shell *head, t_env *env);
 
 static void	parse_cmm(t_parse *cmm, t_shell *head)
 {
-	char **wline;
+	char	**wline;
 
 	wline = ft_shell_whole_line(head);
 	cmm->whole_line = wline;
@@ -25,11 +25,11 @@ static void	parse_cmm(t_parse *cmm, t_shell *head)
 	cmm->wline_count = ft_count_args(wline);
 }
 
-static	t_parse **create_cmm(t_shell *head, int *size, t_env *env)
+static t_parse	**create_cmm(t_shell *head, int *size, t_env *env)
 {
-	t_parse **cmm;
-	t_shell *temp;
-	int	i;
+	t_parse	**cmm;
+	t_shell	*temp;
+	int		i;
 
 	i = 0;
 	cmm = ft_calloc(*size, sizeof(t_parse));
@@ -51,10 +51,10 @@ static	t_parse **create_cmm(t_shell *head, int *size, t_env *env)
 	return (cmm);
 }
 
-t_parse_arr *parse_array_create(t_shell *head,t_env *env)
+t_parse_arr	*parse_array_create(t_shell *head, t_env *env)
 {
-	t_parse **cmm;
-	t_parse_arr *cmm_arr;
+	t_parse		**cmm;
+	t_parse_arr	*cmm_arr;
 
 	if (!head)
 		return (NULL);
@@ -82,12 +82,11 @@ static void	parse_other(t_shell *temp, t_parse *cmm, t_env *env)
 		parse_delim(cmm, env, temp);
 }
 
-
 t_parse	*parse_shell(t_shell *head, t_env *env)
 {
-	t_shell *temp;
-	t_parse *cmm;
-	int	i;
+	t_shell	*temp;
+	t_parse	*cmm;
+	int		i;
 
 	i = 0;
 	cmm = parse_init();
