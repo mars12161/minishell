@@ -122,7 +122,7 @@ int ft_character_after_dollar(char *str)
 	if (ft_strlen(str) == 1)
 		return (1);
 	c = str[1];
-	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 133))
+	if ((c >= 33 && c <= 47) || (c >= 58 && c <= 62) || c == 64 || (c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 133))
 		return (1);
 	return (0);
 }

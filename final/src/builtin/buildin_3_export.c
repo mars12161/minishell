@@ -115,5 +115,5 @@ int	ft_export(t_parse *node, t_env **env)
 		}
 	}
 	g_exit = 0;
-	return (g_exit);
+	return (0);
 }

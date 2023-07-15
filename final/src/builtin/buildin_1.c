@@ -89,9 +89,25 @@ int	exec_builtin(t_parse *node, t_env **env)
 int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, 
 		t_env *env, char *str)
 {
+	int check;
+
 	if (cmmarr->cmm[0]->redirection_out)
 		ft_redirection_out(cmmarr->cmm[0]);
-	exec_builtin(cmmarr->cmm[0], &env);
+	check = exec_builtin(cmmarr->cmm[0], &env);
 	free_all_in_loop(shell, cmmarr, str);
-	return (g_exit);
+	//printf("g_exit: %d\n", g_exit);
+	return (check);
 }
+
+// int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, 
+// 		t_env *env, char *str)
+// {
+// 	if (cmmarr->cmm[0]->redirection_out)
+// 		ft_redirection_out(cmmarr->cmm[0]);
+// 	exec_builtin(cmmarr->cmm[0], &env);
+// 	free_all_in_loop(shell, cmmarr, str);
+// 	printf("g_exit: %d\n", g_exit);
+// 	return (g_exit);
+// }
+
+

@@ -14,8 +14,6 @@
 
 int	ft_exit(t_parse *node);
 
-/* TODO Free everything */
-
 static int	ft_atoi_exit(const char *str)
 {
 	int	i;
@@ -43,13 +41,28 @@ static int	ft_atoi_exit(const char *str)
 	return (retval * neg);
 }
 
+static int ft_check_num_in_str(char *str)
+{
+	int i;
+
+	while(str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	ft_exit(t_parse *node)
 {
 	if (node->wline_count == 2)
 	{
 		g_exit = ft_atoi_exit(node->whole_line[1]);
 		printf("exit\n");
-		exit (g_exit);
+		if (ft_check_num_in_str(node->whole_line[1]))
+			ft_error_optimal("numeric argument required", 2);
+		return (-1);
 	}
 	else if (node->wline_count >= 3)
 	{
@@ -57,5 +70,5 @@ int	ft_exit(t_parse *node)
 		return (g_exit);
 	}
 	printf("exit\n");
-	exit(0);
+	return (-1);
 }

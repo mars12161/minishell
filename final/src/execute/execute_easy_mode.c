@@ -52,10 +52,10 @@ void	builtin_exit(t_parse *node, t_env *env)
 	int	check;
 
 	check = exec_builtin(node, &env);
-	if (check)
-		exit(g_exit);
-	else
+	if (check == -1 || check == 0)
 		exit(0);
+	else
+		exit(g_exit);
 }
 
 int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
