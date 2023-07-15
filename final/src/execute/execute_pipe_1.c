@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 16:27:57 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/15 11:15:30 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env)
 	if (!pid)
 		pipex(cmmarr, env);
 	else
-		waitpid(pid, &status, WEXITED);
+		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exit = WEXITSTATUS(status);
 }

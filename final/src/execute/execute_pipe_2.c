@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 17:00:25 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/15 14:44:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	**split_path(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (!strncmp(envp[i], "PATH=", 5))
+		if (!ft_strncmp(envp[i], "PATH=", 5))
 		{
 			path = ft_split(envp[i] + 5, ':');
 			return (path);

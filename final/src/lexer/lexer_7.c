@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:20:30 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 14:44:49 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/15 13:41:24 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_count_size_lexer(char *str, int c, int start);
 char	*ft_parse_original_from_dq(char *str, t_env **env);
 char	*ft_parse_original_from_sq(char *str, t_env **env);
-int	ft_character_after_dollar(char *str);
+int		ft_character_after_dollar(char *str);
    
 int	ft_count_size_lexer(char *str, int c, int start) //where
 {

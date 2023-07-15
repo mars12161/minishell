@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 15:25:22 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/15 14:45:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ int		execute_exit(t_shell *shell, t_parse_arr *cmmarr,
  		return (0);
  	return (1);
  }*/
+
+/*static void printCharString(char** str) {
+	if (str == NULL) {
+		printf("Empty string\n");
+		return;
+	}
+
+	while (*str != NULL) {
+		printf("%s\n", *str);
+		str++;
+	}
+}*/
 
 int	execute_easy_mode(t_parse_arr *cmmarr, t_env *env)
 {
