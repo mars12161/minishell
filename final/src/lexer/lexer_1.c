@@ -27,6 +27,7 @@ char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
 	i = ft_i_start_from_word(str, 0);
 	original = ft_substr((char const *)str, 0, i);
 	new_node->input = ft_parse_original_from_word(original, env);
+	//free(original);
 	str += i;
 	new_node->len = ft_strlen(new_node->input);
 	check = check_word_or_path(*shell);

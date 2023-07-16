@@ -25,7 +25,7 @@ char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 	i = ft_i_start_from_dq(str, 0);
 	path = ft_substr(str, 0, i);
 	new_node->input = ft_parse_original_from_dq(path, env);
-	//free(path); not sure
+	free(path);
 	str += i;
 	new_node->len = ft_strlen(new_node->input);
 	if (new_node->input)

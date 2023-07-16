@@ -23,10 +23,12 @@ t_parse	*parse_init(void)
 
 	node = malloc(sizeof(t_parse) * 1);
 	//node->command = malloc(sizeof(char) * 100);
-	node->infilepath = malloc(sizeof(char) * 1000);
-	node->outfilepath = malloc(sizeof(char) * 100);
-	if (!node || !node->infilepath || !node->outfilepath)
-		return (NULL);
+	// node->infilepath = malloc(sizeof(char) * 1000);
+	// node->outfilepath = malloc(sizeof(char) * 100);
+	node->infilepath = NULL;
+	node->outfilepath = NULL;
+	// if (!node || !node->infilepath || !node->outfilepath)
+	// 	return (NULL);
 	node->redirection_in = 0;
 	node->redirection_out = 0;
 	node->pipe = 0;

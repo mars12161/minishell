@@ -29,8 +29,12 @@ char	*ft_expand(char *str, t_env **env)
 		{
 			path = ft_strtrim(temp->content, str);
 			if (*path != '=')
+			{
+				free(path);
 				return (NULL);
+			}
 			result = ft_strtrim(path, "=");
+			free(path);
 			return (result);
 		}
 		temp = temp->next;

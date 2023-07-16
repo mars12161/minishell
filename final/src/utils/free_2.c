@@ -17,9 +17,12 @@ void	ft_free_str(char **str);
 
 void	ft_free_3str(char *str1, char *str2, char *str3)
 {
-	free(str1);
-	free(str2);
-	free(str3);
+	if (str1)
+		free(str1);
+	if (str2)
+		free(str2);
+	if (str3)
+		free(str3);
 }
 
 void	ft_free_str(char **str)
