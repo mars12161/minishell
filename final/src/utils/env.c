@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/07/15 14:40:41 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/15 14:56:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_add_tail_env(t_env **env, t_env *new_node)
 	while (temp->next)
 		temp = temp->next;
 	temp->next = new_node;
-	new_node->next = NULL;
 }
 
 static int	get_env_size(t_env **env)
