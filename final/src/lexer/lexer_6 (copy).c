@@ -71,7 +71,6 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 	int	i;
 	int	j;
 	int	k;
-	char *result;
 
 	if (!ft_check_quote_in_word(str))
 		return (ft_parse_dollar_frame(str, *env));
@@ -83,25 +82,21 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 	j = ft_count_size_lexer(str, 39, 0);
 	if (i < j)
 	{
+		//str += i;
+		//printf("str in parse original from word i : %s\n", str);
 		k = ft_count_size_lexer(str, 34, i + 1);
 		if (k == (int)ft_strlen(str) - 1 - i)
-		{
-			result = ft_strdup(str);
-			free(str);
-			return (result);
-		}
+			return (str);
 		else
 			return (ft_parse_original_from_word_core(str, env, 34, i));
 	}
 	else
 	{
+		//str += j + 1;
+		//printf("str in parse original from word j : %s\n", str);
 		k = ft_count_size_lexer(str, 39, j + 1);
 		if (k == (int)ft_strlen(str) - j - 1)
-		{
-			result = ft_strdup(str);
-			free(str);
-			return (result);
-		}
+			return (str);
 		else
 			return (ft_parse_original_from_word_core(str, env, 39, j));
 	}
