@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/17 10:16:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 11:20:26 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,12 @@ int			ft_strcmpn(char *str1, char *str2, int size);
 int			ft_echo(t_parse *node, t_env **env);
 int			ft_echo_help(t_parse *node, int fd);
 int			ft_export(t_parse *node, t_env **env);
+void		ft_export_name_check(char *str, t_env *env);
+int			ft_check_signal_export(char *str);
+void		export_loop(int i, t_parse *node, t_env **env, t_env *export);
 int			ft_cd(t_parse *node, t_env **env);
+int			ft_replace_oldpwd(char *str, t_env *env);
+int			cd_env_loop(t_env ** env, t_env *temp, char pwd[PATH_SIZE], char *str);
 int			ft_exit(t_parse *node);
 int			ft_pwd(t_parse *node);
 void		ft_unset_core(char *str, t_env **env);

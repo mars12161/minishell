@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:16:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/12 16:30:55 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/17 11:35:57 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	check_word_or_path(t_shell *shell)
 		else if (bottom->type == REDIRECT_OUT || bottom->type == APP_M)
 			return (2);
 		else if (bottom->type == SPA && (bottom->pre->type == REDIRECT_IN
-					|| bottom->pre->type == HEREDOC))
+				|| bottom->pre->type == HEREDOC))
 			return (1);
 		else if (bottom->type == SPA && (bottom->pre->type == REDIRECT_OUT
-					|| bottom->pre->type == APP_M))
+				|| bottom->pre->type == APP_M))
 			return (2);
 	}
 	return (0);
@@ -80,7 +80,7 @@ int	check_word_or_path(t_shell *shell)
 
 void	ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type)
 {
-	t_shell *bottom;
+	t_shell	*bottom;
 
 	if (!new_node)
 		return ;

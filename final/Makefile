@@ -10,7 +10,9 @@ SRCS =		src/main.c \
 			src/builtin/buildin_2_echo.c \
 			src/builtin/buildin_2_echo2.c \
 			src/builtin/buildin_3_export.c \
+			src/builtin/buildin_3_export2.c \
 			src/builtin/buildin_4_cd.c \
+			src/builtin/buildin_4_cd2.c \
 			src/builtin/buildin_5_exit.c \
 			src/builtin/buildin_6_pwd.c \
 			src/builtin/buildin_7_unset.c \

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:33 by yli               #+#    #+#             */
-/*   Updated: 2023/07/15 13:27:16 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:33:32 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_check_n_export(char *str)
 	return (1);
 }
 
-static int	ft_check_signal_export(char *str)
+int	ft_check_signal_export(char *str)
 {
 	int	i;
 	int	j;
@@ -73,7 +73,7 @@ static char	*ft_str_trim_vor(char *wstr, int i)
 	return (str);
 }
 
-static void	ft_export_name_check(char *str, t_env *env)
+void	ft_export_name_check(char *str, t_env *env)
 {
 	int		i;
 	char	*name;
@@ -98,22 +98,7 @@ int	ft_export(t_parse *node, t_env **env)
 	if (ft_check_n_export(node->whole_line[1]))
 		return (0);
 	else
-	{
-		while (i < node->wline_count)
-		{
-			ft_export_name_check(node->whole_line[i], *env);
-			if (!ft_check_signal_export(node->whole_line[i]))
-			{
-				export = new_node_environ(node->whole_line[i]);
-				ft_add_tail_env(env, export);
-			}
-			else if (ft_check_signal_export(node->whole_line[i]) == -1)
-				ft_error_optimal("not a valid identifier", 1);
-			else if (ft_check_signal_export(node->whole_line[i]) == -2)
-				ft_error_optimal("syntax error near unexpected token", 1);
-			i++;
-		}
-	}
+		export_loop(i, node, env, export);
 	g_exit = 0;
 	return (0);
 }

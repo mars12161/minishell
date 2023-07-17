@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 14:29:14 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 11:37:18 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ static char	*ft_parse_original_from_word_core(char *str, t_env **env,
 
 char	*ft_parse_original_from_word(char *str, t_env **env)
 {
-	int	i;
-	int	j;
-	int	k;
-	char *result;
+	int		i;
+	int		j;
+	int		k;
+	char	*result;
 
 	if (!ft_check_quote_in_word(str))
 		return (ft_parse_dollar_frame(str, *env));
