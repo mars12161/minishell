@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/15 11:15:30 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:52:39 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env)
 
 	pid = fork();
 	status = 0;
-	g_exit = 250;
 	if (pid == -1)
 		ft_error("fork failed");
 	if (!pid)

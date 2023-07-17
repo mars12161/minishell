@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/07/15 14:44:23 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:26:06 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char		*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
 static char	*get_path(char *cmd, char **envp);
 void		ft_executer(char **whole_line, char **env);
 
-char	*str_ncpy(char *str, int n)
+/*char	*str_ncpy(char *str, int n)
 {
 	char	*result;
 	int		i;
@@ -30,7 +30,7 @@ char	*str_ncpy(char *str, int n)
 		result[i++] = *str++;
 	result[n] = 0;
 	return (result);
-}
+}*/
 
 char	*ft_strjoin_path_cmd(char const *s1, char c, char const *s2)
 {

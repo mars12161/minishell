@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/15 14:45:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:56:59 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 		execute_easy_mode(cmmarr, env);
 	else
 	{
-		g_exit = 250;
+		g_exit = 130;
 		waitpid(pid, &status, 0);
 	}
-	g_exit = 0;
+	//g_exit = 0;
 	if (WIFEXITED(status))
 		g_exit = WEXITSTATUS(status);
 	free_all_in_loop(&shell, cmmarr, str);
