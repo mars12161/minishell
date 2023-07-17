@@ -1,6 +1,6 @@
 NAME = minishell
-#CFLAGS = -g3 -Wall -Wextra -Werror
-CFLAGS	:= -g3 -fsanitize=address -Wall -Wextra -Werror
+CFLAGS = -g3 -Wall -Wextra -Werror
+#CFLAGS	:= -g3 -fsanitize=address -Wall -Wextra -Werror
 CC = cc
 RM = rm -rf
 
@@ -8,6 +8,7 @@ SRCS =		src/main.c \
 			src/signals/signals.c \
 			src/builtin/buildin_1.c \
 			src/builtin/buildin_2_echo.c \
+			src/builtin/buildin_2_echo2.c \
 			src/builtin/buildin_3_export.c \
 			src/builtin/buildin_4_cd.c \
 			src/builtin/buildin_5_exit.c \

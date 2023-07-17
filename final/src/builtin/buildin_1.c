@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 13:48:44 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/12 11:55:19 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:05:02 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,12 @@ int	exec_builtin(t_parse *node, t_env **env)
 int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr, 
 		t_env *env, char *str)
 {
-	int check;
+	int	check;
 
 	if (cmmarr->cmm[0]->redirection_out)
 		ft_redirection_out(cmmarr->cmm[0]);
 	check = exec_builtin(cmmarr->cmm[0], &env);
 	free_all_in_loop(shell, cmmarr, str);
-	//printf("g_exit: %d\n", g_exit);
 	return (check);
 }
 
@@ -109,5 +108,3 @@ int	buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr,
 // 	printf("g_exit: %d\n", g_exit);
 // 	return (g_exit);
 // }
-
-

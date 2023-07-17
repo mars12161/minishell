@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 17:08:26 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 09:32:13 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,8 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
 				return ;
-			cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
+			//cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
+			cmm->infilepath = ft_strdup(heredoc);
 		}
 		else
 		{
@@ -150,7 +151,8 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
 				return ;
-			cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
+			//cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
+			cmm->infilepath = ft_strdup(heredoc);
 		}
 		free(heredoc);
 		cmm->redirection_in = 2;

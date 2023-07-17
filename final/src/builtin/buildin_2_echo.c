@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 22:03:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 14:03:15 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:19:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,20 @@ static int	ft_check_each_n(char *str)
 
 static int	ft_check_n(char *str)
 {
-	if (str[0] == '-')
+	if (str)
 	{
-		str += 1;
-		if (ft_check_each_n(str))
-			return (1);
+		if (str[0] == '-')
+		{
+			str += 1;
+			if (ft_check_each_n(str))
+				return (1);
+			else
+				return (0);
+		}
 		else
 			return (0);
 	}
-	else
-		return (0);
+	return (0);
 }
 
 static void	ft_echo_home(t_env **env)
@@ -90,13 +94,7 @@ int	ft_echo(t_parse *node, t_env **env)
 	i = 0;
 	flag = 0;
 	fd = ft_redirection_out(node);
-	if (node->wline_count == 1)
-	{
-		ft_putstr_fd("\n", fd);
-		if (fd != 1)
-			close(fd);
-		return (0);
-	}
+	ft_echo_help(node, fd);
 	if (ft_check_n(node->whole_line[1]))
 	{
 		i = 1;

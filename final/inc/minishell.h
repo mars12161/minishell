@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/14 14:18:14 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:16:03 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ int			buildin_easy_mode(t_shell **shell, t_parse_arr *cmmarr,
 				t_env *env, char *str);
 int			ft_strcmpn(char *str1, char *str2, int size);
 int			ft_echo(t_parse *node, t_env **env);
+int			ft_echo_help(t_parse *node, int fd);
 int			ft_export(t_parse *node, t_env **env);
 int			ft_cd(t_parse *node, t_env **env);
 int			ft_exit(t_parse *node);

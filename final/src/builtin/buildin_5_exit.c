@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:49 by yli               #+#    #+#             */
-/*   Updated: 2023/07/15 11:13:30 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:05:38 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static int	ft_atoi_exit(const char *str)
 	return (retval * neg);
 }
 
-static int ft_check_num_in_str(char *str)
+static int	ft_check_num_in_str(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			return (0);

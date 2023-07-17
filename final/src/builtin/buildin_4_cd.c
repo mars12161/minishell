@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:43 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 12:37:48 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:09:23 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	ft_cd_env(char *str, t_env **env)
 			chdir(result);
 			free(result);
 			ft_replace_oldpwd(pwd, *env);
-			if (!strncmp(str, "HOME=", ft_strlen(str)))
+			if (!ft_strncmp(str, "HOME=", ft_strlen(str)))
 				homefound = 1;
 		}
 		temp = temp->next;
