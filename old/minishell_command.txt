@@ -159,27 +159,20 @@ yli@c4a4c9:~/Desktop/Project/minishell/minishell$ echo 422$?4
 
 
 [minishell:]echo "123""456"
-123 456
+123456
 [minishell:]echo '123'"456"
-123 456
+123456
 [minishell:]echo '123''456'
-123 456
+123456
 [minishell:]echo ""123""456
- 123""456
+123456
 should be: 123456
 
-yli@c4b4c3:~$ echo "123""456"
-123456
-yli@c4b4c3:~$ echo ""123""456
-123456
+[minishell:]echo  -nnan"$USER  c $?$HOME" ab  //ok
+-nnanyli  c 0/home/yli ab
 
-[minishell:]echo  -nnan"$USER  c $?$HOME" ab
--nnan"yli c 0 ab
-
-[minishell:]echo 45"aa$USER'dd'"bb
-str in new node after trim:  45"aa$USER'dd'"bb
-str in new node after trim: 
-45aabb
+[minishell:]echo 45"aa$USER'dd'"bb   //1
+45aayli'dd'bb
 
 yli@c4c6c3:~/Desktop/Project/minishell/final$ echo 'ab   "$USER"dd'12 12
 ab   "$USER"dd12 12
@@ -189,6 +182,18 @@ abc 'yli'cc 123
 [test:]-nnna"$USER   c  $?$HOME" ab
 
 [minishell:]echo     ""      $HOME""
+
+[minishell:]echo $USER$HOME
+yli/home/yli
+[minishell:]echo $USER$HOME$?
+yli/home/yli0
+[minishell:]echo $USER$HOME$?""
+yli/home/yli0""
+[minishell:]echo $USER$HOME$?""
+yli/home/yli0""
+[minishell:]echo "$USER$HOME$?"
+yli/home/yli0
+
 
 
 

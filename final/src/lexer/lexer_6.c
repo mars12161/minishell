@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 11:37:18 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:38:48 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 	return (result);
 }
 
+static char *ft_ft_parse_original_from_word_core_utils(char *result, char *str, t_env **env)
+{
+	char *final;
+
+	final = ft_strjoin(result, ft_parse_original_from_word(str, env));
+	free(result);
+	return (final);
+}
+
 static char	*ft_parse_original_from_word_core(char *str, t_env **env,
 		int signal, int size)
 {
@@ -47,20 +56,16 @@ static char	*ft_parse_original_from_word_core(char *str, t_env **env,
 
 	k = ft_count_size_lexer(str, signal, size + 1); // abc"dd$USER"
 	sub1 = ft_substr(str, 0, size);
-	// printf("in word core: sub1: %s\n", sub1); //should be abc
-	// printf("in word core:str[size] %c str[k] %c size = %d k= %d\n",
-			//str[size], str[k], size , k);
 	sub2 = ft_substr(str, size + 1, k - size - 1); //not sure k or k-1
-	// printf("in word core: sub2: %s\n", sub2); //should be dd$USER
 	result = ft_parse_word_rules_strjoin_quote(sub1, sub2, env, signal);
 	if (str[k + 1])
 	{
 		str += k + 1;
-		// printf("str in sub3: %s\n", str);
-		return (ft_strjoin(result, ft_parse_original_from_word(str, env)));
+		return (ft_ft_parse_original_from_word_core_utils(result, str, env));
 	}
 	else
 	{
+		free(str);
 		//ft_free_3str(sub1, sub2, NULL); //75% sure
 		return (result);
 	}
@@ -74,7 +79,10 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 	char	*result;
 
 	if (!ft_check_quote_in_word(str))
-		return (ft_parse_dollar_frame(str, *env));
+	{
+		result = ft_parse_dollar_frame(str, *env);
+		return (result);
+	}
 	else if (str[0] == 34)
 		return (ft_parse_original_from_dq(str, env));
 	else if (str[0] == 39)
@@ -84,7 +92,7 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 	if (i < j)
 	{
 		k = ft_count_size_lexer(str, 34, i + 1);
-		if (k == (int)ft_strlen(str) - 1 - i)
+		if (k == (int)ft_strlen(str))
 		{
 			result = ft_strdup(str);
 			free(str);
@@ -96,7 +104,7 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 	else
 	{
 		k = ft_count_size_lexer(str, 39, j + 1);
-		if (k == (int)ft_strlen(str) - j - 1)
+		if (k == (int)ft_strlen(str))
 		{
 			result = ft_strdup(str);
 			free(str);

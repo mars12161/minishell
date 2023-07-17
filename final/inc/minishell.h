@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/17 11:20:26 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 16:00:36 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,15 +138,15 @@ char		*read_heredoc(t_env *env, char *delimiter);
 void		parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 
 /* Parser 3 */
-void		check_infile(char *infilepath);
-int			args_count(t_shell *head);
-int			get_size_cmmarr(t_shell *head);
+void	check_infile(char *infilepath);
+int		args_count(t_shell *head);
+int		get_size_cmmarr(t_shell *head);
+void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
 /* Parser 4 */
-t_parse		*parse_init(void);
-char		**ft_shell_whole_line(t_shell *head);
-int			ft_count_args(char **str);
-void		parse_redir_in(t_parse *cmm, t_shell *temp);
+t_parse	*parse_init(void);
+char	**ft_shell_whole_line(t_shell *head);
+int		ft_count_args(char **str);
 
 /* Parse Multi Env 1 */
 char		*ft_parse_dollar_frame(char *str, t_env *env);
@@ -156,6 +156,10 @@ int			check_dollar(char *str, int c);
 int			ft_count_size(char *str, int c);
 char		*ft_check_strjoin(char *s1, char *s2);
 int			check_path_char(int c);
+
+/* Parse Multi Env 3*/
+char *check_path_valid_utils(char *str, t_env *env);
+int	check_path_str(char *str);
 
 /* Expand */
 char		*ft_expand(char *str, t_env **env);

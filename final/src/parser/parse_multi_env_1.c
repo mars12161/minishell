@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 16:39:40 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:42:29 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ static char	*check_path_valid(char *str, t_env *env, int c)
 	if (c == -1)
 	{
 		str += 1;
-		return (ft_expand(str, &env));
+		if (check_path_str(str) == (int)ft_strlen(str))
+			return (ft_expand(str, &env));
+		else
+			return (check_path_valid_utils(str, env));
 	}
 	while (str[i])
 	{
@@ -69,6 +72,7 @@ static char	*check_expand_path_space(char *str, t_env *env)
 
 	space = ft_count_size(str, 32);
 	dollar = ft_count_size(str, 36);
+	//printf("space: %d dollar; %d \n", space, dollar);
 	result = NULL;
 	if (str[1] == '?')
 	{
@@ -86,32 +90,6 @@ static char	*check_expand_path_space(char *str, t_env *env)
 	return (result);
 }
 
-// static char	*ft_parse_dollar_core(char *str, t_env *env)
-// {
-// 	char	*str1;
-// 	char	*str2;
-// 	char	*path;
-// 	char	*result;
-
-// 	if (*str == '$')
-// 	{
-// 		if (ft_character_after_dollar(str))
-// 			return (ft_strdup(str));
-// 		else
-// 			result = check_expand_path_space(str, env);
-// 	}
-// 	else
-// 	{
-// 		str1 = ft_substr((char const *)str, 0, ft_count_size(str, 36));
-// 		str2 = ft_substr((char const *)str, ft_count_size(str, 36),
-// 				ft_strlen((char *)(str)) - ft_count_size(str, 36));
-// 		path = check_expand_path_space(str2, env);
-// 		result = ft_check_strjoin(str1, path);
-// 		ft_free_3str(str1, str2, path);
-// 	}
-// 	return (result);
-// }
-
 static char	*ft_parse_dollar_core(char *str, t_env *env)
 {
 	char	*str1;
@@ -126,6 +104,7 @@ static char	*ft_parse_dollar_core(char *str, t_env *env)
 		str1 = ft_substr((char const *)str, 0, ft_count_size(str, 36));
 		str2 = ft_substr((char const *)str, ft_count_size(str, 36),
 				ft_strlen((char *)(str)) - ft_count_size(str, 36));
+		//printf("in parse dollar core: str1: %s str2: %s\n", str1, str2);
 		path = check_expand_path_space(str2, env);
 		result = ft_check_strjoin(str1, path);
 		ft_free_3str(str1, str2, path);
@@ -139,13 +118,20 @@ char	*ft_parse_dollar_frame(char *str, t_env *env)
 
 	if (str[0] == '$')
 		if (ft_character_after_dollar(str))
-			return (str);
+		{
+			result = ft_strdup(str);
+			free(str);
+			return (result);
+		}
 	if (!check_dollar(str, 36))
-		return (str);
+	{
+		result = ft_strdup(str);
+		free(str);
+		return (result);
+	}
 	else
 	{
 		result = ft_parse_dollar_core(str, env);
-		// printf("hello here: %s\n", result); //test echo $USER later!!!! return null at home
 		if (!result)
 		{
 			free(str);
@@ -155,5 +141,6 @@ char	*ft_parse_dollar_frame(char *str, t_env *env)
 	if (check_dollar(result, 36))
 		result = ft_parse_dollar_frame(result, env);
 	free(str);
+	//printf("result in parse dollar frame: %s\n", result);
 	return (result);
 }

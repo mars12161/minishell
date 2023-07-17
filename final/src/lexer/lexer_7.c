@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:20:30 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 11:34:26 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:00:05 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,6 @@ static char	*ft_parse_original_quote_core(char *sub1, char *sub2, t_env **env,
 	return (result);
 }
 
-// static char *ft_parse_original_from_word_core(char *str, t_env **env,
-//		int signal, int size)
-// {
-//     char *sub1;
-//     char *sub2;
-//     char *result;
-//     int k;
-
-//     k = ft_count_size_lexer(str, signal, size + 1); // abc"dd$USER"
-//     sub1 = ft_substr(str, 0, size);
-//     printf("in word core: sub1: %s\n", sub1); //should be abc
-//     printf("in word core:str[size] %c str[k] %c size = %d k= %d\n",
-//		str[size], str[k], size , k);
-//     sub2 = ft_substr(str, size + 1, k - size - 1); //not sure k or k-1
-//     printf("in word core: sub2: %s\n", sub2); //should be dd$USER
-//     result = ft_parse_word_rules_strjoin_quote(sub1, sub2, env, signal);
-//     //ft_free_3str(sub1, sub2, NULL); //75% sure
-//     if (str[k + 1])
-//     {
-//         str += k + 1;
-//         printf("str in sub3: %s\n", str);
-//         return (ft_strjoin(result, ft_parse_original_from_word(str, env)));
-//     }
-//     else
-//         return (result);
-// }
-
 char	*ft_parse_original_from_dq(char *str, t_env **env)
 {
 	int		k;
@@ -95,6 +68,7 @@ char	*ft_parse_original_from_dq(char *str, t_env **env)
 	sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
 	// printf("in dq: sub2: %s\n", sub2); //should be abc
 	result = ft_parse_original_quote_core(sub1, sub2, env, 34);
+	free(sub2);
 	//ft_free_3str(sub1, sub2, NULL);
 	return (result);
 }
@@ -114,7 +88,7 @@ char	*ft_parse_original_from_sq(char *str, t_env **env)
 	sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
 	// printf("in sq: sub2: %s\n", sub2); //should be abc
 	result = ft_parse_original_quote_core(sub1, sub2, env, 39);
-	//ft_free_3str(sub1, sub2, NULL);
+	ft_free_3str(sub1, sub2, NULL);
 	return (result);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:23:48 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 14:29:44 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 18:27:11 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	ft_check_quote_in_word(char *str)
 	i = ft_count_size_lexer(str, 34, 0);
 	j = ft_count_size_lexer(str, 39, 0);
 	k = (int)ft_strlen(str);
-	// printf("%d\n", ft_count_size_lexer(str, 34, 0));
-	// printf("%d\n", ft_count_size_lexer(str, 39, 0));
-	// printf("%d\n", (int)ft_strlen(str));
 	if (i == j && i == k && j == k)
 		return (0); //not find
 	else
@@ -130,7 +127,9 @@ int	ft_i_start_from_dq(char *str, int pre)
 	// printf("pre : %d ", pre);
 	// printf("strlen : %s %d\n", str, (int)ft_strlen(str));
 	j = (int)ft_strlen(str);
-	if (i == j - 1 || i == j - 2 || (i == j && str[pre] == 34))
+	// printf("i: %d j: %d str[pre]: %c pre: %d str: %s\n", i, j, str[pre], pre, str);
+	// if (i == j - 1 || i == j - 2 || (i == j && str[pre] == 34))
+	if (i == j - 1 || i == j - 2 || i == j)
 		return (j + pre);
 	if (str[i + 1] == 32)
 		return (pre + i + 1);

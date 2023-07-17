@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 22:02:41 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 13:03:08 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:55:59 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_parse	*parse_init(void);
 char	**ft_shell_whole_line(t_shell *head);
 int		ft_count_args(char **str);
-void	parse_redir_in(t_parse *cmm, t_shell *temp);
 
 t_parse	*parse_init(void)
 {
@@ -75,23 +74,3 @@ int	ft_count_args(char **str)
 	}
 	return (count);
 }
-
-/*
-void	parse_redir_in(t_parse *cmm, t_shell *temp)
-{
-	if (temp->input)
-	{
-		if (cmm->redirection_in == 0)
-		{
-			check_infile(temp->next->input);
-			cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
-			//do not have ft_strcat
-		}
-		else
-		{
-			free(cmm->infilepath);
-			cmm->infilepath = ft_strdup(check_input(temp));
-		}
-	}
-	cmm->redirection_in = 1;
-}*/

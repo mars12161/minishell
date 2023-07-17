@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:52:20 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 14:28:56 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/17 17:58:51 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*new_node_sq(char *str, t_shell **shell, t_env **env)
 	i = ft_i_start_from_sq(str, 0);
 	path = ft_substr(str, 0, i);
 	new_node->input = ft_parse_original_from_sq(path, env);
+	free(path);
 	str += i;
 	new_node->len = ft_strlen(new_node->input);
 	if (new_node->input)

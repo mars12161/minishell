@@ -10,17 +10,27 @@
 # include <signal.h>
 # include <stdbool.h>
 
+// int main()
+// {
+//     char *str = "abc";
+//     char *cpy;
+
+//     cpy = str;
+//     printf("%s\n", str);
+//     printf("%s\n", str + 1);
+//     printf("%s\n", cpy);
+//     printf("%s\n", cpy + 1);
+//     printf("%s\n", cpy - 1);
+//     printf("%s\n", str);
+//     printf("%s\n", cpy);
+// }
+
 int main()
 {
+    int i;
     char *str = "abc";
-    char *cpy;
 
-    cpy = str;
-    printf("%s\n", str);
-    printf("%s\n", str + 1);
-    printf("%s\n", cpy);
-    printf("%s\n", cpy + 1);
-    printf("%s\n", cpy - 1);
-    printf("%s\n", str);
-    printf("%s\n", cpy);
+    i = 0;
+    printf("%d\n",(int)strlen(str));
+
 }

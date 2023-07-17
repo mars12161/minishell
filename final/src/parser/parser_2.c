@@ -6,7 +6,11 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/07/17 15:05:45 by yli              ###   ########.fr       */
+=======
 /*   Updated: 2023/07/17 13:54:14 by mschaub          ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +60,6 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 		}
 		if (temp->input)
 		{
-			// fd = open(temp->next->input, O_CREAT | O_RDWR, 0644);
-			// if (fd == -1)
-			// 	perror("File could not be created");
-			// close(fd);
 			if (cmm->redirection_out == 0)
 				cmm->outfilepath = ft_strdup(check_input(temp));
 			else
