@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 22:50:39 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 23:17:59 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 {
 	char	**envp;
 
+	// if (node->redirection_in == 2)
+		
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		ft_putstr_fd("dup2 failed", STDERR_FILENO);
 	redir_child(node);
 	close(fd[0]);
+	close(fd[1]);
 	if (!check_buildin(node->command))
 		builtin_exit(node, env);
 	envp = ft_env_str(env);
