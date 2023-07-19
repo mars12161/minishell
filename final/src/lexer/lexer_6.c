@@ -37,9 +37,9 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 	return (result);
 }
 
-static char *ft_ft_parse_original_from_word_core_utils(char *result, char *str, t_env **env)
+static char	*ft_ft_parse_original_from_word_core_utils(char *result, char *str, t_env **env)
 {
-	char *final;
+	char	*final;
 
 	final = ft_strjoin(result, ft_parse_original_from_word(str, env));
 	free(result);

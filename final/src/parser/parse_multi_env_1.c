@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 18:42:29 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 20:10:38 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,14 @@ char	*ft_parse_dollar_frame(char *str, t_env *env)
 	char	*result;
 
 	if (str[0] == '$')
+	{
 		if (ft_character_after_dollar(str))
 		{
 			result = ft_strdup(str);
 			free(str);
 			return (result);
 		}
+	}
 	if (!check_dollar(str, 36))
 	{
 		result = ft_strdup(str);

@@ -6,19 +6,19 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:55:39 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 18:22:26 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 20:11:09 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char *check_path_valid_utils(char *str, t_env *env);
-int	check_path_str(char *str);
+char	*check_path_valid_utils(char *str, t_env *env);
+int		check_path_str(char *str);
 
-static char *check_path_valid_utils_free(char *str, int i, t_env *env)
+static char	*check_path_valid_utils_free(char *str, int i, t_env *env)
 {
-	char *path;
-	char *sub1;
+	char	*path;
+	char	*sub1;
 
 	path = ft_substr(str, 0, i);
 	sub1 = ft_expand(path, &env);
@@ -26,14 +26,18 @@ static char *check_path_valid_utils_free(char *str, int i, t_env *env)
 		free(path);
 	return (sub1);
 }
-char *check_path_valid_utils(char *str, t_env *env)
-{
-	int i;
-	char *sub1;
-	char *sub2;
-	char *result;
 
-	if ((str[ft_strlen(str) - 1] == str[ft_strlen(str) - 2] && str[ft_strlen(str) - 1] == 34) || (str[ft_strlen(str) - 1] == str[ft_strlen(str) - 2] && str[ft_strlen(str) - 1] == 39))
+char	*check_path_valid_utils(char *str, t_env *env)
+{
+	int		i;
+	char	*sub1;
+	char	*sub2;
+	char	*result;
+
+	if ((str[ft_strlen(str) - 1] == str[ft_strlen(str) - 2]
+			&& str[ft_strlen(str) - 1] == 34)
+			|| (str[ft_strlen(str) - 1] == str[ft_strlen(str) - 2]
+			&& str[ft_strlen(str) - 1] == 39))
 		return (ft_expand(str, &env));
 	i = check_path_str(str);
 	// sub1 = ft_expand(ft_substr(str, 0, i), &env);
@@ -60,7 +64,7 @@ int	check_path_str(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (check_path_char(str[i]) == 1)
 			break ;

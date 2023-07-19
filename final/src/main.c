@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:45:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/17 13:43:51 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/19 20:27:40 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	input_loop(t_env *env)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		g_exit = 130;
+		//free
 		return (-1);
 	}
 	else if (str[0] != '\0')
