@@ -6,11 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/17 15:05:45 by yli              ###   ########.fr       */
-=======
-/*   Updated: 2023/07/17 13:54:14 by mschaub          ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2023/07/19 20:46:12 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +113,8 @@ char	*read_heredoc(t_env *env, char *delimiter)
 			break ;
 		if (!ft_strcmp(str, delimiter) || g_exit == 130)
 			break ;
-		str_expand_check = ft_parse_dollar_frame(str, env);
+		str_expand_check = ft_parse_dollar_frame(str, env, 0);
+		free(str); //not sure
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
 	}

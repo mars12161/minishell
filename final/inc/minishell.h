@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/17 16:00:36 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 21:17:01 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ char	**ft_shell_whole_line(t_shell *head);
 int		ft_count_args(char **str);
 
 /* Parse Multi Env 1 */
-char		*ft_parse_dollar_frame(char *str, t_env *env);
+char		*ft_parse_dollar_frame(char *str, t_env *env, int signal);
 
 /* Parse Multi Env 2 */
 int			check_dollar(char *str, int c);
@@ -158,8 +158,10 @@ char		*ft_check_strjoin(char *s1, char *s2);
 int			check_path_char(int c);
 
 /* Parse Multi Env 3*/
-char *check_path_valid_utils(char *str, t_env *env);
+char *check_path_valid_utils(char *str, t_env *env, int signal);
+char* ft_str_check_quote(char *path, t_env *env, int signal);
 int	check_path_str(char *str);
+char *ft_parse_dollar_core_utils2(char *str2, char *str3, t_env *env, int signal);
 
 /* Expand */
 char		*ft_expand(char *str, t_env **env);

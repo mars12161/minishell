@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/06/20 17:51:47 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 16:22:02 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,26 @@
 char *new_node_WORD(char *str, t_shell **shell, t_env **env);
 t_shell *fill_shell(char *str, t_shell *shell, t_env **env);
 
+static int new_node_WORD(char *str)
+{
+    int i;
+    int j;
+
+    
+    
+    
+}
 char *new_node_WORD(char *str, t_shell **shell, t_env **env) // for WORD
 {
     t_shell *new_node;
     int check;
-    int i;
-    int j;
+
 
     new_node = NULL;
     new_node = (t_shell *)malloc(sizeof(t_shell));
 	if (!new_node)
 		return (NULL);
-    i = 0;
-    j = 0;
+
     while (str[i])
     {
         if (str[i] >= 33 && str[i] <= 126)

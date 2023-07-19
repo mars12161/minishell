@@ -179,20 +179,36 @@ ab   "$USER"dd12 12
 yli@c4c6c3:~/Desktop/Project/minishell/final$ echo "abc '$USER'cc"  123
 abc 'yli'cc 123
 
-[test:]-nnna"$USER   c  $?$HOME" ab
-
-[minishell:]echo     ""      $HOME""
-
 [minishell:]echo $USER$HOME
 yli/home/yli
 [minishell:]echo $USER$HOME$?
 yli/home/yli0
 [minishell:]echo $USER$HOME$?""
-yli/home/yli0""
-[minishell:]echo $USER$HOME$?""
-yli/home/yli0""
+yli/home/yli0
 [minishell:]echo "$USER$HOME$?"
 yli/home/yli0
+
+[minishell:]echo     ""      $HOME"34"
+ /home/yli34
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo     ""      "$HOME'34'"
+ /home/yli'34'
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" $HOME"34"
+ /home/yli34
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" $HOME'34'
+ /home/yli34
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" "$HOME'34'"
+ /home/yli'34'
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo "" '$HOME'34''
+ $HOME34
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo $""
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo $''
+
+yli@c4b10c3:~/Desktop/Project/minishell/final$ echo $'34'
+34
+
 
 
 

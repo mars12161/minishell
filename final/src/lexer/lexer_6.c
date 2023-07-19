@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 18:38:48 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 20:45:02 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 	char	*subresult2;
 	char	*result;
 
-	subresult1 = ft_parse_dollar_frame(sub1, *env);
+	subresult1 = ft_parse_dollar_frame(sub1, *env, 0);
 	if (signal == 34)
-		subresult2 = ft_parse_dollar_frame(sub2, *env);
+		subresult2 = ft_parse_dollar_frame(sub2, *env, 2);
 	else
 		subresult2 = ft_strdup(sub2);
 	if (!subresult1 && subresult2)
@@ -33,6 +33,7 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 	if (!subresult1 && !subresult2)
 		return (NULL);
 	result = ft_strjoin(subresult1, subresult2);
+	// printf("sr1: %s\nsr2: %s\nresult: %s\n", subresult1, subresult2, result);
 	ft_free_3str(subresult1, subresult2, NULL);
 	return (result);
 }
@@ -40,9 +41,12 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 static char *ft_ft_parse_original_from_word_core_utils(char *result, char *str, t_env **env)
 {
 	char *final;
+	char *utils;
 
-	final = ft_strjoin(result, ft_parse_original_from_word(str, env));
-	free(result);
+	utils = ft_parse_original_from_word(str, env);
+	final = ft_strjoin(result, utils);
+	ft_free_3str(result, utils, NULL);
+	// free(result);
 	return (final);
 }
 
@@ -58,17 +62,14 @@ static char	*ft_parse_original_from_word_core(char *str, t_env **env,
 	sub1 = ft_substr(str, 0, size);
 	sub2 = ft_substr(str, size + 1, k - size - 1); //not sure k or k-1
 	result = ft_parse_word_rules_strjoin_quote(sub1, sub2, env, signal);
+	ft_free_3str(sub1, sub2, NULL);
 	if (str[k + 1])
 	{
 		str += k + 1;
 		return (ft_ft_parse_original_from_word_core_utils(result, str, env));
 	}
 	else
-	{
-		free(str);
-		//ft_free_3str(sub1, sub2, NULL); //75% sure
 		return (result);
-	}
 }
 
 char	*ft_parse_original_from_word(char *str, t_env **env)
@@ -80,7 +81,7 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 
 	if (!ft_check_quote_in_word(str))
 	{
-		result = ft_parse_dollar_frame(str, *env);
+		result = ft_parse_dollar_frame(str, *env, 0);
 		return (result);
 	}
 	else if (str[0] == 34)
@@ -95,7 +96,6 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 		if (k == (int)ft_strlen(str))
 		{
 			result = ft_strdup(str);
-			free(str);
 			return (result);
 		}
 		else
@@ -107,7 +107,6 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 		if (k == (int)ft_strlen(str))
 		{
 			result = ft_strdup(str);
-			free(str);
 			return (result);
 		}
 		else

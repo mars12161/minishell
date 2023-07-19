@@ -6,19 +6,18 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:27:32 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 18:42:29 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 21:36:32 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char		*ft_parse_dollar_frame(char *str, t_env *env);
+char		*ft_parse_dollar_frame(char *str, t_env *env, int signal);
 
-static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c)
+static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c, int signal)
 {
 	char	*str2;
 	char	*str3;
-	char	*path;
 	char	*result;
 
 	if (str[1] == '?')
@@ -32,15 +31,14 @@ static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c)
 		str3 = ft_substr((char const *)str, ft_count_size(str, c),
 				ft_strlen((char *)str) - ft_count_size(str, c));
 	}
-	path = ft_expand(str2, &env);
-	result = ft_check_strjoin(path, str3);
+	result = ft_parse_dollar_core_utils2(str2, str3, env, signal);
 	//printf("result in parse dollar core utils: %s\n", result);
-	ft_free_3str(str3, str2, path);
+	ft_free_3str(str3, str2, NULL);
 	return (result);
 }
 
 //get $USERsdfsd return $USER and s
-static char	*check_path_valid(char *str, t_env *env, int c)
+static char	*check_path_valid(char *str, t_env *env, int c, int signal)
 {
 	size_t	i;
 
@@ -51,20 +49,20 @@ static char	*check_path_valid(char *str, t_env *env, int c)
 		if (check_path_str(str) == (int)ft_strlen(str))
 			return (ft_expand(str, &env));
 		else
-			return (check_path_valid_utils(str, env));
+			return (check_path_valid_utils(str, env, signal));
 	}
 	while (str[i])
 	{
 		if (check_path_char(str[i]) > 0)
-			return (ft_parse_dollar_core_utils(str, env, str[i]));
+			return (ft_parse_dollar_core_utils(str, env, str[i], signal));
 		i++;
 	}
 	if (i == ft_strlen(str) && c != -1)
-		return (ft_parse_dollar_core_utils(str, env, c));
+		return (ft_parse_dollar_core_utils(str, env, c, signal));
 	return (NULL);
 }
 
-static char	*check_expand_path_space(char *str, t_env *env)
+static char	*check_expand_path_space(char *str, t_env *env, int signal)
 {
 	int		space;
 	int		dollar;
@@ -76,21 +74,24 @@ static char	*check_expand_path_space(char *str, t_env *env)
 	result = NULL;
 	if (str[1] == '?')
 	{
-		result = ft_parse_dollar_core_utils(str, env, '?');
+		result = ft_parse_dollar_core_utils(str, env, '?', signal);
 		return (result);
 	}
 	if (!space && !dollar)
-		result = check_path_valid(str, env, -1);
+	{
+		// printf("0space0dollar\n");
+		result = check_path_valid(str, env, -1, signal);
+	}
 	else if (!dollar && space)
-		result = check_path_valid(str, env, 32);
+		result = check_path_valid(str, env, 32, signal);
 	else if (space < dollar)
-		result = check_path_valid(str, env, 32);
+		result = check_path_valid(str, env, 32, signal);
 	else
-		result = check_path_valid(str, env, 36);
+		result = check_path_valid(str, env, 36, signal);
 	return (result);
 }
 
-static char	*ft_parse_dollar_core(char *str, t_env *env)
+static char	*ft_parse_dollar_core(char *str, t_env *env, int signal)
 {
 	char	*str1;
 	char	*str2;
@@ -98,49 +99,52 @@ static char	*ft_parse_dollar_core(char *str, t_env *env)
 	char	*result;
 
 	if (*str == '$')
-		result = check_expand_path_space(str, env);
+		result = check_expand_path_space(str, env, signal);
 	else
 	{
 		str1 = ft_substr((char const *)str, 0, ft_count_size(str, 36));
 		str2 = ft_substr((char const *)str, ft_count_size(str, 36),
 				ft_strlen((char *)(str)) - ft_count_size(str, 36));
 		//printf("in parse dollar core: str1: %s str2: %s\n", str1, str2);
-		path = check_expand_path_space(str2, env);
+		path = check_expand_path_space(str2, env, signal);
 		result = ft_check_strjoin(str1, path);
 		ft_free_3str(str1, str2, path);
 	}
 	return (result);
 }
-
-char	*ft_parse_dollar_frame(char *str, t_env *env)
+char	*ft_parse_dollar_frame(char *str, t_env *env, int signal)
 {
 	char	*result;
+	char *final;
 
+	final = NULL;
 	if (str[0] == '$')
+	{
 		if (ft_character_after_dollar(str))
 		{
-			result = ft_strdup(str);
-			free(str);
-			return (result);
+			final = ft_strdup(str);
+			return (final);
 		}
+	}
 	if (!check_dollar(str, 36))
 	{
-		result = ft_strdup(str);
-		free(str);
-		return (result);
+		final = ft_strdup(str);
+		// printf("out of here final0: %s\n", final);
+		return (final);
 	}
 	else
 	{
-		result = ft_parse_dollar_core(str, env);
+		result = ft_parse_dollar_core(str, env, signal);
+		// printf("result in env parse: %s\n", result);
 		if (!result)
-		{
-			free(str);
 			return (NULL);
+		if (check_dollar(result, 36))
+		{
+			final = ft_parse_dollar_frame(result, env, signal);
+			free(result);
 		}
+		else
+			return (result);
 	}
-	if (check_dollar(result, 36))
-		result = ft_parse_dollar_frame(result, env);
-	free(str);
-	//printf("result in parse dollar frame: %s\n", result);
-	return (result);
+	return (final);
 }

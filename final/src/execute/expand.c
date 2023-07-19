@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 18:04:16 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 16:07:58 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char	*ft_expand(char *str, t_env **env)
 			path = ft_strtrim(temp->content, str);
 			if (*path != '=')
 			{
-				ft_free_3str(path, str, NULL);
+				//ft_free_3str(path, str, NULL);
+				free(path);
 				return (NULL);
 			}
 			result = ft_strtrim(path, "=");

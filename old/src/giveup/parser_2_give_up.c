@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_2.c                                         :+:      :+:    :+:   */
+/*   parser_2_give_up.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:37 by yli               #+#    #+#             */
-/*   Updated: 2023/06/28 21:57:21 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 16:19:54 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		str_expand_check = ft_parse_dollar_frame(str, env);
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
-		//free(str);
+		free(str);
 	}
 	write(cmm->redirection_out, whole_str, ft_strlen(whole_str));
 	//or do it in the execute
