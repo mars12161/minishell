@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 22:02:41 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 20:01:38 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/19 22:39:28 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,8 @@ t_parse	*parse_init(void)
 	t_parse	*node;
 
 	node = malloc(sizeof(t_parse) * 1);
-	//node->command = malloc(sizeof(char) * 100);
-	// node->infilepath = malloc(sizeof(char) * 1000);
-	// node->outfilepath = malloc(sizeof(char) * 100);
 	node->infilepath = NULL;
 	node->outfilepath = NULL;
-	// if (!node || !node->infilepath || !node->outfilepath)
-	// 	return (NULL);
 	node->redirection_in = 0;
 	node->redirection_out = 0;
 	node->pipe = 0;

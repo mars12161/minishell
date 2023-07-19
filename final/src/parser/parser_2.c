@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:45:44 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/19 22:00:23 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 22:43:24 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ char	*check_input(t_shell *temp)
 
 void	parse_redir_out(t_parse *cmm, t_shell *temp)
 {
-	// int	fd;
-
 	if (temp->type == REDIRECT_OUT)
 	{
 		if (!temp->next)
@@ -70,8 +68,6 @@ void	parse_redir_out(t_parse *cmm, t_shell *temp)
 
 void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 {
-	// int	fd;
-
 	if (temp->input)
 	{
 		if (!temp->next)
@@ -81,10 +77,6 @@ void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 			g_exit = 2;
 			return ;
 		}
-		// fd = open(temp->next->input, O_CREAT | O_RDWR | O_APPEND, 0644);
-		// if (fd == -1)
-		// 	perror("File could not be created");
-		// close(fd);
 		if (cmm->redirection_out == 0)
 			cmm->outfilepath = ft_strdup(check_input(temp));
 		else
@@ -117,7 +109,7 @@ char	*read_heredoc(t_env *env, char *delimiter)
 		free(str); //not sure
 		whole_str = ft_strjoin(whole_str, str_expand_check);
 		whole_str = ft_strjoin(whole_str, "\n");
-	}
+	} //free str, str_expand_check
 	if (g_exit == 130)
 		return (NULL);
 	else
@@ -128,7 +120,9 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 {
 	char	*delimiter;
 	char	*heredoc;
+	// int	fd;
 
+	// fd = ft_redirection_out(cmm);
 	delimiter = check_input(temp);
 	if (!delimiter)
 		return ;
@@ -139,7 +133,6 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
 				return ;
-			//cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
 			cmm->infilepath = ft_strdup(heredoc);
 		}
 		else
@@ -148,9 +141,11 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
 				return ;
-			//cmm->infilepath = ft_strcat(cmm->infilepath, heredoc);
 			cmm->infilepath = ft_strdup(heredoc);
 		}
+		// ft_putstr_fd(heredoc, fd);
+		// if (fd != 1)
+		// 	close(fd);
 		free(heredoc);
 		cmm->redirection_in = 2;
 	}

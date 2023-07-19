@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 14:56:59 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/19 22:46:17 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 {
 	int	pid;
 	int	status;
+	int fd;
 
 	pid = fork();
 	status = 0;
@@ -83,6 +84,13 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 	{
 		g_exit = 130;
 		waitpid(pid, &status, 0);
+	}
+	if (cmmarr->cmm[0]->redirection_in == 2)
+	{
+		fd = ft_redirection_out(cmmarr->cmm[0]);
+		ft_putstr_fd(cmmarr->cmm[0]->infilepath, fd);
+		if (fd != 1)
+			close(fd);
 	}
 	//g_exit = 0;
 	if (WIFEXITED(status))

@@ -214,6 +214,3 @@ yli@c4b10c3:~/Desktop/Project/minishell/final$ echo $'34'
 
 
 
-
-
-
