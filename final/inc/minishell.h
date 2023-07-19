@@ -6,7 +6,11 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 13:55:51 by mschaub           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/19 21:17:01 by yli              ###   ########.fr       */
+=======
+/*   Updated: 2023/07/19 20:08:19 by mschaub          ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +128,7 @@ char		*ft_parse_original_from_word(char *str, t_env **env);
 int			ft_count_size_lexer(char *str, int c, int start);
 char		*ft_parse_original_from_dq(char *str, t_env **env);
 char		*ft_parse_original_from_sq(char *str, t_env **env);
-int ft_character_after_dollar(char *str);
+int			ft_character_after_dollar(char *str);
 
 /* Parser 1 */
 t_parse_arr	*parse_array_create(t_shell *head, t_env *env);
@@ -138,15 +142,15 @@ char		*read_heredoc(t_env *env, char *delimiter);
 void		parse_delim(t_parse *cmm, t_env *env, t_shell *temp);
 
 /* Parser 3 */
-void	check_infile(char *infilepath);
-int		args_count(t_shell *head);
-int		get_size_cmmarr(t_shell *head);
-void	parse_redir_in(t_parse *cmm, t_shell *temp);
+void		check_infile(char *infilepath);
+int			args_count(t_shell *head);
+int			get_size_cmmarr(t_shell *head);
+void		parse_redir_in(t_parse *cmm, t_shell *temp);
 
 /* Parser 4 */
-t_parse	*parse_init(void);
-char	**ft_shell_whole_line(t_shell *head);
-int		ft_count_args(char **str);
+t_parse		*parse_init(void);
+char		**ft_shell_whole_line(t_shell *head);
+int			ft_count_args(char **str);
 
 /* Parse Multi Env 1 */
 char		*ft_parse_dollar_frame(char *str, t_env *env, int signal);
@@ -197,7 +201,8 @@ int			ft_check_signal_export(char *str);
 void		export_loop(int i, t_parse *node, t_env **env, t_env *export);
 int			ft_cd(t_parse *node, t_env **env);
 int			ft_replace_oldpwd(char *str, t_env *env);
-int			cd_env_loop(t_env ** env, t_env *temp, char pwd[PATH_SIZE], char *str);
+int			cd_env_loop(t_env **env, t_env *temp,
+				char pwd[PATH_SIZE], char *str);
 int			ft_exit(t_parse *node);
 int			ft_pwd(t_parse *node);
 void		ft_unset_core(char *str, t_env **env);

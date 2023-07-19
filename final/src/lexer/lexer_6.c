@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 20:45:02 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/19 21:58:46 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 	return (result);
 }
 
-static char *ft_ft_parse_original_from_word_core_utils(char *result, char *str, t_env **env)
+static char	*ft_ft_parse_original_from_word_core_utils(char *result, char *str, t_env **env)
 {
 	char *final;
 	char *utils;
