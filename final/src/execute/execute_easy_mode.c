@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:11:35 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 22:46:17 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/20 18:28:14 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 {
 	int	pid;
 	int	status;
-	int fd;
+	int	fd;
 
 	pid = fork();
 	status = 0;
@@ -82,7 +82,7 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 		execute_easy_mode(cmmarr, env);
 	else
 	{
-		g_exit = 130;
+		signal(SIGINT, sigint_process);
 		waitpid(pid, &status, 0);
 	}
 	if (cmmarr->cmm[0]->redirection_in == 2)
@@ -92,7 +92,6 @@ int	execute_exit(t_shell *shell, t_parse_arr *cmmarr, t_env *env, char *str)
 		if (fd != 1)
 			close(fd);
 	}
-	//g_exit = 0;
 	if (WIFEXITED(status))
 		g_exit = WEXITSTATUS(status);
 	free_all_in_loop(&shell, cmmarr, str);

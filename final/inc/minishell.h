@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/20 16:39:25 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/20 16:39:25 by mschaub          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 
 #ifndef MINISHELL_H
@@ -203,6 +215,7 @@ void		ft_error_optimal(char *str, int exit);
 void		sigint_handler(int sig);
 void		sigquit_handler(int sig);
 void		sigint_heredoc(int sig);
+void		sigint_process(int sig);
 void		init_signals(void);
 
 /*	Execute Easy Mode*/
