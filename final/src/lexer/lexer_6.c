@@ -6,15 +6,15 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 18:33:55 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 20:42:38 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 char		*ft_parse_original_from_word(char *str, t_env **env);
-char	*ft_parse_original_from_word_core(char *str, t_env **env,
-		int signal, int size);
+char		*ft_parse_original_from_word_core(char *str, t_env **env,
+				int signal, int size);
 
 static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 		t_env **env, int signal)
