@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:56:54 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 19:52:37 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 19:55:26 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 // 		return (whole_str);
 // }
 
+
 char	*read_heredoc(t_env *env, char *delimiter)
 {
 	char	*str;
@@ -146,7 +147,6 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	else
 		return (whole_str);
 }
-
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 {
 	char	*delimiter;

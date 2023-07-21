@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:52:20 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 16:33:16 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 16:59:22 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*new_node_dq(char *str, t_shell **shell, t_env **env);
 char	*new_node_sq(char *str, t_shell **shell, t_env **env);
-int	new_node_red_utils(char *str, int c);
+int		new_node_red_utils(char *str, int c);
 
 char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 {

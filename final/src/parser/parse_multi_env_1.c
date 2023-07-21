@@ -6,16 +6,17 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 10:21:31 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 15:56:27 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 20:10:00 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../inc/minishell.h"
 
 char		*ft_parse_dollar_frame(char *str, t_env *env, int signal);
+char		*ft_parse_dollar_core(char *str, t_env *env, int signal);
 
-static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c, int signal)
+static char	*ft_parse_dollar_core_utils(char *str,
+				t_env *env, int c, int signal)
 {
 	char	*str2;
 	char	*str3;
@@ -86,7 +87,7 @@ static char	*check_expand_path_space(char *str, t_env *env, int signal)
 	return (result);
 }
 
-static char	*ft_parse_dollar_core(char *str, t_env *env, int signal)
+char	*ft_parse_dollar_core(char *str, t_env *env, int signal)
 {
 	char	*str1;
 	char	*str2;
@@ -106,25 +107,20 @@ static char	*ft_parse_dollar_core(char *str, t_env *env, int signal)
 	}
 	return (result);
 }
+
 char	*ft_parse_dollar_frame(char *str, t_env *env, int signal)
 {
 	char	*result;
-	char 	*final;
+	char	*final;
 
 	final = NULL;
 	if (str[0] == '$')
 	{
 		if (ft_character_after_dollar(str))
-		{
-			final = ft_strdup(str);
-			return (final);
-		}
+			return (ft_parse_dollar_frame_2(str));
 	}
 	if (!check_dollar(str, 36))
-	{
-		final = ft_strdup(str);
-		return (final);
-	}
+		return (ft_parse_dollar_frame_2(str));
 	else
 	{
 		result = ft_parse_dollar_core(str, env, signal);

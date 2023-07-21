@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:39:25 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 16:33:38 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 20:10:23 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ char		*new_node_red_2(char *str, t_shell **shell, int c);
 char		*new_node_red(char *str, t_shell **shell, int c);
 
 /* Lexer 3 */
-char		*new_node_dq(char *str, t_shell **shell, t_env **env);
-char		*new_node_sq(char *str, t_shell **shell, t_env **env);
-int	new_node_red_utils(char *str, int c);
+char	*new_node_dq(char *str, t_shell **shell, t_env **env);
+char	*new_node_sq(char *str, t_shell **shell, t_env **env);
+int		new_node_red_utils(char *str, int c);
+
 /* Lexer 4 */
 int			check_word_or_path(t_shell *shell);
 void		ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);
-t_shell		*init_shell_node(void);
 
 /* Lexer 5 */
 int			ft_check_quote_in_word(char *str);
@@ -121,12 +121,21 @@ int			ft_i_start_from_dq(char *str, int pre);
 
 /* Lexer 6 */
 char		*ft_parse_original_from_word(char *str, t_env **env);
+char	*ft_parse_original_from_word_core(char *str, t_env **env,
+		int signal, int size);
 
 /* Lexer 7 */
 int			ft_count_size_lexer(char *str, int c, int start);
 char		*ft_parse_original_from_dq(char *str, t_env **env);
 char		*ft_parse_original_from_sq(char *str, t_env **env);
 int			ft_character_after_dollar(char *str);
+
+/* Lexer 8 */
+t_shell	*get_shell_bottom(t_shell *shell);
+int		get_shell_size(t_shell *shell);
+t_shell	*get_parse_bottom(t_shell *node);
+int		ft_i_start_from_word_2(char *str, int pre);
+char	*ft_parse_original_from_word_2(char *str, t_env **env, int c, int j);
 
 /* Parser 1 */
 t_parse_arr	*parse_array_create(t_shell *head, t_env *env);
@@ -152,6 +161,7 @@ int			ft_count_args(char **str);
 
 /* Parse Multi Env 1 */
 char		*ft_parse_dollar_frame(char *str, t_env *env, int signal);
+char		*ft_parse_dollar_core(char *str, t_env *env, int signal);
 
 /* Parse Multi Env 2 */
 int			check_dollar(char *str, int c);
@@ -159,11 +169,14 @@ int			ft_count_size(char *str, int c);
 char		*ft_check_strjoin(char *s1, char *s2);
 int			check_path_char(int c);
 
-/* Parse Multi Env 3*/
-char *check_path_valid_utils(char *str, t_env *env, int signal);
-char* ft_str_check_quote(char *path, t_env *env, int signal);
-int	check_path_str(char *str);
-char *ft_parse_dollar_core_utils2(char *str2, char *str3, t_env *env, int signal);
+/* Parse Multi Env 3 */
+char	*check_path_valid_utils(char *str, t_env *env, int signal);
+char	*ft_str_check_quote(char *path, t_env *env, int signal);
+int		check_path_str(char *str);
+char	*ft_parse_dollar_core_utils2(char *str2, char *str3, t_env *env, int signal);
+
+/* Parse Multi Env 4 */
+char	*ft_parse_dollar_frame_2(char *str);
 
 /* Expand */
 char		*ft_expand(char *str, t_env **env);

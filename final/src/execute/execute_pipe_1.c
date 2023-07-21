@@ -17,7 +17,7 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env);
 static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 {
 	char	**envp;
-		
+
 	redir_child(node);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		ft_putstr_fd("dup2 failed", STDERR_FILENO);

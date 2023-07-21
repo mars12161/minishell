@@ -12,15 +12,16 @@
 
 #include "../../inc/minishell.h"
 
-char *check_path_valid_utils(char *str, t_env *env, int signal);
-char* ft_str_check_quote(char *path, t_env *env, int signal);
-int	check_path_str(char *str);
-char *ft_parse_dollar_core_utils2(char *str2, char *str3, t_env *env, int signal);
+char	*check_path_valid_utils(char *str, t_env *env, int signal);
+char	*ft_str_check_quote(char *path, t_env *env, int signal);
+int		check_path_str(char *str);
+char	*ft_parse_dollar_core_utils2(char *str2, char *str3,
+			t_env *env, int signal);
 
-static char *check_path_valid_utils_free(char *str, int i, t_env *env)
+static	char	*check_path_valid_utils_free(char *str, int i, t_env *env)
 {
-	char *path;
-	char *sub1;
+	char	*path;
+	char	*sub1;
 
 	path = ft_substr(str, 0, i);
 	sub1 = ft_expand(path, &env);
@@ -29,9 +30,9 @@ static char *check_path_valid_utils_free(char *str, int i, t_env *env)
 	return (sub1);
 }
 
-char* ft_str_check_quote(char *path, t_env *env, int signal)
+char	*ft_str_check_quote(char *path, t_env *env, int signal)
 {
-	char *result;
+	char	*result;
 
 	if (path[0] == 34 && ft_count_size(path, 34) && !signal)
 		result = ft_parse_original_from_dq(path, &env);
@@ -42,17 +43,18 @@ char* ft_str_check_quote(char *path, t_env *env, int signal)
 	return (result);
 }
 
-char *check_path_valid_utils(char *str, t_env *env, int signal)
+char	*check_path_valid_utils(char *str, t_env *env, int signal)
 {
-	char *sub1;
-	char *sub2;
-	char *path;
-	char *result;
+	char	*sub1;
+	char	*sub2;
+	char	*path;
+	char	*result;
 
 	if (check_path_str(str) == (int)ft_strlen(str))
 		return (ft_expand(str, &env));
 	sub1 = check_path_valid_utils_free(str, check_path_str(str), env);
-	path = ft_substr(str, check_path_str(str), (int)ft_strlen(str) - check_path_str(str));
+	path = ft_substr(str, check_path_str(str),
+			(int)ft_strlen(str) - check_path_str(str));
 	sub2 = ft_str_check_quote(path, env, signal);
 	free(path);
 	if (!sub1 && sub2)
@@ -65,12 +67,13 @@ char *check_path_valid_utils(char *str, t_env *env, int signal)
 	ft_free_3str(sub1, sub2, NULL);
 	return (result);
 }
+
 int	check_path_str(char *str)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (check_path_char(str[i]) == 1)
 			break ;
@@ -79,11 +82,12 @@ int	check_path_str(char *str)
 	return (i);
 }
 
-char *ft_parse_dollar_core_utils2(char *str2, char *str3, t_env *env, int signal)
+char	*ft_parse_dollar_core_utils2(char *str2, char *str3,
+			t_env *env, int signal)
 {
-	char *path1;
-	char *path2;
-	char *result;
+	char	*path1;
+	char	*path2;
+	char	*result;
 
 	path1 = ft_expand(str2, &env);
 	path2 = ft_str_check_quote(str3, env, signal);

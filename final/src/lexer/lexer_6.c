@@ -6,13 +6,15 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 15:49:42 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 18:33:55 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 char		*ft_parse_original_from_word(char *str, t_env **env);
+char	*ft_parse_original_from_word_core(char *str, t_env **env,
+		int signal, int size);
 
 static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 		t_env **env, int signal)
@@ -37,10 +39,11 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 	return (result);
 }
 
-static char	*ft_ft_parse_original_from_word_core_utils(char *result, char *str, t_env **env)
+static	char	*ft_ft_parse_original_from_word_core_utils(char *result, 
+		char *str, t_env **env)
 {
-	char *final;
-	char *utils;
+	char	*final;
+	char	*utils;
 
 	utils = ft_parse_original_from_word(str, env);
 	final = ft_strjoin(result, utils);
@@ -48,7 +51,7 @@ static char	*ft_ft_parse_original_from_word_core_utils(char *result, char *str, 
 	return (final);
 }
 
-static char	*ft_parse_original_from_word_core(char *str, t_env **env,
+char	*ft_parse_original_from_word_core(char *str, t_env **env,
 		int signal, int size)
 {
 	char	*sub1;
@@ -74,7 +77,6 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 {
 	int		i;
 	int		j;
-	int		k;
 	char	*result;
 
 	if (!ft_check_quote_in_word(str))
@@ -89,25 +91,7 @@ char	*ft_parse_original_from_word(char *str, t_env **env)
 	i = ft_count_size_lexer(str, 34, 0);
 	j = ft_count_size_lexer(str, 39, 0);
 	if (i < j)
-	{
-		k = ft_count_size_lexer(str, 34, i + 1);
-		if (k == (int)ft_strlen(str))
-		{
-			result = ft_strdup(str);
-			return (result);
-		}
-		else
-			return (ft_parse_original_from_word_core(str, env, 34, i));
-	}
+		return (ft_parse_original_from_word_2(str, env, 34, i));
 	else
-	{
-		k = ft_count_size_lexer(str, 39, j + 1);
-		if (k == (int)ft_strlen(str))
-		{
-			result = ft_strdup(str);
-			return (result);
-		}
-		else
-			return (ft_parse_original_from_word_core(str, env, 39, j));
-	}
+		return (ft_parse_original_from_word_2(str, env, 39, j));
 }
