@@ -87,47 +87,14 @@ void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 	cmm->redirection_out = 2;
 }
 
-// char	*read_heredoc(t_env *env, char *delimiter)
-// {
-// 	char	*str;
-// 	char	*tmp;
-// 	char	*str_expand_check;
-// 	char	*whole_str;
-
-// 	whole_str = "";
-// 	signal(SIGINT, sigint_heredoc);
-// 	str = "";
-// 	while (1)
-// 	{
-// 		str = readline("heredoc>");
-// 		if (!str)
-// 			break ;
-// 		if (!ft_strcmp(str, delimiter) || g_exit == 130)
-// 			break ;
-// 		str_expand_check = ft_parse_dollar_frame(str, env, 0);
-// 		free(str);
-// 		tmp = ft_strjoin(whole_str, str_expand_check);
-// 		free(whole_str);
-// 		whole_str = ft_strjoin(tmp, "\n");
-// 		free(tmp);
-// 	}
-// 	if (g_exit == 130)
-// 	{
-// 		free(whole_str);
-// 		return (NULL);
-// 	}
-// 	else
-// 		return (whole_str);
-// }
-
-
 char	*read_heredoc(t_env *env, char *delimiter)
 {
 	char	*str;
+	char	*tmp;
 	char	*str_expand_check;
 	char	*whole_str;
 
-	whole_str = "";
+	whole_str = ft_strdup("");
 	signal(SIGINT, sigint_heredoc);
 	str = "";
 	while (1)
@@ -138,15 +105,48 @@ char	*read_heredoc(t_env *env, char *delimiter)
 		if (!ft_strcmp(str, delimiter) || g_exit == 130)
 			break ;
 		str_expand_check = ft_parse_dollar_frame(str, env, 0);
-		free(str); //not sure
-		whole_str = ft_strjoin(whole_str, str_expand_check);
-		whole_str = ft_strjoin(whole_str, "\n");
-	} //free str, str_expand_check
+		free(str);
+		tmp = ft_strjoin(whole_str, str_expand_check);
+		free(whole_str);
+		whole_str = ft_strjoin(tmp, "\n");
+		free(tmp);
+	}
 	if (g_exit == 130)
+	{
+		free(whole_str);
 		return (NULL);
+	}
 	else
 		return (whole_str);
 }
+
+//char	*read_heredoc(t_env *env, char *delimiter)
+//{
+//	char	*str;
+//	char	*str_expand_check;
+//	char	*whole_str;
+//
+//	whole_str = "";
+//	signal(SIGINT, sigint_heredoc);
+//	str = "";
+//	while (1)
+//	{
+//		str = readline("heredoc>");
+//		if (!str)
+//			break ;
+//		if (!ft_strcmp(str, delimiter) || g_exit == 130)
+//			break ;
+//		str_expand_check = ft_parse_dollar_frame(str, env, 0);
+//		free(str); //not sure
+//		whole_str = ft_strjoin(whole_str, str_expand_check);
+//		whole_str = ft_strjoin(whole_str, "\n");
+//	} //free str, str_expand_check
+//	if (g_exit == 130)
+//		return (NULL);
+//	else
+//		return (whole_str);
+//}
+
 void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 {
 	char	*delimiter;
@@ -163,7 +163,7 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			if (!heredoc)
 			{
 				free(heredoc);
-				return;
+				return ;
 			}
 			cmm->infilepath = ft_strdup(heredoc);
 		}
@@ -174,7 +174,7 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			if (!heredoc)
 			{
 				free(heredoc);
-				return;
+				return ;
 			}
 			cmm->infilepath = ft_strdup(heredoc);
 		}

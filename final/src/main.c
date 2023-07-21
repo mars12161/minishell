@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:59:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 20:06:24 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 20:43:22 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static	int	input_loop_2(t_env *env, t_shell *shell,
 		signal(SIGQUIT, sigquit_handler);
 		return (execute_exit(shell, cmmarr, env, str));
 	}
-	return (0); //not sure
+	return (0);
 }
+// not sure about return (0);
 
 static	int	ft_check_realine_in_loop(void)
 {
