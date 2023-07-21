@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:16:49 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 10:05:38 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 16:32:25 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_exit(t_parse *node)
 	}
 	else if (node->wline_count >= 3)
 	{
-		ft_error_optimal("too many arguments", 1);
+		ft_error_optimal("exit\ntoo many arguments", 1);
 		return (g_exit);
 	}
 	printf("exit\n");

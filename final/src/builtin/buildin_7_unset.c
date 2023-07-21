@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 18:17:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 14:31:18 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 16:52:52 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,15 @@ void	ft_unset_core(char *str, t_env **env)
 	head = *env;
 	while (temp)
 	{
-		if (!strncmp(temp->content, str, ft_strlen(str)))
+		if (!strncmp(str, "SYSTEMD_EXEC_PID", ft_strlen(str)))
+		{
+			free(temp->content);
+			temp->content = ft_strdup(temp->next->content);
+			temp->next = temp->next->next;
+			del_node(env, temp->next);
+			return ;
+		}
+		else if (!strncmp(temp->content, str, ft_strlen(str)))
 		{
 			del_node(env, temp);
 			return ;
@@ -53,6 +61,25 @@ void	ft_unset_core(char *str, t_env **env)
 	}
 	temp = head;
 }
+
+// void	ft_unset_core(char *str, t_env **env)
+// {
+// 	t_env	*temp;
+// 	t_env	*head;
+
+// 	temp = *env;
+// 	head = *env;
+// 	while (temp)
+// 	{
+// 		if (!strncmp(temp->content, str, ft_strlen(str)))
+// 		{
+// 			del_node(env, temp);
+// 			return ;
+// 		}
+// 		temp = temp->next;
+// 	}
+// 	temp = head;
+// }
 
 int	ft_unset(t_parse *node, t_env **env)
 {

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:54 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 20:18:19 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 16:33:28 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,11 @@ char	*new_node_pipe(char *str, t_shell **shell);
 char	*new_node_red_2(char *str, t_shell **shell, int c);
 char	*new_node_red(char *str, t_shell **shell, int c);
 
-char	*new_node_env(char *str, t_shell **shell, t_env **env)
+static	int	new_node_env_utils(char *str)
 {
-	t_shell	*new_node;
-	char	*path;
-	char	*result;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	new_node = init_shell_node();
 	i = 0;
 	j = 0;
 	while (str[i])
@@ -37,6 +33,18 @@ char	*new_node_env(char *str, t_shell **shell, t_env **env)
 			break ;
 		i++;
 	}
+	return (j);
+}
+
+char	*new_node_env(char *str, t_shell **shell, t_env **env)
+{
+	t_shell	*new_node;
+	char	*path;
+	char	*result;
+	int		j;
+
+	new_node = init_shell_node();
+	j = new_node_env_utils(str);
 	path = ft_substr((char const *)str, 0, j);
 	result = ft_parse_dollar_frame(path, *env, 0);
 	free(path);
@@ -93,20 +101,10 @@ char	*new_node_red_2(char *str, t_shell **shell, int c)
 char	*new_node_red(char *str, t_shell **shell, int c)
 {
 	t_shell	*new_node;
-	int		i;
 	int		flag;
 
 	new_node = init_shell_node();
-	i = 0;
-	flag = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			flag++;
-		if (str[i] != c)
-			break ;
-		i++;
-	}
+	flag = new_node_red_utils(str, c);
 	if (flag == 2)
 		return (new_node_red_2(str, shell, c));
 	else if (flag > 2)

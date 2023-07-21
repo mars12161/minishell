@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:39:25 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 15:47:21 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 16:33:38 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char		*new_node_red(char *str, t_shell **shell, int c);
 /* Lexer 3 */
 char		*new_node_dq(char *str, t_shell **shell, t_env **env);
 char		*new_node_sq(char *str, t_shell **shell, t_env **env);
-
+int	new_node_red_utils(char *str, int c);
 /* Lexer 4 */
 int			check_word_or_path(t_shell *shell);
 void		ft_add_tail(t_shell **shell, t_shell *new_node, enum e_token type);

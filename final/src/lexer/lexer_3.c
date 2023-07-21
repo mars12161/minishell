@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:52:20 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 17:58:51 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 16:33:16 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*new_node_dq(char *str, t_shell **shell, t_env **env);
 char	*new_node_sq(char *str, t_shell **shell, t_env **env);
+int	new_node_red_utils(char *str, int c);
 
 char	*new_node_dq(char *str, t_shell **shell, t_env **env)
 {
@@ -53,4 +54,22 @@ char	*new_node_sq(char *str, t_shell **shell, t_env **env)
 	else
 		ft_add_tail(shell, new_node, EMPTY);
 	return (str);
+}
+
+int	new_node_red_utils(char *str, int c)
+{
+	int	i;
+	int	flag;
+
+	i = 0;
+	flag = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			flag++;
+		if (str[i] != c)
+			break ;
+		i++;
+	}
+	return (flag);
 }
