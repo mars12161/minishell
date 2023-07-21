@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 00:43:23 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 20:03:17 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:49 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int			ft_count_size(char *str, int c);
 char		*ft_check_strjoin(char *s1, char *s2);
 int			check_path_char(int c);
 
-//how many
 int	check_dollar(char *str, int c)
 {
 	int	i;
@@ -34,7 +33,6 @@ int	check_dollar(char *str, int c)
 	return (count);
 }
 
-//where
 int	ft_count_size(char *str, int c)
 {
 	int	i;

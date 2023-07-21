@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:39:25 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/20 16:39:25 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 15:47:21 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,6 @@ int			execute_exit(t_shell *shell, t_parse_arr *cmmarr,
 void		init_pipex(t_parse_arr *cmmarr, t_env *env);
 
 /* Execute Pipe 2 */
-char		*str_ncpy(char *str, int n);
 char		*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
 void		ft_executer(char **whole_line, char **env);
 

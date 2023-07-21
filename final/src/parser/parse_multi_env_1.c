@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_multi_env_1.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/21 10:21:31 by mschaub           #+#    #+#             */
+/*   Updated: 2023/07/21 15:50:44 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../../inc/minishell.h"
 
@@ -21,12 +33,10 @@ static char	*ft_parse_dollar_core_utils(char *str, t_env *env, int c, int signal
 				ft_strlen((char *)str) - ft_count_size(str, c));
 	}
 	result = ft_parse_dollar_core_utils2(str2, str3, env, signal);
-	//printf("result in parse dollar core utils: %s\n", result);
 	ft_free_3str(str3, str2, NULL);
 	return (result);
 }
 
-//get $USERsdfsd return $USER and s
 static char	*check_path_valid(char *str, t_env *env, int c, int signal)
 {
 	size_t	i;
@@ -59,7 +69,6 @@ static char	*check_expand_path_space(char *str, t_env *env, int signal)
 
 	space = ft_count_size(str, 32);
 	dollar = ft_count_size(str, 36);
-	//printf("space: %d dollar; %d \n", space, dollar);
 	result = NULL;
 	if (str[1] == '?')
 	{
@@ -67,10 +76,7 @@ static char	*check_expand_path_space(char *str, t_env *env, int signal)
 		return (result);
 	}
 	if (!space && !dollar)
-	{
-		// printf("0space0dollar\n");
 		result = check_path_valid(str, env, -1, signal);
-	}
 	else if (!dollar && space)
 		result = check_path_valid(str, env, 32, signal);
 	else if (space < dollar)
@@ -94,7 +100,6 @@ static char	*ft_parse_dollar_core(char *str, t_env *env, int signal)
 		str1 = ft_substr((char const *)str, 0, ft_count_size(str, 36));
 		str2 = ft_substr((char const *)str, ft_count_size(str, 36),
 				ft_strlen((char *)(str)) - ft_count_size(str, 36));
-		//printf("in parse dollar core: str1: %s str2: %s\n", str1, str2);
 		path = check_expand_path_space(str2, env, signal);
 		result = ft_check_strjoin(str1, path);
 		ft_free_3str(str1, str2, path);
@@ -118,13 +123,11 @@ char	*ft_parse_dollar_frame(char *str, t_env *env, int signal)
 	if (!check_dollar(str, 36))
 	{
 		final = ft_strdup(str);
-		// printf("out of here final0: %s\n", final);
 		return (final);
 	}
 	else
 	{
 		result = ft_parse_dollar_core(str, env, signal);
-		// printf("result in env parse: %s\n", result);
 		if (!result)
 			return (NULL);
 		if (check_dollar(result, 36))

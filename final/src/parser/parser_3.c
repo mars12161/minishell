@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:54:09 by yli               #+#    #+#             */
-/*   Updated: 2023/07/17 15:42:30 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 14:07:57 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	parse_redir_in(t_parse *cmm, t_shell *temp)
 			else
 			{
 				check_infile(temp->next->input);
-				cmm->infilepath = ft_strcat(cmm->infilepath, check_input(temp));
+				cmm->infilepath = ft_strdup(check_input(temp));
 			}
 		}
 		else

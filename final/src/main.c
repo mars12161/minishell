@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:45:15 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/20 16:39:37 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 14:45:10 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,13 @@ static int	input_loop(t_env *env)
 	{
 		write(STDERR_FILENO, "exit\n", 5);
 		g_exit = 130;
-		//free
 		return (-1);
 	}
 	else if (str[0] != '\0')
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
-	//print_shell(shell);
+	// print_shell(shell);
 	cmmarr = parse_array_create(shell, env);
 	if (!cmmarr)
 	{

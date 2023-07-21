@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 17:21:54 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/19 16:26:12 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:49:12 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char		*new_node_word(char *str, t_shell **shell, t_env **env);
 t_shell		*fill_shell(char *str, t_shell *shell, t_env **env);
 t_shell		*init_shell_node(void);
 
-char	*new_node_word(char *str, t_shell **shell, t_env **env) // for WORD
+char	*new_node_word(char *str, t_shell **shell, t_env **env)
 {
 	t_shell	*new_node;
 	char	*original;

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:50:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 23:22:21 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:48:26 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ static void	execute_infile_dup2(t_parse *node)
 	}
 	else
 	{
-		//printf("hello here\n");
 		fd_in = open("heredoc.txt", O_CREAT | O_RDWR, 0644);
 		if (fd_in == -1)
-			ft_error("open infile failed");
+			ft_error("heredoc can't be created");
 		write(fd_in, node->infilepath, ft_strlen(node->infilepath));
+		close(fd_in);
+		fd_in = open("heredoc.txt", O_RDONLY);
+		if (fd_in == -1)
+			ft_error("open heredoc failed");
 	}
 	if (dup2(fd_in, STDIN_FILENO) == -1)
 		ft_error("dup2 failed");

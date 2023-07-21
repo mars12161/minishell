@@ -6,31 +6,15 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:11:55 by yli               #+#    #+#             */
-/*   Updated: 2023/07/20 17:35:41 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 15:47:34 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char		*str_ncpy(char *str, int n);
 char		*ft_strjoin_path_cmd(char const *s1, char c, char const *s2);
 static char	*get_path(char *cmd, char **envp);
 void		ft_executer(char **whole_line, char **env);
-
-/*char	*str_ncpy(char *str, int n)
-{
-	char	*result;
-	int		i;
-
-	i = 0;
-	result = malloc(sizeof(char) * (n + 1));
-	if (!result)
-		return (NULL);
-	while (i < n)
-		result[i++] = *str++;
-	result[n] = 0;
-	return (result);
-}*/
 
 char	*ft_strjoin_path_cmd(char const *s1, char c, char const *s2)
 {

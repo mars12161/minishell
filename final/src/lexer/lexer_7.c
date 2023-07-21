@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 18:20:30 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 21:32:53 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:04 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char		*ft_parse_original_from_dq(char *str, t_env **env);
 char		*ft_parse_original_from_sq(char *str, t_env **env);
 int			ft_character_after_dollar(char *str);
 
-//where
 int	ft_count_size_lexer(char *str, int c, int start)
 {
 	while (str[start])
@@ -68,7 +67,6 @@ char	*ft_parse_original_from_dq(char *str, t_env **env)
 		return (result);
 	}
 	sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
-	// printf("in dq: sub2: %s\n", sub2); //should be abc
 	result = ft_parse_original_quote_core(sub1, sub2, env, 34);
 	ft_free_3str(sub1, sub2, NULL);
 	return (result);
@@ -81,13 +79,11 @@ char	*ft_parse_original_from_sq(char *str, t_env **env)
 	char	*sub2;
 	char	*result;
 
-	k = ft_count_size_lexer(str, 39, 1); //'dd$USER'abc
+	k = ft_count_size_lexer(str, 39, 1);
 	sub1 = ft_substr(str, 1, k - 1);
-	// printf("in sq: sub1: %s\n", sub1); //should be dd$USER
 	if (k == (int)ft_strlen(str))
 		return (sub1);
 	sub2 = ft_substr(str, k + 1, (int)ft_strlen(str) - k - 1);
-	// printf("in sq: sub2: %s\n", sub2); //should be abc
 	result = ft_parse_original_quote_core(sub1, sub2, env, 39);
 	ft_free_3str(sub1, sub2, NULL);
 	return (result);

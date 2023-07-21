@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:45:44 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/19 22:43:24 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:51:10 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ char	*check_input(t_shell *temp)
 	else
 	{
 		ft_putstr_fd("syntax error near unexpected token `newline'\n",
-			STDERR_FILENO); 
-		// free everything todo
+			STDERR_FILENO);
 		g_exit = 2;
 		return (NULL);
 	}
@@ -94,11 +93,10 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	char	*str_expand_check;
 	char	*whole_str;
 
-	whole_str = ft_strdup("");
+	whole_str = "";
 	signal(SIGINT, sigint_heredoc);
 	str = "";
-	g_exit = 0;
-	while (ft_strcmp(str, delimiter) && g_exit == 0)
+	while (1)
 	{
 		str = readline("heredoc>");
 		if (!str)
@@ -120,9 +118,7 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 {
 	char	*delimiter;
 	char	*heredoc;
-	// int	fd;
 
-	// fd = ft_redirection_out(cmm);
 	delimiter = check_input(temp);
 	if (!delimiter)
 		return ;
@@ -132,7 +128,10 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		{
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
-				return ;
+			{
+				free(heredoc);
+				return;
+			}
 			cmm->infilepath = ft_strdup(heredoc);
 		}
 		else
@@ -140,12 +139,12 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			free(cmm->infilepath);
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
-				return ;
+			{
+				free(heredoc);
+				return;
+			}
 			cmm->infilepath = ft_strdup(heredoc);
 		}
-		// ft_putstr_fd(heredoc, fd);
-		// if (fd != 1)
-		// 	close(fd);
 		free(heredoc);
 		cmm->redirection_in = 2;
 	}

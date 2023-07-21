@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:07 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 16:07:58 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:48:57 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,44 +30,14 @@ char	*ft_expand(char *str, t_env **env)
 			path = ft_strtrim(temp->content, str);
 			if (*path != '=')
 			{
-				//ft_free_3str(path, str, NULL);
 				free(path);
 				return (NULL);
 			}
 			result = ft_strtrim(path, "=");
 			free(path);
-			//free(str);
-			// ft_free_3str(path, str, NULL);
 			return (result);
 		}
 		temp = temp->next;
 	}
 	return (NULL);
 }
-
-// char	*ft_expand(char *str, t_env **env)
-// {
-// 	t_env	*temp;
-// 	char	*path;
-// 	char	*result;
-
-// 	temp = *env;
-// 	printf("in ft_expand: %s\n", str);
-// 	while (temp)
-// 	{
-// 		if (str[0] == '?')
-// 			return (ft_itoa(globe.g_exit));
-// 		if (!ft_strncmp(temp->content, str, ft_strlen(str)))
-// 		{
-// 			path = ft_strtrim(temp->content, str);
-// 			printf("in ft_expand path: %s\n", path);
-// 			if (*path != '=')
-// 				return (NULL);
-// 			result = ft_strtrim(path, "=");
-// 			printf("in ft_expand result: %s\n", result);
-// 			return (result);
-// 		}
-// 		temp = temp->next;
-// 	}
-// 	return (NULL);
-// }

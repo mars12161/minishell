@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:25 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 21:58:46 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:49:42 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static char	*ft_parse_word_rules_strjoin_quote(char *sub1, char *sub2,
 	if (!subresult1 && !subresult2)
 		return (NULL);
 	result = ft_strjoin(subresult1, subresult2);
-	// printf("sr1: %s\nsr2: %s\nresult: %s\n", subresult1, subresult2, result);
 	ft_free_3str(subresult1, subresult2, NULL);
 	return (result);
 }
@@ -46,7 +45,6 @@ static char	*ft_ft_parse_original_from_word_core_utils(char *result, char *str, 
 	utils = ft_parse_original_from_word(str, env);
 	final = ft_strjoin(result, utils);
 	ft_free_3str(result, utils, NULL);
-	// free(result);
 	return (final);
 }
 
@@ -58,9 +56,9 @@ static char	*ft_parse_original_from_word_core(char *str, t_env **env,
 	char	*result;
 	int		k;
 
-	k = ft_count_size_lexer(str, signal, size + 1); // abc"dd$USER"
+	k = ft_count_size_lexer(str, signal, size + 1);
 	sub1 = ft_substr(str, 0, size);
-	sub2 = ft_substr(str, size + 1, k - size - 1); //not sure k or k-1
+	sub2 = ft_substr(str, size + 1, k - size - 1);
 	result = ft_parse_word_rules_strjoin_quote(sub1, sub2, env, signal);
 	ft_free_3str(sub1, sub2, NULL);
 	if (str[k + 1])

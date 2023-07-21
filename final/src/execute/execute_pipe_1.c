@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 23:17:59 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:46:42 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env);
 static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 {
 	char	**envp;
-
-	// if (node->redirection_in == 2)
 		
+	redir_child(node);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		ft_putstr_fd("dup2 failed", STDERR_FILENO);
-	redir_child(node);
 	close(fd[0]);
 	close(fd[1]);
 	if (!check_buildin(node->command))
@@ -46,6 +44,7 @@ static void	child_pipe_frame(int *fd, t_parse *node, t_env *env)
 		if (dup2(fd[0], STDIN_FILENO) == -1)
 			ft_error("dup2 failed");
 		close(fd[1]);
+		close(fd[0]);
 	}
 }
 
@@ -66,7 +65,6 @@ static void	pipex(t_parse_arr *cmmarr, t_env *env)
 	int	fd[2];
 	int	i;
 
-	(void)env;
 	i = 0;
 	while (i < cmmarr->size - 1)
 	{
@@ -82,7 +80,6 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env)
 {
 	int	pid;
 	int	status;
-	// int fd;
 
 	pid = fork();
 	status = 0;
@@ -94,11 +91,4 @@ void	init_pipex(t_parse_arr *cmmarr, t_env *env)
 		waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		g_exit = WEXITSTATUS(status);
-	// if (cmmarr->cmm[cmmarr->size - 1]->redirection_in == 2)
-	// {
-	// 	fd = ft_redirection_out(cmmarr->cmm[cmmarr->size - 1]);
-	// 	ft_putstr_fd(cmmarr->cmm[cmmarr->size - 1]->infilepath, fd);
-	// 	if (fd != 1)
-	// 		close(fd);
-	// }
 }

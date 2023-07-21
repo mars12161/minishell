@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:55:39 by yli               #+#    #+#             */
-/*   Updated: 2023/07/19 22:00:51 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:58 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ char *check_path_valid_utils(char *str, t_env *env, int signal)
 	if (!sub1 && !sub2)
 		return (NULL);
 	result = ft_strjoin(sub1, sub2);
-	// printf("s1: %s\ns2: %s\nresult: %s\n", sub1, sub2, result);
 	ft_free_3str(sub1, sub2, NULL);
 	return (result);
 }
