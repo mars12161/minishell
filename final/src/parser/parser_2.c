@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:45:44 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 08:02:16 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 10:16:55 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	char	*str_expand_check;
 	char	*whole_str;
 
-	whole_str = ft_strdup("");
+	whole_str = "";
 	signal(SIGINT, sigint_heredoc);
 	str = "";
-	while (ft_strcmp(str, delimiter))
+	while (1)
 	{
 		str = readline("heredoc>");
 		if (!str)
