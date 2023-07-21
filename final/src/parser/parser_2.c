@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:45:44 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/19 22:43:24 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 08:02:16 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ char	*read_heredoc(t_env *env, char *delimiter)
 	whole_str = ft_strdup("");
 	signal(SIGINT, sigint_heredoc);
 	str = "";
-	g_exit = 0;
-	while (ft_strcmp(str, delimiter) && g_exit == 0)
+	while (ft_strcmp(str, delimiter))
 	{
 		str = readline("heredoc>");
 		if (!str)
@@ -132,7 +131,10 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 		{
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
-				return ;
+			{
+				free(heredoc);
+				return;
+			}
 			cmm->infilepath = ft_strdup(heredoc);
 		}
 		else
@@ -140,7 +142,10 @@ void	parse_delim(t_parse *cmm, t_env *env, t_shell *temp)
 			free(cmm->infilepath);
 			heredoc = read_heredoc(env, delimiter);
 			if (!heredoc)
-				return ;
+			{
+				free(heredoc);
+				return;
+			}
 			cmm->infilepath = ft_strdup(heredoc);
 		}
 		// ft_putstr_fd(heredoc, fd);

@@ -6,11 +6,12 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/20 18:30:39 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 07:55:14 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <sys/ioctl.h>
 
 void	sigint_heredoc(int sig);
 void	sigint_process(int sig);
@@ -20,7 +21,7 @@ void	sigquit_handler(int sig);
 void	sigint_heredoc(int sig)
 {
 	(void)sig;
-	ft_putstr_fd("\n[minishell:]", 1);
+	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	g_exit = 130;
 }
 
