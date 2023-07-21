@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 13:15:35 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 11:13:56 by mschaub          ###   ########.fr       */
+/*   Created: 2023/07/21 15:57:16 by yli               #+#    #+#             */
+/*   Updated: 2023/07/21 15:57:29 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../inc/minishell.h"
 #include <sys/ioctl.h>
@@ -29,7 +30,7 @@ void	sigint_process(int sig)
 {
 	(void) sig;
 	ft_putstr_fd("\n", STDERR_FILENO);
-	g_exit = 130;
+	g_exit = 131;
 }
 
 void	sigint_handler(int sig)

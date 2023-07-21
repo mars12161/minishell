@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 10:21:31 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 15:50:44 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 15:56:27 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static char	*ft_parse_dollar_core(char *str, t_env *env, int signal)
 char	*ft_parse_dollar_frame(char *str, t_env *env, int signal)
 {
 	char	*result;
-	char *final;
+	char 	*final;
 
 	final = NULL;
 	if (str[0] == '$')
