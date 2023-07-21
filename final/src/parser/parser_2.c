@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:45:44 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 10:16:55 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 14:28:46 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,11 @@ void	parse_redir_out_app(t_parse *cmm, t_shell *temp)
 char	*read_heredoc(t_env *env, char *delimiter)
 {
 	char	*str;
+	char	*tmp;
 	char	*str_expand_check;
 	char	*whole_str;
 
-	whole_str = "";
+	whole_str = ft_strdup("");
 	signal(SIGINT, sigint_heredoc);
 	str = "";
 	while (1)
@@ -105,12 +106,17 @@ char	*read_heredoc(t_env *env, char *delimiter)
 		if (!ft_strcmp(str, delimiter) || g_exit == 130)
 			break ;
 		str_expand_check = ft_parse_dollar_frame(str, env, 0);
-		free(str); //not sure
-		whole_str = ft_strjoin(whole_str, str_expand_check);
-		whole_str = ft_strjoin(whole_str, "\n");
-	} //free str, str_expand_check
+		free(str);
+		tmp = ft_strjoin(whole_str, str_expand_check);
+		free(whole_str);
+		whole_str = ft_strjoin(tmp, "\n");
+		free(tmp);
+	}
 	if (g_exit == 130)
+	{
+		free(whole_str);
 		return (NULL);
+	}
 	else
 		return (whole_str);
 }

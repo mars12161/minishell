@@ -6,7 +6,7 @@
 /*   By: mschaub <mschaub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 10:21:31 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/21 10:30:34 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 13:44:58 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static char	*ft_parse_dollar_core(char *str, t_env *env, int signal)
 char	*ft_parse_dollar_frame(char *str, t_env *env, int signal)
 {
 	char	*result;
-	char *final;
+	char 	*final;
 
 	final = NULL;
 	if (str[0] == '$')
