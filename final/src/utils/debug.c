@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:33:26 by yli               #+#    #+#             */
-/*   Updated: 2023/07/08 14:36:03 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/21 20:55:11 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,6 @@ void	print_parse_arr(t_parse_arr	*head)
 	else
 	{
 		printf("command: %s\n", head->cmm[0]->whole_line[0]);
-		printf("command: %s\n", head->cmm[0]->whole_line[1]);
-		printf("command: %s\n", head->cmm[0]->whole_line[2]);
-		printf("command: %s\n", head->cmm[0]->whole_line[3]);
-		printf("command: %s\n", head->cmm[0]->whole_line[4]);
 		printf("wline: %d\n", head->cmm[0]->wline_count);
 		printf("size: %d\n", head->size);
 	}

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 21:25:01 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 15:46:42 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 21:15:52 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	child_pipe_core(int *fd, t_parse *node, t_env *env)
 	close(fd[1]);
 	if (!check_buildin(node->command))
 		builtin_exit(node, env);
+	if (node->command == NULL)
+		exit (0);
 	envp = ft_env_str(env);
 	ft_executer(node->whole_line, envp);
 	ft_free_str(envp);
@@ -55,6 +57,8 @@ static void	parent_pipe(t_parse_arr *cmmarr, t_env *env)
 	redir_parent(cmmarr);
 	if (!check_buildin(cmmarr->cmm[cmmarr->size - 1]->command))
 		builtin_exit(cmmarr->cmm[cmmarr->size - 1], env);
+	if (cmmarr->cmm[cmmarr->size - 1]->command == NULL)
+		exit(0);
 	envp = ft_env_str(env);
 	ft_executer(cmmarr->cmm[cmmarr->size - 1]->whole_line, envp);
 	ft_free_str(envp);

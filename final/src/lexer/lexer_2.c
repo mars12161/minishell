@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:51:54 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 16:33:28 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 20:52:40 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*new_node_env(char *str, t_shell **shell, t_env **env)
 	j = new_node_env_utils(str);
 	path = ft_substr((char const *)str, 0, j);
 	result = ft_parse_dollar_frame(path, *env, 0);
+	//printf("path: %s\nresult: %s\n", path, result);
 	free(path);
 	new_node->input = result;
 	str += j;

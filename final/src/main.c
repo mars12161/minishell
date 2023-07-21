@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:59:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 20:06:24 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/21 21:04:46 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ static int	input_loop(t_env *env)
 		add_history(str);
 	shell = NULL;
 	shell = fill_shell(str, shell, &env);
+	// print_shell(shell);
 	cmmarr = parse_array_create(shell, env);
 	if (!cmmarr)
 		return (ft_empty_cmmarr(str, shell));
+	// print_parse_arr(cmmarr);
 	if (cmmarr->size == 1)
 		return (input_loop_2(env, shell, cmmarr, str));
 	if (g_exit != 130)
