@@ -6,7 +6,7 @@
 /*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 17:50:57 by yli               #+#    #+#             */
-/*   Updated: 2023/07/15 14:56:23 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/22 14:02:25 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ char	**ft_env_str(t_env *env)
 	int		i;
 
 	envp = malloc(sizeof(char *) * (env->size + 1));
-	envp[env->size] = NULL;
 	if (!envp)
 		return (NULL);
+	envp[env->size] = NULL;
 	i = 0;
 	while (env)
 	{

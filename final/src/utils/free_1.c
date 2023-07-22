@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 18:42:56 by yli               #+#    #+#             */
-/*   Updated: 2023/07/14 14:26:44 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/22 13:47:55 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,18 @@ static void	free_cmmarr(t_parse_arr *cmmarr)
 
 void	free_env(t_env **env)
 {
-	t_env	*temp;
+	t_env	*current;
+	t_env	*next;
 
-	if (!*env || !env)
+	if (!env || !*env)
 		return ;
-	while (*env)
+	current = *env;
+	while (current)
 	{
-		temp = (*env)->next;
-		free((*env)->content);
-		free(*env);
-		*env = temp;
+		next = current->next;
+		free(current->content);
+		free(current);
+		current = next;
 	}
 	*env = NULL;
 }
