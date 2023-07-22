@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 15:55:39 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 20:51:44 by yli              ###   ########.fr       */
+/*   Updated: 2023/07/22 09:33:05 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*check_path_valid_utils(char *str, t_env *env, int signal)
 	path = ft_substr(str, check_path_str(str),
 			(int)ft_strlen(str) - check_path_str(str));
 	sub2 = ft_str_check_quote(path, env, signal);
-	// printf("sub1: %s\nsub2: %s\n", sub1, sub2);
 	free(path);
 	if (!sub1 && sub2)
 		return (sub2);

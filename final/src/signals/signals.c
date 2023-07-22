@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:57:16 by yli               #+#    #+#             */
-/*   Updated: 2023/07/21 20:41:20 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/22 12:43:39 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sigint_process(int sig)
 {
 	(void) sig;
 	ft_putstr_fd("\n", STDERR_FILENO);
-	g_exit = 131;
+	g_exit = 130;
 }
 
 void	sigint_handler(int sig)
@@ -39,7 +39,7 @@ void	sigint_handler(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	// g_exit = 130; TODO
+	g_exit = 130;
 }
 
 void	sigquit_handler(int sig)

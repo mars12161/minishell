@@ -1,6 +1,6 @@
 NAME = minishell
-CFLAGS = -g3 -Wall -Wextra -Werror
-#CFLAGS	:= -g3 -fsanitize=address -Wall -Wextra -Werror
+#CFLAGS = -g3 -Wall -Wextra -Werror
+CFLAGS	:= -g3 -fsanitize=address -Wall -Wextra -Werror
 CC = cc
 RM = rm -rf
 
@@ -36,6 +36,7 @@ SRCS =		src/main.c \
 			src/parser/parse_multi_env_4.c \
 			src/parser/parser_1.c \
 			src/parser/parser_2.c \
+			src/parser/parser_2_utils.c \
 			src/parser/parser_3.c \
 			src/parser/parser_4.c \
 			src/utils/debug.c \
