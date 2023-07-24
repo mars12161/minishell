@@ -5,6 +5,7 @@ CC = cc
 RM = rm -rf
 
 SRCS =		src/main.c \
+			src/main_utils.c \
 			src/signals/signals.c \
 			src/builtin/buildin_1.c \
 			src/builtin/buildin_2_echo.c \

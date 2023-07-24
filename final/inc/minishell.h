@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:39:25 by mschaub           #+#    #+#             */
-/*   Updated: 2023/07/22 11:57:02 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/24 10:10:19 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,4 +251,8 @@ void		ft_executer(char **whole_line, char **env);
 void		redir_child(t_parse *node);
 void		redir_parent(t_parse_arr *cmmarr);
 
+/* Main Utils */
+int			ft_check_readline_in_loop(void);
+int			ft_empty_cmmarr(char *str, t_shell *shell);
+int			err_heredoc(void);
 #endif
