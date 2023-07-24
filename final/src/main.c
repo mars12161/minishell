@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:59:08 by yli               #+#    #+#             */
-/*   Updated: 2023/07/22 12:41:32 by mschaub          ###   ########.fr       */
+/*   Updated: 2023/07/24 09:07:36 by mschaub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_empty_cmmarr(char *str, t_shell *shell)
 	return (0);
 }
 
-static	int	input_loop_2(t_env *env, t_shell *shell,
+/*static	int	input_loop_2(t_env *env, t_shell *shell,
 				t_parse_arr *cmmarr, char *str)
 {
 	if (g_exit != 130)
@@ -39,7 +39,7 @@ static	int	input_loop_2(t_env *env, t_shell *shell,
 		return (execute_exit(shell, cmmarr, env, str));
 	}
 	return (0);
-}
+}*/
 // not sure about return (0);
 
 /*static int	input_loop_2(t_env *env, t_shell *shell,
@@ -131,8 +131,7 @@ int	input_loop(t_env *env)
 	}
 	unlink("heredoc.txt");
 	free_all_in_loop(&shell, cmmarr, str);
-	input_loop_2(env, shell, cmmarr, str);
-	return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv, char **envp)
